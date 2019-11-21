@@ -1,0 +1,77 @@
+
+
+IN KLASSE: ArtikelTekstLoadSave.java
+/*
+    public loadFile(String bestand) {
+        artikelen = new ArrayList();
+        if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
+        File artikelenFile = new File(bestand);
+        try {
+            Scanner scannerFile = new Scanner(artikelenFile);
+            while (scannerFile.hasNextLine()) {
+                Scanner scannerLijn = new Scanner(scannerFile.nextLine());
+                scannerLijn.useDelimiter("\t");
+                String id = scannerLijn.next();
+                int idint = Integer.parseInt(id);
+                String vraag = scannerLijn.next();
+                String antwoord = scannerLijn.next();
+                String hoofdletter = scannerLijn.next();
+                String hint = scannerLijn.next();
+                boolean hflt = Boolean.parseBoolean(hoofdletter);
+                String categorie = scannerLijn.next();
+                String auteur = scannerLijn.next();
+                if (hint.equals("Geen hint") || hint == null || hint.trim().isEmpty()) {
+                    Artikel artikel = new Artikel(idint, vraag, antwoord, hflt, categorie, auteur);
+                }
+                Artikel artikel = new Artikel(idint, vraag, antwoord, hflt, hint, categorie, auteur);
+                voegToe(artikel);
+            }
+            for (Artikel artikel: artikelen) {
+                System.out.println(artikel.toString());
+            }
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException("Fout bij het inlezen", e);
+        }
+    }
+
+
+    //Returns all articles
+    public ArrayList getArtikelen() {
+        return artikelen;
+    }
+
+    //Adds a new Article to the list
+    public Artikel voegToe(Artikel artikel) {
+        if (artikel == null || ArtikelAlInDatabank(artikel)) throw new  IllegalArgumentException((artikel==null?"Artikel is ongeldig":"Artikel is al in de lijst"));
+        artikelen.add(artikel);
+        return artikel;
+    }
+
+    //Checks if an Article is already in the list
+    private boolean artikelAlInDatabank(Artikel artikel) {
+        for (Artikel o: artikelen) {
+            return o.equals(artikel);
+        }
+        return false;
+    }
+
+    //Returns an Article with as parameter the ID
+    public Artikel getArtikel(String artikelID) {
+        Artikel o = null;
+        for (Artikel artikel: artikelen) {
+            if ((artikel.getArtikelID() == Integer.parseInt(artikelID))) o = artikel;
+        }
+        return o;
+    }
+
+    //Better layout for printing all articles
+    @Override
+    public String toString() {
+        String opd = "";
+        for (Artikel artikel: artikelen) {
+            opd += artikel.toString() + "\n";
+        }
+        return opd;
+    }
+
+    */
