@@ -1,0 +1,2 @@
+# 18_Kosmajac_VanEyken_VanDeVelde_KassaApp_2019
+OOO Groepswerk
