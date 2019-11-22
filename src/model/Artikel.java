@@ -58,12 +58,11 @@ public class Artikel {
 
     @Override
     public String toString() {
-        return "Artikel{" +
-                "artikelCode='" + artikelCode + '\'' +
-                ", omschrijving='" + omschrijving + '\'' +
-                ", artikelGroep='" + artikelGroep + '\'' +
-                ", prijs=" + prijs +
-                ", stock=" + stock +
-                '}';
+        return "Artikel: " + "\n" + "\t -" +
+                "Code: " + artikelCode + "\n" + "\t -" +
+                "Omschrijving: " + omschrijving + "\n" + "\t -" +
+                "Artikelgroep: " + artikelGroep + "\n" + "\t -" +
+                "Prijs: " + prijs + "\n" + "\t -" +
+                "Stock: " + stock;
     }
 }
