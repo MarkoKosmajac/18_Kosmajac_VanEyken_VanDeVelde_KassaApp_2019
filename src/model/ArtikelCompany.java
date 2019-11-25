@@ -44,13 +44,20 @@ public class ArtikelCompany {
         return null;
     }
 
-    public void verwijderArtikel(String artikelcode) {
+    public void verwijderArtikel(String code) {
+        System.out.println(data);
         ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
+        System.out.println(artikelenLijst);
+
+        System.out.println("keke=" + artikelenLijst.toString());
         for(Artikel a : artikelenLijst){
-            if(a.getArtikelCode().equalsIgnoreCase(artikelcode)){
-                artikelenLijst.remove(artikelcode);
+            if(a.getArtikelCode().equalsIgnoreCase(code)){
+                System.out.println(a.toString() + "sdffsdfsfsdfs");
+                artikelenLijst.remove(a);
             }
+            System.out.println("zmldkfsmdkfsfsdfsdf");
         }
+        System.out.println("mlqdfkmlqsdkfsmdlfk");
     }
 
 
