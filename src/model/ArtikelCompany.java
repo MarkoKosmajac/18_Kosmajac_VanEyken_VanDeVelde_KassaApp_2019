@@ -40,6 +40,15 @@ public class ArtikelCompany {
         return null;
     }
 
+    public void verwijderArtikel(String artikelcode) {
+        ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
+        for(Artikel a : artikelenLijst){
+            if(a.getArtikelCode().equalsIgnoreCase(artikelcode)){
+                artikelenLijst.remove(artikelcode);
+            }
+        }
+    }
+
 
 
 
