@@ -1,8 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import database.InMemoryArtikelDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,8 +14,10 @@ public class ArtikelCompany {
 
     public ArtikelCompany(){
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-        UITestStory1 a = new UITestStory1();
-        data.addAll(a.load(bestand));
+        //UITestStory1 a = new UITestStory1();
+        InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
+        //data.addAll(a.load(bestand));
+        data.addAll((Collection<? extends Artikel>) b.getArtikelen().values());
     }
 
     public ObservableList<Artikel> loadData()     {

@@ -4,7 +4,7 @@ import model.*;
 import java.io.*;
 import java.util.*;
 
-public class inMemoryArtikelDatabase {
+public class InMemoryArtikelDatabase {
 
     private HashMap artikelen = new HashMap<>();
 
@@ -45,6 +45,14 @@ public class inMemoryArtikelDatabase {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Fout bij het inlezen", e);
         }
+    }
+
+    public InMemoryArtikelDatabase(String bestand) {
+        load(bestand);
+    }
+
+    public HashMap<String, Artikel> getArtikelen(){
+        return this.artikelen;
     }
 
     public void writeToFile() throws IOException{

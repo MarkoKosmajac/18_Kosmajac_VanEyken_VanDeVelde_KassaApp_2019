@@ -86,14 +86,13 @@ public class KassaTab1OverviewPane extends GridPane {
         }
         );
 
-        //BIJ DUBBELKLIK AANPASSEN
         table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Artikel artikel = row.getItem();
-                    String artikelInfo= artikel.getOmschrijving()+" \nRecente prijs is "+ artikel.getPrijs()+" Euro: ";
-                    popUpDeleteConfirm();
+                    String artikelInfo = artikel.getOmschrijving();
+                    new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo);
                 }
             });
             return row;
@@ -138,6 +137,17 @@ public class KassaTab1OverviewPane extends GridPane {
         Scene stageScene = new Scene(comp,300,75);
         newStage.setScene(stageScene);
         newStage.show();
+    }
+
+    public void displayErrorMessage(String errorMessage){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Alert");
+        alert.setContentText(errorMessage);
+        alert.show();
+    }
+
+    public void refresh(){
+        table.refresh();
     }
 
 
