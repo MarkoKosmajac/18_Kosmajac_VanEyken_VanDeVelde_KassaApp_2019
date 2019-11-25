@@ -17,7 +17,7 @@ public class ArtikelCompany {
         //UITestStory1 a = new UITestStory1();
         InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
         //data.addAll(a.load(bestand));
-        data.addAll((Collection<? extends Artikel>) b.getArtikelen().values());
+        data.addAll((ArrayList<Artikel>) b.getArtikelen().values());
     }
 
     public ObservableList<Artikel> loadData()     {
