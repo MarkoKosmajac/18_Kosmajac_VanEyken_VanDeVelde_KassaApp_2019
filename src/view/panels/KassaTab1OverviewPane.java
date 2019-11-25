@@ -92,7 +92,8 @@ public class KassaTab1OverviewPane extends GridPane {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Artikel artikel = row.getItem();
                     String artikelInfo = artikel.getOmschrijving();
-                    new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo);
+                    String code = artikel.getArtikelCode();
+                    new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo, code);
                 }
             });
             return row;

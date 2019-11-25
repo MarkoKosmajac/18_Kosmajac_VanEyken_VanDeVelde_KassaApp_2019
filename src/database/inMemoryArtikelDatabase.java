@@ -41,7 +41,7 @@ public class InMemoryArtikelDatabase {
                 artikelen.put(artikel.getArtikelCode(), artikel);
             }
 
-            artikelen = sortByValues(artikelen);
+            //artikelen = sortByValues(artikelen);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Fout bij het inlezen", e);
         }
@@ -65,7 +65,7 @@ public class InMemoryArtikelDatabase {
 
     }
 
-    private HashMap sortByValues(HashMap map) { 
+    /*private HashMap sortByValues(HashMap map) {
         List list = new LinkedList(map.entrySet());
         // Defined Custom Comparator here
 
@@ -75,8 +75,8 @@ public class InMemoryArtikelDatabase {
 
         Collections.sort(list, new Comparator() {
             public int compare(Object o1, Object o2) {
-               return ((Comparable) ((Map.Entry) (o1)).getOmschrijving())
-                  .compareTo(((Map.Entry) (o2)).getOmschrijving());
+               return ((Comparable) ((Map.Entry) (o1)).getOmschrijving()
+                  .compareTo(((Map.Entry) (o2)).getOmschrijving()));
             }
         });
  
@@ -88,7 +88,7 @@ public class InMemoryArtikelDatabase {
                sortedHashMap.put(entry.getKey(), entry.getValue());
         } 
         return sortedHashMap;
-   }
+   }*/
 
 
 }
