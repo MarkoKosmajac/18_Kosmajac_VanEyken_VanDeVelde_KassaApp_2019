@@ -16,6 +16,10 @@ public class Artikel {
         this.stock = stock;
     }
 
+    public Artikel(String artikelCode) {
+        this.artikelCode = artikelCode;
+    }
+
     public String getArtikelCode() {
         return artikelCode;
     }

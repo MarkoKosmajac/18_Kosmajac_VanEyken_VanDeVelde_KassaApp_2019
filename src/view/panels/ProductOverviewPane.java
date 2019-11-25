@@ -70,7 +70,9 @@ public class ProductOverviewPane extends GridPane { //TODO: Simplify code by let
 		/*button.setOnAction(new AddDummyArtikelHandler());*/
 		Button button2 = new Button("...");
 		/*button2.setOnAction(new UpdatePriceHandler());*/
-		this.getChildren().addAll(lblHeading, table,button,button2);
+		this.add(button,0, 5, 1, 6);
+		this.add(button2, 1,5,1,6);
+		this.getChildren().addAll(lblHeading, table); //button, button2
 
 	}
 

@@ -2,10 +2,9 @@ package model;
 
 import java.io.*;
 import java.util.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UITestStory1 {
+
 
     public ArrayList load(String bestand){
         List<Artikel> artikelen;
