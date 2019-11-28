@@ -6,7 +6,7 @@ import java.util.*;
 
 public class InMemoryArtikelDatabase {
 
-    private HashMap artikelen = new HashMap<Artikel>();
+    private HashMap artikelen = new HashMap<String, Artikel>();
 
 
     //TODO     De load methode geeft een ArrayList van Artikel objecten terug en de save methode schrijft een ArrayList van Artikel objecten weg.
@@ -20,7 +20,8 @@ public class InMemoryArtikelDatabase {
     //TODO: Uitbreiding strategypattern: Voorzie in je architectuur tevens dat de in memory database later kan vervangen worden door voorbeeld een relationele database (de code om artikelen uit een relationele database te gebruiken hoef je niet te implementeren, wel de architectuur (met strategy pattern daartoe voorzien)
 
     public InMemoryArtikelDatabase(String bestand) {
-		ArrayList a= load(bestand);
+        ArrayList<Artikel> a = load(bestand);
+
 		for(Artikel artikel : a){
 			artikelen.put(artikel.getArtikelCode(), artikel);
 		}
