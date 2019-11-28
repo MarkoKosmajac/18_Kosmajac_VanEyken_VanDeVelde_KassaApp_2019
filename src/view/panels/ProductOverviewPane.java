@@ -35,7 +35,7 @@ public class ProductOverviewPane extends GridPane { //TODO: Simplify code by let
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
 		ObservableList<Artikel> a = null;
-		a.addAll(artikelCompany.loadData().values());
+		a.addAll(artikelCompany.loadData().values());a
 		//table.setItems(artikelCompany.loadData());
 		table.setItems(a);
 
