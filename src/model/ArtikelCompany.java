@@ -5,29 +5,19 @@ import java.util.*;
 import database.InMemoryArtikelDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
-    private ObservableMap<String, Artikel> dek;
     private String bestand = "src\\bestanden\\artikel.txt"; //Filepath
 
     public ArtikelCompany(){
-        //data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-        dek = FXCollections.observableHashMap();
+        data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
-        //dek.put("1", new Artikel("01","appel","5",5,5));
-        dek.putAll(b.getArtikelen());
-        System.out.println(dek);
-        //data.addAll(a.load(bestand));
-        //data.addAll((ArrayList<Artikel>) b.getArtikelen().values());
-        //data.add(new Artikel("01", "Peer", "Groep 01", 100,50));
-        //dek.putAll(b.getArtikelen());
-
+        data.addAll(b.load(bestand));
     }
 
-    public ObservableMap<String, Artikel> loadData()     {
-        return dek;
+    public ObservableList<Artikel> loadData()     {
+        return data;
     }
 
     public String zoek(String artikelcode) {
