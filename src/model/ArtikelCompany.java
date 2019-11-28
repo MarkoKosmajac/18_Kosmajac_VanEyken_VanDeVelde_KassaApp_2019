@@ -5,6 +5,7 @@ import java.util.*;
 import database.InMemoryArtikelDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import view.panels.KassaTab1OverviewPane;
 
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
@@ -41,19 +42,17 @@ public class ArtikelCompany {
     }
 
     public void verwijderArtikel(String code) {
-        System.out.println(data);
-        ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
-        System.out.println(artikelenLijst);
+        System.out.println(this.data);
+        //ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
 
-        System.out.println("keke=" + artikelenLijst.toString());
-        for(Artikel a : artikelenLijst){
+        Artikel em = new Artikel("00","dummy","groep0",0,0);
+        for(Artikel a : this.data){
             if(a.getArtikelCode().equalsIgnoreCase(code)){
-                System.out.println(a.toString() + "sdffsdfsfsdfs");
-                artikelenLijst.remove(a);
+                em = a;
             }
-            System.out.println("zmldkfsmdkfsfsdfsdf");
         }
-        System.out.println("mlqdfkmlqsdkfsmdlfk");
+        this.data.remove(em);
+        System.out.println(this.data);
     }
 
 

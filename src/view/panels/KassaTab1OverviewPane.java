@@ -27,6 +27,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private ObservableList<Artikel> products;
 
     public KassaTab1OverviewPane(ArtikelCompany artikelCompany){
+        this.artikelCompany = artikelCompany;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         totaalBedrag = 0;
@@ -47,7 +48,6 @@ public class KassaTab1OverviewPane extends GridPane {
         tot.setFont(new Font("System", 18));
         labelTotaal.setFont(new Font("System", 18));
 
-        this.artikelCompany = artikelCompany;
 
         table = new TableView<Artikel>();
 
@@ -68,7 +68,7 @@ public class KassaTab1OverviewPane extends GridPane {
                     String omschr = artikel.getOmschrijving();
                     double prijs = artikel.getPrijs();
                     totaalBedrag += artikel.getPrijs();
-                    System.out.println("Omschrijving: " + omschr + " Prijs: " + prijs + " totaal: " + totaalBedrag);
+                    //System.out.println("Omschrijving: " + omschr + " Prijs: " + prijs + " totaal: " + totaalBedrag);
                     products.add(artikel);
                     table.setItems(products);
                     text.clear();
@@ -85,6 +85,7 @@ public class KassaTab1OverviewPane extends GridPane {
             labelTotaal.setText(String.valueOf(totaalBedrag)); //LABEL UPDATEN
         }
         );
+
 
         table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();

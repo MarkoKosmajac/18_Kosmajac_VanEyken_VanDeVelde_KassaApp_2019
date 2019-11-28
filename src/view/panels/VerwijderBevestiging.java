@@ -17,6 +17,7 @@ public class VerwijderBevestiging extends GridPane {
     private ArtikelCompany artikelCompany;
 
     public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) {
+        artikelCompany = new ArtikelCompany();
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");
         this.setPrefHeight(150);
@@ -43,7 +44,6 @@ public class VerwijderBevestiging extends GridPane {
                 try{
                     //artikel.setPrijs(Double.parseDouble(prijsVeld.getText()));
                     artikelCompany.verwijderArtikel(code);
-                    //System.out.println(artikelInfo);
 
                 }
                 catch (IllegalArgumentException ex){
