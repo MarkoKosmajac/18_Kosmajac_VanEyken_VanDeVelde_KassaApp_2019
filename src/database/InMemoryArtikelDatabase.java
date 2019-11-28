@@ -51,7 +51,7 @@ public class InMemoryArtikelDatabase {
         load(bestand);
     }
 
-    public HashMap<String, Artikel> getArtikelen(){
+    public HashMap getArtikelen(){
         return this.artikelen;
     }
 
