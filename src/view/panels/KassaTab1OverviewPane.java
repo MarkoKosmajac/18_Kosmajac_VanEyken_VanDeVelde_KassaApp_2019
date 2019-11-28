@@ -95,6 +95,7 @@ public class KassaTab1OverviewPane extends GridPane {
                     String artikelInfo = artikel.getOmschrijving();
                     String code = artikel.getArtikelCode();
                     new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo, code);
+                    //popUpDeleteConfirm(artikelInfo, code);
                 }
             });
             return row;
@@ -121,10 +122,10 @@ public class KassaTab1OverviewPane extends GridPane {
         newStage.show();
     }
 
-    public static void popUpDeleteConfirm(){
+    public void popUpDeleteConfirm(String artikelinfo, String code){
         Stage newStage = new Stage();
         VBox comp = new VBox();
-        Label label = new Label("Verwijder " + "naam" + " ?");
+        Label label = new Label("Verwijder " + artikelinfo + " ?");
         label.setFont(new Font("System", 18));
         label.setMaxWidth(Double.MAX_VALUE);
         label.setAlignment(Pos.CENTER);
@@ -133,8 +134,8 @@ public class KassaTab1OverviewPane extends GridPane {
         Button buttonNee = new Button("Nee");
 
         comp.getChildren().addAll(label);
-        /*add(buttonJa,0,1);
-        add(buttonNee,1,1);*/
+        this.add(buttonJa,0,1);
+        this.add(buttonNee,1,1);
 
         Scene stageScene = new Scene(comp,300,75);
         newStage.setScene(stageScene);

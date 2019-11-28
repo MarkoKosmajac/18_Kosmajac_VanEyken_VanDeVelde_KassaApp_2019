@@ -8,7 +8,6 @@ public class InMemoryArtikelDatabase {
 
     private HashMap artikelen = new HashMap<String, Artikel>();
 
-
     //TODO     De load methode geeft een ArrayList van Artikel objecten terug en de save methode schrijft een ArrayList van Artikel objecten weg.
 
     //TODO: 1. alle artikel uit het artikel.txt tekstbestand inleest in een hashmap
