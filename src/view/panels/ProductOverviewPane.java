@@ -1,5 +1,6 @@
 package view.panels;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
 import model.ArtikelCompany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProductOverviewPane extends GridPane { //TODO: Simplify code by letting panes extend a Pane (Here gridpane)!
@@ -30,7 +34,10 @@ public class ProductOverviewPane extends GridPane { //TODO: Simplify code by let
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-		table.setItems(artikelCompany.loadData());
+		ObservableList<Artikel> a = null;
+		a.addAll(artikelCompany.loadData().values());a
+		//table.setItems(artikelCompany.loadData());
+		table.setItems(a);
 
 		//BIJ DUBBELKLIK AANPASSEN
         /*table.setRowFactory( tv -> {
