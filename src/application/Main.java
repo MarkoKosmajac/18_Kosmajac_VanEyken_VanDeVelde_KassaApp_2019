@@ -2,6 +2,7 @@ package application;
 	
 import database.InMemoryArtikelDatabase;
 import javafx.application.Application;
+import javafx.beans.property.Property;
 import javafx.stage.Stage;
 import view.KassaView;
 import view.KlantView;
@@ -13,6 +14,8 @@ public class Main extends Application {
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...
+
+		System.out.println(System.getProperty("os.name"));
 
 	}
 

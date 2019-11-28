@@ -17,6 +17,7 @@ public class ArtikelCompany {
         } else {
             bestand = "src\\bestanden\\artikel.txt";
         }
+
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
         data.addAll(b.load(bestand));
