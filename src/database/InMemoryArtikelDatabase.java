@@ -6,8 +6,7 @@ import java.util.*;
 
 public class InMemoryArtikelDatabase {
 
-    private HashMap artikelen = new HashMap<>();
-
+    private HashMap artikelen = new HashMap<Artikel>();
 
 
     //TODO     De load methode geeft een ArrayList van Artikel objecten terug en de save methode schrijft een ArrayList van Artikel objecten weg.
@@ -20,8 +19,16 @@ public class InMemoryArtikelDatabase {
 
     //TODO: Uitbreiding strategypattern: Voorzie in je architectuur tevens dat de in memory database later kan vervangen worden door voorbeeld een relationele database (de code om artikelen uit een relationele database te gebruiken hoef je niet te implementeren, wel de architectuur (met strategy pattern daartoe voorzien)
 
+    public InMemoryArtikelDatabase(String bestand) {
+		ArrayList a= load(bestand);
+		for(Artikel artikel : a){
+			artikelen.put(artikel.getArtikelCode(), artikel);
+		}
+    }
 
-    public void load(String bestand){
+    public ArrayList<Artikel> load(String bestand){
+		ArrayList a= new ArrayList<Artikel>();
+		
         if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
         File artikelenFile = new File(bestand);
         try {
@@ -38,17 +45,14 @@ public class InMemoryArtikelDatabase {
                 int stock = Integer.parseInt(stok);
                 //vb: 1,artikel1,gr1,12.5,10
                 Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
-                artikelen.put(artikel.getArtikelCode(), artikel);
+				a.add(artikel);
             }
+			return a;
 
             //artikelen = sortByValues(artikelen);
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Fout bij het inlezen", e);
         }
-    }
-
-    public InMemoryArtikelDatabase(String bestand) {
-        load(bestand);
     }
 
     public HashMap getArtikelen(){
