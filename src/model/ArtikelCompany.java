@@ -9,9 +9,14 @@ import view.panels.KassaTab1OverviewPane;
 
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
-    private String bestand = "src\\bestanden\\artikel.txt"; //Filepath
+    private String bestand; //Filepath
 
     public ArtikelCompany(){
+        if (System.getProperty("os.name").equals("Mac OS X")){
+            bestand = "src/bestanden/artikel.txt";
+        } else {
+            bestand = "src\\bestanden\\artikel.txt";
+        }
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
         data.addAll(b.load(bestand));
