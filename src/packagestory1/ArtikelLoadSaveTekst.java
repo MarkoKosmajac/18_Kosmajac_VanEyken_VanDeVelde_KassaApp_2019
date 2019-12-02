@@ -58,7 +58,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
         } catch (FileNotFoundException e1) {
             throw new IllegalArgumentException("Bestand niet gevonden" + e1);
         }
-
+qsdqsdqsdqsdqdqsdqsdqd
 
     }
 
