@@ -4,6 +4,7 @@ import model.Artikel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +59,15 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
 
     public void save(ArrayList<Artikel> artikelArrayList){
+        File personenFile = new File("Personen.txt");
+        try{
+            PrintWriter writer = new PrintWriter(personenFile);
+            writer.println("Max " + "Van de Velde");
+            writer.println("Luca " + "VH");
+            writer.close();
+        } catch (FileNotFoundException e1) {
+            throw new IllegalArgumentException("Bestand niet gevonden" + e1);
+        }
 
 
     }
