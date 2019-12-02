@@ -17,7 +17,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     }
 
     public ArrayList<Artikel> load(String bestand){
-        ArrayList a= new ArrayList<Artikel>();
+        ArrayList a = new ArrayList<Artikel>();
 
         if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
         File artikelenFile = new File(bestand);
