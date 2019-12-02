@@ -2,14 +2,15 @@ package model;
 
 import java.util.*;
 
-import database.InMemoryArtikelDatabase;
+import database.ArtikelDBInMemory;
+import database.ArtikelLoadSaveTekst;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import view.panels.KassaTab1OverviewPane;
 
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
     private String bestand; //Filepath
+    private ArtikelLoadSaveTekst artikelLoadSaveTekst;
 
     public ArtikelCompany(){
         if (System.getProperty("os.name").equals("Mac OS X")){
@@ -19,7 +20,7 @@ public class ArtikelCompany {
         }
 
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-        InMemoryArtikelDatabase b = new InMemoryArtikelDatabase(bestand);
+        ArtikelDBInMemory b = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
         data.addAll(b.load(bestand));
     }
 

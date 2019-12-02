@@ -1,6 +1,6 @@
 package application;
 	
-import database.InMemoryArtikelDatabase;
+import database.ArtikelDBInMemory;
 import javafx.application.Application;
 import javafx.beans.property.Property;
 import javafx.stage.Stage;

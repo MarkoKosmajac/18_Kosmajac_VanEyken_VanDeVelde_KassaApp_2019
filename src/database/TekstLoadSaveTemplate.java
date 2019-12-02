@@ -1,27 +1,9 @@
 package database;
 
-public abstract class TekstLoadSaveTemplate {
+public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy{
+    //TODO: nog aan te vullen, hier komen abstracte methodes save en load om bijvoorbeeld een KLANT object in te lezen en te saven
+    //TODO: STANDAARDCODE;
 
-    //TODO: stappenplan algoritme
 
-    final void load(){
-        openFile();
-        closeFile();
-    }
-
-    final void save(){
-        openFile();
-        closeFile();
-    }
-
-    //Geen abstracte want is zelfde voor load en save
-    void openFile(){
-
-    }
-
-    //Geen abstracte want is zelfde voor load en save
-    void closeFile(){
-
-    }
 
 }
