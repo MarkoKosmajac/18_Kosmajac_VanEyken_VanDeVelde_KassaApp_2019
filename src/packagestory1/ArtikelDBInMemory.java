@@ -2,9 +2,12 @@ package packagestory1;
 
 import model.Artikel;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
     //Hierin zit hashmap -lees uit, uit artikel.txt
@@ -12,18 +15,50 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     //Methode: Load en Save
     //Dit is nu de context klasse voor load en save strategy
     private LoadSaveStrategy loadSaveStrategy;
-    private Map hashMap = new HashMap();
+    private HashMap artikelen = new HashMap<String, Artikel>();
 
-    public ArtikelDBInMemory() {
+
+    public ArtikelDBInMemory(String bestand) {
+        ArrayList<Artikel> a = load(bestand);
+
+        for(Artikel artikel : a){
+            artikelen.put(artikel.getArtikelCode(), artikel);
+        }
     }
 
-    public ArrayList<Artikel> load(){
+    public ArrayList<Artikel> load(String bestand){
+        ArrayList a= new ArrayList<Artikel>();
 
-        return
+        if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
+        File artikelenFile = new File(bestand);
+        try {
+            Scanner scannerFile = new Scanner(artikelenFile);
+            while (scannerFile.hasNextLine()) {
+                Scanner scannerLijn = new Scanner(scannerFile.nextLine());
+                scannerLijn.useDelimiter(",");
+                String id = scannerLijn.next();
+                String omschrijving = scannerLijn.next();
+                String groep = scannerLijn.next();
+                String pris = scannerLijn.next();
+                double prijs = Double.parseDouble(pris);
+                String stok = scannerLijn.next();
+                int stock = Integer.parseInt(stok);
+                //vb: 1,artikel1,gr1,12.5,10
+                Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
+                a.add(artikel);
+            }
+            return a;
+
+            //artikelen = sortByValues(artikelen);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException("Fout bij het inlezen", e);
+        }
+
     }
 
 
     public void save(ArrayList<Artikel> artikelArrayList){
+
 
     }
 

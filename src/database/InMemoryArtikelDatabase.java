@@ -26,7 +26,7 @@ public class InMemoryArtikelDatabase {
 		}
     }
 
-    public ArrayList<Artikel> load(String bestand){
+ /*   public ArrayList<Artikel> load(String bestand){
 		ArrayList a= new ArrayList<Artikel>();
 		
         if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
@@ -53,7 +53,7 @@ public class InMemoryArtikelDatabase {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Fout bij het inlezen", e);
         }
-    }
+    } */
 
     public HashMap getArtikelen(){
         return this.artikelen;
