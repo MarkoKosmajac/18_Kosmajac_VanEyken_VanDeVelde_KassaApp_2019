@@ -6,45 +6,35 @@ import java.util.*;
 public class UITestStory1 {
 
 
-    public ArrayList load(String bestand){
-        List<Artikel> artikelen;
-        artikelen = new ArrayList<>();
-        if (bestand == null || bestand.trim().isEmpty()) throw new IllegalArgumentException("Artikel mag niet leeg zijn");
-        File artikelenFile = new File(bestand);
-        try {
-            Scanner scannerFile = new Scanner(artikelenFile);
-            while (scannerFile.hasNextLine()) {
-                Scanner scannerLijn = new Scanner(scannerFile.nextLine());
-                scannerLijn.useDelimiter(",");
-                String id = scannerLijn.next();
-                String omschrijving = scannerLijn.next();
-                String groep = scannerLijn.next();
-                String pris = scannerLijn.next();
-                double prijs = Double.parseDouble(pris);
-                String stok = scannerLijn.next();
-                int stock = Integer.parseInt(stok);
-                //vb: 1,artikel1,gr1,12.5,10
-                Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
-                artikelen.add(artikel);
+    /*public static void main(String[] args) {
+        ArrayList<Artikel> em = new ArrayList<>();
+        Artikel a = new Artikel("eee","555","groep5",5,5);
+        Artikel b = new Artikel("bbb","555","groep5",5,5);
+        Artikel c = new Artikel("ccc","555","groep5",5,5);
+        em.add(a);
+        em.add(b);
+        em.add(c);
+        UITestStory1 ui = new UITestStory1(em);
+    }
+
+    public UITestStory1(ArrayList<Artikel> eee){
+        save(eee);
+    }
+
+    public void save(ArrayList<Artikel> artikelArrayList){
+
+        File personenFile = new File("Personen.txt");
+        try{
+            PrintWriter writer = new PrintWriter(personenFile);
+            for(Artikel a : artikelArrayList){
+                writer.printf(a.toString());
             }
-            Collections.sort(artikelen, Comparator.comparing(Artikel::getOmschrijving));
-            return (ArrayList) artikelen;
-        } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException("Fout bij het inlezen", e);
+            writer.close();
+        } catch (FileNotFoundException e1) {
+            throw new IllegalArgumentException("Bestand niet gevonden" + e1);
         }
-    }
 
-    public void writeToFile() throws IOException{
-        FileWriter write = new FileWriter("src\\bestanden\\artikel.txt", false); //false = overschrijven, true = append
-        PrintWriter print_line = new PrintWriter(write);
-
-        //forloop
-        print_line.printf("jajaja");
-        print_line.close();
-
-    }
-
-
+    }*/
 
 
 

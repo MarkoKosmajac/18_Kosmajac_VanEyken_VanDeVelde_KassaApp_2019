@@ -28,7 +28,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     }
 
     public ArrayList<Artikel> load(String bestand){
-
+        return null;
     }
 
 

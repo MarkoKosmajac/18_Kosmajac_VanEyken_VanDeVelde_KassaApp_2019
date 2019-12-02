@@ -49,16 +49,16 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
 
     public void save(ArrayList<Artikel> artikelArrayList){
 
-        File personenFile = new File("Personen.txt");
+        File personenFile = new File("Personen.txt"); //TODO: RENAME TO artikel.txt
         try{
             PrintWriter writer = new PrintWriter(personenFile);
-            writer.println("Max " + "Van de Velde");
-            writer.println("Luca " + "VH");
+            for(Artikel a : artikelArrayList){
+                writer.printf(a.toString());
+            }
             writer.close();
         } catch (FileNotFoundException e1) {
             throw new IllegalArgumentException("Bestand niet gevonden" + e1);
         }
-qsdqsdqsdqsdqdqsdqsdqd
 
     }
 
