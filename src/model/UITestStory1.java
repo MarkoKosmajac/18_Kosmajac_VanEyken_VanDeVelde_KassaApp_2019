@@ -53,23 +53,23 @@ public class UITestStory1 {
         int rijnr = 0;
 
         for (Artikel a : artikelsArraylist){
-            int kolomnr = 0;
-            for(int i = 0; i < 5;i++){
-                Label code = new Label(kolomnr,rijnr,a.getArtikelCode());
-                excelSheet.addCell(code);
-                Cell cell = excelSheet.getCell(i, 1);
+            //int kolomnr = 0;
+            //for(int i = 0; i < 5;i++){
+            Label code = new Label(0,rijnr,a.getArtikelCode());
+            excelSheet.addCell(code);
+            //Cell cell = excelSheet.getCell(i, 1);
 
-                Label omschrijving = new Label(kolomnr,rijnr,a.getOmschrijving());
-                excelSheet.addCell(omschrijving);
-                Label groep = new Label(kolomnr,rijnr,a.getArtikelGroep());
-                excelSheet.addCell(groep);
-                Label prijs = new Label(kolomnr,rijnr,String.valueOf(a.getPrijs()));
-                excelSheet.addCell(prijs);
-                Label stock = new Label(kolomnr,rijnr,String.valueOf(a.getStock()));
-                excelSheet.addCell(stock);
+            Label omschrijving = new Label(1,rijnr,a.getOmschrijving());
+            excelSheet.addCell(omschrijving);
+            Label groep = new Label(2,rijnr,a.getArtikelGroep());
+            excelSheet.addCell(groep);
+            Label prijs = new Label(3,rijnr,String.valueOf(a.getPrijs()));
+            excelSheet.addCell(prijs);
+            Label stock = new Label(4,rijnr,String.valueOf(a.getStock()));
+            excelSheet.addCell(stock);
 
-                kolomnr++;
-            }
+            // kolomnr++;
+            //}
 
             rijnr++;
         }

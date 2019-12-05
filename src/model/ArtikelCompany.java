@@ -20,8 +20,12 @@ public class ArtikelCompany {
         }
 
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
         ArtikelDBInMemory b = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
-        /*data.addAll(b.load(bestand));*/
+
+        data.add(new Artikel("05","appel","gr01",5,10));
+
+        //data.addAll(b.load(bestand));
     }
 
     public ObservableList<Artikel> loadData()     {
