@@ -6,4 +6,5 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy{
 
 
 
+
 }

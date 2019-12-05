@@ -24,9 +24,16 @@ public class ArtikelCompany {
         artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
         ArtikelDBInMemory b = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
 
-        data.add(new Artikel("05","appel","gr01",5,10));
 
-        //data.addAll(b.load(bestand));
+        ArrayList<Artikel> newArrList = new ArrayList<>();
+        ArrayList<Object> aa = b.load(bestand);
+
+        for(Object o : aa){
+            if(o instanceof Artikel){
+                newArrList.add((Artikel) o);
+            }
+        }
+        data.addAll(newArrList);
     }
 
     public ObservableList<Artikel> loadData()     {
