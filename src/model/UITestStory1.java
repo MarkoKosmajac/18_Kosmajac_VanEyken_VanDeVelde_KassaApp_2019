@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import database.DBException;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -34,7 +35,7 @@ public class UITestStory1 {
         return null; //TODO: return fixen
     }
 
-    public void write(ArrayList<Artikel> artikelsArraylist, String inputFile) throws IOException, WriteException {
+    public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
         File file = new File(inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
 
@@ -47,7 +48,17 @@ public class UITestStory1 {
 
         int rijnr = 0;
 
-        for (Artikel a : artikelsArraylist){
+        ArrayList<Artikel> artikels = new ArrayList<>();
+
+        for(Object o : artikelsArraylist){
+            if(o instanceof Artikel){
+                artikels.add((Artikel) o);
+            }else{
+                throw new DBException("Object is geen artikel");
+            }
+        }
+
+        for (Artikel a : artikels){
             //int kolomnr = 0;
             //for(int i = 0; i < 5;i++){
             Label code = new Label(0,rijnr,a.getArtikelCode());
@@ -76,7 +87,7 @@ public class UITestStory1 {
 
     public static void main(String[] args) throws IOException, WriteException {
         UITestStory1 test = new UITestStory1();
-        ArrayList<Artikel> aa = new ArrayList<>();
+        ArrayList<Object> aa = new ArrayList<>();
         aa.add(new Artikel("01","appel","groep01",10,2));
         aa.add(new Artikel("02","peer","groep 02",11,8));
         aa.add(new Artikel("03","appelsien","groep 03",10,5));
