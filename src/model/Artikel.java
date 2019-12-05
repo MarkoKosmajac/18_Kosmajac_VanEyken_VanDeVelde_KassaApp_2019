@@ -1,6 +1,6 @@
 package model;
 
-public class Artikel {
+public class Artikel{
 
     //TODO: vb: 1,artikel1,gr1,12.5,10
     private String artikelCode, omschrijving, artikelGroep;
