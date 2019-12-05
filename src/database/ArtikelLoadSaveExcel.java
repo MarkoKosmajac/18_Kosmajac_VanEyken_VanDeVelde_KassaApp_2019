@@ -5,6 +5,10 @@ import jxl.write.WriteException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @author Phonkrit Van de Velde
+ */
+
 public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
     private JarJavaClass jarJavaClass;
 

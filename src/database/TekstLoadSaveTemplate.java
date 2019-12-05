@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 /**
- * @author Van de Velde
+ * @author Phonkrit Van de Velde
  */
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {

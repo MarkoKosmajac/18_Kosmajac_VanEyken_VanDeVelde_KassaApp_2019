@@ -18,6 +18,10 @@ import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import model.Artikel;
 
+/**
+ * @author Marko Kosmajac, Phonkrit Van de Velde, Brent Van Eyken
+ */
+
 
 public class JarJavaClass {
 

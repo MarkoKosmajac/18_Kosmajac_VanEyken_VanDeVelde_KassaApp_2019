@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * @author Phonkrit Van de Velde
+ */
+
 public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
 
 
