@@ -9,8 +9,10 @@ import view.panels.InstellingenPane;
 import view.panels.KassaTab1OverviewPane;
 import view.panels.ProductOverviewPane;
 
+import java.io.IOException;
+
 public class KassaMainPane extends BorderPane {
-	public KassaMainPane(){
+	public KassaMainPane() throws IOException {
 
         ArtikelCompany artikelcompanyke = new ArtikelCompany();
 	    TabPane tabPane = new TabPane();

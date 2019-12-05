@@ -7,10 +7,12 @@ import javafx.stage.Stage;
 import view.KassaView;
 import view.KlantView;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...

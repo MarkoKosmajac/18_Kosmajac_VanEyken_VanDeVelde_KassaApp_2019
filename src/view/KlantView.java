@@ -6,10 +6,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class KlantView {
 	private Stage stage = new Stage();		
 		
-	public KlantView(){			
+	public KlantView() throws IOException {
 		stage.setTitle("KLANT VIEW");
 		stage.setResizable(false);		
 		stage.setX(775);

@@ -13,13 +13,15 @@ import javafx.stage.Stage;
 import model.Artikel;
 import model.ArtikelCompany;
 
+import java.io.IOException;
+
 
 public class VerwijderBevestiging extends GridPane {
     private Stage stage = new Stage();
     private KassaTab1OverviewPane kassaTab1OverviewPane;
     private ArtikelCompany artikelCompany;
 
-    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) {
+    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) throws IOException {
         artikelCompany = new ArtikelCompany();
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");

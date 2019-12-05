@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.*;
 
 import database.ArtikelDBInMemory;
@@ -12,7 +13,7 @@ public class ArtikelCompany {
     private String bestand; //Filepath
     private ArtikelLoadSaveTekst artikelLoadSaveTekst;
 
-    public ArtikelCompany(){
+    public ArtikelCompany() throws IOException {
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";
         } else {

@@ -17,6 +17,8 @@ import model.ArtikelCompany;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -94,7 +96,11 @@ public class KassaTab1OverviewPane extends GridPane {
                     Artikel artikel = row.getItem();
                     String artikelInfo = artikel.getOmschrijving();
                     String code = artikel.getArtikelCode();
-                    new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo, code);
+                    try {
+                        new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo, code);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     //popUpDeleteConfirm(artikelInfo, code);
                 }
             });

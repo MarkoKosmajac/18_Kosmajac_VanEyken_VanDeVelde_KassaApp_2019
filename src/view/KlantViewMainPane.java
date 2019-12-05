@@ -8,10 +8,12 @@ import view.panels.KassaTab1OverviewPane;
 import view.panels.KlantOverviewPane;
 import view.panels.ProductOverviewPane;
 
+import java.io.IOException;
+
 public class KlantViewMainPane extends BorderPane {
 
 
-    public KlantViewMainPane(){
+    public KlantViewMainPane() throws IOException {
         ArtikelCompany artikelcompanyke = new ArtikelCompany();
         TabPane tabPane = new TabPane();
         KlantOverviewPane klantOverviewPane = new KlantOverviewPane(artikelcompanyke);

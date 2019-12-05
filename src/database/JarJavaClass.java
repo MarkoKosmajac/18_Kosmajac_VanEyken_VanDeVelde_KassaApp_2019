@@ -21,7 +21,7 @@ import model.Artikel;
 
 public class JarJavaClass {
 
-
+    //TODO: new Artikel,...
     public ArrayList<Object> read(String inputFile) throws IOException {
         File inputWorkbook = new File(inputFile);
         Workbook w;
