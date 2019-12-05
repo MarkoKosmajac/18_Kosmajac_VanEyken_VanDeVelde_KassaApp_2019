@@ -16,7 +16,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private HashMap artikelen = new HashMap<String, Artikel>();
 
 
-    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy, String bestand) {
+    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy, String bestand) throws IOException {
         this.loadSaveStrategy = loadSaveStrategy;
         ArrayList<Object> a = load(bestand);
 
