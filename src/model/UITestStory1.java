@@ -21,7 +21,8 @@ public class UITestStory1 {
         this.inputFile = inputFile;
     }
 
-    public void read() throws IOException  {
+    //TODO: new Artikel,...
+    public ArrayList<Object> read() throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
@@ -37,6 +38,7 @@ public class UITestStory1 {
         } catch (BiffException e) {
             e.printStackTrace();
         }
+        return null; //TODO: return fixen
     }
 
     public void write(ArrayList<Artikel> artikelsArraylist) throws IOException, WriteException {
