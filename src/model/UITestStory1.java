@@ -1,72 +1,92 @@
 package model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
-import jxl.*;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
-import jxl.write.biff.RowsExceededException;
+import jxl.write.*;
 
 public class UITestStory1 {
 
 
-    public static void main(String[] args) throws IOException, BiffException {
-        ArrayList<Artikel> em = new ArrayList<>();
-        UITestStory1 ui = new UITestStory1();
+    private String inputFile;
+
+    public void setInputFile(String inputFile) {
+        this.inputFile = inputFile;
     }
 
-    public UITestStory1() throws IOException, BiffException {
-        File file = new File("src\\bestanden\\artikel.xls");
-        read(file);
-    }
-
-    public void write(File file, ArrayList<ArrayList<String>> args)
-            throws BiffException, IOException, RowsExceededException, WriteException{
-
-        WritableWorkbook workbook = Workbook.createWorkbook(file);
-        workbook.createSheet("sheet1", 0);
-        WritableSheet sheet = workbook.getSheet(0);
-        for(int i = 0; i < args.size(); i++){
-            ArrayList<String> parameters = args.get(i);
-            for(int j = 0; j < parameters.size(); j++){
-                Label label = new Label(j, i, parameters.get(j));
-                sheet.addCell(label);
+    public void read() throws IOException  {
+        File inputWorkbook = new File(inputFile);
+        Workbook w;
+        try {
+            w = Workbook.getWorkbook(inputWorkbook);
+            Sheet sheet = w.getSheet(0); // Pak de eerste sheet
+            // Loop over de eerste 10 kolommen en lijnen
+            for (int j = 0; j < sheet.getRows(); j++) {
+                for (int i = 0; i < sheet.getColumns(); i++) {
+                    Cell cell = sheet.getCell(i, j);
+                    System.out.println(cell.getContents());
+                }
             }
+        } catch (BiffException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void write(ArrayList<Artikel> artikelsArraylist) throws IOException, WriteException {
+        File file = new File(inputFile);
+        WorkbookSettings wbSettings = new WorkbookSettings();
+
+        wbSettings.setLocale(new Locale("en", "EN"));
+
+        WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+        workbook.createSheet("Report", 0);
+        WritableSheet excelSheet = workbook.getSheet(0);
+
+
+        int rijnr = 0;
+
+        for (Artikel a : artikelsArraylist){
+            int kolomnr = 0;
+            for(int i = 0; i < 5;i++){
+                Label code = new Label(kolomnr,rijnr,a.getArtikelCode());
+                excelSheet.addCell(code);
+                Cell cell = excelSheet.getCell(i, 1);
+
+                Label omschrijving = new Label(kolomnr,rijnr,a.getOmschrijving());
+                excelSheet.addCell(omschrijving);
+                Label groep = new Label(kolomnr,rijnr,a.getArtikelGroep());
+                excelSheet.addCell(groep);
+                Label prijs = new Label(kolomnr,rijnr,String.valueOf(a.getPrijs()));
+                excelSheet.addCell(prijs);
+                Label stock = new Label(kolomnr,rijnr,String.valueOf(a.getStock()));
+                excelSheet.addCell(stock);
+
+                kolomnr++;
+            }
+
+            rijnr++;
+        }
+
+
         workbook.write();
         workbook.close();
-
     }
 
-    public ArrayList<ArrayList<String>> read(File file)
-            throws BiffException, IOException {
-
-        Workbook workbook = Workbook.getWorkbook(file);
-        Sheet sheet = workbook.getSheet(0);
-        int row = 0;
-
-        ArrayList<ArrayList<String>> info = new ArrayList<ArrayList<String>>();
-        while(row < sheet.getRows())
-        {
-            int column = 0;
-            ArrayList<String> rowinfo = new ArrayList<String>();
-            while(column < sheet.getColumns()){
-                Cell cell = sheet.getCell(column,row);
-                String information = cell.getContents();
-                rowinfo.add(information);
-                column++;
-            }
-            info.add(rowinfo);
-            row++;
-        }
-        workbook.close();
-        return info;
+    public static void main(String[] args) throws IOException, WriteException {
+        UITestStory1 test = new UITestStory1();
+        test.setInputFile("src\\bestanden\\kek.xls");
+        ArrayList<Artikel> aa = new ArrayList<>();
+        aa.add(new Artikel("01","appel","groep01",10,2));
+        aa.add(new Artikel("02","peer","groep 02",11,8));
+        aa.add(new Artikel("03","appelsien","groep 03",10,5));
+        test.write(aa);
     }
 
 
