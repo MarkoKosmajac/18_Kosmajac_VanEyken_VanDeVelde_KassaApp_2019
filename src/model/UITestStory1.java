@@ -2,9 +2,11 @@ package model;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import com.sun.source.tree.ArrayTypeTree;
 import database.DBException;
 import jxl.Cell;
 import jxl.Sheet;
@@ -15,28 +17,31 @@ import jxl.write.*;
 
 public class UITestStory1 {
 
-    //TODO: new Artikel,...
-   public ArrayList<Object> read(String inputFile) throws IOException  {
-        File inputWorkbook = new File(inputFile);
-        Workbook w;
-        try {
-            w = Workbook.getWorkbook(inputWorkbook);
-            Sheet sheet = w.getSheet(0); // Pak de eerste sheet
-            // Loop over de eerste 10 kolommen en lijnen
-            for (int j = 0; j < sheet.getRows(); j++) {
-                for (int i = 0; i < sheet.getColumns(); i++) {
-                    Cell cell = sheet.getCell(i, j);
-                    //System.out.println(cell.getContents());
-                    System.out.println(sheet.getCell(i,j).getContents());
-                }
-            }
-        } catch (BiffException e) {
-            e.printStackTrace();
-        }
-        return null; //TODO: return fixen
+   /*public ArrayList<Object> read(String inputFile) throws IOException  {
+       File inputWorkbook = new File(inputFile);
+       Workbook w;
+       ArrayList<Object> a = new ArrayList<>();
+
+       try {
+           w = Workbook.getWorkbook(inputWorkbook);
+           Sheet sheet = w.getSheet(0); // Pak de eerste sheet
+
+           for (int row=0; row < sheet.getRows();row++) {
+               Artikel event = new Artikel(null);
+               event.setArtikelCode(sheet.getCell(0, row).getContents());
+               event.setOmschrijving(sheet.getCell(1,row).getContents());
+               event.setArtikelGroep(sheet.getCell(2,row).getContents());
+               event.setPrijs(Double.parseDouble(sheet.getCell(3,row).getContents()));
+               event.setStock(Integer.parseInt(sheet.getCell(4,row).getContents()));
+               a.add(event);
+           }
+       } catch (BiffException e) {
+           e.printStackTrace();
+       }
+       return a;
     }
 
-    /*public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
+    public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
         File file = new File(inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
 
@@ -84,7 +89,7 @@ public class UITestStory1 {
 
         workbook.write();
         workbook.close();
-    }*/
+    }
 
     public static void main(String[] args) throws IOException, WriteException {
         UITestStory1 test = new UITestStory1();
@@ -92,9 +97,10 @@ public class UITestStory1 {
         aa.add(new Artikel("01","appel","groep01",10,2));
         aa.add(new Artikel("02","peer","groep 02",11,8));
         aa.add(new Artikel("03","appelsien","groep 03",10,5));
+        aa.add(new Artikel("04","yam","groep 04",15,2));
         //test.write(aa, "src\\bestanden\\kek.xls");
-        test.read("src\\bestanden\\kek.xls");
-    }
+        //test.read("src\\bestanden\\kek.xls");
+    }*/
 
 
 

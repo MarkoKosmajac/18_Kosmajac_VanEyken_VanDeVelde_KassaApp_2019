@@ -25,24 +25,28 @@ import model.Artikel;
 
 public class JarJavaClass {
 
-    public ArrayList<Object> read(String inputFile) throws IOException {
+    public ArrayList<Object> read(String inputFile) throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
+        ArrayList<Object> a = new ArrayList<>();
+
         try {
             w = Workbook.getWorkbook(inputWorkbook);
             Sheet sheet = w.getSheet(0); // Pak de eerste sheet
-            // Loop over de eerste 10 kolommen en lijnen
-            for (int j = 0; j < sheet.getRows(); j++) {
-                for (int i = 0; i < sheet.getColumns(); i++) {
-                    Cell cell = sheet.getCell(i, j);
-                    System.out.println(cell.getContents());
-                    //TODO: new artikel...
-                }
+
+            for (int row=0; row < sheet.getRows();row++) {
+                Artikel event = new Artikel(null);
+                event.setArtikelCode(sheet.getCell(0, row).getContents());
+                event.setOmschrijving(sheet.getCell(1,row).getContents());
+                event.setArtikelGroep(sheet.getCell(2,row).getContents());
+                event.setPrijs(Double.parseDouble(sheet.getCell(3,row).getContents()));
+                event.setStock(Integer.parseInt(sheet.getCell(4,row).getContents()));
+                a.add(event);
             }
         } catch (BiffException e) {
             e.printStackTrace();
         }
-        return null; //TODO: return fixen
+        return a;
     }
 
     public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
