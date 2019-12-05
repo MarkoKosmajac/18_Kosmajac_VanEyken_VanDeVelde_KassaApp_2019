@@ -1,10 +1,13 @@
 package database;
 
+import jxl.write.WriteException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface LoadSaveStrategy {
 
-        void load(String bestand);
-        void save(ArrayList<Object> artikelArrayList, String bestand);
+        ArrayList<Object> load(String bestand) throws IOException;
+        void save(ArrayList<Object> artikelArrayList, String bestand) throws IOException, WriteException;
 
 }
