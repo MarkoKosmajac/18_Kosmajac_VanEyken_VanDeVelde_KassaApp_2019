@@ -16,7 +16,7 @@ import jxl.write.*;
 public class UITestStory1 {
 
     //TODO: new Artikel,...
-    public ArrayList<Object> read(String inputFile) throws IOException  {
+  /* public ArrayList<Object> read(String inputFile) throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
@@ -92,7 +92,7 @@ public class UITestStory1 {
         aa.add(new Artikel("02","peer","groep 02",11,8));
         aa.add(new Artikel("03","appelsien","groep 03",10,5));
         test.write(aa, "src\\bestanden\\kek.xls");
-    }
+    }*/
 
 
 

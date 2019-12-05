@@ -70,5 +70,29 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
 
     }
 
+    @Override
+    void lijnNaarObject() {
+        Scanner scannerLijn = new Scanner(scannerFile.nextLine());
+        scannerLijn.useDelimiter(",");
+        String id = scannerLijn.next();
+        String omschrijving = scannerLijn.next();
+        String groep = scannerLijn.next();
+        String pris = scannerLijn.next();
+        double prijs = Double.parseDouble(pris);
+        String stok = scannerLijn.next();
+        int stock = Integer.parseInt(stok);
+        //vb: 1,artikel1,gr1,12.5,10
+        Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
 
+    }
+
+    @Override
+    void objectOmzettenNaarLijn() {
+
+    }
+
+    @Override
+    void closeWriter() {
+
+    }
 }

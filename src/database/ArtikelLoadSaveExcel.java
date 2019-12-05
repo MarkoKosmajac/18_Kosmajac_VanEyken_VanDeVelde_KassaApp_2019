@@ -8,9 +8,7 @@ import java.util.ArrayList;
 public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
     private JarJavaClass jarJavaClass;
 
-    public ArtikelLoadSaveExcel(JarJavaClass jarJavaClass) {
-        this.jarJavaClass = jarJavaClass;
-    }
+
 
     @Override
     public ArrayList<Object> load(String bestand) throws IOException {
