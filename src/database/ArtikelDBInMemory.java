@@ -1,7 +1,9 @@
 package database;
 
+import jxl.write.WriteException;
 import model.Artikel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,12 +28,12 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     }
 
 
-    public ArrayList<Object> load(String bestand){
+    public ArrayList<Object> load(String bestand) throws IOException {
         return loadSaveStrategy.load(bestand);
     }
 
 
-    public void save(ArrayList<Object> artikelArrayList, String bestand){
+    public void save(ArrayList<Object> artikelArrayList, String bestand) throws IOException, WriteException {
         loadSaveStrategy.save(artikelArrayList, bestand);
     }
 
