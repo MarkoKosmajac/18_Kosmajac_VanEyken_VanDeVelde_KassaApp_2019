@@ -14,15 +14,8 @@ import jxl.write.*;
 
 public class UITestStory1 {
 
-
-    private String inputFile;
-
-    public void setInputFile(String inputFile) {
-        this.inputFile = inputFile;
-    }
-
     //TODO: new Artikel,...
-    public ArrayList<Object> read() throws IOException  {
+    public ArrayList<Object> read(String inputFile) throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
@@ -41,7 +34,7 @@ public class UITestStory1 {
         return null; //TODO: return fixen
     }
 
-    public void write(ArrayList<Artikel> artikelsArraylist) throws IOException, WriteException {
+    public void write(ArrayList<Artikel> artikelsArraylist, String inputFile) throws IOException, WriteException {
         File file = new File(inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
 
@@ -83,12 +76,11 @@ public class UITestStory1 {
 
     public static void main(String[] args) throws IOException, WriteException {
         UITestStory1 test = new UITestStory1();
-        test.setInputFile("src\\bestanden\\kek.xls");
         ArrayList<Artikel> aa = new ArrayList<>();
         aa.add(new Artikel("01","appel","groep01",10,2));
         aa.add(new Artikel("02","peer","groep 02",11,8));
         aa.add(new Artikel("03","appelsien","groep 03",10,5));
-        test.write(aa);
+        test.write(aa, "src\\bestanden\\kek.xls");
     }
 
 
