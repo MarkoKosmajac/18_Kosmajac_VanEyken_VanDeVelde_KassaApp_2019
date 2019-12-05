@@ -34,7 +34,7 @@ public class ProductOverviewPane extends GridPane { //TODO: Simplify code by let
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-        table.setItems(artikelCompany.loadData());
+        table.setItems(artikelCompany.loadData());//TODO: AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
 
 		//BIJ DUBBELKLIK AANPASSEN
         /*table.setRowFactory( tv -> {
