@@ -16,7 +16,7 @@ import jxl.write.*;
 public class UITestStory1 {
 
     //TODO: new Artikel,...
-  /* public ArrayList<Object> read(String inputFile) throws IOException  {
+   public ArrayList<Object> read(String inputFile) throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         try {
@@ -26,7 +26,8 @@ public class UITestStory1 {
             for (int j = 0; j < sheet.getRows(); j++) {
                 for (int i = 0; i < sheet.getColumns(); i++) {
                     Cell cell = sheet.getCell(i, j);
-                    System.out.println(cell.getContents());
+                    //System.out.println(cell.getContents());
+                    System.out.println(sheet.getCell(i,j).getContents());
                 }
             }
         } catch (BiffException e) {
@@ -35,7 +36,7 @@ public class UITestStory1 {
         return null; //TODO: return fixen
     }
 
-    public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
+    /*public void write(ArrayList<Object> artikelsArraylist, String inputFile) throws IOException, WriteException {
         File file = new File(inputFile);
         WorkbookSettings wbSettings = new WorkbookSettings();
 
@@ -83,7 +84,7 @@ public class UITestStory1 {
 
         workbook.write();
         workbook.close();
-    }
+    }*/
 
     public static void main(String[] args) throws IOException, WriteException {
         UITestStory1 test = new UITestStory1();
@@ -91,8 +92,9 @@ public class UITestStory1 {
         aa.add(new Artikel("01","appel","groep01",10,2));
         aa.add(new Artikel("02","peer","groep 02",11,8));
         aa.add(new Artikel("03","appelsien","groep 03",10,5));
-        test.write(aa, "src\\bestanden\\kek.xls");
-    }*/
+        //test.write(aa, "src\\bestanden\\kek.xls");
+        test.read("src\\bestanden\\kek.xls");
+    }
 
 
 

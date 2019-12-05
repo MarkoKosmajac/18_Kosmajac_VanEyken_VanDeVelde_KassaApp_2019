@@ -21,7 +21,6 @@ import model.Artikel;
 
 public class JarJavaClass {
 
-    //TODO: new Artikel,...
     public ArrayList<Object> read(String inputFile) throws IOException {
         File inputWorkbook = new File(inputFile);
         Workbook w;
@@ -33,6 +32,7 @@ public class JarJavaClass {
                 for (int i = 0; i < sheet.getColumns(); i++) {
                     Cell cell = sheet.getCell(i, j);
                     System.out.println(cell.getContents());
+                    //TODO: new artikel...
                 }
             }
         } catch (BiffException e) {

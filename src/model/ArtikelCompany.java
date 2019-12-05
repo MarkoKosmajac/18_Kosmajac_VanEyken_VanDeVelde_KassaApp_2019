@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
     private String bestand; //Filepath
-    private ArtikelLoadSaveTekst artikelLoadSaveTekst;
+    private ArtikelDBInMemory artikelDBInMemory;
 
     public ArtikelCompany() throws IOException {
         if (System.getProperty("os.name").equals("Mac OS X")){
@@ -21,12 +21,12 @@ public class ArtikelCompany {
         }
 
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-        artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
-        ArtikelDBInMemory b = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
+        ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
+        artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
 
 
         ArrayList<Artikel> newArrList = new ArrayList<>();
-        ArrayList<Object> aa = b.load(bestand);
+        ArrayList<Object> aa = artikelDBInMemory.load(bestand);
 
         for(Object o : aa){
             if(o instanceof Artikel){
