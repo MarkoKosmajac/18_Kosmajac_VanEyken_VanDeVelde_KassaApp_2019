@@ -15,7 +15,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
 
     }
 
-    public ArrayList<Object> load(String bestand){
+    public void load(String bestand){
         ArrayList a = new ArrayList<Artikel>();
 
         if (bestand == null || bestand.trim().isEmpty()) throw new DBException("Artikel mag niet leeg zijn");
@@ -36,7 +36,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
                 Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
                 a.add(artikel);
             }
-            return a;
+            System.out.println(a);
 
             //artikelen = sortByValues(artikelen);
         } catch (FileNotFoundException e) {

@@ -13,10 +13,10 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 public class ExcelPlugin {
-	/*
+
 	public void write(File file, ArrayList<ArrayList<String>> args) 
 				throws BiffException, IOException, RowsExceededException, WriteException{
-	
+	/*
 		WritableWorkbook workbook = Workbook.createWorkbook(file); 
 		workbook.createSheet("sheet1", 0);
 		WritableSheet sheet = workbook.getSheet(0); 
@@ -55,6 +55,6 @@ public class ExcelPlugin {
 		}
 		workbook.close();
 		return info;
-	}*/
-
+	}
+*/
 }

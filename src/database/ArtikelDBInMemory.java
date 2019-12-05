@@ -25,6 +25,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         }
     }
 
+
     public ArrayList<Object> load(String bestand){
         return loadSaveStrategy.load(bestand);
     }
