@@ -43,6 +43,8 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
             throw new DBException("Fout bij het inlezen", e);
         }
 
+
+
     }
 
 
@@ -71,7 +73,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     }
 
     @Override
-    void lijnNaarObject() {
+    void lijnNaarArtikel() {
         Scanner scannerLijn = new Scanner(scannerFile.nextLine());
         scannerLijn.useDelimiter(",");
         String id = scannerLijn.next();
@@ -95,4 +97,5 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     void closeWriter() {
 
     }
+
 }

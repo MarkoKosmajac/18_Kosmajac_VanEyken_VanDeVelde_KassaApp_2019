@@ -8,7 +8,7 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy{
 
     final void load(){
 
-        lijnNaarObject();
+        lijnNaarArtikel();
 
 
     }
@@ -25,7 +25,7 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy{
     }
     abstract void objectOmzettenNaarLijn();
     abstract void closeWriter();
-    abstract void lijnNaarObject();
+    abstract void lijnNaarArtikel();
 
 
 
