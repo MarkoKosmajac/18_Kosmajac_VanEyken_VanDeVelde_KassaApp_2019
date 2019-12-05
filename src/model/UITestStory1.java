@@ -1,40 +1,73 @@
 package model;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import jxl.*;
+import jxl.read.biff.BiffException;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 
 public class UITestStory1 {
 
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, BiffException {
         ArrayList<Artikel> em = new ArrayList<>();
-        Artikel a = new Artikel("eee","555","groep5",5,5);
-        Artikel b = new Artikel("bbb","555","groep5",5,5);
-        Artikel c = new Artikel("ccc","555","groep5",5,5);
-        em.add(a);
-        em.add(b);
-        em.add(c);
-        UITestStory1 ui = new UITestStory1(em);
+        UITestStory1 ui = new UITestStory1();
     }
 
-    public UITestStory1(ArrayList<Artikel> eee){
-        save(eee);
+    public UITestStory1() throws IOException, BiffException {
+        File file = new File("src\\bestanden\\artikel.xls");
+        read(file);
     }
 
-    public void save(ArrayList<Artikel> artikelArrayList){
+    public void write(File file, ArrayList<ArrayList<String>> args)
+            throws BiffException, IOException, RowsExceededException, WriteException{
 
-        File personenFile = new File("Personen.txt");
-        try{
-            PrintWriter writer = new PrintWriter(personenFile);
-            for(Artikel a : artikelArrayList){
-                writer.printf(a.toString());
+        WritableWorkbook workbook = Workbook.createWorkbook(file);
+        workbook.createSheet("sheet1", 0);
+        WritableSheet sheet = workbook.getSheet(0);
+        for(int i = 0; i < args.size(); i++){
+            ArrayList<String> parameters = args.get(i);
+            for(int j = 0; j < parameters.size(); j++){
+                Label label = new Label(j, i, parameters.get(j));
+                sheet.addCell(label);
             }
-            writer.close();
-        } catch (FileNotFoundException e1) {
-            throw new IllegalArgumentException("Bestand niet gevonden" + e1);
         }
+        workbook.write();
+        workbook.close();
 
-    }*/
+    }
+
+    public ArrayList<ArrayList<String>> read(File file)
+            throws BiffException, IOException {
+
+        Workbook workbook = Workbook.getWorkbook(file);
+        Sheet sheet = workbook.getSheet(0);
+        int row = 0;
+
+        ArrayList<ArrayList<String>> info = new ArrayList<ArrayList<String>>();
+        while(row < sheet.getRows())
+        {
+            int column = 0;
+            ArrayList<String> rowinfo = new ArrayList<String>();
+            while(column < sheet.getColumns()){
+                Cell cell = sheet.getCell(column,row);
+                String information = cell.getContents();
+                rowinfo.add(information);
+                column++;
+            }
+            info.add(rowinfo);
+            row++;
+        }
+        workbook.close();
+        return info;
+    }
 
 
 

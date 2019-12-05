@@ -21,7 +21,7 @@ public class ArtikelCompany {
 
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         ArtikelDBInMemory b = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
-        data.addAll(b.load(bestand));
+        /*data.addAll(b.load(bestand));*/
     }
 
     public ObservableList<Artikel> loadData()     {
