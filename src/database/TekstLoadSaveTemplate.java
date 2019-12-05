@@ -4,8 +4,14 @@ import model.Artikel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
+/**
+ * @author Van de Velde
+ */
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
     //TODO: nog aan te vullen, hier komen abstracte methodes save en load om bijvoorbeeld een KLANT object in te lezen en te saven
@@ -13,25 +19,58 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     //LOAD EN SAVE METHODE DIE MOETEN FINAL ZIJN
 
-    final ArrayList<Object> load() {
+    public final ArrayList<Object> load(String bestand) throws IOException {
+        ArrayList<Object> objects = new ArrayList<>();
+        try{
+            Scanner scannerFile = getBestand();
+            scannerFile.useDelimiter("\n");
+            while(scannerFile.hasNextLine()){
+                Scanner scannerLijn = new Scanner(scannerFile.nextLine());
+                scannerLijn.useDelimiter(",");
+                try {
+                    Object object = getObject(scannerLijn);
+                    objects.add(object);
+                } catch (DBException e){
+                    throw new DBException(e.getMessage());
+                }
 
-        ArrayList a = new ArrayList<Artikel>();
-        bestandsnaam();
-        if (bestandsnaam() == null || bestandsnaam().trim().isEmpty()) throw new DBException("Artikel mag niet leeg zijn");
-        File artikelenFile = new File(bestandsnaam());
+            }
 
-        return openScannerEnLeesIn();
 
+        } catch (FileNotFoundException e) {
+            throw new DBException("Fout bij het inlezen", e);
+        }
+
+        return objects;
 
     }
 
-    final void save(){
+    public final void save(ArrayList<Object> artikelArrayList, String bestand){
+        ArrayList<Artikel> artikelen = new ArrayList<>();
+
+        for(Object o : artikelArrayList){
+            if(o instanceof Artikel){
+                artikelen.add((Artikel) o);
+            }
+        }
+
+        File artikelFile = new File(bestand); //TODO: RENAME TO artikel.txt
+        try{
+            PrintWriter writer = new PrintWriter(artikelFile);
+            for (Artikel a: artikelen){
+                writer.println(a);
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    abstract void artikelOmzettenNaarLijn();
-    abstract String bestandsnaam();
-    abstract ArrayList<Object> openScannerEnLeesIn();
+
+    abstract Scanner getBestand() throws FileNotFoundException;
+    abstract Object getObject(Scanner scannerLine);
+
 
 
 
