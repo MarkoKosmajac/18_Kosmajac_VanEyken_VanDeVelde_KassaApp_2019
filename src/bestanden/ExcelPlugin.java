@@ -14,8 +14,8 @@ import jxl.write.biff.RowsExceededException;
 
 public class ExcelPlugin {
 
-	public void write(File file, ArrayList<ArrayList<String>> args) 
-				throws BiffException, IOException, RowsExceededException, WriteException{
+	/*public void write(File file, ArrayList<ArrayList<String>> args)
+				throws BiffException, IOException, RowsExceededException, WriteException{*/
 	/*
 		WritableWorkbook workbook = Workbook.createWorkbook(file); 
 		workbook.createSheet("sheet1", 0);
