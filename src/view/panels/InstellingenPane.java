@@ -15,10 +15,19 @@ import model.Artikel;
 import model.ArtikelCompany;
 import model.SoortBestand;
 
+import java.io.*;
+import java.util.Properties;
+
 public class InstellingenPane extends GridPane {
     private ArtikelCompany artikelCompany;
 
-    public InstellingenPane(ArtikelCompany artikelCompany){
+    public InstellingenPane(ArtikelCompany artikelCompany) throws IOException {
+
+        Properties properties = new Properties();
+        InputStream is = new FileInputStream("src\\database\\KassaApp.properties");
+        FileOutputStream os = new FileOutputStream("src\\database\\KassaApp.properties");
+        String em = properties.getProperty("databaseInMemory");
+
         this.artikelCompany = artikelCompany;
 
         this.setPadding(new Insets(5, 5, 5, 5));
@@ -40,6 +49,7 @@ public class InstellingenPane extends GridPane {
 
         ComboBox<SoortBestand> comboBoxx = new ComboBox<>();
         comboBoxx.getItems().setAll(SoortBestand.values());
+
 
         this.add(rb1,0,1);
         this.add(rb2,0,2);
