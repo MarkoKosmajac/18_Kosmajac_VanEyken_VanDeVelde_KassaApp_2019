@@ -59,6 +59,15 @@ public class InstellingenPane extends GridPane {
         comboBoxKorting.getItems().setAll(SoortKorting.values());
 
 
+        this.add(new Label("Optionele kortinginfo:"), 0, 8);
+        this.add(new Label("Korting percentage"), 0, 9);
+        this.add(new TextField(),1,9);
+        this.add(new Label("Korting eurobedrag"), 0, 10);
+        this.add(new TextField(),1,10);
+
+
+
+
         group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
             FileOutputStream os = null;
 

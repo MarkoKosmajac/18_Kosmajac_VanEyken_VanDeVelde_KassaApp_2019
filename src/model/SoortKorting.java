@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * @author Marko Kosmajac
  */
@@ -16,8 +18,9 @@ public enum SoortKorting {
         this.label = label;
     }
 
-    public String toString(){
+    public String toString(){ /*Modify toString to return number also (shows in javafx popup box)*/
         return label;
     }
+
 
 }
