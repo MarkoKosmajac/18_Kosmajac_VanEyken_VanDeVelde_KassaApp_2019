@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import model.Artikel;
 import model.ArtikelCompany;
 import model.SoortBestand;
+import model.SoortKorting;
 
 import javax.swing.*;
 import java.io.*;
@@ -50,8 +51,12 @@ public class InstellingenPane extends GridPane {
 
         this.add(new Label("Indien gekozen voor 'In Memory Database' "),0,3);
 
-        ComboBox<SoortBestand> comboBoxx = new ComboBox<>();
-        comboBoxx.getItems().setAll(SoortBestand.values());
+        ComboBox<SoortBestand> comboBoxBestand = new ComboBox<>();
+        comboBoxBestand.getItems().setAll(SoortBestand.values());
+
+        this.add(new Label("Kortingkeuze:"), 0, 5);
+        ComboBox<SoortKorting> comboBoxKorting = new ComboBox<>();
+        comboBoxKorting.getItems().setAll(SoortKorting.values());
 
 
         group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
@@ -114,7 +119,8 @@ public class InstellingenPane extends GridPane {
 
         this.add(rb1,0,1);
         this.add(rb2,0,2);
-        this.add(comboBoxx,0,4);
+        this.add(comboBoxBestand,0,4);
+        this.add(comboBoxKorting,0,7);
 
 
     }
