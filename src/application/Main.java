@@ -1,5 +1,7 @@
 package application;
 	
+import database.LoadSaveStrategy;
+import database.LoadSaveStrategyFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
@@ -32,6 +34,18 @@ public class Main extends Application {
 		System.out.println("KEUZE CHANGED TO:");
 		keuze.setKortingStrategie(new DuursteKorting());
 		System.out.println(keuze.geefKorting());*/
+
+		/*//TESTEN VAN DE FACTORY PATTERN
+		LoadSaveStrategyFactory loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+		LoadSaveStrategy theEnemy = null;
+		String typeOfShip = "ArtikelLoadSaveExcel";
+		theEnemy = loadSaveStrategyFactory.makeLoadSaveStrategy(typeOfShip);
+		if(theEnemy != null){
+			System.out.println(theEnemy.toString() + "NIET LEEG");
+		}
+		else System.out.println("LEEG");*/
+
+
 
 
 	}
