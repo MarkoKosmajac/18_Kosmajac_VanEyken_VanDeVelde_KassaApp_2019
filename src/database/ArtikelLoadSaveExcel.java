@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
     private JarJavaClass jarJavaClass;
 
-    public ArtikelLoadSaveExcel(JarJavaClass jarJavaClass) {
+    public ArtikelLoadSaveExcel(/*JarJavaClass jarJavaClass*/) {
         this.jarJavaClass = jarJavaClass;
     }
 

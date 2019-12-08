@@ -15,6 +15,7 @@ public class ArtikelDBContext {
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
     private static ArtikelDBContext artikelDBContext; //TODO: deel van singleton
     private ArtikelDBStrategy artikelDBStrategy;
+    private String opgezochteCode;
 
     //TODO: PRIVATE MAKEN = deel van singleton
     private ArtikelDBContext() throws IOException {
@@ -98,6 +99,16 @@ public class ArtikelDBContext {
         System.out.println(this.data);
     }
 
+    public void zoekCodeOp(String code){
+        if(code.equalsIgnoreCase(opgezochteCode)){
+            opgezochteCode = code;
+        }
+        throw new NumberFormatException("Code bestaat niet.");
+    }
+
+    public String getOpgezochteCode(){
+        return this.opgezochteCode;
+    }
 
 
 

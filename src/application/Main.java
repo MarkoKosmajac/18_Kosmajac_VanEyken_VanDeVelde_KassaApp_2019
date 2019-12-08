@@ -1,16 +1,15 @@
 package application;
 	
 import controller.CalculatorController;
-import database.ArtikelLoadSaveTekst;
-import database.LoadSaveStrategy;
-import database.LoadSaveStrategyFactory;
-import database.Singleton;
+import controller.VoegToeController;
+import database.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
 import view.CalculatorView;
 import view.KassaView;
 import view.KlantView;
+import view.panels.KassaTab1OverviewPane;
 
 import java.awt.*;
 import java.io.IOException;
@@ -85,6 +84,9 @@ public class Main extends Application {
 		theView.setVisible(true);*/
 
 
+		KassaTab1OverviewPane theView = new KassaTab1OverviewPane();
+		ArtikelDBContext theModel = new ArtikelDBContext();
+		VoegToeController theController = new VoegToeController(theView,theModel);
 
 
 
