@@ -12,6 +12,8 @@ import view.KlantView;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.sql.SQLOutput;
 
 
@@ -64,6 +66,14 @@ public class Main extends Application {
 		System.out.println("Instance ID: " + System.identityHashCode(instanceTwo));
 		//TODO:OUTPUT: Instance ID: 1547864254 & Instance ID: 1547864254 ==> HETZELFDE! WHY ? Even though 2 seperate objects were tried to be created, you can that it's the same object.
 		*/
+
+		/*Class reflectClass = ArtikelCompany.class;
+		Method[] classMethods = reflectClass.getMethods();
+		for(Method method : classMethods){
+			System.out.println((method.getName()));
+		}*/
+
+
 
 
 
