@@ -11,13 +11,16 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     //Enum van types van  databases
     //Methode: Load en Save
     //Dit is nu de context klasse voor load en save strategy
-    private LoadSaveStrategy loadSaveStrategy;
-    private HashMap artikelen = new HashMap<String, Artikel>();
-    private TreeMap treeMap;
-    private LoadSaveStrategyFactory loadSaveStrategyFactory;
+    
+    // private LoadSaveStrategy loadSaveStrategy;
+    //private HashMap artikelen = new HashMap<String, Artikel>();
+    //private TreeMap treeMap;
+    //private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
     public ArtikelDBInMemory(/*LoadSaveStrategy loadSaveStrategy, String bestand*/) throws IOException {
-        //this.loadSaveStrategy = loadSaveStrategy;
+
+        //TODO: CLEANED - NO EFFECT WHEN IN COMMENTS
+        /*//this.loadSaveStrategy = loadSaveStrategy;
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         //ArrayList<Object> a = load(bestand);
         String bestand = "src\\bestanden\\artikel.txt";
@@ -33,7 +36,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         }
         convertToTreeMap(artikelen);
 
-
+        */
     }
 
    /* public  <K, V> Map<K, V> convertToTreeMap(Map<K, V> hashMap)
@@ -48,7 +51,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         return treeMap;
     } */
 
-    public  <K, V> void convertToTreeMap(Map<K, V> hashMap) {
+    /*public  <K, V> void convertToTreeMap(Map<K, V> hashMap) {
         SortedSet<Map.Entry<String, Artikel>> sortedset = new TreeSet<Map.Entry<String, Artikel>>(
                 new Comparator<Map.Entry<String, Artikel>>() {
                     @Override
@@ -64,18 +67,18 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         sortedset.addAll(artikelen.entrySet());
 
 
-    }
+    }*/
 
 
 
-    public ArrayList<Object> load(String bestand) throws IOException {
+    /*public ArrayList<Object> load(String bestand) throws IOException {
         return loadSaveStrategy.load(bestand);
     }
 
 
     public void save(ArrayList<Object> artikelArrayList, String bestand) throws IOException, WriteException {
         loadSaveStrategy.save(artikelArrayList, bestand);
-    }
+    }*/
 
 
 }

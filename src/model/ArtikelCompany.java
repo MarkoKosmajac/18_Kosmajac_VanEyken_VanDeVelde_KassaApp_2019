@@ -17,6 +17,7 @@ public class ArtikelCompany {
 
     //TODO: PRIVATE MAKEN = deel van singleton
     private ArtikelCompany() throws IOException {
+        //TODO: GEEN EFFECT WHEN IN COMMENTS
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";
         } else {
