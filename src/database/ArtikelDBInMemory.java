@@ -14,10 +14,16 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private LoadSaveStrategy loadSaveStrategy;
     private HashMap artikelen = new HashMap<String, Artikel>();
     private TreeMap treeMap;
+    private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
-    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy, String bestand) throws IOException {
-        this.loadSaveStrategy = loadSaveStrategy;
-        ArrayList<Object> a = load(bestand);
+    public ArtikelDBInMemory(/*LoadSaveStrategy loadSaveStrategy, String bestand*/) throws IOException {
+        //this.loadSaveStrategy = loadSaveStrategy;
+        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+        //ArrayList<Object> a = load(bestand);
+        String bestand = "src\\bestanden\\artikel.txt";
+        ArrayList<Object> a = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelDBInMemory").load(bestand);
+
+        //TODO: VERANDERINGEN ZIE KLADBLOKDOCUMENT MARKO
 
         for (Object o : a) {
             if (o instanceof Artikel) {

@@ -29,7 +29,8 @@ public class ArtikelCompany {
         //ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
         //artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
         //TODO: BOVENSTE 2 LIJNTJES OMGEVORMD NAAR HIERONDER 1 LIJN:
-        loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
+        ArrayList<Object> aa = //TODO: VERANDERINGENDOCUMENT MARKO: DIT HIER LINKS VAN TOEGEVOEGD
+                loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
 
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
@@ -40,7 +41,7 @@ public class ArtikelCompany {
         //TODO: NAAR
         //FOUT: DIT KIEST TUSSEN EXCEL EN TEKST: ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
         //JUSIT: EENTJE DIE KIEST TUSSEN ARTIKELDBINMEMORY OF DBSQL
-        ArrayList<Object> aa = artikelDBStrategyFactory.makeArtikelDBStrategy("ArtikelDBInMemory").load(bestand);
+        //ArrayList<Object> aa = artikelDBStrategyFactory.makeArtikelDBStrategy("ArtikelDBInMemory").load(bestand);
 
         for(Object o : aa){
             if(o instanceof Artikel){

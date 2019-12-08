@@ -22,7 +22,7 @@ public class VerwijderBevestiging extends GridPane {
     //private ArtikelCompany artikelCompany; //TODO: FIXED WITH SINGLETON ?
 
     public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) throws IOException {
-        //artikelCompany = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON ?
+        //artikelCompany = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON ? door weg te laten OF ANDERE SOLUTION: artikelcompany = ArtikelCompany.getInstance()!!!
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");
         this.setPrefHeight(150);
