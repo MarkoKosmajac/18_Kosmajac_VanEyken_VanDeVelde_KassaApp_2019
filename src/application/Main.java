@@ -1,5 +1,6 @@
 package application;
 	
+import controller.CalculatorController;
 import database.ArtikelLoadSaveTekst;
 import database.LoadSaveStrategy;
 import database.LoadSaveStrategyFactory;
@@ -7,6 +8,7 @@ import database.Singleton;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
+import view.CalculatorView;
 import view.KassaView;
 import view.KlantView;
 
@@ -24,6 +26,7 @@ public class Main extends Application {
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...
+		//TODO: MVC: Meerdere views, controllers, models toevoegen!!!
 
 		System.out.println(System.getProperty("os.name"));
 
@@ -67,11 +70,21 @@ public class Main extends Application {
 		//TODO:OUTPUT: Instance ID: 1547864254 & Instance ID: 1547864254 ==> HETZELFDE! WHY ? Even though 2 seperate objects were tried to be created, you can that it's the same object.
 		*/
 
-		/*Class reflectClass = ArtikelCompany.class;
+		/*//TODO: TEST REFLECTION
+		Class reflectClass = ArtikelCompany.class;
 		Method[] classMethods = reflectClass.getMethods();
 		for(Method method : classMethods){
 			System.out.println((method.getName()));
 		}*/
+
+
+		/*//TODO: TEST MVC CALCULATOR!
+		CalculatorView theView = new CalculatorView();
+		CalculatorModel theModel = new CalculatorModel();
+		CalculatorController theController = new CalculatorController(theView, theModel);
+		theView.setVisible(true);*/
+
+
 
 
 
