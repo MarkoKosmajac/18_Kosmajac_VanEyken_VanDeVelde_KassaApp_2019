@@ -6,25 +6,23 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
 
 import java.util.ArrayList;
 
 public class KlantOverviewPane extends GridPane {
 
     private TableView<Artikel> table ;
-    private ArtikelCompany artikelCompany;
+    private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
 
 
-    public KlantOverviewPane(ArtikelCompany artikelCompany){
+    public KlantOverviewPane(ArtikelDBContext artikelDBContext){
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         totaalBedrag = 0;
@@ -40,7 +38,7 @@ public class KlantOverviewPane extends GridPane {
         tot.setFont(new Font("System", 12));
         labelTotaal.setFont(new Font("System", 12));
 
-        this.artikelCompany = artikelCompany;
+        this.artikelDBContext = artikelDBContext;
 
         table = new TableView<Artikel>();
 

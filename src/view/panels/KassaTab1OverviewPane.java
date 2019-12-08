@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,12 +24,12 @@ import java.util.ArrayList;
 
 public class KassaTab1OverviewPane extends GridPane {
     private TableView<Artikel> table ;
-    private ArtikelCompany artikelCompany;
+    private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
 
-    public KassaTab1OverviewPane(ArtikelCompany artikelCompany){
-        this.artikelCompany = artikelCompany;
+    public KassaTab1OverviewPane(ArtikelDBContext artikelDBContext){
+        this.artikelDBContext = artikelDBContext;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         totaalBedrag = 0;
@@ -64,8 +64,8 @@ public class KassaTab1OverviewPane extends GridPane {
         text.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 String invoer = text.getText();
-                String em = artikelCompany.zoek(invoer);
-                Artikel artikel = artikelCompany.zoekArtikel(invoer);
+                String em = artikelDBContext.zoek(invoer);
+                Artikel artikel = artikelDBContext.zoekArtikel(invoer);
                 if(em.contains(",")){ //PRODUCT = FOUND
                     String omschr = artikel.getOmschrijving();
                     double prijs = artikel.getPrijs();

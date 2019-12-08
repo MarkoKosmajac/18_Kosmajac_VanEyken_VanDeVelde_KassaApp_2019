@@ -4,8 +4,7 @@ package view;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
 import view.panels.InstellingenPane;
 import view.panels.KassaTab1OverviewPane;
 import view.panels.ProductOverviewPane;
@@ -17,12 +16,12 @@ public class KassaMainPane extends BorderPane {
 
         //ArtikelCompany artikelcompanyke = new ArtikelCompany();//TODO: FIXED WITH SINGLETON
 	    TabPane tabPane = new TabPane();
-        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(ArtikelCompany.getInstance()); //VROEGER: artikelcompanyke
+        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(ArtikelDBContext.getInstance()); //VROEGER: artikelcompanyke
         Tab kassaTab = new Tab("Kassa", kassaTab1OverviewPane);
         //TODO: TOEGEVOEGD = ALS PARAMETER EN INSTANCEVARIABLE: artikelcompanyke
-        ProductOverviewPane productOverviewPane = new ProductOverviewPane(ArtikelCompany.getInstance());//VROEGER: artikelcompanyke
+        ProductOverviewPane productOverviewPane = new ProductOverviewPane(ArtikelDBContext.getInstance());//VROEGER: artikelcompanyke
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        InstellingenPane instellingenPane = new InstellingenPane(ArtikelCompany.getInstance());//VROEGER: artikelcompanyke
+        InstellingenPane instellingenPane = new InstellingenPane(ArtikelDBContext.getInstance());//VROEGER: artikelcompanyke
         Tab instellingTab = new Tab("Instellingen", instellingenPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);

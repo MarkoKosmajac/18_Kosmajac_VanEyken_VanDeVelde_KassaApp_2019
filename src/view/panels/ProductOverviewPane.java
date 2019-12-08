@@ -1,20 +1,14 @@
 package view.panels;
 
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProductOverviewPane extends GridPane {
@@ -22,7 +16,7 @@ public class ProductOverviewPane extends GridPane {
 	//private ArtikelCompany artikelCompany ; //TODO: FIXED WITH SINGLETON
 
 
-	public ProductOverviewPane(ArtikelCompany artikelCompany) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
+	public ProductOverviewPane(ArtikelDBContext artikelDBContext) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -37,7 +31,7 @@ public class ProductOverviewPane extends GridPane {
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
         //table.setItems(artikelCompany.loadData());//TODO: SINGLETON HIERONDER FIX && AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
-		table.setItems(ArtikelCompany.getInstance().loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
+		table.setItems(ArtikelDBContext.getInstance().loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
 
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");

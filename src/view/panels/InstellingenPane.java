@@ -4,34 +4,24 @@ package view.panels;
  * @author Marko Kosmajac
  */
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
 import model.SoortBestand;
 import model.SoortKorting;
 
-import javax.swing.*;
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InstellingenPane extends GridPane {
-    private ArtikelCompany artikelCompany; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ?
+    private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ?
 
-    public InstellingenPane(ArtikelCompany artikelCompany) throws IOException {
+    public InstellingenPane(ArtikelDBContext artikelDBContext) throws IOException {
 
         Properties properties = new Properties();
 
-        this.artikelCompany = artikelCompany; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
+        this.artikelDBContext = artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
 
 
         this.setPadding(new Insets(5, 5, 5, 5));
