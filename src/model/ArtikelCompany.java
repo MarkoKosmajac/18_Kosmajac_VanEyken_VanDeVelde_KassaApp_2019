@@ -3,15 +3,16 @@ package model;
 import java.io.IOException;
 import java.util.*;
 
-import database.ArtikelDBInMemory;
-import database.ArtikelLoadSaveTekst;
+import database.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ArtikelCompany {
     private ObservableList<Artikel> data;
     private String bestand; //Filepath
-    private ArtikelDBInMemory artikelDBInMemory;
+    //private ArtikelDBInMemory artikelDBInMemory;
+    public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
+    public ArtikelDBStrategyFactory artikelDBStrategyFactory;
 
     public ArtikelCompany() throws IOException {
         if (System.getProperty("os.name").equals("Mac OS X")){
@@ -20,13 +21,24 @@ public class ArtikelCompany {
             bestand = "src\\bestanden\\artikel.txt";
         }
 
+        loadSaveStrategyFactory = new LoadSaveStrategyFactory(); //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
+        artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
+
+        //ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
+        //artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
+        //TODO: BOVENSTE 2 LIJNTJES OMGEVORMD NAAR HIERONDER 1 LIJN:
+        loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
+
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-        ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
-        artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
 
 
         ArrayList<Artikel> newArrList = new ArrayList<>();
-        ArrayList<Object> aa = artikelDBInMemory.load(bestand);
+
+        //ArrayList<Object> aa = artikelDBInMemory.load(bestand);
+        //TODO: NAAR
+        //FOUT: DIT KIEST TUSSEN EXCEL EN TEKST: ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
+        //JUSIT: EENTJE DIE KIEST TUSSEN ARTIKELDBINMEMORY OF DBSQL
+        ArrayList<Object> aa = artikelDBStrategyFactory.makeArtikelDBStrategy("ArtikelDBInMemory").load(bestand);
 
         for(Object o : aa){
             if(o instanceof Artikel){

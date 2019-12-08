@@ -1,7 +1,9 @@
 package application;
 	
+import database.ArtikelLoadSaveTekst;
 import database.LoadSaveStrategy;
 import database.LoadSaveStrategyFactory;
+import database.Singleton;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
@@ -14,6 +16,7 @@ import java.sql.SQLOutput;
 
 
 public class Main extends Application {
+
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		KassaView kassaView = new KassaView();
@@ -35,7 +38,10 @@ public class Main extends Application {
 		keuze.setKortingStrategie(new DuursteKorting());
 		System.out.println(keuze.geefKorting());*/
 
+
+
 		/*//TESTEN VAN DE FACTORY PATTERN
+		// VERSIE DEEL 1
 		LoadSaveStrategyFactory loadSaveStrategyFactory = new LoadSaveStrategyFactory();
 		LoadSaveStrategy theEnemy = null;
 		String typeOfShip = "ArtikelLoadSaveExcel";
@@ -45,6 +51,21 @@ public class Main extends Application {
 		}
 		else System.out.println("LEEG");*/
 
+		/*//TESTEN VAN DE FACTORY PATTERN
+		// VERSIE DEEL 2
+		bereken();*/
+
+		/*
+		//TESTEN SINGLETON PATTERN
+		Singleton newInstance = Singleton.getInstance();
+		System.out.println("Instance ID: " + System.identityHashCode(newInstance)); //TODO: With this line we can track if we're dealing with the same object.
+		System.out.println();
+		Singleton instanceTwo = Singleton.getInstance();
+		System.out.println("Instance ID: " + System.identityHashCode(instanceTwo));
+		//TODO:OUTPUT: Instance ID: 1547864254 & Instance ID: 1547864254 ==> HETZELFDE! WHY ? Even though 2 seperate objects were tried to be created, you can that it's the same object.
+		*/
+
+
 
 
 
@@ -53,4 +74,17 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	/*//FACTORY VERSIE DEEL 2
+	public static LoadSaveStrategy bereken(LoadSaveStrategy loadSaveStrategy){
+		LoadSaveStrategyFactory loadSaveStrategyFactory = new LoadSaveStrategyFactory(); //dit moet als instantievar vanboven normaal
+
+		LoadSaveStrategy strat = null;
+
+		strat = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy);
+		if(strat != null){
+			return strat;
+		}
+		else return null;
+	}*/
 }
