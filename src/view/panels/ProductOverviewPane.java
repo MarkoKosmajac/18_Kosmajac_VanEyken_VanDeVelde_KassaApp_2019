@@ -12,42 +12,33 @@ import javafx.scene.text.Font;
 import model.Artikel;
 import model.ArtikelCompany;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProductOverviewPane extends GridPane { //TODO: Simplify code by letting panes extend a Pane (Here gridpane)!
-	private TableView<Artikel> table ;//TODO: alle veldjes, rijen, uit de tekstfile....
-	private ArtikelCompany artikelCompany ;
+public class ProductOverviewPane extends GridPane {
+	private TableView<Artikel> table ;
+	//private ArtikelCompany artikelCompany ; //TODO: FIXED WITH SINGLETON
 
 
-	public ProductOverviewPane(ArtikelCompany artikelCompany) {
+	public ProductOverviewPane(ArtikelCompany artikelCompany) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
         
-		this.add(new Label("Products:"), 0, 0, 1, 1); //TODO: laatste 2 = spans (= optioneel, want default is altijd 1:1), iets anders: hoeveel cellen bedekt je label
+		this.add(new Label("Products:"), 0, 0, 1, 1);
 
-		this.artikelCompany = artikelCompany;
+		//this.artikelCompany = artikelCompany; //TODO: FIXED WITH SINGLETON ??? MAG DIT ZOMAAR WEG ???
+
 		//this.setSpacing(10);
 		this.setPadding(new Insets(10, 10, 10, 10));
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-        table.setItems(artikelCompany.loadData());//TODO: AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
+        //table.setItems(artikelCompany.loadData());//TODO: SINGLETON HIERONDER FIX && AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
+		table.setItems(ArtikelCompany.getInstance().loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
 
-		//BIJ DUBBELKLIK AANPASSEN
-        /*table.setRowFactory( tv -> {
-            TableRow<Artikel> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Artikel artikel = row.getItem();
-                    String artikelInfo= artikel.getOmschrijving()+" \nRecente prijs is "+ artikel.getPrijs()+" Euro: ";
-                    new ArtikelDetailView(ArtikelOverview.this,artikelInfo,artikel);
-                }
-            });
-            return row;
-        });*/
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");
 		colID.setMinWidth(100);
@@ -71,48 +62,11 @@ public class ProductOverviewPane extends GridPane { //TODO: Simplify code by let
 
 		table.getColumns().addAll(colID, colOmschrijving, colGroep, colPrijs, colStock);
 		Button button = new Button("...");
-		/*button.setOnAction(new AddDummyArtikelHandler());*/
 		Button button2 = new Button("...");
-		/*button2.setOnAction(new UpdatePriceHandler());*/
 		this.add(button,0, 5, 1, 6);
 		this.add(button2, 1,5,1,6);
 		this.getChildren().addAll(lblHeading, table); //button, button2
 
 	}
-
-	/*public void displayErrorMessage(String errorMessage){
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setHeaderText("Alert");
-		alert.setContentText(errorMessage);
-		alert.show();
-	}
-
-	public void refresh(){
-		table.refresh();
-	}*/
-
-    /*
-    class AddDummyArtikelHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            artikelCompany.addDummyArtikel();
-            TableViewSelectionModel <Artikel> tsm = table.getSelectionModel();
-            tsm.select(artikelCompany.getAantalArtikels());
-        }
-    }
-
-    class UpdatePriceHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            TableViewSelectionModel <Artikel> tsm = table.getSelectionModel();
-            Artikel artikel = tsm.getSelectedItem();
-            String artikelInfo= artikel.getOmschrijving()+" \nRecente prijs is" + artikel.getPrijs() + " Euro: ";
-            new ArtikelDetailView(ArtikelOverview.this,artikelInfo,artikel);
-        }
-    }*/
-
-
-	
-	
 
 }

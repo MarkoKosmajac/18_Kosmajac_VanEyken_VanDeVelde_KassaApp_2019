@@ -14,9 +14,9 @@ public class KlantViewMainPane extends BorderPane {
 
 
     public KlantViewMainPane() throws IOException {
-        ArtikelCompany artikelcompanyke = new ArtikelCompany();
+        //ArtikelCompany artikelcompanyke = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON:
         TabPane tabPane = new TabPane();
-        KlantOverviewPane klantOverviewPane = new KlantOverviewPane(artikelcompanyke);
+        KlantOverviewPane klantOverviewPane = new KlantOverviewPane(ArtikelCompany.getInstance()); //FIXED WITH SINGLETON
         Tab logTab = new Tab("ARTIKELENLIJST", klantOverviewPane);
         tabPane.getTabs().add(logTab);
         this.setCenter(tabPane);

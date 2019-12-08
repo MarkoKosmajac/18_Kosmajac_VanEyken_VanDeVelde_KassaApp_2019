@@ -19,10 +19,10 @@ import java.io.IOException;
 public class VerwijderBevestiging extends GridPane {
     private Stage stage = new Stage();
     private KassaTab1OverviewPane kassaTab1OverviewPane;
-    private ArtikelCompany artikelCompany;
+    //private ArtikelCompany artikelCompany; //TODO: FIXED WITH SINGLETON ?
 
     public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) throws IOException {
-        artikelCompany = new ArtikelCompany();
+        //artikelCompany = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON ?
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");
         this.setPrefHeight(150);
@@ -47,11 +47,12 @@ public class VerwijderBevestiging extends GridPane {
         btnOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 try{
-                    //artikel.setPrijs(Double.parseDouble(prijsVeld.getText()));
-                    artikelCompany.verwijderArtikel(code);
+                    //artikelCompany.verwijderArtikel(code);
+                    //TODO: VORIGE GEFIXT NAAR HIERONDER MET SINGLETON ???
+                    ArtikelCompany.getInstance().verwijderArtikel(code);
 
                 }
-                catch (IllegalArgumentException ex){
+                catch (IllegalArgumentException | IOException ex){
                     System.out.println("ATCHEEEE");
                     kassaTab1OverviewPane.displayErrorMessage(ex.getMessage());
                 }

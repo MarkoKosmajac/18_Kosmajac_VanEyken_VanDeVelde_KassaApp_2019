@@ -25,13 +25,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InstellingenPane extends GridPane {
-    private ArtikelCompany artikelCompany;
+    private ArtikelCompany artikelCompany; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ?
 
     public InstellingenPane(ArtikelCompany artikelCompany) throws IOException {
 
         Properties properties = new Properties();
 
-        this.artikelCompany = artikelCompany;
+        this.artikelCompany = artikelCompany; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
 
 
         this.setPadding(new Insets(5, 5, 5, 5));

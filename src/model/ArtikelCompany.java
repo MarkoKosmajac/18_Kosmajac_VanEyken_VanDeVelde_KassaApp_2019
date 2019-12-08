@@ -13,8 +13,10 @@ public class ArtikelCompany {
     //private ArtikelDBInMemory artikelDBInMemory;
     public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
+    private static ArtikelCompany artikelCompany; //TODO: deel van singleton
 
-    public ArtikelCompany() throws IOException {
+    //TODO: PRIVATE MAKEN = deel van singleton
+    private ArtikelCompany() throws IOException {
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";
         } else {
@@ -46,6 +48,13 @@ public class ArtikelCompany {
             }
         }
         data.addAll(newArrList);
+    }
+
+    public static ArtikelCompany getInstance() throws IOException {
+        if(artikelCompany == null){
+            artikelCompany = new ArtikelCompany();
+        }
+        return artikelCompany;
     }
 
     public ObservableList<Artikel> loadData()     {
