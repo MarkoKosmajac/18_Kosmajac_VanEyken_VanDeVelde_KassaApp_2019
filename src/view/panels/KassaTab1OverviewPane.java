@@ -37,7 +37,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private Label tot = new Label("TOTAALBEDRAG:");
     private TextField eme = new TextField();
 
-    public KassaTab1OverviewPane(/*ArtikelDBContext artikelDBContext*/){
+    public KassaTab1OverviewPane(ArtikelDBContext artikelDBContext){
         this.artikelDBContext = artikelDBContext;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
