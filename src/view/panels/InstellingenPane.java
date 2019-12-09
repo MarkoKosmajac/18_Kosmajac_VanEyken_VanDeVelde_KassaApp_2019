@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import database.ArtikelDBContext;
 import model.SoortBestand;
-import model.SoortKorting;
+import model.kortingstrategie.SoortKorting;
 
 import java.io.*;
 import java.util.Properties;

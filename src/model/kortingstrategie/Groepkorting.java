@@ -1,4 +1,4 @@
-package model;
+package model.kortingstrategie;
 
 public class Groepkorting implements KortingStrategie {
 

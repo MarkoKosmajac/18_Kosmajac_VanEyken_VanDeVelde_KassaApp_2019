@@ -1,4 +1,4 @@
-package model;
+package model.kortingstrategie;
 
 public class KortingKeuze {
     KortingStrategie kortingStrategie;

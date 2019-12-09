@@ -1,7 +1,5 @@
 package view.panels;
 
-import database.Observer;
-import database.Subject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,17 +12,14 @@ import javafx.scene.text.Font;
 import model.Artikel;
 import database.ArtikelDBContext;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.List;
 
-public class KlantOverviewPane extends GridPane implements Subject {
+public class KlantOverviewPane extends GridPane {
 
     private TableView<Artikel> table;
     private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
-    private List<Observer> observers = new ArrayList<>();
 
 
     public KlantOverviewPane(ArtikelDBContext artikelDBContext) {
@@ -65,29 +60,6 @@ public class KlantOverviewPane extends GridPane implements Subject {
         this.getChildren().addAll(table);
 
 
-    }
-
-    @Override
-    public void register(java.util.Observer newObserver) {
-        observers.add((Observer) newObserver);
-        System.out.println("Observer toegevoegd");
-    }
-
-    @Override
-    public void unregister(java.util.Observer deleteObserver) {
-
-        observers.remove(deleteObserver);
-        System.out.println("Observer verwijderd");
-
-    }
-
-    @Override
-    public void notifyObserver() {
-        for (Observer observer : observers) {
-            observer.update(1);
-            System.out.println("Aantal is met 1 verhoogd");
-
-        }
     }
 
 

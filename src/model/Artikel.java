@@ -1,13 +1,5 @@
 package model;
 
-import database.DBException;
-import database.Subject;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
 public class Artikel implements Comparable<Artikel>{
 
     //TODO: vb: 1,artikel1,gr1,12.5,10

@@ -1,4 +1,4 @@
-package model;
+package model.kortingstrategie;
 
 import java.util.ArrayList;
 
