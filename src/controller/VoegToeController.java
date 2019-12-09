@@ -1,19 +1,11 @@
 package controller;
 
 import database.ArtikelDBContext;
-import database.LoadSaveStrategy;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import model.Artikel;
-import view.panels.KassaTab1OverviewPane;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 

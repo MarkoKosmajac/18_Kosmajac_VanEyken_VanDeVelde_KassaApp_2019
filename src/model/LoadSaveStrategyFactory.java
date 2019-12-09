@@ -1,4 +1,7 @@
-package database;
+package model;
+
+import database.ArtikelLoadSaveExcel;
+import database.ArtikelLoadSaveTekst;
 
 public class LoadSaveStrategyFactory {
     /*//TODO: DEEL VAN VERSIE 2

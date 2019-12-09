@@ -1,10 +1,8 @@
 package database;
 
-import jxl.write.WriteException;
-import model.Artikel;
+import model.ArtikelDBStrategy;
 
 import java.io.IOException;
-import java.util.*;
 
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
     //Hierin zit hashmap -lees uit, uit artikel.txt

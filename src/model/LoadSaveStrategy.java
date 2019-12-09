@@ -1,4 +1,4 @@
-package database;
+package model;
 
 import jxl.write.WriteException;
 

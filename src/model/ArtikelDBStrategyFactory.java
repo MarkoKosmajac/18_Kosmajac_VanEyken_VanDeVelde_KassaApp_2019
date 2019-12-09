@@ -1,4 +1,6 @@
-package database;
+package model;
+
+import database.ArtikelDBInMemory;
 
 import java.io.IOException;
 

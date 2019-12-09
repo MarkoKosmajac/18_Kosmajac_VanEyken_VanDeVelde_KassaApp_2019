@@ -5,7 +5,7 @@ import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Artikel;
+import model.*;
 
 public class ArtikelDBContext {
     private ObservableList<Artikel> data;

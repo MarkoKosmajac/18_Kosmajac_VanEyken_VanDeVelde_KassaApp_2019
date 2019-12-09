@@ -2,12 +2,9 @@ package controller;
 
 import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
-import database.LoadSaveStrategy;
+import model.LoadSaveStrategy;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class InstellingenController {
@@ -18,7 +15,7 @@ public class InstellingenController {
         this.properties = new Properties();
     }
 
-    public LoadSaveStrategy geefLoadSaveStrategy(){
+    public LoadSaveStrategy geefLoadSaveStrategy() throws IOException {
         if(getProperties().equalsIgnoreCase("Excel")){
             return new ArtikelLoadSaveExcel();
         }
@@ -27,11 +24,32 @@ public class InstellingenController {
         }
     }
 
-    public String getProperties(){
-        return ""; //TODO: MAX
+    public String getProperties() throws IOException {
+        String res = "";
+        InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        StringBuilder out = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            out.append(line);
+        }
+
+        if (out.toString().contains("deandere=deandere")){
+            //rb1.setSelected(true);
+            res = "deandere";
+        } else if (out.toString().contains("databaseInMemory=databaseInMemory")){
+            //rb2.setSelected(true);
+            res = "databaseInMemory";
+
+        }
+
+
+        //out.toString()); Prints the string content read from input stream
+        reader.close();
+        return res;
     }
 
-    public void setProperties() throws FileNotFoundException {
+    public void setPropertiesDB() throws FileNotFoundException {
         //TODO: set 3 lijnen, inoutstream, set en store
         FileOutputStream os = null;
         try{
@@ -40,6 +58,19 @@ public class InstellingenController {
             properties.setProperty("databaseInMemory", "databaseInMemory");
             properties.store(os,null);
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setPropertiesSQL(){
+        FileOutputStream os = null;
+        try {
+            os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
+            properties.clear();
+            properties.setProperty("deandere", "deandere");
+
+            properties.store(os,null);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ package view.panels;
  * @author Marko Kosmajac
  */
 
+import controller.InstellingenController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -15,7 +16,8 @@ import java.io.*;
 import java.util.Properties;
 
 public class InstellingenPane extends GridPane {
-    private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ?
+    private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG
+    private InstellingenController instellingenController;
 
     public InstellingenPane(ArtikelDBContext artikelDBContext) throws IOException {
 
@@ -57,7 +59,7 @@ public class InstellingenPane extends GridPane {
 
 
 
-        group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
+       /* group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
             FileOutputStream os = null;
 
             if (group.getSelectedToggle() == rb2) {
@@ -70,8 +72,6 @@ public class InstellingenPane extends GridPane {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
 
             if (group.getSelectedToggle() == rb1) {
@@ -88,10 +88,10 @@ public class InstellingenPane extends GridPane {
 
             }
 
-        });
+        });*/
 
         
-        InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+        /*InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         StringBuilder out = new StringBuilder();
         String line;
@@ -108,11 +108,7 @@ public class InstellingenPane extends GridPane {
 
         //out.toString()); Prints the string content read from input stream
         reader.close();
-
-
-
-
-
+        */
 
 
         this.add(rb1,0,1);
