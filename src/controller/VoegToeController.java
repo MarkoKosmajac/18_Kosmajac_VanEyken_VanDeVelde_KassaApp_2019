@@ -15,10 +15,12 @@ import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VoegToeController {
 
     ArtikelDBContext db;
+    private List<Artikel> onHoldList = new ArrayList<>();
 
     /*private KassaTab1OverviewPane theView;
     private ArtikelDBContext theModel;*/
@@ -50,6 +52,21 @@ public class VoegToeController {
             throw new ControllerException("Artikelcode is leeg.");
         }
         return db.zoekArtikel(artikelcode);
+    }
+
+    public void onHoldList(){
+        this.onHoldList.addAll(getArtikels());
+        getArtikels().clear();
+    }
+
+    public List<Artikel> getOnHoldList(){
+        return onHoldList;
+    }
+
+    public List<model.Artikel> putOnHoldListBack(){
+        List<model.Artikel> newList = new ArrayList<>();
+        newList.addAll(onHoldList);
+        return newList;
     }
 
     /*//class addVoegToeHandler implements EventHandler<ActionEvent> {
