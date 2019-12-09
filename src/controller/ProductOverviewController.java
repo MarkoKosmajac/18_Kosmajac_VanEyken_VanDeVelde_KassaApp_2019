@@ -37,7 +37,7 @@ public class ProductOverviewController {
     public void addToWinkelMandje(Artikel artikel) {
         winkelmandje.add(artikel);
         System.out.println(artikel);
-        //theview.setWaarde("eee");
+        //theview.setWaarde("eeee");
 
         //TODO: IETS
     }
