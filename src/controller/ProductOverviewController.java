@@ -1,16 +1,22 @@
 package controller;
 
+import database.ArtikelDBContext;
 import model.Artikel;
+import view.panels.KassaTab1OverviewPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductOverviewController {
 
     List<Artikel> winkelmandje;
+    ArtikelDBContext db = ArtikelDBContext.getInstance();
 
-    public ProductOverviewController() {
+    public ProductOverviewController() throws IOException {
+        //db = ArtikelDBContext.getInstance();
         winkelmandje = new ArrayList<>();
+        winkelmandje.addAll(db.loadData());
     }
 
     //TODO: MODELKLASSE ?
@@ -31,6 +37,8 @@ public class ProductOverviewController {
     public void addToWinkelMandje(Artikel artikel) {
         winkelmandje.add(artikel);
         System.out.println(artikel);
+        //theview.setWaarde("eee");
+
         //TODO: IETS
     }
 }

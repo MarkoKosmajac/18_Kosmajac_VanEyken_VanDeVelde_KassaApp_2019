@@ -40,8 +40,9 @@ public class KassaTab1OverviewPane extends GridPane {
     private Label tot = new Label("TOTAALBEDRAG:");
     private TextField eme = new TextField();
 
-    public KassaTab1OverviewPane(ArtikelDBContext artikelDBContext){
-        this.artikelDBContext = artikelDBContext;
+    public KassaTab1OverviewPane(ArtikelDBContext artikelDBContext) throws IOException {
+        producten = new ProductOverviewController();
+        /*this.artikelDBContext = artikelDBContext;*/
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         totaalBedrag = 0;
@@ -69,6 +70,8 @@ public class KassaTab1OverviewPane extends GridPane {
         colPrijs.setMinWidth(100);
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
 
+
+        text.setOnKeyPressed(new AddArtikelHandler());
 
         /*text.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -149,6 +152,7 @@ public class KassaTab1OverviewPane extends GridPane {
 
     public void setWaarde(String waarde){
         eme.setText(waarde);
+        displayErrorMessage("eee");
     }
 
     //public void addVoegToeHandler(EventHandler<? super KeyEvent> listenForVoegToeEnter){
@@ -212,30 +216,4 @@ public class KassaTab1OverviewPane extends GridPane {
         table.refresh();
     }
 
-
-
-    public TableView<Artikel> getTable() {
-        return table;
-    }
-    public void setTable(TableView<Artikel> table) {
-        this.table = table;
-    }
-    public ArtikelDBContext getArtikelDBContext() {
-        return artikelDBContext;
-    }
-    public void setArtikelDBContext(ArtikelDBContext artikelDBContext) {
-        this.artikelDBContext = artikelDBContext;
-    }
-    public double getTotaalBedrag() {
-        return totaalBedrag;
-    }
-    public void setTotaalBedrag(double totaalBedrag) {
-        this.totaalBedrag = totaalBedrag;
-    }
-    public ObservableList<Artikel> getProducts() {
-        return products;
-    }
-    public void setProducts(ObservableList<Artikel> products) {
-        this.products = products;
-    }
 }
