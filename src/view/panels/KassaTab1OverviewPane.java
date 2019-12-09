@@ -78,6 +78,9 @@ public class KassaTab1OverviewPane extends GridPane {
                     totaalBedrag += artikel.getPrijs();
                     //System.out.println("Omschrijving: " + omschr + " Prijs: " + prijs + " totaal: " + totaalBedrag);
                     products.add(artikel);
+
+
+
                     table.setItems(products);
                     text.clear();
 
@@ -193,6 +196,28 @@ public class KassaTab1OverviewPane extends GridPane {
 
 
 
-
-
+    public TableView<Artikel> getTable() {
+        return table;
+    }
+    public void setTable(TableView<Artikel> table) {
+        this.table = table;
+    }
+    public ArtikelDBContext getArtikelDBContext() {
+        return artikelDBContext;
+    }
+    public void setArtikelDBContext(ArtikelDBContext artikelDBContext) {
+        this.artikelDBContext = artikelDBContext;
+    }
+    public double getTotaalBedrag() {
+        return totaalBedrag;
+    }
+    public void setTotaalBedrag(double totaalBedrag) {
+        this.totaalBedrag = totaalBedrag;
+    }
+    public ObservableList<Artikel> getProducts() {
+        return products;
+    }
+    public void setProducts(ObservableList<Artikel> products) {
+        this.products = products;
+    }
 }

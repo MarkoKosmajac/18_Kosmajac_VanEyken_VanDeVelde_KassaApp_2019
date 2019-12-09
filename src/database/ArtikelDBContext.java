@@ -61,7 +61,7 @@ public class ArtikelDBContext {
         return artikelDBContext;
     }
 
-    public ObservableList<Artikel> loadData()     {
+    public ObservableList<Artikel> loadData(){
         return data;
     }
 
