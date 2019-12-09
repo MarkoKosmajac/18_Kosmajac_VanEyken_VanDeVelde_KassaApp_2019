@@ -86,7 +86,7 @@ public class Main extends Application {
 
 
 		KassaTab1OverviewPane theView = new KassaTab1OverviewPane();
-		ArtikelDBContext theModel = new ArtikelDBContext();
+		ArtikelDBContext theModel = ArtikelDBContext.getInstance();
 		VoegToeController theController = new VoegToeController(theView,theModel);
 
 

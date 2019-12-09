@@ -13,12 +13,12 @@ public class ArtikelDBContext {
     //private ArtikelDBInMemory artikelDBInMemory;
     public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
-    private static ArtikelDBContext artikelDBContext; //TODO: deel van singleton
+    private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private ArtikelDBStrategy artikelDBStrategy;
     private String opgezochteCode;
 
     //TODO: PRIVATE MAKEN = deel van singleton
-    private ArtikelDBContext() throws IOException {
+    private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) throws IOException {
         //TODO: GEEN EFFECT WHEN IN COMMENTS
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";
@@ -54,11 +54,11 @@ public class ArtikelDBContext {
         data.addAll(newArrList);
     }
 
-    public static ArtikelDBContext getInstance() throws IOException {
-        if(artikelDBContext == null){
-            artikelDBContext = new ArtikelDBContext();
+    public static synchronized ArtikelDBContext getInstance() throws IOException {
+        if(uniqueInstance == null){
+            uniqueInstance = new ArtikelDBContext(new ArtikelLoadSaveTekst());
         }
-        return artikelDBContext;
+        return uniqueInstance;
     }
 
     public ObservableList<Artikel> loadData(){
@@ -110,6 +110,9 @@ public class ArtikelDBContext {
         return this.opgezochteCode;
     }
 
+    public ArrayList<Artikel> getArtikelen() {
+        return (ArrayList<Artikel>) data; //TODO: ALLE ARTIKELEN
+    }
 
 
     /**

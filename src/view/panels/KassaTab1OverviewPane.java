@@ -1,5 +1,6 @@
 package view.panels;
 
+import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,9 +22,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.security.Key;
 import java.util.ArrayList;
 
 
@@ -32,6 +30,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
+    private ProductOverviewController producten;
     //PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
 
     private Label label = new Label("Artikelcode:");
@@ -128,6 +127,17 @@ public class KassaTab1OverviewPane extends GridPane {
 
     public class AddArtikelHandler implements EventHandler<KeyEvent>{
 
+        @Override
+        public void handle(KeyEvent event) {
+            try{
+            if (event.getCode() == KeyCode.ENTER) {
+                Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
+                controller.addToWinkelMandje(artikel);
+            }
+        }catch( DBException ex){
+                displayErrorMessage(ex.getMessage());
+            }
+        }
     }
 
     //TODO: VAN HIER
