@@ -18,7 +18,7 @@ public class ArtikelDBContext {
     private String opgezochteCode;
 
     //TODO: PRIVATE MAKEN = deel van singleton
-    private ArtikelDBContext() throws IOException {
+    public ArtikelDBContext() throws IOException {
         //TODO: GEEN EFFECT WHEN IN COMMENTS
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";

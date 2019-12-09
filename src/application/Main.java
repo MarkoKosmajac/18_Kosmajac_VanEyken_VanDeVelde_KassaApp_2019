@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
 import view.CalculatorView;
+import view.KassaMainPane;
 import view.KassaView;
 import view.KlantView;
 import view.panels.KassaTab1OverviewPane;

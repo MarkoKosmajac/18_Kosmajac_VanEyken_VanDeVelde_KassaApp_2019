@@ -54,14 +54,18 @@ public class VoegToeController {
             }
         }*/
 
+        //ZIE HOE YANNICK DOET, IN FX, HIER ENKEL OBSERVER UPDATEN.
         @Override
         public void handle(javafx.scene.input.KeyEvent event) {
             try{
+                System.out.println("HANDLING");
                 String code = "";
                 if (event.getCode() == KeyCode.ENTER){
+                    System.out.println("ENTER PRESSED");
                     code = theView.getIngevuldeWaarde();
                     theModel.zoekCodeOp(code);
                     theView.setWaarde(theModel.getOpgezochteCode());
+                    theView.refresh();
                 }
             }
             catch(NumberFormatException ex){

@@ -16,7 +16,7 @@ public class KassaMainPane extends BorderPane {
 
         //ArtikelCompany artikelcompanyke = new ArtikelCompany();//TODO: FIXED WITH SINGLETON
 	    TabPane tabPane = new TabPane();
-        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(ArtikelDBContext.getInstance()); //VROEGER: artikelcompanyke
+        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(/*ArtikelDBContext.getInstance()*/); //VROEGER: artikelcompanyke
         Tab kassaTab = new Tab("Kassa", kassaTab1OverviewPane);
         //TODO: TOEGEVOEGD = ALS PARAMETER EN INSTANCEVARIABLE: artikelcompanyke
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(ArtikelDBContext.getInstance());//VROEGER: artikelcompanyke
