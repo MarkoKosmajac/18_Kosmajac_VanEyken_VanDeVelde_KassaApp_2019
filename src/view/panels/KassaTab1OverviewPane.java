@@ -21,7 +21,9 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.security.Key;
 import java.util.ArrayList;
 
 
@@ -30,6 +32,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
+    //PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
 
     private Label label = new Label("Artikelcode:");
     private TextField text = new TextField();
@@ -120,6 +123,10 @@ public class KassaTab1OverviewPane extends GridPane {
         this.getChildren().addAll(table);
 
 
+
+    }
+
+    public class AddArtikelHandler implements EventHandler<KeyEvent>{
 
     }
 
