@@ -21,6 +21,8 @@ import model.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import view.KassaMainPane;
+import view.KassaView;
 
 import java.io.IOException;
 import java.util.ArrayList;
