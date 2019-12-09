@@ -62,6 +62,7 @@ public class ArtikelDBContext {
     }
 
     public ObservableList<Artikel> loadData(){
+        Collections.sort(data);
         return data;
     }
 

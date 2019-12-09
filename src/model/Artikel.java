@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Artikel{
+public class Artikel implements Comparable<Artikel>{
 
     //TODO: vb: 1,artikel1,gr1,12.5,10
     private String artikelCode, omschrijving, artikelGroep;
@@ -75,6 +75,9 @@ public class Artikel{
     }
 
 
-
+    @Override
+    public int compareTo(Artikel o) {
+        return this.getOmschrijving().compareTo(o.getOmschrijving());
+    }
 }
 
