@@ -1,7 +1,5 @@
 package view.panels;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,17 +8,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.Artikel;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
+
+import java.io.IOException;
 
 
 public class VerwijderBevestiging extends GridPane {
     private Stage stage = new Stage();
     private KassaTab1OverviewPane kassaTab1OverviewPane;
-    private ArtikelCompany artikelCompany;
+    //private ArtikelCompany artikelCompany; //TODO: FIXED WITH SINGLETON ?
 
-    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) {
-        artikelCompany = new ArtikelCompany();
+    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) throws IOException {
+        //artikelCompany = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON ? door weg te laten OF ANDERE SOLUTION: artikelcompany = ArtikelCompany.getInstance()!!!
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");
         this.setPrefHeight(150);
@@ -45,11 +44,12 @@ public class VerwijderBevestiging extends GridPane {
         btnOK.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 try{
-                    //artikel.setPrijs(Double.parseDouble(prijsVeld.getText()));
-                    artikelCompany.verwijderArtikel(code);
+                    //artikelCompany.verwijderArtikel(code);
+                    //TODO: VORIGE GEFIXT NAAR HIERONDER MET SINGLETON ???
+                    ArtikelDBContext.getInstance().verwijderArtikel(code);
 
                 }
-                catch (IllegalArgumentException ex){
+                catch (IllegalArgumentException | IOException ex){
                     System.out.println("ATCHEEEE");
                     kassaTab1OverviewPane.displayErrorMessage(ex.getMessage());
                 }

@@ -1,11 +1,20 @@
 package model;
 
-public class Artikel {
+import database.DBException;
+import database.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+public class Artikel{
 
     //TODO: vb: 1,artikel1,gr1,12.5,10
     private String artikelCode, omschrijving, artikelGroep;
     private double prijs;
     private int stock; //10 = stock
+
 
 
     public Artikel(String artikelCode, String omschrijving, String artikelGroep, double prijs, int stock) {
@@ -64,4 +73,8 @@ public class Artikel {
     public String toString() {
         return this.artikelCode + "," + this.omschrijving + "," + this.artikelGroep + "," + this.prijs + "," + this.stock + "\n";
     }
+
+
+
 }
+

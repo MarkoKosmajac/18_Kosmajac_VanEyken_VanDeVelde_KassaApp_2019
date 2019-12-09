@@ -4,21 +4,25 @@ package view;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import model.ArtikelCompany;
+import database.ArtikelDBContext;
+import view.panels.InstellingenPane;
 import view.panels.KassaTab1OverviewPane;
 import view.panels.ProductOverviewPane;
 
-public class KassaMainPane extends BorderPane {
-	public KassaMainPane(){
+import java.io.IOException;
 
-        ArtikelCompany artikelcompanyke = new ArtikelCompany();
+public class KassaMainPane extends BorderPane {
+	public KassaMainPane() throws IOException {
+
+        //ArtikelCompany artikelcompanyke = new ArtikelCompany();//TODO: FIXED WITH SINGLETON
 	    TabPane tabPane = new TabPane();
-        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(artikelcompanyke);
+        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(ArtikelDBContext.getInstance()); //VROEGER: artikelcompanyke
         Tab kassaTab = new Tab("Kassa", kassaTab1OverviewPane);
         //TODO: TOEGEVOEGD = ALS PARAMETER EN INSTANCEVARIABLE: artikelcompanyke
-        ProductOverviewPane productOverviewPane = new ProductOverviewPane(artikelcompanyke);
-        Tab artikelTab = new Tab("Artikelen",productOverviewPane); //TODO: Binded pane to a tab! Voor deze al gedaan (story 1 & 2)
-        Tab instellingTab = new Tab("Instellingen");
+        ProductOverviewPane productOverviewPane = new ProductOverviewPane(ArtikelDBContext.getInstance());//VROEGER: artikelcompanyke
+        Tab artikelTab = new Tab("Artikelen",productOverviewPane);
+        InstellingenPane instellingenPane = new InstellingenPane(ArtikelDBContext.getInstance());//VROEGER: artikelcompanyke
+        Tab instellingTab = new Tab("Instellingen", instellingenPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);
         tabPane.getTabs().add(artikelTab);
