@@ -32,7 +32,7 @@ public class VoegToeController {
 
     public VoegToeController(InstellingenController instellingenController) throws IOException {
         LoadSaveStrategy loadSaveStrategy = new LoadSaveStrategy();
-        instellingenController.getLoadSaveStrategy();
+        instellingenController.geefLoadSaveStrategy();
         db = new ArtikelDBContext(loadSaveStrategy);
         //TODO FIX ? => db = ArtikelDBContext.getInstance(loadSaveStrategy);
     }

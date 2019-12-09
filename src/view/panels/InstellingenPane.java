@@ -91,7 +91,7 @@ public class InstellingenPane extends GridPane {
 
         });
 
-
+        
         InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         StringBuilder out = new StringBuilder();
