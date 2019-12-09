@@ -1,11 +1,12 @@
-package database;
+package model;
 
 import java.io.IOException;
 import java.util.*;
 
+import controller.ControllerException;
+import database.ArtikelLoadSaveTekst;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.*;
 
 public class ArtikelDBContext {
     private ObservableList<Artikel> data;
@@ -16,6 +17,7 @@ public class ArtikelDBContext {
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private ArtikelDBStrategy artikelDBStrategy;
     private String opgezochteCode;
+    private List<Artikel> artikelList;
 
     //TODO: PRIVATE MAKEN = deel van singleton
     private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) throws IOException {
@@ -25,7 +27,7 @@ public class ArtikelDBContext {
         } else {
             bestand = "src\\bestanden\\artikel.txt";
         }
-
+        artikelList = new ArrayList<>();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory(); //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
         artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
 
@@ -66,7 +68,7 @@ public class ArtikelDBContext {
         return data;
     }
 
-    public String zoek(String artikelcode) {
+    public String zoekArtikelEnKrijgOmschrijvingEnPrijs(String artikelcode) {
         ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
         for(Artikel a : artikelenLijst){
             if(a.getArtikelCode().equalsIgnoreCase(artikelcode)){
@@ -74,16 +76,6 @@ public class ArtikelDBContext {
             }
         }
         return "Niet bestaande code";
-    }
-
-    public Artikel zoekArtikel(String artikelcode) {
-        ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
-        for(Artikel a : artikelenLijst){
-            if(a.getArtikelCode().equalsIgnoreCase(artikelcode)){
-                return a;
-            }
-        }
-        return null;
     }
 
     public void verwijderArtikel(String code) {
@@ -130,7 +122,6 @@ public class ArtikelDBContext {
         }
         return result;
     }*/
-
     /*public int getAantalArtikels(){
         return data.size()-1;
     }
@@ -139,4 +130,18 @@ public class ArtikelDBContext {
         Artikel artikel = new Artikel("50", "Rotte appel","001", 0.01, 10);
         data.add(artikel);
     }*/
+
+    public Artikel getArtikel(String ingevuldeWaarde) {
+        Artikel a = null;
+        for(Artikel artikel : artikelList){
+            if(artikel.getArtikelCode().equalsIgnoreCase(ingevuldeWaarde)){
+                a = artikel;
+            }
+        }
+        if(a == null){
+            throw new ControllerException("Geen artikel gevonden.");
+        }else{
+            return a;
+        }
+    }
 }

@@ -10,7 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 
 import java.util.ArrayList;
 

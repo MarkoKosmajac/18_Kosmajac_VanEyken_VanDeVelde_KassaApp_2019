@@ -4,7 +4,6 @@ import controller.ProductOverviewController;
 import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Artikel;
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,13 +34,13 @@ public class KassaTab1OverviewPane extends GridPane {
     private ProductOverviewController producten; //TODO: PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
 
     private Label label = new Label("Artikelcode:");
-    private TextField text = new TextField();
+    private TextField artikelCodeTextField = new TextField();
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
     private TextField eme = new TextField();
 
-    public KassaTab1OverviewPane(ArtikelDBContext artikelDBContext) throws IOException {
-        producten = new ProductOverviewController();
+    public KassaTab1OverviewPane(/*ArtikelDBContext artikelDBContext*/) throws IOException {
+
         /*this.artikelDBContext = artikelDBContext;*/
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
@@ -51,7 +50,7 @@ public class KassaTab1OverviewPane extends GridPane {
         this.setHgap(5);
 
         this.add(label,3,1);
-        this.add(text,4,1);
+        this.add(artikelCodeTextField,4,1);
         this.add(tot,3,2);
         this.add(labelTotaal,4,2);
         this.add(eme,4,3);
@@ -71,7 +70,8 @@ public class KassaTab1OverviewPane extends GridPane {
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
 
 
-        text.setOnKeyPressed(new AddArtikelHandler());
+        artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
+
 
         /*text.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -102,8 +102,6 @@ public class KassaTab1OverviewPane extends GridPane {
             labelTotaal.setText(String.valueOf(totaalBedrag)); //LABEL UPDATEN
         }
         );*/
-
-
         /*table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -125,11 +123,17 @@ public class KassaTab1OverviewPane extends GridPane {
         table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
 
-
-
     }
 
-    public class AddArtikelHandler implements EventHandler<KeyEvent>{
+    public void geefArtikelCodeDoorAanController(EventHandler<KeyEvent> listenForVoegToeEnter){
+        artikelCodeTextField.setOnKeyPressed(listenForVoegToeEnter);
+    }
+
+    public void setGezochteArtikel(String opgezochteCode) {
+        label.setText(opgezochteCode);
+    }
+
+   public class AddArtikelHandler implements EventHandler<KeyEvent>{
 
         @Override
         public void handle(KeyEvent event) {
@@ -144,10 +148,12 @@ public class KassaTab1OverviewPane extends GridPane {
         }
     }
 
+
+
     //TODO: VAN HIER
 
     public String getIngevuldeWaarde(){
-        return text.getText();
+        return artikelCodeTextField.getText();
     }
 
     public void setWaarde(String waarde){
@@ -156,9 +162,10 @@ public class KassaTab1OverviewPane extends GridPane {
     }
 
     //public void addVoegToeHandler(EventHandler<? super KeyEvent> listenForVoegToeEnter){
+
     public void addVoegToeHandler(EventHandler<KeyEvent> listenForVoegToeEnter){
         //text.setOnAction(listenForVoegToeEnter);
-        text.setOnKeyPressed(listenForVoegToeEnter);
+        artikelCodeTextField.setOnKeyPressed(listenForVoegToeEnter);
     }
 
     // Open a popup that contains the error message passed
@@ -184,7 +191,6 @@ public class KassaTab1OverviewPane extends GridPane {
         newStage.setScene(stageScene);
         newStage.show();
     }
-
     public void popUpDeleteConfirm(String artikelinfo, String code){
         Stage newStage = new Stage();
         VBox comp = new VBox();
@@ -215,5 +221,8 @@ public class KassaTab1OverviewPane extends GridPane {
     public void refresh(){
         table.refresh();
     }
+
+
+
 
 }

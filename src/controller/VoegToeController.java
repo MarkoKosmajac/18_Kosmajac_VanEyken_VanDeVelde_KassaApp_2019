@@ -1,6 +1,6 @@
 package controller;
 
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
@@ -43,7 +43,7 @@ public class VoegToeController {
         if(artikelcode.trim().isEmpty() || artikelcode == null){
             throw new ControllerException("Artikelcode is leeg.");
         }
-        return db.zoekArtikel(artikelcode);
+        return db.getArtikel(artikelcode);
     }
 
     public void onHoldList(){

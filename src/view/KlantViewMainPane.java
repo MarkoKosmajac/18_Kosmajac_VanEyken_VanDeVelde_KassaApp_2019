@@ -2,7 +2,7 @@ package view;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 import view.panels.KlantOverviewPane;
 
 import java.io.IOException;

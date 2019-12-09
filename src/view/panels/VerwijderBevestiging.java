@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 
 import java.io.IOException;
 

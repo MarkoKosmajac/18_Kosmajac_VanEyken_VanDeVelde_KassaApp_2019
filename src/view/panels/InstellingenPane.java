@@ -8,7 +8,7 @@ import controller.InstellingenController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import database.ArtikelDBContext;
+import model.ArtikelDBContext;
 import model.SoortBestand;
 import model.kortingstrategie.SoortKorting;
 
