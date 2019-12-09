@@ -33,9 +33,9 @@ public class VoegToeController {
     /*}*/
 
     public VoegToeController(InstellingenController instellingenController) throws IOException {
-        LoadSaveStrategy loadSaveStrategy = new LoadSaveStrategy();
+        /*LoadSaveStrategy loadSaveStrategy = new LoadSaveStrategy();*/ //TODO: UNCOMMENTEN (commend to run succesfully)
         instellingenController.geefLoadSaveStrategy();
-        db = new ArtikelDBContext(loadSaveStrategy);
+        /*db = new ArtikelDBContext(loadSaveStrategy);*/ //TODO: UNCOMMENTEN (commend to run succesfully)
         //TODO FIX ? => db = ArtikelDBContext.getInstance(loadSaveStrategy);
     }
 

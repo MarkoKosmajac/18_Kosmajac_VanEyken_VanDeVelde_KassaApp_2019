@@ -28,7 +28,7 @@ public class InstellingenController {
     }
 
     public String getProperties(){
-
+        return ""; //TODO: MAX
     }
 
     public void setProperties() throws FileNotFoundException {

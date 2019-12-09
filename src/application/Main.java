@@ -1,12 +1,10 @@
 package application;
-	
-import controller.CalculatorController;
+
 import controller.VoegToeController;
 import database.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.*;
-import view.CalculatorView;
 import view.KassaMainPane;
 import view.KassaView;
 import view.KlantView;
@@ -85,9 +83,9 @@ public class Main extends Application {
 		theView.setVisible(true);*/
 
 
-		KassaTab1OverviewPane theView = new KassaTab1OverviewPane();
+		/*KassaTab1OverviewPane theView = new KassaTab1OverviewPane();
 		ArtikelDBContext theModel = ArtikelDBContext.getInstance();
-		VoegToeController theController = new VoegToeController(theView,theModel);
+		VoegToeController theController = new VoegToeController(theView,theModel);*/
 
 
 

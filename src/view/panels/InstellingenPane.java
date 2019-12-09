@@ -23,7 +23,6 @@ public class InstellingenPane extends GridPane {
 
         this.artikelDBContext = artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
 
-
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
