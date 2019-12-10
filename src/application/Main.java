@@ -2,7 +2,6 @@ package application;
 
 import controller.KassaProductOverviewController;
 import controller.KlantProductOverviewController;
-import database.ArtikelDBContext;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.ArtikelModel;
@@ -42,7 +41,6 @@ public class Main extends Application {
 		System.out.println("KEUZE CHANGED TO:");
 		keuze.setKortingStrategie(new DuursteKorting());
 		System.out.println(keuze.geefKorting());*/
-
 
 	}
 

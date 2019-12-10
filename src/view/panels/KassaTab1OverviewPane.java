@@ -38,7 +38,6 @@ public class KassaTab1OverviewPane extends GridPane {
     private TextField artikelCodeTextField = new TextField();
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
-    private TextField eme = new TextField();
 
     public KassaTab1OverviewPane(KassaProductOverviewController kassaProductOverviewController){
         producten = kassaProductOverviewController;
@@ -52,7 +51,6 @@ public class KassaTab1OverviewPane extends GridPane {
         this.add(artikelCodeTextField,4,1);
         this.add(tot,3,2);
         this.add(labelTotaal,4,2);
-        this.add(eme,4,3);
 
         label.setFont(new Font("System", 18));
         tot.setFont(new Font("System", 18));
@@ -94,14 +92,8 @@ public class KassaTab1OverviewPane extends GridPane {
         }
     }
 
-
     public String getIngevuldeWaarde(){
         return artikelCodeTextField.getText();
-    }
-
-    public void setWaarde(String waarde){
-        eme.setText(waarde);
-        displayErrorMessage("eee");
     }
 
     // Open a popup that contains the error message passed
@@ -115,8 +107,6 @@ public class KassaTab1OverviewPane extends GridPane {
     public void refresh(){
         table.refresh();
     }
-
-
 
 
 }
