@@ -18,10 +18,16 @@ public class ArtikelModel implements Subject {
         onHoldList = new ArrayList<>();
     }
 
-    public void addToWinkelMandje(Artikel artikel) {
+    public void addToLijst(Artikel artikel) {
         artikelList.add(artikel);
         notifyObserver();
-        System.out.println(artikel.getOmschrijving() + " Added to winkelmandje");
+        System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
+    }
+
+    public void verwijderVanLijst(Artikel artikel){
+        artikelList.remove(artikel);
+        notifyObserver();
+        System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
     }
 
 

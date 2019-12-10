@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -22,9 +23,11 @@ import database.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.w3c.dom.events.Event;
 import view.KassaMainPane;
 import view.KassaView;
 
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,6 +36,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private TableView<Artikel> table ;
     private double totaalBedrag;
     private KassaProductOverviewController producten;
+    private Artikel teVerwijderen;
 
     private Label label = new Label("Artikelcode:");
     private TextField artikelCodeTextField = new TextField();
@@ -66,11 +70,24 @@ public class KassaTab1OverviewPane extends GridPane {
         colPrijs.setMinWidth(100);
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
 
-
         artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
+
+        table.setRowFactory( tv -> {
+            TableRow<Artikel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                teVerwijderen = row.getItem();
+                    new VerwijderHandler().handle(event); //TODO: Niet vergeten na de handler nog te doen .handle(event)
+                });
+            return row;
+        });
+
 
         table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
+    }
+
+    public Artikel getArtikelTeVerwijderen(){
+        return this.teVerwijderen;
     }
 
     public void setArtikellijst(ArrayList<Artikel> artikellijst) {
@@ -84,7 +101,7 @@ public class KassaTab1OverviewPane extends GridPane {
             try{
             if (event.getCode() == KeyCode.ENTER) {
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
-                producten.addToWinkelMandje(artikel);
+                producten.addToLijst(artikel);
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
@@ -109,4 +126,18 @@ public class KassaTab1OverviewPane extends GridPane {
     }
 
 
+    public class VerwijderHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(MouseEvent event) {
+            try{
+                if(event.getClickCount() == 2){
+                    new VerwijderBevestiging();
+                    producten.verwijderVanLijst(getArtikelTeVerwijderen());
+                }
+            }catch( DBException ex){
+                displayErrorMessage(ex.getMessage());
+            }
+        }
+    }
 }

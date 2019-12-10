@@ -32,13 +32,21 @@ public class KassaProductOverviewController implements Observer {
         }
     }
 
-    public void addToWinkelMandje(Artikel artikel) {
+    public void addToLijst(Artikel artikel) {
         try {
-            artikelModel.addToWinkelMandje(artikel);
+            artikelModel.addToLijst(artikel);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void verwijderVanLijst(Artikel artikel){
+        try {
+            artikelModel.verwijderVanLijst(artikel);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){

@@ -1,6 +1,5 @@
 package view;
 
-
 import controller.KassaProductOverviewController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
