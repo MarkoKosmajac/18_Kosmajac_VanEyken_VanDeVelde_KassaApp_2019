@@ -73,11 +73,8 @@ public class JarJavaClass {
         }
 
         for (Artikel a : artikels) {
-            //int kolomnr = 0;
-            //for(int i = 0; i < 5;i++){
             Label code = new Label(0, rijnr, a.getArtikelCode());
             excelSheet.addCell(code);
-            //Cell cell = excelSheet.getCell(i, 1);
 
             Label omschrijving = new Label(1, rijnr, a.getOmschrijving());
             excelSheet.addCell(omschrijving);

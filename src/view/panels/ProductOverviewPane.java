@@ -16,10 +16,8 @@ import java.io.IOException;
 
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table ;
-	//private ArtikelCompany artikelCompany ; //TODO: FIXED WITH SINGLETON
 
-
-	public ProductOverviewPane(KassaProductOverviewController kassaProductOverviewController) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
+	public ProductOverviewPane(KassaProductOverviewController kassaProductOverviewController){
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -28,15 +26,12 @@ public class ProductOverviewPane extends GridPane {
         
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
-		//this.artikelCompany = artikelCompany; //TODO: FIXED WITH SINGLETON ??? MAG DIT ZOMAAR WEG ???
-
 		//this.setSpacing(10);
 		this.setPadding(new Insets(10, 10, 10, 10));
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-        //table.setItems(artikelCompany.loadData());//TODO: SINGLETON HIERONDER FIX && AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
-		table.setItems(FXCollections.observableArrayList(kassaProductOverviewController.getArtikels())); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
+		table.setItems(FXCollections.observableArrayList(kassaProductOverviewController.getArtikels())); //TODO: EXCEL INLEZEN ?
 
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");

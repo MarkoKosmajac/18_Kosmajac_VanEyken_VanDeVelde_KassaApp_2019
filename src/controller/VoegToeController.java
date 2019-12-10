@@ -14,21 +14,9 @@ public class VoegToeController {
     ArtikelDBContext db;
     private List<Artikel> onHoldList = new ArrayList<>();
 
-    /*private KassaTab1OverviewPane theView;
-    private ArtikelDBContext theModel;*/
-
-    /*public VoegToeController(*//*KassaTab1OverviewPane theView, ArtikelDBContext theModel*//*) {*/
-        /*this.theView = theView;
-        this.theModel = theModel;
-
-        this.theView.addVoegToeHandler(new addVoegToeHandler());*/
-    /*}*/
 
     public VoegToeController(InstellingenController instellingenController) throws IOException {
-        /*LoadSaveStrategy loadSaveStrategy = new LoadSaveStrategy();*/ //TODO: UNCOMMENTEN (commend to run succesfully)
         instellingenController.geefLoadSaveStrategy();
-        /*db = new ArtikelDBContext(loadSaveStrategy);*/ //TODO: UNCOMMENTEN (commend to run succesfully)
-        //TODO FIX ? => db = ArtikelDBContext.getInstance(loadSaveStrategy);
     }
 
     public ObservableList<Artikel> loadData(){
@@ -40,7 +28,7 @@ public class VoegToeController {
     }
 
     public Artikel geefArtikel(String artikelcode){
-        if(artikelcode.trim().isEmpty() || artikelcode == null){
+        if(artikelcode == null || artikelcode.trim().isEmpty()){
             throw new ControllerException("Artikelcode is leeg.");
         }
         return db.getArtikel(artikelcode);

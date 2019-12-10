@@ -30,7 +30,6 @@ public class KassaProductOverviewController implements Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO: Controller functie add observer met 'this'
     }
 
     public void addToWinkelMandje(Artikel artikel) {

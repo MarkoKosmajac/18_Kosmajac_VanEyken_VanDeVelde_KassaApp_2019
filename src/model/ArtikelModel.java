@@ -5,7 +5,6 @@ import model.observer.Subject;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class ArtikelModel implements Subject {
 
@@ -22,7 +21,7 @@ public class ArtikelModel implements Subject {
     public void addToWinkelMandje(Artikel artikel) {
         artikelList.add(artikel);
         notifyObserver();
-        System.out.println("wordt uitgevoerd");
+        System.out.println(artikel.getOmschrijving() + " Added to winkelmandje");
     }
 
 
@@ -40,6 +39,7 @@ public class ArtikelModel implements Subject {
     public void notifyObserver() {
         for(Observer observer : kassaObserver){
             observer.update(artikelList);
+            System.out.println("Observer updated!");
         }
     }
 

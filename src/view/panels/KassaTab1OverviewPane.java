@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class KassaTab1OverviewPane extends GridPane {
     private TableView<Artikel> table ;
     private double totaalBedrag;
-    private KassaProductOverviewController producten; //TODO: PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
+    private KassaProductOverviewController producten;
 
     private Label label = new Label("Artikelcode:");
     private TextField artikelCodeTextField = new TextField();
@@ -85,7 +85,6 @@ public class KassaTab1OverviewPane extends GridPane {
         public void handle(KeyEvent event) {
             try{
             if (event.getCode() == KeyCode.ENTER) {
-                System.out.println("uitoveren");
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToWinkelMandje(artikel);
             }
@@ -96,9 +95,6 @@ public class KassaTab1OverviewPane extends GridPane {
     }
 
 
-
-    //TODO: VAN HIER
-
     public String getIngevuldeWaarde(){
         return artikelCodeTextField.getText();
     }
@@ -108,13 +104,6 @@ public class KassaTab1OverviewPane extends GridPane {
         displayErrorMessage("eee");
     }
 
-    //public void addVoegToeHandler(EventHandler<? super KeyEvent> listenForVoegToeEnter){
-
-    public void addVoegToeHandler(EventHandler<KeyEvent> listenForVoegToeEnter){
-        //text.setOnAction(listenForVoegToeEnter);
-        artikelCodeTextField.setOnKeyPressed(listenForVoegToeEnter);
-    }
-
     // Open a popup that contains the error message passed
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -122,48 +111,6 @@ public class KassaTab1OverviewPane extends GridPane {
         alert.setContentText(errorMessage);
         alert.show();
     }
-
-    //TODO: TOT HIER
-
-    public static void popUpCodeNietGevonden(){
-        Stage newStage = new Stage();
-        VBox comp = new VBox();
-        Label label = new Label("Artikelcode niet gevonden!");
-        label.setFont(new Font("System", 18));
-        label.setMaxWidth(Double.MAX_VALUE);
-        label.setAlignment(Pos.CENTER);
-        comp.getChildren().add(label);
-
-        Scene stageScene = new Scene(comp,300,75);
-        newStage.setScene(stageScene);
-        newStage.show();
-    }
-    public void popUpDeleteConfirm(String artikelinfo, String code){
-        Stage newStage = new Stage();
-        VBox comp = new VBox();
-        Label label = new Label("Verwijder " + artikelinfo + " ?");
-        label.setFont(new Font("System", 18));
-        label.setMaxWidth(Double.MAX_VALUE);
-        label.setAlignment(Pos.CENTER);
-
-        Button buttonJa = new Button("Ja");
-        Button buttonNee = new Button("Nee");
-
-        comp.getChildren().addAll(label);
-        this.add(buttonJa,0,1);
-        this.add(buttonNee,1,1);
-
-        Scene stageScene = new Scene(comp,300,75);
-        newStage.setScene(stageScene);
-        newStage.show();
-    }
-
-    /*public void displayErrorMessage(String errorMessage){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Alert");
-        alert.setContentText(errorMessage);
-        alert.show();
-    }*/
 
     public void refresh(){
         table.refresh();

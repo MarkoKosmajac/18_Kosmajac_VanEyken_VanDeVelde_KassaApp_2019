@@ -24,5 +24,4 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
         jarJavaClass.write(artikelArrayList,bestand);
     }
 
-    //Methodie die juiste pad terug geeft waar bestand zich bevindt
 }

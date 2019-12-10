@@ -14,10 +14,6 @@ import java.util.Scanner;
  */
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
-    //TODO: nog aan te vullen, hier komen abstracte methodes save en load om bijvoorbeeld een KLANT object in te lezen en te saven
-    //TODO: STANDAARDCODE;
-
-    //LOAD EN SAVE METHODE DIE MOETEN FINAL ZIJN
 
     public final ArrayList<Object> load(String bestand) throws IOException {
         ArrayList<Object> objects = new ArrayList<>();

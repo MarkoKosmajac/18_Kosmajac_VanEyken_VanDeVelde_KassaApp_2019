@@ -19,7 +19,7 @@ public class InstellingenPane extends GridPane {
     private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG
     private InstellingenController instellingenController;
 
-    public InstellingenPane() throws IOException {
+    public InstellingenPane(){
 
         Properties properties = new Properties();
 

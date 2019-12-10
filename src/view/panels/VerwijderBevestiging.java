@@ -16,10 +16,8 @@ import java.io.IOException;
 public class VerwijderBevestiging extends GridPane {
     private Stage stage = new Stage();
     private KassaTab1OverviewPane kassaTab1OverviewPane;
-    //private ArtikelCompany artikelCompany; //TODO: FIXED WITH SINGLETON ?
 
-    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code) throws IOException {
-        //artikelCompany = new ArtikelCompany(); //TODO: FIXED WITH SINGLETON ? door weg te laten OF ANDERE SOLUTION: artikelcompany = ArtikelCompany.getInstance()!!!
+    public VerwijderBevestiging(KassaTab1OverviewPane m, String artikelInfo, String code){
         this.kassaTab1OverviewPane = m;
         stage.setTitle("Verwijderbevestiging");
         this.setPrefHeight(150);

@@ -15,7 +15,6 @@ public class ArtikelDBContext {
     public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
-    private ArtikelDBStrategy artikelDBStrategy;
     private String opgezochteCode;
     private List<Artikel> artikelList;
 
@@ -28,7 +27,7 @@ public class ArtikelDBContext {
             bestand = "src\\bestanden\\artikel.txt";
         }
         artikelList = new ArrayList<>();
-        loadSaveStrategyFactory = new LoadSaveStrategyFactory(); //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
+        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
 
         //ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
@@ -85,7 +84,6 @@ public class ArtikelDBContext {
 
     public void verwijderArtikel(String code) {
         System.out.println(this.data);
-        //ArrayList<Artikel> artikelenLijst = new ArrayList<Artikel>(data);
 
         Artikel em = new Artikel("00","dummy","groep0",0,0);
         for(Artikel a : this.data){
@@ -102,10 +100,6 @@ public class ArtikelDBContext {
             opgezochteCode = code;
         }
         throw new NumberFormatException("Code bestaat niet.");
-    }
-
-    public String getOpgezochteCode(){
-        return this.opgezochteCode;
     }
 
     public ArrayList<Artikel> getArtikelen() {

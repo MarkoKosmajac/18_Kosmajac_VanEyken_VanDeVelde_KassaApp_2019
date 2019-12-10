@@ -4,9 +4,6 @@ import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
 
 public class LoadSaveStrategyFactory {
-    /*//TODO: DEEL VAN VERSIE 2
-    private final LoadSaveStrategy artikelLoadSaveTekstStrategy = new ArtikelLoadSaveTekst();
-    private final LoadSaveStrategy artikelLoadSaveExcelStrategy = new ArtikelLoadSaveExcel();*/
 
     //TODO: ENKEL DEZE METHODE IS DEEL VAN VERSIE 1!
     //TODO: Is het zo juist met equalsIgnoreCase ?...
@@ -18,16 +15,5 @@ public class LoadSaveStrategyFactory {
             return new ArtikelLoadSaveExcel();
         } else return null;
     }
-
-    /*
-    //TODO: DEEL VAN VERSIE 2
-    public LoadSaveStrategy makeLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy){
-        LoadSaveStrategy loadSaveStrategyf = null;
-        if(loadSaveStrategy == artikelLoadSaveTekstStrategy){
-            return new ArtikelLoadSaveTekst();
-        } else if(loadSaveStrategy == artikelLoadSaveExcelStrategy){
-            return new ArtikelLoadSaveExcel();
-        } else return null;
-    }*/
 
 }
