@@ -1,5 +1,8 @@
 package view.panels;
 
+import controller.KassaProductOverviewController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,10 +19,12 @@ public class ProductOverviewPane extends GridPane {
 	//private ArtikelCompany artikelCompany ; //TODO: FIXED WITH SINGLETON
 
 
-	public ProductOverviewPane(ArtikelDBContext artikelDBContext) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
+	public ProductOverviewPane(KassaProductOverviewController kassaProductOverviewController) throws IOException { //TODO: PARAMETER FIXEN WITH SINGLETON OF NIET?
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
+
+
         
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
@@ -31,7 +36,7 @@ public class ProductOverviewPane extends GridPane {
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
         //table.setItems(artikelCompany.loadData());//TODO: SINGLETON HIERONDER FIX && AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
-		table.setItems(artikelDBContext.loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
+		table.setItems(FXCollections.observableArrayList(kassaProductOverviewController.getArtikels())); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
 
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");

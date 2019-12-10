@@ -6,42 +6,49 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import database.ArtikelDBContext;
 import model.Artikel;
+import model.ArtikelModel;
+import model.observer.Observer;
 import view.panels.KassaTab1OverviewPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KassaProductOverviewController {
+public class KassaProductOverviewController implements Observer {
 
-    private List<Artikel> artikelList, winkelmand;
-    private ArtikelDBContext dbModel; //Model
+
+    private ArtikelModel artikelModel; //Model
     private KassaTab1OverviewPane kassaTab1OverviewPaneView; //View
-    private String artikelcode;
+    private ArtikelDBContext artikelDBContext;
 
-    public KassaProductOverviewController(ArtikelDBContext artikelDBContext){
-        this.dbModel = artikelDBContext;
+    public KassaProductOverviewController(ArtikelModel artikelModel){
+        this.artikelModel = artikelModel;
+        artikelModel.register(this);
 
-
-        artikelList = new ArrayList<>();
-        winkelmand = new ArrayList<>();
-        artikelList.addAll(dbModel.loadData());
-
-        this.kassaTab1OverviewPaneView.geefArtikelCodeDoorAanController(new ProductEventHandler());
-
+        try {
+            artikelDBContext = ArtikelDBContext.getInstance();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //TODO: Controller functie add observer met 'this'
     }
 
     public void addToWinkelMandje(Artikel artikel) {
-        winkelmand.add(artikel);
-        System.out.println(artikel);
-        //theview.setWaarde("eeee");
+        artikelModel.addToWinkelMandje(artikel);
 
-        //TODO: IETS
+    }
+
+    public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
+        this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
+    }
+
+    public ArrayList<Artikel> getArtikels(){
+        return artikelDBContext.getArtikels();
     }
 
     public Artikel getArtikel(String ingevuldeWaarde) {
         Artikel res = null;
-        for (Artikel a: artikelList){
+        for (Artikel a: getArtikels()){
             if (a.getArtikelCode().equalsIgnoreCase(ingevuldeWaarde)){
                 res = a;
             }
@@ -49,31 +56,8 @@ public class KassaProductOverviewController {
         return res;
     }
 
-
-    public class ProductEventHandler implements EventHandler<KeyEvent> {
-
-        @Override
-        public void handle(KeyEvent event) {
-            try{
-                if (event.getCode() == KeyCode.ENTER) {
-                    artikelcode = kassaTab1OverviewPaneView.getIngevuldeWaarde();
-                    dbModel.getArtikel(artikelcode);
-                    winkelmand.add(dbModel.getArtikel(artikelcode));
-                }
-
-
-                kassaTab1OverviewPaneView.setGezochteArtikel(dbModel.zoekArtikelEnKrijgOmschrijvingEnPrijs(artikelcode));
-
-            } catch (DBException e){
-                throw new DBException(e.getMessage());
-            }
-
-
-        }
+    @Override
+    public void update(ArrayList<Artikel> artikellijst) {
+        kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
     }
-
-   /* public void addToWinkelMandje(Artikel artikel){
-        model.updateByAddArtikel(artikel);
-    } *Van Nick*
-    */
 }

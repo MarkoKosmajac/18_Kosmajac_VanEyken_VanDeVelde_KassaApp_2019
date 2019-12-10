@@ -16,7 +16,7 @@ public class KassaMainPane extends BorderPane {
 
         //ArtikelCompany artikelcompanyke = new ArtikelCompany();//TODO: FIXED WITH SINGLETON
 	    TabPane tabPane = new TabPane();
-        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(); //VROEGER: artikelcompanyke
+        KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(controller); //VROEGER: artikelcompanyke
         Tab kassaTab = new Tab("Kassa", kassaTab1OverviewPane);
         //TODO: TOEGEVOEGD = ALS PARAMETER EN INSTANCEVARIABLE: artikelcompanyke
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(controller);//VROEGER: artikelcompanyke

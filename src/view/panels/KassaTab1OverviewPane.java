@@ -31,9 +31,7 @@ import java.util.ArrayList;
 
 public class KassaTab1OverviewPane extends GridPane {
     private TableView<Artikel> table ;
-    private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
-    private ObservableList<Artikel> products;
     private KassaProductOverviewController producten; //TODO: PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
 
     private Label label = new Label("Artikelcode:");
@@ -42,11 +40,9 @@ public class KassaTab1OverviewPane extends GridPane {
     private Label tot = new Label("TOTAALBEDRAG:");
     private TextField eme = new TextField();
 
-    public KassaTab1OverviewPane(VoegToeController voegToeController) throws IOException {
-
-        /*this.artikelDBContext = artikelDBContext;*/
-        products = FXCollections.observableArrayList(new ArrayList<Artikel>());
-
+    public KassaTab1OverviewPane(KassaProductOverviewController kassaProductOverviewController){
+        producten = kassaProductOverviewController;
+        kassaProductOverviewController.setPane(this);
         totaalBedrag = 0;
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -75,73 +71,21 @@ public class KassaTab1OverviewPane extends GridPane {
 
         artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
 
-
-        /*text.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                String invoer = text.getText();
-                String em = artikelDBContext.zoek(invoer);
-                Artikel artikel = artikelDBContext.zoekArtikel(invoer);
-                if(em.contains(",")){ //PRODUCT = FOUND
-                    String omschr = artikel.getOmschrijving();
-                    double prijs = artikel.getPrijs();
-                    totaalBedrag += artikel.getPrijs();
-                    //System.out.println("Omschrijving: " + omschr + " Prijs: " + prijs + " totaal: " + totaalBedrag);
-                    products.add(artikel);
-
-
-
-                    table.setItems(products);
-                    text.clear();
-
-                    //OBSERVER ANDERE KLASSE --- STORY 4
-
-                }
-                else{
-                    System.out.println(em);
-                    text.clear();
-                    popUpCodeNietGevonden();
-                }
-            }
-            labelTotaal.setText(String.valueOf(totaalBedrag)); //LABEL UPDATEN
-        }
-        );*/
-        /*table.setRowFactory( tv -> {
-            TableRow<Artikel> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Artikel artikel = row.getItem();
-                    String artikelInfo = artikel.getOmschrijving();
-                    String code = artikel.getArtikelCode();
-                    try {
-                        new VerwijderBevestiging(KassaTab1OverviewPane.this,artikelInfo, code);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    //popUpDeleteConfirm(artikelInfo, code);
-                }
-            });
-            return row;
-        });*/
-
         table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
-
     }
 
-    public void geefArtikelCodeDoorAanController(EventHandler<KeyEvent> listenForVoegToeEnter){
-        artikelCodeTextField.setOnKeyPressed(listenForVoegToeEnter);
+    public void setArtikellijst(ArrayList<Artikel> artikellijst) {
+        table.setItems(FXCollections.observableArrayList(artikellijst));
     }
 
-    public void setGezochteArtikel(String opgezochteCode) {
-        label.setText(opgezochteCode);
-    }
-
-   public class AddArtikelHandler implements EventHandler<KeyEvent>{
+    public class AddArtikelHandler implements EventHandler<KeyEvent>{
 
         @Override
         public void handle(KeyEvent event) {
             try{
             if (event.getCode() == KeyCode.ENTER) {
+                System.out.println("uitoveren");
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToWinkelMandje(artikel);
             }

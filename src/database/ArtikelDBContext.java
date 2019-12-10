@@ -6,12 +6,12 @@ import java.util.*;
 import controller.ControllerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.jshell.spi.ExecutionControl;
 import model.*;
 
 public class ArtikelDBContext {
-    private ObservableList<Artikel> data;
+    private ArrayList<Artikel> data;
     private String bestand; //Filepath
-    //private ArtikelDBInMemory artikelDBInMemory;
     public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
@@ -20,7 +20,7 @@ public class ArtikelDBContext {
     private List<Artikel> artikelList;
 
     //TODO: PRIVATE MAKEN = deel van singleton
-    private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) throws IOException {
+    private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) {
         //TODO: GEEN EFFECT WHEN IN COMMENTS
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestand = "src/bestanden/artikel.txt";
@@ -34,26 +34,26 @@ public class ArtikelDBContext {
         //ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
         //artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
         //TODO: BOVENSTE 2 LIJNTJES OMGEVORMD NAAR HIERONDER 1 LIJN:
-        ArrayList<Object> aa = //TODO: VERANDERINGENDOCUMENT MARKO: DIT HIER LINKS VAN TOEGEVOEGD
-                loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
-
-        data = FXCollections.observableArrayList(new ArrayList<Artikel>());
-
-
-        ArrayList<Artikel> newArrList = new ArrayList<>();
-
+        //TODO: VERANDERINGENDOCUMENT MARKO: DIT HIER LINKS VAN TOEGEVOEGD
+                try {
+                    ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
+                    data = new ArrayList<Artikel>();
+                    ArrayList<Artikel> newArrList = new ArrayList<>();
+                    for(Object o : aa){
+                        if(o instanceof Artikel){
+                            newArrList.add((Artikel) o);
+                        }
+                    }
+                    data.addAll(newArrList);
+                }
+                catch (IOException exception){
+                    throw new DBException(exception.getMessage());
+                }
         //ArrayList<Object> aa = artikelDBInMemory.load(bestand);
         //TODO: NAAR
         //FOUT: DIT KIEST TUSSEN EXCEL EN TEKST: ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
         //JUSIT: EENTJE DIE KIEST TUSSEN ARTIKELDBINMEMORY OF DBSQL
         //ArrayList<Object> aa = artikelDBStrategyFactory.makeArtikelDBStrategy("ArtikelDBInMemory").load(bestand);
-
-        for(Object o : aa){
-            if(o instanceof Artikel){
-                newArrList.add((Artikel) o);
-            }
-        }
-        data.addAll(newArrList);
     }
 
     public static synchronized ArtikelDBContext getInstance() throws IOException {
@@ -63,9 +63,14 @@ public class ArtikelDBContext {
         return uniqueInstance;
     }
 
-    public ObservableList<Artikel> loadData(){
+    public ArrayList<Artikel> getArtikels(){
         Collections.sort(data);
         return data;
+    }
+
+
+    public ObservableList<Artikel> loadData(){
+        return FXCollections.observableArrayList(data);
     }
 
     public String zoekArtikelEnKrijgOmschrijvingEnPrijs(String artikelcode) {
@@ -106,30 +111,6 @@ public class ArtikelDBContext {
     public ArrayList<Artikel> getArtikelen() {
         return (ArrayList<Artikel>) data; //TODO: ALLE ARTIKELEN
     }
-
-
-    /**
-     * Convert a list to Map
-     * @param data
-     * @return HashMap<Calendar, OHLC>
-     */
-    /*public HashMap<Calendar, OHLC> listToMap(ObservableList<OHLC> data){
-        HashMap<Calendar, OHLC> result = new HashMap();
-        Iterator<OHLC> it = data.iterator();
-        while (it.hasNext()){
-            OHLC ohlc = it.next();
-            result.put(ohlc.getDate(), ohlc);
-        }
-        return result;
-    }*/
-    /*public int getAantalArtikels(){
-        return data.size()-1;
-    }
-
-    public void addDummyArtikel(){
-        Artikel artikel = new Artikel("50", "Rotte appel","001", 0.01, 10);
-        data.add(artikel);
-    }*/
 
     public Artikel getArtikel(String ingevuldeWaarde) {
         Artikel a = null;

@@ -1,14 +1,28 @@
 package controller;
 
 import database.ArtikelDBContext;
+import model.Artikel;
+import model.ArtikelModel;
+import model.observer.Observer;
 import view.KlantViewMainPane;
+import view.panels.KlantOverviewPane;
 
-public class KlantProductOverviewController {
-    private ArtikelDBContext artikelDBContext; //Model
-    private KlantViewMainPane klantView; //View
+import java.util.ArrayList;
 
-    public KlantProductOverviewController(ArtikelDBContext artikelDBContext, KlantViewMainPane klantView) {
-        this.artikelDBContext = artikelDBContext;
-        this.klantView = klantView;
+public class KlantProductOverviewController implements Observer {
+
+    private KlantOverviewPane klantOverviewPane; //View
+
+    public KlantProductOverviewController(ArtikelModel artikelModel) {
+        artikelModel.register(this);
+    }
+
+    public void setPane(KlantOverviewPane klantOverviewPane){
+        this.klantOverviewPane = klantOverviewPane;
+    }
+
+    @Override
+    public void update(ArrayList<Artikel> artikelijst) {
+        klantOverviewPane.setArtikellijst(artikelijst);
     }
 }

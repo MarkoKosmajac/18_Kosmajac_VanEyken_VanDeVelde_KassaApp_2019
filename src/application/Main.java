@@ -4,6 +4,7 @@ import controller.KassaProductOverviewController;
 import controller.KlantProductOverviewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.ArtikelModel;
 import view.KassaView;
 import view.KlantView;
 
@@ -14,11 +15,13 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		KassaProductOverviewController KassaController = new KassaProductOverviewController()
-		KlantProductOverviewController KlantController = new KlantProductOverviewController();
+		ArtikelModel artikelModel = new ArtikelModel();
 
-		KassaView kassaView = new KassaView(KassaController);
-		KlantView klantView = new KlantView(KlantController);
+		KassaProductOverviewController kassaController = new KassaProductOverviewController(artikelModel);
+		KlantProductOverviewController klantController = new KlantProductOverviewController(artikelModel);
+
+		KassaView kassaView = new KassaView(kassaController);
+		KlantView klantView = new KlantView(klantController);
 
 
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...
