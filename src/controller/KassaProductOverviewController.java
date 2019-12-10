@@ -33,7 +33,11 @@ public class KassaProductOverviewController implements Observer {
     }
 
     public void addToWinkelMandje(Artikel artikel) {
-        artikelModel.addToWinkelMandje(artikel);
+        try {
+            artikelModel.addToWinkelMandje(artikel);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -52,6 +56,7 @@ public class KassaProductOverviewController implements Observer {
                 res = a;
             }
         }
+        if(res == null) throw new DBException("Artikel bestaat niet!");
         return res;
     }
 

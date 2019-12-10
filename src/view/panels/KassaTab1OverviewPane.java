@@ -107,7 +107,7 @@ public class KassaTab1OverviewPane extends GridPane {
     // Open a popup that contains the error message passed
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Information Alert");
+        alert.setHeaderText("Informatie Alert!");
         alert.setContentText(errorMessage);
         alert.show();
     }
