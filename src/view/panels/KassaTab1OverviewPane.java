@@ -1,6 +1,7 @@
 package view.panels;
 
-import controller.ProductOverviewController;
+import controller.KassaProductOverviewController;
+import controller.VoegToeController;
 import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Artikel;
-import model.ArtikelDBContext;
+import database.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,7 +34,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
-    private ProductOverviewController producten; //TODO: PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
+    private KassaProductOverviewController producten; //TODO: PRODUCTS IS EEN CONTROLLER PRODUCTSCONTROLLER
 
     private Label label = new Label("Artikelcode:");
     private TextField artikelCodeTextField = new TextField();
@@ -41,7 +42,7 @@ public class KassaTab1OverviewPane extends GridPane {
     private Label tot = new Label("TOTAALBEDRAG:");
     private TextField eme = new TextField();
 
-    public KassaTab1OverviewPane(/*ArtikelDBContext artikelDBContext*/) throws IOException {
+    public KassaTab1OverviewPane(VoegToeController voegToeController) throws IOException {
 
         /*this.artikelDBContext = artikelDBContext;*/
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());

@@ -6,7 +6,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
-import model.ArtikelDBContext;
+import database.ArtikelDBContext;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class ProductOverviewPane extends GridPane {
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
         //table.setItems(artikelCompany.loadData());//TODO: SINGLETON HIERONDER FIX && AANPASSEN ZODAT OOK EXCEL KAN WORDEN INGELEZEN
-		table.setItems(ArtikelDBContext.getInstance().loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
+		table.setItems(artikelDBContext.loadData()); //TODO ZO FIXED OF ZOALS HIERBOVEN LATEN ??
 
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");

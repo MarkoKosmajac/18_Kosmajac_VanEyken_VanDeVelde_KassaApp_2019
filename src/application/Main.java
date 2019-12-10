@@ -1,28 +1,26 @@
 package application;
 
-import controller.VoegToeController;
-import database.*;
+import controller.KassaProductOverviewController;
+import controller.KlantProductOverviewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.*;
-import view.KassaMainPane;
 import view.KassaView;
 import view.KlantView;
-import view.panels.KassaTab1OverviewPane;
 
-import java.awt.*;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.sql.SQLOutput;
 
 
 public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		KassaView kassaView = new KassaView();
-		KlantView klantView = new KlantView();
+		KassaProductOverviewController KassaController = new KassaProductOverviewController()
+		KlantProductOverviewController KlantController = new KlantProductOverviewController();
+
+		KassaView kassaView = new KassaView(KassaController);
+		KlantView klantView = new KlantView(KlantController);
+
+
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...
 		//TODO: MVC: Meerdere views, controllers, models toevoegen!!!
 

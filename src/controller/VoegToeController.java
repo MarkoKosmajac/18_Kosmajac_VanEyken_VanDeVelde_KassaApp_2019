@@ -1,6 +1,6 @@
 package controller;
 
-import model.ArtikelDBContext;
+import database.ArtikelDBContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;

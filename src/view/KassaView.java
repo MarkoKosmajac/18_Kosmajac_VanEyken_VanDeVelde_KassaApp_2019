@@ -1,5 +1,6 @@
 package view;
 
+import controller.KassaProductOverviewController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -10,14 +11,14 @@ import java.io.IOException;
 public class KassaView {
 	private Stage stage = new Stage();		
 		
-	public KassaView() throws IOException {
+	public KassaView(KassaProductOverviewController controller) throws IOException {
 		stage.setTitle("KASSA VIEW");
 		stage.setResizable(false);		
 		stage.setX(20);
 		stage.setY(20);
 		Group root = new Group();
 		Scene scene = new Scene(root, 750, 500);
-		BorderPane borderPane = new KassaMainPane();
+		BorderPane borderPane = new KassaMainPane(controller);
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());
 		root.getChildren().add(borderPane);

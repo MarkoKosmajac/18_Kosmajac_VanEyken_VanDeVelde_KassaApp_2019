@@ -4,26 +4,24 @@ import database.DBException;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import model.ArtikelDBContext;
+import database.ArtikelDBContext;
 import model.Artikel;
-import view.KassaView;
 import view.panels.KassaTab1OverviewPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductOverviewController {
+public class KassaProductOverviewController {
 
     private List<Artikel> artikelList, winkelmand;
-    private ArtikelDBContext dbModel = ArtikelDBContext.getInstance(); //Model
-    private KassaTab1OverviewPane kassaTab1OverviewPaneView = new KassaTab1OverviewPane(); //View
+    private ArtikelDBContext dbModel; //Model
+    private KassaTab1OverviewPane kassaTab1OverviewPaneView; //View
     private String artikelcode;
 
-    public ProductOverviewController(ArtikelDBContext artikelDBContext, KassaTab1OverviewPane kassaTab1OverviewPane) throws IOException {
-        //db = ArtikelDBContext.getInstance();
+    public KassaProductOverviewController(ArtikelDBContext artikelDBContext){
         this.dbModel = artikelDBContext;
-        this.kassaTab1OverviewPaneView = kassaTab1OverviewPane;
+
 
         artikelList = new ArrayList<>();
         winkelmand = new ArrayList<>();

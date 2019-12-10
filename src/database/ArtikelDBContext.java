@@ -1,12 +1,12 @@
-package model;
+package database;
 
 import java.io.IOException;
 import java.util.*;
 
 import controller.ControllerException;
-import database.ArtikelLoadSaveTekst;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.*;
 
 public class ArtikelDBContext {
     private ObservableList<Artikel> data;

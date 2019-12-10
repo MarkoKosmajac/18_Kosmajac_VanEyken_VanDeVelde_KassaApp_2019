@@ -1,5 +1,6 @@
 package view;
 
+import controller.KlantProductOverviewController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -11,7 +12,7 @@ import java.io.IOException;
 public class KlantView {
 	private Stage stage = new Stage();		
 		
-	public KlantView() throws IOException {
+	public KlantView(KlantProductOverviewController klantProductOverviewController) throws IOException {
 		stage.setTitle("KLANT VIEW");
 		stage.setResizable(false);		
 		stage.setX(775);
