@@ -49,6 +49,16 @@ public class KassaProductOverviewController implements Observer {
         }
     }
 
+    public double getTotPrijs(){
+        double tot = 0.0;
+        try {
+            tot = artikelModel.getTotPrijs();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return tot;
+    }
+
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
         this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
     }

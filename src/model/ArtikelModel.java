@@ -30,6 +30,17 @@ public class ArtikelModel implements Subject {
         System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
     }
 
+    public double getTotPrijs(){
+        double tot = 0.0;
+        for(Artikel a : artikelList){
+            if(a != null){
+                tot += a.getPrijs();
+            }
+        }
+        System.out.println("Prijs geupdate!");
+        return tot;
+    }
+
 
     @Override
     public void register(Observer obs) {

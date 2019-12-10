@@ -1,13 +1,9 @@
 package view.panels;
 
 import controller.KassaProductOverviewController;
-import controller.VoegToeController;
 import database.DBException;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,21 +11,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import model.Artikel;
-import database.ArtikelDBContext;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.w3c.dom.events.Event;
-import view.KassaMainPane;
-import view.KassaView;
 
-import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class KassaTab1OverviewPane extends GridPane {
@@ -86,6 +75,10 @@ public class KassaTab1OverviewPane extends GridPane {
         this.getChildren().addAll(table);
     }
 
+    private void totaalBedragUpdate() {
+        labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
+    }
+
     public Artikel getArtikelTeVerwijderen(){
         return this.teVerwijderen;
     }
@@ -102,6 +95,7 @@ public class KassaTab1OverviewPane extends GridPane {
             if (event.getCode() == KeyCode.ENTER) {
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToLijst(artikel);
+                totaalBedragUpdate();
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
@@ -116,6 +110,7 @@ public class KassaTab1OverviewPane extends GridPane {
     // Open a popup that contains the error message passed
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Belangrijke melding!");
         alert.setHeaderText("Informatie Alert!");
         alert.setContentText(errorMessage);
         alert.show();
@@ -132,12 +127,28 @@ public class KassaTab1OverviewPane extends GridPane {
         public void handle(MouseEvent event) {
             try{
                 if(event.getClickCount() == 2){
-                    new VerwijderBevestiging();
-                    producten.verwijderVanLijst(getArtikelTeVerwijderen());
+                    displayVerwijderBevestiging();
                 }
             }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
             }
         }
     }
+
+    public void displayVerwijderBevestiging(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Verwijderbevestiging");
+        alert.setHeaderText("Informatie Alert!");
+        alert.setResizable(false);
+        alert.setContentText("Wilt u dit artikel verwijderen ?");
+        Optional<ButtonType> result = alert.showAndWait();
+        //Alert exitted, no button pressed.
+        if(result.get() == ButtonType.OK){
+            producten.verwijderVanLijst(getArtikelTeVerwijderen());
+            totaalBedragUpdate();
+        }else{
+            System.out.println("Exiting alert");
+        }
+    }
+
 }

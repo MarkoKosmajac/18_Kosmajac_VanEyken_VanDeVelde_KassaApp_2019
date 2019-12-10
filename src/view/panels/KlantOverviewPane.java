@@ -12,18 +12,23 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
 import database.ArtikelDBContext;
+import model.ArtikelModel;
 
 import java.util.ArrayList;
 
 public class KlantOverviewPane extends GridPane {
 
     private TableView<Artikel> table;
-    private ArtikelDBContext artikelDBContext;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
+    private KlantProductOverviewController producten;
+
+    private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
+    private Label tot = new Label("TOTAALBEDRAG:");
 
 
     public KlantOverviewPane(KlantProductOverviewController klantProductOverviewController) {
+        producten = klantProductOverviewController;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         klantProductOverviewController.setPane(this);
@@ -33,15 +38,10 @@ public class KlantOverviewPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
-        Label labelTotaal = new Label(String.valueOf(totaalBedrag));
-        Label tot = new Label("TOTAALBEDRAG:");
-
         this.add(tot, 3, 2);
-        this.add(labelTotaal, 4, 2);
+        this.add(labelTotaal,4,2);
         tot.setFont(new Font("System", 12));
-        labelTotaal.setFont(new Font("System", 12));
-
-        this.artikelDBContext = artikelDBContext;
+        labelTotaal.setFont(new Font("System", 10));
 
         table = new TableView<Artikel>();
 
@@ -66,6 +66,11 @@ public class KlantOverviewPane extends GridPane {
 
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
         table.setItems(FXCollections.observableArrayList(artikelijst));
+        totaalBedragUpdate();
+    }
+
+    private void totaalBedragUpdate() {
+        labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
     }
 
 
