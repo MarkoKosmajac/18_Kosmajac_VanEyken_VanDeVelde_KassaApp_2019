@@ -38,7 +38,25 @@ public class ArtikelModel implements Subject {
             }
         }
         System.out.println("Totaalbedrag geupdate!");
+        notifyObserver();//TODO: vergeten!!!
         return tot;
+    }
+
+    public boolean productAlInLijst(Artikel artikel){
+        for(Artikel a : artikelList){
+            if(a != null){
+                if(artikel.getOmschrijving().equalsIgnoreCase(a.getOmschrijving())){
+                    a.setAantal(a.getAantal()+1);
+                    notifyObserver();
+                    return true;
+                }else{
+                    a.setAantal(a.getAantal()-1);
+                    notifyObserver();
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 
 

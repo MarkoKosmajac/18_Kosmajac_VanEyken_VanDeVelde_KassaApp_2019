@@ -71,9 +71,10 @@ public class KlantOverviewPane extends GridPane {
         table.setItems(FXCollections.observableArrayList(artikelijst));
     }
 
-    /*private void totaalBedragUpdate() {
+    private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
-    }*/
+        //https://stackoverflow.com/questions/51905888/updating-labels-from-other-classes-in-java-fx
+    }
 
 
 

@@ -1,9 +1,6 @@
 package controller;
 
 import database.DBException;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import database.ArtikelDBContext;
 import model.Artikel;
 import model.ArtikelModel;
@@ -12,12 +9,8 @@ import view.panels.KassaTab1OverviewPane;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class KassaProductOverviewController implements Observer {
-
-    private static String observerNameTracker = "Kassaview";
-
 
     private ArtikelModel artikelModel; //Model
     private KassaTab1OverviewPane kassaTab1OverviewPaneView; //View
@@ -61,6 +54,14 @@ public class KassaProductOverviewController implements Observer {
         return tot;
     }
 
+    public void productAlInLijst(Artikel artikel){
+        try{
+            artikelModel.productAlInLijst(artikel);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
         this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
     }
@@ -82,7 +83,6 @@ public class KassaProductOverviewController implements Observer {
 
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
-        System.out.println(observerNameTracker + " observer updated!");
         kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
     }
 }

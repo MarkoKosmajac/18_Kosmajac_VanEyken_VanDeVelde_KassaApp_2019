@@ -9,12 +9,11 @@ import java.util.ArrayList;
 
 public class KlantProductOverviewController implements Observer {
 
-    private static String observerNameTracker = "Klantview";
-
     private KlantOverviewPane klantOverviewPane;
     private ArtikelModel artikelModel;
 
     public KlantProductOverviewController(ArtikelModel artikelModel) {
+        this.artikelModel = artikelModel;
         artikelModel.register(this);
     }
 
@@ -34,7 +33,6 @@ public class KlantProductOverviewController implements Observer {
 
     @Override
     public void update(ArrayList<Artikel> artikelijst) {
-        System.out.println(observerNameTracker + " observer updated!");
         klantOverviewPane.setArtikellijst(artikelijst);
     }
 }
