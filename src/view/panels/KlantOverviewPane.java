@@ -1,13 +1,17 @@
 package view.panels;
 
 import controller.KlantProductOverviewController;
+import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
@@ -56,7 +60,6 @@ public class KlantOverviewPane extends GridPane {
         TableColumn<Artikel, Double> colPrijs = new TableColumn<Artikel, Double>("Prijs");
         colPrijs.setMinWidth(130);
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
-
 
         table.getColumns().addAll(colOmschrijving, colAantal, colPrijs);
         this.getChildren().addAll(table);

@@ -68,6 +68,8 @@ public class Artikel implements Comparable<Artikel>{
         this.aantal = aantal;
     }
 
+
+
     @Override
     public String toString() {
         return this.artikelCode + "," + this.omschrijving + "," + this.artikelGroep + "," + this.prijs + "," + this.stock + "\n";
