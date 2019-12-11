@@ -50,7 +50,6 @@ public class InstellingenController {
     }
 
     public void setPropertiesDB() throws FileNotFoundException {
-        //TODO: set 3 lijnen, inoutstream, set en store
         FileOutputStream os = null;
         try{
             os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");

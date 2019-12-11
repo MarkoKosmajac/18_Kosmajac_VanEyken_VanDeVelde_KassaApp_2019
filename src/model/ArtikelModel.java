@@ -37,7 +37,7 @@ public class ArtikelModel implements Subject {
                 tot += a.getPrijs();
             }
         }
-        System.out.println("Prijs geupdate!");
+        System.out.println("Totaalbedrag geupdate!");
         return tot;
     }
 
@@ -56,17 +56,6 @@ public class ArtikelModel implements Subject {
     public void notifyObserver() {
         for(Observer observer : kassaObserver){
             observer.update(artikelList);
-            System.out.println("Observer updated!");
         }
-    }
-
-    @Override
-    public void updateByAddArtikel(Artikel nieuwArtikel) {
-
-    }
-
-    @Override
-    public void updateByRemoveArtikel(int index) {
-
     }
 }

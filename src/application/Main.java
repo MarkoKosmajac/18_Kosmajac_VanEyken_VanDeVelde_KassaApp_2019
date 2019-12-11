@@ -24,8 +24,7 @@ public class Main extends Application {
 		KlantView klantView = new KlantView(klantController);
 
 
-		//TODO: gebruik MVC om dit te veranderen en toe te voegen,...
-		//TODO: MVC: Meerdere views, controllers, models toevoegen!!!
+		//TODO: gebruik MVC om dit te veranderen en toe te voegen. MVC: Meerdere views, controllers, models toevoegen!!!
 
 		System.out.println(System.getProperty("os.name"));
 

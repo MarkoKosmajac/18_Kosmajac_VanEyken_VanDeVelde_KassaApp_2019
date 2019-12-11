@@ -6,8 +6,7 @@ public class Artikel implements Comparable<Artikel>{
     private String artikelCode, omschrijving, artikelGroep;
     private double prijs;
     private int stock; //10 = stock
-
-
+    private int aantal = 1;
 
     public Artikel(String artikelCode, String omschrijving, String artikelGroep, double prijs, int stock) {
         this.artikelCode = artikelCode;
@@ -59,6 +58,14 @@ public class Artikel implements Comparable<Artikel>{
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public int getAantal() {
+        return aantal;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
     }
 
     @Override

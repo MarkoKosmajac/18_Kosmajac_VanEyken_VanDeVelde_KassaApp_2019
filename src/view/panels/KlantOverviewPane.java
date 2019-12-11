@@ -49,9 +49,9 @@ public class KlantOverviewPane extends GridPane {
         colOmschrijving.setMinWidth(150);
         colOmschrijving.setCellValueFactory(new PropertyValueFactory<Artikel, String>("omschrijving"));
 
-        TableColumn<Artikel, String> colAantal = new TableColumn<Artikel, String>("Aantal");
+        TableColumn<Artikel, Integer> colAantal = new TableColumn<Artikel, Integer>("Aantal");
         colAantal.setMinWidth(20);
-        colAantal.setCellValueFactory(new PropertyValueFactory<Artikel, String>("Aantal"));
+        colAantal.setCellValueFactory(new PropertyValueFactory<Artikel, Integer>("aantal"));
 
         TableColumn<Artikel, Double> colPrijs = new TableColumn<Artikel, Double>("Prijs");
         colPrijs.setMinWidth(130);
@@ -66,12 +66,11 @@ public class KlantOverviewPane extends GridPane {
 
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
         table.setItems(FXCollections.observableArrayList(artikelijst));
-        totaalBedragUpdate();
     }
 
-    private void totaalBedragUpdate() {
+    /*private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
-    }
+    }*/
 
 
 

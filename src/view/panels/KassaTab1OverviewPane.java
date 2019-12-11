@@ -70,10 +70,11 @@ public class KassaTab1OverviewPane extends GridPane {
             return row;
         });
 
-
         table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
     }
+
+
 
     private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
@@ -95,6 +96,7 @@ public class KassaTab1OverviewPane extends GridPane {
             if (event.getCode() == KeyCode.ENTER) {
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToLijst(artikel);
+                artikelCodeTextField.clear();
                 totaalBedragUpdate();
             }
         }catch( DBException ex){
@@ -142,7 +144,6 @@ public class KassaTab1OverviewPane extends GridPane {
         alert.setResizable(false);
         alert.setContentText("Wilt u dit artikel verwijderen ?");
         Optional<ButtonType> result = alert.showAndWait();
-        //Alert exitted, no button pressed.
         if(result.get() == ButtonType.OK){
             producten.verwijderVanLijst(getArtikelTeVerwijderen());
             totaalBedragUpdate();

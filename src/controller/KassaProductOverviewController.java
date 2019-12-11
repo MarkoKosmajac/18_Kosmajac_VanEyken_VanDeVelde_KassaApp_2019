@@ -16,6 +16,8 @@ import java.util.List;
 
 public class KassaProductOverviewController implements Observer {
 
+    private static String observerNameTracker = "Kassaview";
+
 
     private ArtikelModel artikelModel; //Model
     private KassaTab1OverviewPane kassaTab1OverviewPaneView; //View
@@ -80,6 +82,7 @@ public class KassaProductOverviewController implements Observer {
 
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
+        System.out.println(observerNameTracker + " observer updated!");
         kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
     }
 }
