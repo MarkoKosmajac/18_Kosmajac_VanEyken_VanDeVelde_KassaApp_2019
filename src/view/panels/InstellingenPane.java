@@ -5,6 +5,8 @@ package view.panels;
  */
 
 import controller.InstellingenController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -18,6 +20,8 @@ import java.util.Properties;
 public class InstellingenPane extends GridPane {
     private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG
     private InstellingenController instellingenController;
+    private ComboBox<SoortBestand> comboBoxBestand;
+    private Button verzendKnop;
 
     public InstellingenPane(){
 
@@ -42,13 +46,14 @@ public class InstellingenPane extends GridPane {
 
         this.add(new Label("Indien gekozen voor 'In Memory Database' "),0,3);
 
-        ComboBox<SoortBestand> comboBoxBestand = new ComboBox<>();
+        comboBoxBestand = new ComboBox<>();
         comboBoxBestand.getItems().setAll(SoortBestand.values());
 
         this.add(new Label("Kortingkeuze:"), 0, 5);
         ComboBox<SoortKorting> comboBoxKorting = new ComboBox<>();
         comboBoxKorting.getItems().setAll(SoortKorting.values());
 
+        verzendKnop.setOnAction(new VerzendKeuzesHandler());
 
         this.add(new Label("Optionele kortinginfo:"), 0, 8);
         this.add(new Label("Korting percentage"), 0, 9);
@@ -56,67 +61,24 @@ public class InstellingenPane extends GridPane {
         this.add(new Label("Korting eurobedrag"), 0, 10);
         this.add(new TextField(),1,10);
 
-
-
-
-       /* group.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
-            FileOutputStream os = null;
-
-            if (group.getSelectedToggle() == rb2) {
-                try {
-                    os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
-                    properties.clear();
-                    properties.setProperty("databaseInMemory", "databaseInMemory");
-
-                    properties.store(os,null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (group.getSelectedToggle() == rb1) {
-
-                try {
-                    os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
-                    properties.clear();
-                    properties.setProperty("deandere", "deandere");
-
-                    properties.store(os,null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        });*/
-
-        
-        /*InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        StringBuilder out = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            out.append(line);
-        }
-        this.add(new Label(out.toString()), 0, 12);
-        if (out.toString().contains("deandere=deandere")){
-            rb1.setSelected(true);
-        } else if (out.toString().contains("databaseInMemory=databaseInMemory")){
-            rb2.setSelected(true);
-        }
-
-
-        //out.toString()); Prints the string content read from input stream
-        reader.close();
-        */
-
-
+        this.add(verzendKnop,0,9);
         this.add(rb1,0,1);
         this.add(rb2,0,2);
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
 
+    }
+
+    public String getSelectedRadiobutton(){
+        return comboBoxBestand.getValue().toString();
 
     }
 
+
+    private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            instellingenController.setPropertiesDB(getSelectedRadiobutton());
+        }
+    }
 }

@@ -49,10 +49,6 @@ public class ArtikelModel implements Subject {
                     a.setAantal(a.getAantal()+1);
                     notifyObserver();
                     return true;
-                }else{
-                    a.setAantal(a.getAantal()-1);
-                    notifyObserver();
-                    return false;
                 }
             }
         }
