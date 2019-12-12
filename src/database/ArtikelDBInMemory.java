@@ -47,5 +47,4 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         loadSaveStrategy.save(artikelArrayList, bestand);
     }*/
 
-
 }

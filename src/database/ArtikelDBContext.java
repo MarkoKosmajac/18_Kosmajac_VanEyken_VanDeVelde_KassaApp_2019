@@ -6,7 +6,6 @@ import java.util.*;
 import controller.ControllerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import jdk.jshell.spi.ExecutionControl;
 import model.*;
 
 public class ArtikelDBContext {
