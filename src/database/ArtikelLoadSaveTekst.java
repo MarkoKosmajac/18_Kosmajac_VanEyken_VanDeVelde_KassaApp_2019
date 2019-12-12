@@ -67,6 +67,7 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     @Override
     Scanner getBestand() throws FileNotFoundException {
         String bestandPath;
+        //aa
         if (System.getProperty("os.name").equals("Mac OS X")){
             bestandPath = "src/bestanden/artikel.txt";
         } else {
