@@ -1,10 +1,12 @@
 package model;
 
-import model.Artikel;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
 
 public interface ArtikelDBStrategy {
 

@@ -6,9 +6,11 @@ import model.Artikel;
 import model.ArtikelModel;
 import model.observer.Observer;
 import view.panels.KassaTab1OverviewPane;
-
-import java.io.IOException;
 import java.util.ArrayList;
+
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
 
 public class KassaProductOverviewController implements Observer {
 

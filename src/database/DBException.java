@@ -1,5 +1,9 @@
 package database;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
+
 public class DBException extends RuntimeException{
 
     public DBException() {

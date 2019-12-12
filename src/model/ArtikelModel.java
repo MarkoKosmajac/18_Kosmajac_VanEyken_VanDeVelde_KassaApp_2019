@@ -2,9 +2,13 @@ package model;
 
 import model.observer.Observer;
 import model.observer.Subject;
-
 import java.util.ArrayList;
 import java.util.Collection;
+
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 
 public class ArtikelModel implements Subject {
 

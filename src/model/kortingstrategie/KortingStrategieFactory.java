@@ -1,5 +1,9 @@
 package model.kortingstrategie;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 public class KortingStrategieFactory {
 
     public KortingStrategie makeKortingStrategie(String kortingstrategie){

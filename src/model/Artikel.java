@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
+
 public class Artikel implements Comparable<Artikel>{
 
     //TODO: vb: 1,artikel1,gr1,12.5,10

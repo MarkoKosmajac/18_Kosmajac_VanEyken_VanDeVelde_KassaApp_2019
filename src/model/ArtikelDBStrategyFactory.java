@@ -1,8 +1,8 @@
 package model;
 
-import database.ArtikelDBInMemory;
-
-import java.io.IOException;
+/**
+ * @author Marko Kosmajac
+ */
 
 public class ArtikelDBStrategyFactory {
 

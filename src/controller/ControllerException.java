@@ -1,5 +1,9 @@
 package controller;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
+
 public class ControllerException extends RuntimeException{
 
     public ControllerException() {

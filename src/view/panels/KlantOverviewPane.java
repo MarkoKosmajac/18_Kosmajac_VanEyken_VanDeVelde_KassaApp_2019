@@ -1,24 +1,21 @@
 package view.panels;
 
 import controller.KlantProductOverviewController;
-import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import model.Artikel;
-import database.ArtikelDBContext;
-import model.ArtikelModel;
-
 import java.util.ArrayList;
+
+/**
+ * @author Marko Kosmajac, Max Van De Velde
+ */
 
 public class KlantOverviewPane extends GridPane {
 

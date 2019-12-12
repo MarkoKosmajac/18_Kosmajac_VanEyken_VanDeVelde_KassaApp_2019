@@ -1,22 +1,19 @@
 package view.panels;
 
-/**
- * @author Marko Kosmajac
- */
-
 import controller.InstellingenController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import database.ArtikelDBContext;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
-
-import java.io.*;
 import java.util.Properties;
+
+/**
+ * @author Marko Kosmajac
+ */
 
 public class InstellingenPane extends GridPane {
     private InstellingenController instellingenController;

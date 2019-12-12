@@ -3,6 +3,10 @@ package model;
 import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 public class LoadSaveStrategyFactory {
 
     public LoadSaveStrategy makeLoadSaveStrategy(String loadSaveStrategy){

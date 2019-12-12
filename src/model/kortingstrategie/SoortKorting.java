@@ -1,7 +1,5 @@
 package model.kortingstrategie;
 
-import java.util.ArrayList;
-
 /**
  * @author Marko Kosmajac
  */

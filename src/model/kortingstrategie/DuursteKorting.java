@@ -1,5 +1,9 @@
 package model.kortingstrategie;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 public class DuursteKorting implements KortingStrategie {
 
     @Override

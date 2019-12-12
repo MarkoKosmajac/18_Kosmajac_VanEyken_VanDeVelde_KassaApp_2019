@@ -1,11 +1,13 @@
 package model;
 
-import jxl.write.WriteException;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author Max Van De Velde, Brent Van Eyken
+ */
 
 public interface LoadSaveStrategy {
 

@@ -4,8 +4,11 @@ import model.Artikel;
 import model.ArtikelModel;
 import model.observer.Observer;
 import view.panels.KlantOverviewPane;
-
 import java.util.ArrayList;
+
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
 
 public class KlantProductOverviewController implements Observer {
 

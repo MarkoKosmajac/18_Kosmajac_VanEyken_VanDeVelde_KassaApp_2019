@@ -6,9 +6,12 @@ import model.LoadSaveStrategy;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
-
 import java.io.*;
 import java.util.Properties;
+
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
 
 public class InstellingenController {
 

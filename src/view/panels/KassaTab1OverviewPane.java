@@ -16,10 +16,12 @@ import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * @author Marko Kosmajac, Max Van De Velde
+ */
 
 public class KassaTab1OverviewPane extends GridPane {
     private TableView<Artikel> table ;
@@ -74,8 +76,6 @@ public class KassaTab1OverviewPane extends GridPane {
         this.getChildren().addAll(table);
     }
 
-
-
     private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
     }
@@ -98,7 +98,6 @@ public class KassaTab1OverviewPane extends GridPane {
                 producten.addToLijst(artikel);
                 artikelCodeTextField.clear();
                 totaalBedragUpdate();
-                //producten.productAlInLijst(artikel);
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());

@@ -1,6 +1,8 @@
 package model.observer;
 
-import model.Artikel;
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
 
 public interface Subject {
 

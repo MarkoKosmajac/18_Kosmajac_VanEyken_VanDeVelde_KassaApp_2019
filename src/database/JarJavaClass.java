@@ -3,26 +3,13 @@ package database;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
-
-
 import excel.ExcelPlugin;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-
-import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-import model.Artikel;
 
 /**
  * @author Marko Kosmajac, Phonkrit Van de Velde, Brent Van Eyken
  */
-
 
 public class JarJavaClass {
 

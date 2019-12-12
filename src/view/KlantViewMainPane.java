@@ -3,8 +3,6 @@ import controller.KlantProductOverviewController;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import database.ArtikelDBContext;
-import model.Artikel;
 import view.panels.KlantOverviewPane;
 
 public class KlantViewMainPane extends BorderPane {

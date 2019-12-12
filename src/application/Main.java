@@ -7,9 +7,11 @@ import javafx.stage.Stage;
 import model.ArtikelModel;
 import view.KassaView;
 import view.KlantView;
-
 import java.io.IOException;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
 
 public class Main extends Application {
 
