@@ -1,5 +1,6 @@
 package database;
 
+import jxl.write.WriteException;
 import model.Artikel;
 
 import java.io.File;
@@ -93,4 +94,13 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
         return artikel;
     }
 
+    @Override
+    public ArrayList<ArrayList<String>> load(File bestand) throws IOException {
+        return null;
+    }
+
+    @Override
+    public void save(ArrayList<ArrayList<String>> list, File bestand) throws IOException, WriteException {
+
+    }
 }

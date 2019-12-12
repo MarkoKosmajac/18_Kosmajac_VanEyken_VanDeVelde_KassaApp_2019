@@ -19,8 +19,8 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
     }
 
     @Override
-    public void save(ArrayList<Object> artikelArrayList, File bestand){
-        jarJavaClass.save(artikelArrayList,bestand);
+    public void save(ArrayList<ArrayList<String>> list, File bestand){
+        jarJavaClass.save(bestand,list);
     }
 
 }

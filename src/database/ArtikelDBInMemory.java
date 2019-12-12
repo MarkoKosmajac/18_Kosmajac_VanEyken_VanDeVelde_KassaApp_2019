@@ -1,12 +1,15 @@
 package database;
 
+import model.Artikel;
 import model.ArtikelDBStrategy;
 import model.LoadSaveStrategy;
 import model.LoadSaveStrategyFactory;
 
+import java.util.HashMap;
+
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
     //private LoadSaveStrategy loadSaveStrategy;
-    //private HashMap artikelen = new HashMap<String, Artikel>();
+    private HashMap artikelen = new HashMap<String, Artikel>();
     //private TreeMap treeMap;
     //private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
@@ -27,7 +30,6 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
             }
         }
-        convertToTreeMap(artikelen);
 
         */
     }

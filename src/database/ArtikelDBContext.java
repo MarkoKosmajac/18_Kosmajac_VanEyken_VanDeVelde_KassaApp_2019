@@ -1,5 +1,6 @@
 package database;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -10,21 +11,19 @@ import model.*;
 
 public class ArtikelDBContext {
     private ArrayList<Artikel> data;
-    private String bestand; //Filepath
+    private File bestand; //Filepath
     public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
     public ArtikelDBStrategyFactory artikelDBStrategyFactory;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private String opgezochteCode;
     private List<Artikel> artikelList;
 
+
     //TODO: PRIVATE MAKEN = deel van singleton
     private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) {
         //TODO: GEEN EFFECT WHEN IN COMMENTS
-        if (System.getProperty("os.name").equals("Mac OS X")){
-            bestand = "src/bestanden/artikel.txt";
-        } else {
-            bestand = "src\\bestanden\\artikel.txt";
-        }
+            bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
+
         artikelList = new ArrayList<>();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
@@ -34,10 +33,11 @@ public class ArtikelDBContext {
         //TODO: BOVENSTE 2 LIJNTJES OMGEVORMD NAAR HIERONDER 1 LIJN:
         //TODO: VERANDERINGENDOCUMENT MARKO: DIT HIER LINKS VAN TOEGEVOEGD
                 try {
-                    ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
+                    ArrayList<ArrayList<String>> arrayListArrayList = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
                     data = new ArrayList<Artikel>();
                     ArrayList<Artikel> newArrList = new ArrayList<>();
-                    for(Object o : aa){
+
+                    for(Object o : arrayListArrayList){
                         if(o instanceof Artikel){
                             newArrList.add((Artikel) o);
                         }
