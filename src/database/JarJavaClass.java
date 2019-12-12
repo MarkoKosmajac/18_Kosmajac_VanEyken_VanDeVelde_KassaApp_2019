@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
+import excel.ExcelPlugin;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -25,7 +26,33 @@ import model.Artikel;
 
 public class JarJavaClass {
 
-    public ArrayList<Object> read(String inputFile) throws IOException  {
+    private excel.ExcelPlugin excelPlugin = new ExcelPlugin();
+
+    public ArrayList<ArrayList<String>> load(File file){
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+        try {
+            result = excelPlugin.read(file); //file en arraylist vn arraylist vn string meegeven.
+        } catch (BiffException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public void save(File file, ArrayList<ArrayList<String>> list){
+        try {
+            excelPlugin.write(file,list);
+        } catch (BiffException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*public ArrayList<Object> read(String inputFile) throws IOException  {
         File inputWorkbook = new File(inputFile);
         Workbook w;
         ArrayList<Object> a = new ArrayList<>();
@@ -95,5 +122,5 @@ public class JarJavaClass {
         workbook.write();
         workbook.close();
 
-    }
+    }*/
 }
