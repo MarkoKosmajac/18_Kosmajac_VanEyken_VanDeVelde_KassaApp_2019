@@ -10,6 +10,6 @@ import java.util.List;
 public interface LoadSaveStrategy {
 
         ArrayList<Object> load(File bestand) throws IOException;
-        void save(List<Object> list) throws IOException, WriteException;
+        void save(List<Object> list) throws IOException;
 
 }

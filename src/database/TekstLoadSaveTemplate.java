@@ -5,9 +5,9 @@ import model.LoadSaveStrategy;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 /**
  * @author Phonkrit Van de Velde
@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
-    public final ArrayList<Object> load(File bestand) throws IOException {
+    public final ArrayList<Object> load(File bestand){
         ArrayList<Object> objects = new ArrayList<>();
         try{
             Scanner scannerFile = getBestand();
@@ -41,17 +41,18 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     }
 
-    public final void save(ArrayList<Object> artikelArrayList, File bestand){
+    public final void save(List<Object> list){
+        File file = new File("src" + File.separator + "bestanden" + File.separator + "artikel.txt");
         ArrayList<Artikel> artikelen = new ArrayList<>();
 
-        for(Object o : artikelArrayList){
+        for(Object o : list){
             if(o instanceof Artikel){
                 artikelen.add((Artikel) o);
             }
         }
 
         try{
-            PrintWriter writer = new PrintWriter(bestand);
+            PrintWriter writer = new PrintWriter(file);
             for (Artikel a: artikelen){
                 writer.println(a);
             }

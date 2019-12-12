@@ -44,7 +44,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         objectenList.addAll(artikelArrayList);
         try {
             loadSaveStrategy.save(objectenList);
-        } catch (IOException | WriteException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

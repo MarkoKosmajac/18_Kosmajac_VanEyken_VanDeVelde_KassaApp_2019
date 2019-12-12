@@ -18,11 +18,11 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
 
     @Override
     public ArrayList<Object> load(File bestand){
-        return null;
+        return null;//TODO:
     }
 
     @Override
-    public void save(List<Object> list) throws IOException, WriteException {
+    public void save(List<Object> list){
 
     }
 
