@@ -18,7 +18,7 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
 
     @Override
     public ArrayList<Object> load(File bestand){
-        return null;//TODO:
+        return null; //jarJavaClass.load(bestand); TODO: DIT FIXEN dmv nieuwe templateexcel klasse ?
     }
 
     @Override

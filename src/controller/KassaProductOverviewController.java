@@ -50,14 +50,6 @@ public class KassaProductOverviewController implements Observer {
         return tot;
     }
 
-    public void productAlInLijst(Artikel artikel){
-        try{
-            artikelModel.productAlInLijst(artikel);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
         this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
     }

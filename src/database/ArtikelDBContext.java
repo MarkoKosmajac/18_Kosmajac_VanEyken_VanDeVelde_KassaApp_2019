@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 import controller.ControllerException;
+import controller.InstellingenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
@@ -12,24 +13,17 @@ import model.*;
 public class ArtikelDBContext {
     private ArrayList<Artikel> data;
     private File bestand; //Filepath
-    private ArtikelDBStrategy artikelDBStrategy;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private String opgezochteCode;
     private LoadSaveStrategy loadSaveStrategy;
-
+    private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
     private ArtikelDBContext() {
-        bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.txt");
+        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+        bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.xls");
         data = new ArrayList<>();
-        loadSaveStrategy = new ArtikelLoadSaveTekst();
-        artikelDBStrategy = new ArtikelDBInMemory(loadSaveStrategy);
-        data.addAll(loadData());
-
-
-
-
-        //loadSaveStrategy2 = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy);
-
+        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst"); //todo: getProperties()
+        data = (ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand);
     }
 
     public static synchronized ArtikelDBContext getInstance(){
@@ -43,7 +37,6 @@ public class ArtikelDBContext {
         Collections.sort(data);
         return data;
     }
-
 
     public ObservableList<Artikel> loadData(){
         return FXCollections.observableArrayList(data);

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class ArtikelDBStrategyFactory {
 
-
     /*public ArtikelDBStrategy makeArtikelDBStrategy(String artikelDBStrategy){
         if(artikelDBStrategy.equalsIgnoreCase("ArtikelDBInMemory")){
             return new ArtikelDBInMemory();*/

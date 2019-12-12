@@ -4,6 +4,7 @@ import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
 import model.LoadSaveStrategy;
 import model.SoortBestand;
+import model.kortingstrategie.SoortKorting;
 
 import java.io.*;
 import java.util.Properties;
@@ -14,7 +15,7 @@ public class InstellingenController {
 
     public InstellingenController(){
         this.properties = new Properties();
-        laadPropertiesIn();
+        laadPropertiesIn(); //TODO: doet niks ? Hoe inlezen ?
     }
 
     private void laadPropertiesIn() {
@@ -35,17 +36,18 @@ public class InstellingenController {
     }
 
     public String getProperties(){
-        String value = properties.getProperty("artikelDBStrategy");
-        return value;
+        return properties.getProperty("loadSaveStrategy");
     }
 
-    public void setPropertiesDB(String keuze){
+    public void setPropertiesDB(String keuzeFile, String keuzeKorting){
         FileOutputStream os = null;
         try{
-            SoortBestand bestandkeuze = SoortBestand.valueOf(keuze);
+            SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
+            SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
             os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
             properties.clear();
-            properties.setProperty("artikelDBStrategy", bestandkeuze.toString());
+            properties.setProperty("loadSaveStrategy", bestandkeuze.toString());
+            properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.store(os,null);
 
         } catch (IOException e) {

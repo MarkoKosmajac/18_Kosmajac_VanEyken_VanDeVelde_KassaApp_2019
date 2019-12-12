@@ -98,7 +98,7 @@ public class KassaTab1OverviewPane extends GridPane {
                 producten.addToLijst(artikel);
                 artikelCodeTextField.clear();
                 totaalBedragUpdate();
-                producten.productAlInLijst(artikel);
+                //producten.productAlInLijst(artikel);
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
@@ -143,7 +143,6 @@ public class KassaTab1OverviewPane extends GridPane {
         if(result.get() == ButtonType.OK){
             producten.verwijderVanLijst(getArtikelTeVerwijderen());
             totaalBedragUpdate();
-            producten.productAlInLijst(getArtikelTeVerwijderen());
         }else{
             System.out.println("Exiting alert");
         }

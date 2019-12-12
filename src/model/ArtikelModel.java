@@ -20,12 +20,16 @@ public class ArtikelModel implements Subject {
 
     public void addToLijst(Artikel artikel) {
         artikelList.add(artikel);
+        int index = artikelList.indexOf(artikel);
+        artikelList.get(index).setAantal(artikel.getAantal()+1);
         notifyObserver();
         System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
     }
 
     public void verwijderVanLijst(Artikel artikel){
         artikelList.remove(artikel);
+        int index = artikelList.indexOf(artikel);
+        artikelList.get(index).setAantal(artikel.getAantal()-1);
         notifyObserver();
         System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
     }
@@ -41,20 +45,6 @@ public class ArtikelModel implements Subject {
         notifyObserver();//TODO: vergeten!!!
         return tot;
     }
-
-    public boolean productAlInLijst(Artikel artikel){
-        for(Artikel a : artikelList){
-            if(a != null){
-                if(artikel.getOmschrijving().equalsIgnoreCase(a.getOmschrijving())){
-                    a.setAantal(a.getAantal()+1);
-                    notifyObserver();
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
 
     @Override
     public void register(Observer obs) {
