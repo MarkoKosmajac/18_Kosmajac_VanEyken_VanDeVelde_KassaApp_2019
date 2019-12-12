@@ -18,16 +18,16 @@ import java.io.*;
 import java.util.Properties;
 
 public class InstellingenPane extends GridPane {
-    private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG
+    //private ArtikelDBContext artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG
     private InstellingenController instellingenController;
     private ComboBox<SoortBestand> comboBoxBestand;
-    private Button verzendKnop;
+    //private Button verzendKnop;
 
     public InstellingenPane(){
 
         Properties properties = new Properties();
 
-        this.artikelDBContext = artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
+        //this.artikelDBContext = artikelDBContext; //TODO: MOET DIT HIER ? KAN DIT NIET WEG ? ZO JA, FIX MET SINGLETON METHOD getinstance!
 
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -53,7 +53,7 @@ public class InstellingenPane extends GridPane {
         ComboBox<SoortKorting> comboBoxKorting = new ComboBox<>();
         comboBoxKorting.getItems().setAll(SoortKorting.values());
 
-        verzendKnop.setOnAction(new VerzendKeuzesHandler());
+        //verzendKnop.setOnAction(new VerzendKeuzesHandler());
 
         this.add(new Label("Optionele kortinginfo:"), 0, 8);
         this.add(new Label("Korting percentage"), 0, 9);
@@ -61,7 +61,7 @@ public class InstellingenPane extends GridPane {
         this.add(new Label("Korting eurobedrag"), 0, 10);
         this.add(new TextField(),1,10);
 
-        this.add(verzendKnop,0,9);
+        //this.add(verzendKnop,0,9);
         this.add(rb1,0,1);
         this.add(rb2,0,2);
         this.add(comboBoxBestand,0,4);
