@@ -6,9 +6,8 @@ import model.Artikel;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -95,12 +94,12 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     }
 
     @Override
-    public ArrayList<ArrayList<String>> load(File bestand) throws IOException {
+    public ArrayList<Object> load(File bestand) throws IOException {
         return null;
     }
 
     @Override
-    public void save(ArrayList<ArrayList<String>> list, File bestand) throws IOException, WriteException {
+    public void save(List<Object> list) throws IOException, WriteException {
 
     }
 }

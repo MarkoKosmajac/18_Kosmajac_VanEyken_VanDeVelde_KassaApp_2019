@@ -1,9 +1,7 @@
 package database;
 
-import model.Artikel;
-import model.ArtikelDBStrategy;
-import model.LoadSaveStrategy;
-import model.LoadSaveStrategyFactory;
+import jxl.write.WriteException;
+import model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,29 +10,29 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
-    private ArtikelDBStrategy artikelDBStrategy;
+
+    private LoadSaveStrategy loadSaveStrategy;
     private HashMap artikelen;
-    //private TreeMap treeMap;
-    //private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
-    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy){
-
+    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
+        this.loadSaveStrategy = loadSaveStrategy;
         artikelen = new HashMap<String, Artikel>();
-
-        loadSaveStrategy = new LoadSaveStrategyFactory().makeLoadSaveStrategy(/*getStrategy()*/""); //TODO: replace uit properties ingelezen.
     }
 
 
-    public List<Artikel> load(File bestand){
-        List<Artikel> artikels = new ArrayList<>();
+    public List<Artikel> load(File bestand) {
+        List<Artikel> artikels = new ArrayList<Artikel>();
         List<Object> objectenList = new ArrayList<>();
 
-            artikels = artikelDBStrategy.load(bestand);
+        try {
+            objectenList = loadSaveStrategy.load(bestand);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         for (Object o : objectenList) {
             if (o instanceof Artikel) {
-                artikelen.put(((Artikel) o).getArtikelCode(), o);
-
+                artikels.add((Artikel) o);
             }
         }
         return artikels;
@@ -42,8 +40,12 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
     @Override
     public void save(ArrayList<Artikel> artikelArrayList) {
-
+        List<Object> objectenList = new ArrayList<>();
+        objectenList.addAll(artikelArrayList);
+        try {
+            loadSaveStrategy.save(objectenList);
+        } catch (IOException | WriteException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }

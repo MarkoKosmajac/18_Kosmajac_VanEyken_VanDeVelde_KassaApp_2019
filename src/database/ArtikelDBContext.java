@@ -17,35 +17,21 @@ public class ArtikelDBContext {
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private String opgezochteCode;
     private List<Artikel> artikelList;
-
+    private List<Artikel> artikels;
+    private LoadSaveStrategy loadSaveStrategy2;
 
     private ArtikelDBContext(String loadSaveStrategy) {
         bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
 
-        artikelList = new ArrayList<>();
-        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
-        artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
+        artikels = new ArrayList<>();
 
-        try {
-            ArrayList<ArrayList<String>> arrayListArrayList = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy).load(bestand);
-            data = new ArrayList<Artikel>();
-            ArrayList<Artikel> newArrList = new ArrayList<>();
+        //loadSaveStrategy2 = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy);
 
-            for(Object o : arrayListArrayList){
-                if(o instanceof Artikel){
-                    newArrList.add((Artikel) o);
-                }
-            }
-            data.addAll(newArrList);
-        }
-        catch (IOException exception){
-            throw new DBException(exception.getMessage());
-        }
     }
 
     public static synchronized ArtikelDBContext getInstance(){
         if(uniqueInstance == null){
-            uniqueInstance = new ArtikelDBContext(new ArtikelLoadSaveTekst());
+            uniqueInstance = new ArtikelDBContext("ArtikelLoadSaveTekst");
         }
         return uniqueInstance;
     }
