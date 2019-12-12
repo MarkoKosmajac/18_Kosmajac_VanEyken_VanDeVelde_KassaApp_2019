@@ -15,12 +15,15 @@ public class ArtikelDBContext {
     private ArtikelDBStrategy artikelDBStrategy;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private String opgezochteCode;
+    private LoadSaveStrategy loadSaveStrategy;
 
 
     private ArtikelDBContext() {
-        bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
-
+        bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.txt");
         data = new ArrayList<>();
+        loadSaveStrategy = new ArtikelLoadSaveTekst();
+        artikelDBStrategy = new ArtikelDBInMemory(loadSaveStrategy);
+        data.addAll(loadData());
 
 
 

@@ -22,8 +22,6 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     }
 
 
-
-
    /* public void save(ArrayList<Object> artikelArrayList, String bestand){
         ArrayList<Artikel> artikelen = new ArrayList<>();
 
@@ -66,8 +64,6 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
     */
 
 
-    
-
     @Override
     Scanner getBestand() throws FileNotFoundException {
         String bestandPath;
@@ -93,13 +89,5 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
         return artikel;
     }
 
-    @Override
-    public ArrayList<Object> load(File bestand) throws IOException {
-        return null;
-    }
 
-    @Override
-    public void save(List<Object> list) throws IOException, WriteException {
-
-    }
 }

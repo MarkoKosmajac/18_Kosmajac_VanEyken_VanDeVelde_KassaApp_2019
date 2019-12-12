@@ -12,7 +12,7 @@ import java.util.List;
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
     private LoadSaveStrategy loadSaveStrategy;
-    private HashMap artikelen;
+    private HashMap<String, Artikel> artikelen;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
         this.loadSaveStrategy = loadSaveStrategy;

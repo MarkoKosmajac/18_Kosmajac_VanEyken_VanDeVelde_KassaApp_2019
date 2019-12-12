@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
-    public final ArrayList<Object> load(String bestand) throws IOException {
+    public final ArrayList<Object> load(File bestand) throws IOException {
         ArrayList<Object> objects = new ArrayList<>();
         try{
             Scanner scannerFile = getBestand();
@@ -41,7 +41,7 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
     }
 
-    public final void save(ArrayList<Object> artikelArrayList, String bestand){
+    public final void save(ArrayList<Object> artikelArrayList, File bestand){
         ArrayList<Artikel> artikelen = new ArrayList<>();
 
         for(Object o : artikelArrayList){
@@ -50,9 +50,8 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
             }
         }
 
-        File artikelFile = new File(bestand); //TODO: RENAME TO artikel.txt
         try{
-            PrintWriter writer = new PrintWriter(artikelFile);
+            PrintWriter writer = new PrintWriter(bestand);
             for (Artikel a: artikelen){
                 writer.println(a);
             }
