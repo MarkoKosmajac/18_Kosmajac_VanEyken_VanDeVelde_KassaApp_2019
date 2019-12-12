@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface LoadSaveStrategy {
 
-        ArrayList<Object> load(File bestand) throws IOException;
-        void save(ArrayList<Object> artikelArrayList, File bestand) throws IOException, WriteException;
+        ArrayList<ArrayList<String>> load(File bestand) throws IOException;
+        void save(ArrayList<ArrayList<String>> list, File bestand) throws IOException, WriteException;
 
 }

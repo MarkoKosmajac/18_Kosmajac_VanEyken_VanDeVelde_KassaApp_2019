@@ -1,10 +1,8 @@
 package database;
 
-import jxl.write.WriteException;
 import model.LoadSaveStrategy;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +14,7 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
 
 
     @Override
-    public ArrayList<Object> load(File bestand){
+    public ArrayList<ArrayList<String>> load(File bestand){
         return jarJavaClass.load(bestand);
     }
 
