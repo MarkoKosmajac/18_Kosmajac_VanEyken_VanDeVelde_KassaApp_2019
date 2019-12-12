@@ -8,7 +8,6 @@ import java.util.Collection;
 
 public class ArtikelModel implements Subject {
 
-
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList;
 

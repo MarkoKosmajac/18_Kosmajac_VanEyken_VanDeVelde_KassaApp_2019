@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import database.ArtikelDBContext;
 import model.SoortBestand;
+import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
 
 import java.io.*;
@@ -21,6 +22,7 @@ public class InstellingenPane extends GridPane {
     private InstellingenController instellingenController;
     private ComboBox<SoortBestand> comboBoxBestand;
     private ComboBox<SoortKorting> comboBoxKorting;
+    private ComboBox<SoortDatabase> comboBoxDatabase;
     private Button verzendKnop = new Button("Verzenden");
 
     public InstellingenPane(){
@@ -34,14 +36,8 @@ public class InstellingenPane extends GridPane {
 
         this.add(new Label("Opties:"), 0, 0);
 
-        final ToggleGroup group = new ToggleGroup();
-
-        RadioButton rb1 = new RadioButton(" Relationele Database");
-        rb1.setToggleGroup(group);
-        //rb1.setSelected(true);
-
-        RadioButton rb2 = new RadioButton("In Memory Database");
-        rb2.setToggleGroup(group);
+        comboBoxDatabase = new ComboBox<>();
+        comboBoxDatabase.getItems().setAll(SoortDatabase.values());
 
         this.add(new Label("Indien gekozen voor 'In Memory Database' "),0,3);
 
@@ -62,27 +58,29 @@ public class InstellingenPane extends GridPane {
         this.add(new TextField(),1,10);
 
         this.add(verzendKnop,0,11);
-        this.add(rb1,0,1);
-        this.add(rb2,0,2);
+        this.add(comboBoxDatabase,0,1);
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
 
     }
 
-    public String getSelectedComboboxFile(){
-        //"Excel bestand"
+    public String getSelectedFile(){
         return comboBoxBestand.getValue().toString();
     }
 
-    public String getSelectedComboboxKorting(){
+    public String getSelectedKorting(){
         return comboBoxKorting.getValue().toString();
     }
 
+    public String getSelectedDatabase(){
+        return comboBoxDatabase.getValue().toString();
+    }
 
     private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            instellingenController.setPropertiesDB(getSelectedComboboxFile(), getSelectedComboboxKorting());//"Excel bestand"
+            instellingenController.setPropertiesDB(getSelectedFile(), getSelectedKorting(),getSelectedDatabase());
         }
     }
+
 }

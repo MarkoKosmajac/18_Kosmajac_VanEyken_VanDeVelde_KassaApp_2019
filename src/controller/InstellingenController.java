@@ -4,6 +4,7 @@ import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
 import model.LoadSaveStrategy;
 import model.SoortBestand;
+import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
 
 import java.io.*;
@@ -39,15 +40,17 @@ public class InstellingenController {
         return properties.getProperty("loadSaveStrategy");
     }
 
-    public void setPropertiesDB(String keuzeFile, String keuzeKorting){
+    public void setPropertiesDB(String keuzeFile, String keuzeKorting, String keuzeDatabase){
         FileOutputStream os = null;
         try{
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
             SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
+            SoortDatabase databasekeuze = SoortDatabase.valueOf(keuzeDatabase);
             os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
             properties.clear();
             properties.setProperty("loadSaveStrategy", bestandkeuze.toString());
             properties.setProperty("Kortingskeuze", kortingskeuze.toString());
+            properties.setProperty("databasekeuze", databasekeuze.toString());
             properties.store(os,null);
 
         } catch (IOException e) {
