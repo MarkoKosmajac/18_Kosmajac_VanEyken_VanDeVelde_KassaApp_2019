@@ -4,6 +4,7 @@ import model.observer.Observer;
 import model.observer.Subject;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 /**
  * @author Max Van De Velde, Marko Kosmajac
@@ -14,6 +15,7 @@ public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList;
+    private HashSet hs = new HashSet();
 
     public ArtikelModel() {
         kassaObserver = new ArrayList<>();
@@ -21,20 +23,31 @@ public class ArtikelModel implements Subject {
         onHoldList = new ArrayList<>();
     }
 
-    public void addToLijst(Artikel artikel) {
-        artikelList.add(artikel);
+    public void veranderAantalPositief(Artikel artikel){
         int index = artikelList.indexOf(artikel);
         artikelList.get(index).setAantal(artikel.getAantal()+1);
         notifyObserver();
+    }
+
+    public void veranderAantalNegatief(Artikel artikel){
+        int index = artikelList.indexOf(artikel);
+        artikelList.get(index).setAantal(artikel.getAantal()-1);
+        notifyObserver();
+    }
+
+
+    public void addToLijst(Artikel artikel) {
+        artikelList.add(artikel);
+        veranderAantalPositief(artikel);
         System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
+        notifyObserver();
     }
 
     public void verwijderVanLijst(Artikel artikel){
         artikelList.remove(artikel);
-        int index = artikelList.indexOf(artikel);
-        artikelList.get(index).setAantal(artikel.getAantal()-1);
-        notifyObserver();
+        veranderAantalNegatief(artikel);
         System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
+        notifyObserver();
     }
 
     public double getTotPrijs(){
