@@ -5,43 +5,45 @@ import model.ArtikelDBStrategy;
 import model.LoadSaveStrategy;
 import model.LoadSaveStrategyFactory;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ArtikelDBInMemory implements ArtikelDBStrategy {
-    //private LoadSaveStrategy loadSaveStrategy;
-    private HashMap artikelen = new HashMap<String, Artikel>();
+    private ArtikelDBStrategy artikelDBStrategy;
+    private HashMap artikelen;
     //private TreeMap treeMap;
     //private LoadSaveStrategyFactory loadSaveStrategyFactory;
 
-    public ArtikelDBInMemory(){
+    public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy){
 
-        //TODO: CLEANED - NO EFFECT WHEN IN COMMENTS
-        LoadSaveStrategy loadSaveStrategy = new LoadSaveStrategyFactory().makeLoadSaveStrategy(/*getStrategy()*/""); //TODO: replace uit properties ingelezen.
-        /*
-        //ArrayList<Object> a = load(bestand);
-        String bestand = "src\\bestanden\\artikel.txt";
-        ArrayList<Object> a = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelDBInMemory").load(bestand);
+        artikelen = new HashMap<String, Artikel>();
 
-        //TODO: VERANDERINGEN ZIE KLADBLOKDOCUMENT MARKO
+        loadSaveStrategy = new LoadSaveStrategyFactory().makeLoadSaveStrategy(/*getStrategy()*/""); //TODO: replace uit properties ingelezen.
+    }
 
-        for (Object o : a) {
+
+    public List<Artikel> load(File bestand){
+        List<Artikel> artikels = new ArrayList<>();
+        List<Object> objectenList = new ArrayList<>();
+
+            artikels = artikelDBStrategy.load(bestand);
+
+        for (Object o : objectenList) {
             if (o instanceof Artikel) {
-                artikelen.put(((Artikel) o).getArtikelCode(), (Artikel) o);
+                artikelen.put(((Artikel) o).getArtikelCode(), o);
 
             }
         }
-
-        */
+        return artikels;
     }
 
+    @Override
+    public void save(ArrayList<Artikel> artikelArrayList) {
 
-    /*public ArrayList<Object> load(String bestand) throws IOException {
-        return loadSaveStrategy.load(bestand);
     }
 
-
-    public void save(ArrayList<Object> artikelArrayList, String bestand) throws IOException, WriteException {
-        loadSaveStrategy.save(artikelArrayList, bestand);
-    }*/
 
 }

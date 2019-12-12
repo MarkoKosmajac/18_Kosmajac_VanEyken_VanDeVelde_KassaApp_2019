@@ -19,42 +19,31 @@ public class ArtikelDBContext {
     private List<Artikel> artikelList;
 
 
-    //TODO: PRIVATE MAKEN = deel van singleton
-    private ArtikelDBContext(LoadSaveStrategy loadSaveStrategy) {
-        //TODO: GEEN EFFECT WHEN IN COMMENTS
-            bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
+    private ArtikelDBContext(String loadSaveStrategy) {
+        bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
 
         artikelList = new ArrayList<>();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         artikelDBStrategyFactory = new ArtikelDBStrategyFactory();
 
-        //ArtikelLoadSaveTekst artikelLoadSaveTekst = new ArtikelLoadSaveTekst(); //tot nu toe zo
-        //artikelDBInMemory = new ArtikelDBInMemory(artikelLoadSaveTekst, bestand);
-        //TODO: BOVENSTE 2 LIJNTJES OMGEVORMD NAAR HIERONDER 1 LIJN:
-        //TODO: VERANDERINGENDOCUMENT MARKO: DIT HIER LINKS VAN TOEGEVOEGD
-                try {
-                    ArrayList<ArrayList<String>> arrayListArrayList = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
-                    data = new ArrayList<Artikel>();
-                    ArrayList<Artikel> newArrList = new ArrayList<>();
+        try {
+            ArrayList<ArrayList<String>> arrayListArrayList = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy).load(bestand);
+            data = new ArrayList<Artikel>();
+            ArrayList<Artikel> newArrList = new ArrayList<>();
 
-                    for(Object o : arrayListArrayList){
-                        if(o instanceof Artikel){
-                            newArrList.add((Artikel) o);
-                        }
-                    }
-                    data.addAll(newArrList);
+            for(Object o : arrayListArrayList){
+                if(o instanceof Artikel){
+                    newArrList.add((Artikel) o);
                 }
-                catch (IOException exception){
-                    throw new DBException(exception.getMessage());
-                }
-        //ArrayList<Object> aa = artikelDBInMemory.load(bestand);
-        //TODO: NAAR
-        //FOUT: DIT KIEST TUSSEN EXCEL EN TEKST: ArrayList<Object> aa = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst").load(bestand);
-        //JUSIT: EENTJE DIE KIEST TUSSEN ARTIKELDBINMEMORY OF DBSQL
-        //ArrayList<Object> aa = artikelDBStrategyFactory.makeArtikelDBStrategy("ArtikelDBInMemory").load(bestand);
+            }
+            data.addAll(newArrList);
+        }
+        catch (IOException exception){
+            throw new DBException(exception.getMessage());
+        }
     }
 
-    public static synchronized ArtikelDBContext getInstance() throws IOException {
+    public static synchronized ArtikelDBContext getInstance(){
         if(uniqueInstance == null){
             uniqueInstance = new ArtikelDBContext(new ArtikelLoadSaveTekst());
         }

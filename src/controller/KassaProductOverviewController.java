@@ -20,11 +20,7 @@ public class KassaProductOverviewController implements Observer {
         this.artikelModel = artikelModel;
         artikelModel.register(this);
 
-        try {
-            artikelDBContext = ArtikelDBContext.getInstance();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        artikelDBContext = ArtikelDBContext.getInstance();
     }
 
     public void addToLijst(Artikel artikel) {
