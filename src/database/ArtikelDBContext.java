@@ -12,18 +12,18 @@ import model.*;
 public class ArtikelDBContext {
     private ArrayList<Artikel> data;
     private File bestand; //Filepath
-    public LoadSaveStrategyFactory loadSaveStrategyFactory; //TODO: DEEL VAN FACTORY PATTERN WITH SINGLETON
-    public ArtikelDBStrategyFactory artikelDBStrategyFactory;
+    private ArtikelDBStrategy artikelDBStrategy;
     private static ArtikelDBContext uniqueInstance; //TODO: deel van singleton
     private String opgezochteCode;
-    private List<Artikel> artikelList;
-    private List<Artikel> artikels;
-    private LoadSaveStrategy loadSaveStrategy2;
 
-    private ArtikelDBContext(String loadSaveStrategy) {
+
+    private ArtikelDBContext() {
         bestand = new File("src" + File.separator + "database" + File.separator + "artikel.txt");
 
-        artikels = new ArrayList<>();
+        data = new ArrayList<>();
+
+
+
 
         //loadSaveStrategy2 = loadSaveStrategyFactory.makeLoadSaveStrategy(loadSaveStrategy);
 
@@ -31,7 +31,7 @@ public class ArtikelDBContext {
 
     public static synchronized ArtikelDBContext getInstance(){
         if(uniqueInstance == null){
-            uniqueInstance = new ArtikelDBContext("ArtikelLoadSaveTekst");
+            uniqueInstance = new ArtikelDBContext();
         }
         return uniqueInstance;
     }
@@ -82,7 +82,7 @@ public class ArtikelDBContext {
 
     public Artikel getArtikel(String ingevuldeWaarde) {
         Artikel a = null;
-        for(Artikel artikel : artikelList){
+        for(Artikel artikel : data){
             if(artikel.getArtikelCode().equalsIgnoreCase(ingevuldeWaarde)){
                 a = artikel;
             }
