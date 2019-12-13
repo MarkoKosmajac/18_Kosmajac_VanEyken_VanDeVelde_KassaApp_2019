@@ -20,7 +20,6 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
         ArrayList<Object> objectList = new ArrayList<>();
         ArrayList<ArrayList<String>> adaptee = jarJavaClass.load(bestand);
 
-
         for (ArrayList<String> rij: adaptee){
             String artikelcode = rij.get(0);
             String omschrijving = rij.get(1);
@@ -30,7 +29,6 @@ public class ArtikelLoadSaveExcel implements LoadSaveStrategy {
             Artikel artikel = new Artikel(artikelcode, omschrijving, artikelGroep, prijs, stock);
             objectList.add(artikel);
         }
-
         return objectList;
     }
 
