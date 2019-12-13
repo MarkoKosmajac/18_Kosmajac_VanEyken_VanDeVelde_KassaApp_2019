@@ -33,7 +33,9 @@ public class KassaOverviewPane extends GridPane {
 
     private Label label = new Label("Artikelcode:");
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
-    private Label tot = new Label("TOTAALBEDRAG:");
+    private Label totaal = new Label("TOTAALBEDRAG:");
+    private Label eindTotaalLabel = new Label("EINDTOTAAL:");
+    private Label kortinglabel = new Label("KORTING:");
     private Label korting = new Label();
     private Label eindTotaal = new Label();
 
@@ -53,16 +55,22 @@ public class KassaOverviewPane extends GridPane {
 
         this.add(label,3,1);
         this.add(artikelCodeTextField,4,1);
-        this.add(tot,3,2);
+
+        //Textfields
+        this.add(totaal,3,2);
         this.add(labelTotaal,4,2);
-        this.add(onHoldButton2,3,4);
-        this.add(onHoldButton,3,3);
-        this.add(afsluitKnop, 3, 5);
+        this.add(kortinglabel, 3, 3);
+        this.add(eindTotaalLabel, 3,4);
+        //Bedragen
         this.add(korting, 4, 3);
-        this.add(eindTotaal, 5, 3);
+        this.add(eindTotaal, 4, 4);
+        //Buttons
+        this.add(onHoldButton,0,2);
+        this.add(onHoldButton2,0,3);
+        this.add(afsluitKnop, 0, 4);
 
         label.setFont(new Font("System", 18));
-        tot.setFont(new Font("System", 16));
+        totaal.setFont(new Font("System", 16));
         labelTotaal.setFont(new Font("System", 16));
 
         table = new TableView<Artikel>();
@@ -104,6 +112,15 @@ public class KassaOverviewPane extends GridPane {
     public void setArtikellijst(ArrayList<Artikel> artikellijst) {
         table.setItems(FXCollections.observableArrayList(artikellijst));
     }
+
+    public void setEindTotaal(double eindPrijs) {
+        eindTotaal.setText(String.valueOf(eindPrijs));
+    }
+
+    public void setKorting(double korting) {
+        this.korting.setText(String.valueOf(korting));
+    }
+
 
     public class AddArtikelHandler implements EventHandler<KeyEvent>{
 
@@ -179,7 +196,7 @@ public class KassaOverviewPane extends GridPane {
     public class AfsluitHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            eindTotaal.setText(String.valueOf(producten.getEindPrijs()));
+            //eindTotaal.setText(String.valueOf(producten.getEindPrijs()));
         }
     }
 }

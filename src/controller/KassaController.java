@@ -100,11 +100,12 @@ public class KassaController implements Observer {
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
         kassaOverviewPaneView.setArtikellijst(artikellijst);
-        kassaOverviewPaneView.setTotaalBedrag(getTotPrijs());
+        kassaOverviewPaneView.setTotaalBedrag(Math.floor(getTotPrijs()*100)/100);
+        kassaOverviewPaneView.setEindTotaal(Math.floor(getEindPrijs()*100)/100);
+        kassaOverviewPaneView.setKorting(Math.floor((getTotPrijs()-getEindPrijs())*100)/100);
     }
 
-
-    public double getEindPrijs() {
+    public double getKorting(){
         InputStream in = null;
         try {
             in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
@@ -112,8 +113,13 @@ public class KassaController implements Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return Double.parseDouble(properties.getProperty("Kortingspercent"));
+    }
 
-        double percent = Double.parseDouble(properties.getProperty("Kortingspercent"));
+
+    public double getEindPrijs() {
+
+        double percent = getKorting();
         double totprijs = artikelModel.getTotPrijs();
         double korting = (percent*totprijs)/100;
         return  totprijs-korting;

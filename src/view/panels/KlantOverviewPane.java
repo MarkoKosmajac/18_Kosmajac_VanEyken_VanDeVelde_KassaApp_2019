@@ -20,12 +20,16 @@ import java.util.ArrayList;
 public class KlantOverviewPane extends GridPane {
 
     private TableView<Artikel> table;
-    private double totaalBedrag;
+    private double totaalBedrag, eindTotaal;
+    private int korting;
     private ObservableList<Artikel> products;
     private KlantController producten;
 
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
+    private Label kortingLabel = new Label(String.valueOf(korting));
+    private Label eindTotaalLabel = new Label(String.valueOf(eindTotaal));
+
 
 
     public KlantOverviewPane(KlantController klantController) {
@@ -35,12 +39,16 @@ public class KlantOverviewPane extends GridPane {
         klantController.setPane(this);
 
         totaalBedrag = 0;
+        eindTotaal = 0;
+        korting = 0;
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
 
         this.add(tot, 3, 2);
         this.add(labelTotaal,4,2);
+        this.add(kortingLabel, 4, 3);
+        this.add(eindTotaalLabel, 4, 4);
         tot.setFont(new Font("System", 16));
         labelTotaal.setFont(new Font("System", 16));
 
@@ -73,5 +81,11 @@ public class KlantOverviewPane extends GridPane {
     }
 
 
+    public void setKorting(double korting) {
+        kortingLabel.setText(String.valueOf(korting));
+    }
 
+    public void setEindTotaal(double eindTotaal){
+        eindTotaalLabel.setText(String.valueOf(eindTotaal));
+    }
 }
