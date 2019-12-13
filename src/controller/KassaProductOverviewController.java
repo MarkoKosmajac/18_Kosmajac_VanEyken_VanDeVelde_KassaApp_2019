@@ -52,12 +52,20 @@ public class KassaProductOverviewController implements Observer {
         return tot;
     }
 
+    public ArrayList<Artikel> getOnHoldList(){
+        return artikelModel.getOnHoldList();
+    }
+
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
         this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
     }
 
     public ArrayList<Artikel> getArtikels(){
         return artikelDBContext.getArtikels();
+    }
+
+    public ArrayList<Artikel> getAlleCurrentArtikelen(){
+        return artikelModel.getAlleCurrentArtikelen();
     }
 
     public Artikel getArtikel(String ingevuldeWaarde) {
@@ -71,9 +79,21 @@ public class KassaProductOverviewController implements Observer {
         return res;
     }
 
+    public void setOnHoldList(ArrayList<Artikel> artikels) {
+        try {
+            artikelModel.setOnHoldlist(artikels);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
         kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
         kassaTab1OverviewPaneView.setTotaalBedrag(getTotPrijs());
+    }
+
+    public void setCurrentList(ArrayList<Artikel> list) {
+        artikelModel.setCurrentLijst(list);
     }
 }

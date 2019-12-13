@@ -3,6 +3,7 @@ package view.panels;
 import controller.KassaProductOverviewController;
 import database.DBException;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -33,6 +34,8 @@ public class KassaTab1OverviewPane extends GridPane {
     private TextField artikelCodeTextField = new TextField();
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
+    private Button onHoldButton = new Button("On Hold WEG");
+    private Button onHoldButton2 = new Button("On Hold TERUG");
 
     public KassaTab1OverviewPane(KassaProductOverviewController kassaProductOverviewController){
         producten = kassaProductOverviewController;
@@ -46,6 +49,8 @@ public class KassaTab1OverviewPane extends GridPane {
         this.add(artikelCodeTextField,4,1);
         this.add(tot,3,2);
         this.add(labelTotaal,4,2);
+        this.add(onHoldButton2,3,4);
+        this.add(onHoldButton,3,3);
 
         label.setFont(new Font("System", 18));
         tot.setFont(new Font("System", 16));
@@ -62,6 +67,8 @@ public class KassaTab1OverviewPane extends GridPane {
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
 
         artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
+        onHoldButton.setOnAction(new OnHoldHandler());
+        onHoldButton2.setOnAction(new OnHoldReturnHandler());
 
         table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();
@@ -75,10 +82,6 @@ public class KassaTab1OverviewPane extends GridPane {
         table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
     }
-
-    /*private void totaalBedragUpdate() {
-        labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
-    }*/
 
     public void setTotaalBedrag(double bedrag){
         labelTotaal.setText(String.valueOf(bedrag));
@@ -101,7 +104,6 @@ public class KassaTab1OverviewPane extends GridPane {
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToLijst(artikel);
                 artikelCodeTextField.clear();
-                //totaalBedragUpdate();
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
@@ -145,10 +147,33 @@ public class KassaTab1OverviewPane extends GridPane {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK){
             producten.verwijderVanLijst(getArtikelTeVerwijderen());
-            //totaalBedragUpdate();
         }else{
             System.out.println("Exiting alert");
         }
     }
 
+    public class OnHoldHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            try{
+                ArrayList<Artikel> artikels = new ArrayList<>();
+                artikels = producten.getAlleCurrentArtikelen();
+                producten.setOnHoldList(artikels);
+                //TODO: to improve...
+                ArrayList<Artikel> newList = new ArrayList<>();
+                table.getItems().setAll(newList);
+            }catch( DBException ex){
+                displayErrorMessage(ex.getMessage());
+            }
+        }
+    }
+
+    public class OnHoldReturnHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            ArrayList<Artikel> artikels = new ArrayList<>();
+            artikels = producten.getOnHoldList();
+            producten.setCurrentList(artikels);
+        }
+    }
 }

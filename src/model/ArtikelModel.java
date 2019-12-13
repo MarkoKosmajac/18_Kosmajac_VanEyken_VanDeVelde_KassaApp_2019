@@ -15,7 +15,6 @@ public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList;
-    private HashSet hs = new HashSet();
 
     public ArtikelModel() {
         kassaObserver = new ArrayList<>();
@@ -62,6 +61,23 @@ public class ArtikelModel implements Subject {
         return tot;
     }
 
+    public void setOnHoldlist(ArrayList<Artikel> artikels) {
+        onHoldList = artikels;
+        artikels.clear();
+        notifyObserver();
+        System.out.println("ON HOLD LIST:");
+        System.out.println(artikels);
+    }
+
+    public ArrayList<Artikel> getOnHoldList(){
+        notifyObserver();
+        return this.onHoldList;
+    }
+
+    public ArrayList<Artikel> getAlleCurrentArtikelen(){
+        return this.artikelList;
+    }
+
     @Override
     public void register(Observer obs) {
         kassaObserver.add(obs);
@@ -77,5 +93,10 @@ public class ArtikelModel implements Subject {
         for(Observer observer : kassaObserver){
             observer.update(artikelList);
         }
+    }
+
+    public void setCurrentLijst(ArrayList<Artikel> list) {
+        this.artikelList = list;
+        notifyObserver();
     }
 }
