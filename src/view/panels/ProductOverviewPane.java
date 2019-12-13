@@ -1,6 +1,6 @@
 package view.panels;
 
-import controller.KassaProductOverviewController;
+import controller.KassaController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -16,7 +16,7 @@ import model.Artikel;
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table ;
 
-	public ProductOverviewPane(KassaProductOverviewController kassaProductOverviewController){
+	public ProductOverviewPane(KassaController kassaController){
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -27,7 +27,7 @@ public class ProductOverviewPane extends GridPane {
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-		table.setItems(FXCollections.observableArrayList(kassaProductOverviewController.getArtikels())); //TODO: EXCEL INLEZEN ?
+		table.setItems(FXCollections.observableArrayList(kassaController.getArtikels())); //TODO: EXCEL INLEZEN ?
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");
 		colID.setMinWidth(100);

@@ -67,7 +67,6 @@ public class ArtikelModel implements Subject {
     }
 
     public void setOnHoldlist() {
-
         if (this.onHoldList.isEmpty()){
             this.onHoldList.addAll(this.artikelList);
             this.artikelList.clear();

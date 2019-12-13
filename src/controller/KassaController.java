@@ -5,20 +5,26 @@ import database.ArtikelDBContext;
 import model.Artikel;
 import model.ArtikelModel;
 import model.observer.Observer;
-import view.panels.KassaTab1OverviewPane;
+import view.panels.KassaOverviewPane;
+
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * @author Max Van De Velde, Marko Kosmajac
  */
 
-public class KassaProductOverviewController implements Observer {
+public class KassaController implements Observer {
 
     private ArtikelModel artikelModel; //Model
-    private KassaTab1OverviewPane kassaTab1OverviewPaneView; //View
+    private KassaOverviewPane kassaOverviewPaneView; //View
     private ArtikelDBContext artikelDBContext;
+    private Properties properties;
 
-    public KassaProductOverviewController(ArtikelModel artikelModel){
+
+    public KassaController(ArtikelModel artikelModel){
+        properties = new Properties();
         this.artikelModel = artikelModel;
         artikelModel.register(this);
 
@@ -61,8 +67,8 @@ public class KassaProductOverviewController implements Observer {
         return tot;
     }
 
-    public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
-        this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
+    public void setPane(KassaOverviewPane kassaOverviewPaneView){
+        this.kassaOverviewPaneView = kassaOverviewPaneView;
     }
 
 
@@ -93,9 +99,24 @@ public class KassaProductOverviewController implements Observer {
     }
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
-        kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
-        kassaTab1OverviewPaneView.setTotaalBedrag(getTotPrijs());
+        kassaOverviewPaneView.setArtikellijst(artikellijst);
+        kassaOverviewPaneView.setTotaalBedrag(getTotPrijs());
     }
 
 
+    public double getEindPrijs() {
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        double percent = Double.parseDouble(properties.getProperty("Kortingspercent"));
+        double totprijs = artikelModel.getTotPrijs();
+        double korting = (percent*totprijs)/100;
+        return  totprijs-korting;
+
+    }
 }

@@ -1,6 +1,6 @@
 package view.panels;
 
-import controller.KlantProductOverviewController;
+import controller.KlantController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,17 +22,17 @@ public class KlantOverviewPane extends GridPane {
     private TableView<Artikel> table;
     private double totaalBedrag;
     private ObservableList<Artikel> products;
-    private KlantProductOverviewController producten;
+    private KlantController producten;
 
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
 
 
-    public KlantOverviewPane(KlantProductOverviewController klantProductOverviewController) {
-        this.producten = klantProductOverviewController;
+    public KlantOverviewPane(KlantController klantController) {
+        this.producten = klantController;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
-        klantProductOverviewController.setPane(this);
+        klantController.setPane(this);
 
         totaalBedrag = 0;
         this.setPadding(new Insets(5, 5, 5, 5));

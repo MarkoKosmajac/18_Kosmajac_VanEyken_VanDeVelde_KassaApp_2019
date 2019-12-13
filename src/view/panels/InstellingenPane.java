@@ -26,7 +26,6 @@ public class InstellingenPane extends GridPane {
 
     public InstellingenPane(){
         instellingenController = new InstellingenController();
-
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -93,7 +92,8 @@ public class InstellingenPane extends GridPane {
 
                 if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
                     try{
-                        instellingenController.setPropertiesDB(getSelectedFile(), getSelectedKorting());
+
+                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag()));
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
                         kortingLabel.setText(string);
                     }catch(Exception e){
@@ -101,7 +101,8 @@ public class InstellingenPane extends GridPane {
                     }
                 }else{
                     try{
-                        instellingenController.setPropertiesDB(getSelectedFile(), getSelectedKorting());
+                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
+
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
                         kortingLabel.setText(string);
                     }catch(Exception e){

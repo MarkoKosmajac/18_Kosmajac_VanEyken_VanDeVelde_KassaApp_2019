@@ -1,6 +1,6 @@
 package view;
 
-import controller.KassaProductOverviewController;
+import controller.KassaController;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class KassaView {
 	private Stage stage = new Stage();		
 		
-	public KassaView(KassaProductOverviewController controller) throws IOException {
+	public KassaView(KassaController controller) throws IOException {
 		stage.setTitle("KASSA VIEW");
 		stage.setResizable(false);		
 		stage.setX(20);

@@ -1,14 +1,10 @@
 package application;
 
-import controller.KassaProductOverviewController;
-import controller.KlantProductOverviewController;
+import controller.KassaController;
+import controller.KlantController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.ArtikelModel;
-import model.kortingstrategie.DrempelKorting;
-import model.kortingstrategie.Groepkorting;
-import model.kortingstrategie.KortingStrategie;
-import model.kortingstrategie.KortingStrategieFactory;
 import view.KassaView;
 import view.KlantView;
 import java.io.IOException;
@@ -23,8 +19,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		ArtikelModel artikelModel = new ArtikelModel();
 
-		KassaProductOverviewController kassaController = new KassaProductOverviewController(artikelModel);
-		KlantProductOverviewController klantController = new KlantProductOverviewController(artikelModel);
+		KassaController kassaController = new KassaController(artikelModel);
+		KlantController klantController = new KlantController(artikelModel);
 
 		KassaView kassaView = new KassaView(kassaController);
 		KlantView klantView = new KlantView(klantController);

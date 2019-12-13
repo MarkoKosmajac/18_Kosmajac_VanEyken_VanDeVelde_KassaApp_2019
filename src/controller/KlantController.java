@@ -10,12 +10,12 @@ import java.util.ArrayList;
  * @author Max Van De Velde, Marko Kosmajac
  */
 
-public class KlantProductOverviewController implements Observer {
+public class KlantController implements Observer {
 
     private KlantOverviewPane klantOverviewPane;
     private ArtikelModel artikelModel;
 
-    public KlantProductOverviewController(ArtikelModel artikelModel) {
+    public KlantController(ArtikelModel artikelModel) {
         this.artikelModel = artikelModel;
         artikelModel.register(this);
     }

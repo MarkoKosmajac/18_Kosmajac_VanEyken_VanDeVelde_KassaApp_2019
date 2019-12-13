@@ -3,6 +3,7 @@ package controller;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
+import view.panels.InstellingenPane;
 
 import java.io.*;
 import java.util.Properties;
@@ -13,9 +14,12 @@ import java.util.Properties;
 
 public class InstellingenController {
 
-    Properties properties;
+
+    private Properties properties;
+    private InstellingenPane instellingenPane;
 
     public InstellingenController(){
+
         this.properties = new Properties();
         geefPathFile();
     }
@@ -43,6 +47,22 @@ public class InstellingenController {
             e.getMessage();
         }
     }
+    public void setPropertiesKeuzeKorting(String keuzeKorting, int percent, double bedrag){
+        FileOutputStream os = null;
+        try{
+            SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
+
+            os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
+            properties.setProperty("Kortingskeuze", kortingskeuze.toString());
+            properties.setProperty("Kortingspercent", String.valueOf(percent));
+            properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
+            properties.store(os,null);
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
 
     public File geefPathFile(){
         File bestand = null;
@@ -80,8 +100,9 @@ public class InstellingenController {
         return properties.getProperty("Kortingskeuze") + " " + properties.getProperty("Kortingspercent") ;
     }
 
-    /*public String getSelectedKorting(){
-        return view.getSelectedKorting();
-    }*/
+    public String getSelectedPercent(){
+        System.out.println(instellingenPane.getSelectedPercent());
+        return instellingenPane.getSelectedPercent();
+    }
 
 }

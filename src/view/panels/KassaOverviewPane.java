@@ -1,6 +1,6 @@
 package view.panels;
 
-import controller.KassaProductOverviewController;
+import controller.KassaController;
 import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -24,22 +24,28 @@ import java.util.Optional;
  * @author Marko Kosmajac, Max Van De Velde
  */
 
-public class KassaTab1OverviewPane extends GridPane {
+public class KassaOverviewPane extends GridPane {
     private TableView<Artikel> table ;
     private double totaalBedrag;
-    private KassaProductOverviewController producten;
+    private KassaController producten;
     private Artikel teVerwijderen;
+    private TextField artikelCodeTextField = new TextField();
 
     private Label label = new Label("Artikelcode:");
-    private TextField artikelCodeTextField = new TextField();
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
+    private Label korting = new Label();
+    private Label eindTotaal = new Label();
+
+
     private Button onHoldButton = new Button("On Hold WEG");
     private Button onHoldButton2 = new Button("On Hold TERUG");
+    private Button afsluitKnop = new Button("Afsluiting");
 
-    public KassaTab1OverviewPane(KassaProductOverviewController kassaProductOverviewController){
-        producten = kassaProductOverviewController;
-        kassaProductOverviewController.setPane(this);
+
+    public KassaOverviewPane(KassaController kassaController){
+        producten = kassaController;
+        kassaController.setPane(this);
         totaalBedrag = 0;
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -51,6 +57,9 @@ public class KassaTab1OverviewPane extends GridPane {
         this.add(labelTotaal,4,2);
         this.add(onHoldButton2,3,4);
         this.add(onHoldButton,3,3);
+        this.add(afsluitKnop, 3, 5);
+        this.add(korting, 4, 3);
+        this.add(eindTotaal, 5, 3);
 
         label.setFont(new Font("System", 18));
         tot.setFont(new Font("System", 16));
@@ -69,6 +78,7 @@ public class KassaTab1OverviewPane extends GridPane {
         artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
         onHoldButton.setOnAction(new OnHoldHandler());
         onHoldButton2.setOnAction(new OnHoldReturnHandler());
+        afsluitKnop.setOnAction(new AfsluitHandler());
 
         table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();
@@ -114,6 +124,7 @@ public class KassaTab1OverviewPane extends GridPane {
     public String getIngevuldeWaarde(){
         return artikelCodeTextField.getText();
     }
+
     // Open a popup that contains the error message passed
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -162,6 +173,13 @@ public class KassaTab1OverviewPane extends GridPane {
         @Override
         public void handle(ActionEvent event) {
             producten.returnToPreviousList();
+        }
+    }
+
+    public class AfsluitHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            eindTotaal.setText(String.valueOf(producten.getEindPrijs()));
         }
     }
 }
