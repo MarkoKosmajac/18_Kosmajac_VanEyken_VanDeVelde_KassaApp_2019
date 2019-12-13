@@ -2,6 +2,8 @@ package database;
 
 import java.io.File;
 import java.util.*;
+
+import controller.InstellingenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.*;
@@ -12,17 +14,21 @@ import model.*;
 
 public class ArtikelDBContext {
     private ArrayList<Artikel> data;
-    private File bestand; //Filepath
     private static ArtikelDBContext uniqueInstance;
+    private File bestand;
     private LoadSaveStrategy loadSaveStrategy;
     private LoadSaveStrategyFactory loadSaveStrategyFactory;
+    private InstellingenController instellingenController;
 
     private ArtikelDBContext() {
+        instellingenController = new InstellingenController();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.xls");
         data = new ArrayList<>();
-        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveExcel"); //todo: getProperties()
+        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties()); //todo: getProperties()
+        System.out.println(instellingenController.getProperties());
         data = (ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand);
+
     }
 
     public static synchronized ArtikelDBContext getInstance(){

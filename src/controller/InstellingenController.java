@@ -30,7 +30,7 @@ public class InstellingenController {
         }
     }
 
-    public LoadSaveStrategy geefLoadSaveStrategy() throws IOException {
+    public LoadSaveStrategy geefLoadSaveStrategy(){
         if(getProperties().equalsIgnoreCase("Excel")){
             return new ArtikelLoadSaveExcel();
         }
