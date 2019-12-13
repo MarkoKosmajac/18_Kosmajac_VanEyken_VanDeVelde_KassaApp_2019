@@ -34,7 +34,7 @@ public class KassaProductOverviewController implements Observer {
                 artikelModel.addToLijst(artikel);
                 artikelModel.veranderAantalPositief(artikel);
             }
-            artikelModel.notifyObserver();
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());

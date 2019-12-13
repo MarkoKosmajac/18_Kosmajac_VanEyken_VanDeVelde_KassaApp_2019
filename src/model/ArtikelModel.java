@@ -35,10 +35,8 @@ public class ArtikelModel implements Subject {
     }
     public void addToLijst(Artikel artikel) {
        artikelList.add(artikel);
-       System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
-        System.out.println(artikelList);
-        System.out.println(kassaKlantList);
        notifyObserver();
+
     }
 
     public void addToLijstKassa(Artikel artikel) {
@@ -47,7 +45,7 @@ public class ArtikelModel implements Subject {
             System.out.println("Kassaklantlist had artikel niet maar is nu toegevoegd");
             notifyObserver();
         }
-        System.out.println("Kassaklantlist had artikel dus aantal verhoogd");
+        System.out.println("Artikel is met aantal één verhoogd");
         veranderAantalPositief(artikel);
         notifyObserver();
 

@@ -24,23 +24,23 @@ public class InstellingenController {
         return properties.getProperty("loadSaveStrategy");
     }
 
-    public void setPropertiesDB(String keuzeFile, String keuzeKorting, String keuzeDatabase, int percent, int bedrag){
+    public void setPropertiesDB(String keuzeFile/*, String keuzeKorting*/, String keuzeDatabase/*, int percent, int bedrag*/){
         FileOutputStream os = null;
         try{
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
-            SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
+            //SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
             SoortDatabase databasekeuze = SoortDatabase.valueOf(keuzeDatabase);
             os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
             properties.clear();
             properties.setProperty("loadSaveStrategy", bestandkeuze.toString());
-            properties.setProperty("Kortingskeuze", kortingskeuze.toString());
+            //properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.setProperty("databasekeuze", databasekeuze.toString());
-            properties.setProperty("Kortingspercent", String.valueOf(percent));
-            properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
+            //properties.setProperty("Kortingspercent", String.valueOf(percent));
+            //properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
             properties.store(os,null);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
