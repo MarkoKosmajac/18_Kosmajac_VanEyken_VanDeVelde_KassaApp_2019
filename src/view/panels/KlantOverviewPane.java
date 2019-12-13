@@ -41,8 +41,8 @@ public class KlantOverviewPane extends GridPane {
 
         this.add(tot, 3, 2);
         this.add(labelTotaal,4,2);
-        tot.setFont(new Font("System", 12));
-        labelTotaal.setFont(new Font("System", 10));
+        tot.setFont(new Font("System", 16));
+        labelTotaal.setFont(new Font("System", 16));
 
         table = new TableView<Artikel>();
 
@@ -68,9 +68,13 @@ public class KlantOverviewPane extends GridPane {
         table.setItems(FXCollections.observableArrayList(artikelijst));
     }
 
-    private void totaalBedragUpdate() {
+    /*private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
         //https://stackoverflow.com/questions/51905888/updating-labels-from-other-classes-in-java-fx
+    }*/
+
+    public void setTotaalBedrag(double bedrag){
+        labelTotaal.setText(String.valueOf(bedrag));
     }
 
 

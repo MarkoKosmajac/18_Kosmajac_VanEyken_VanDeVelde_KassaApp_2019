@@ -74,5 +74,6 @@ public class KassaProductOverviewController implements Observer {
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
         kassaTab1OverviewPaneView.setArtikellijst(artikellijst);
+        kassaTab1OverviewPaneView.setTotaalBedrag(getTotPrijs());
     }
 }

@@ -6,18 +6,16 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class KlantView {
 	private Stage stage = new Stage();		
 		
-	public KlantView(KlantProductOverviewController klantProductOverviewController) throws IOException {
+	public KlantView(KlantProductOverviewController klantProductOverviewController){
 		stage.setTitle("KLANT VIEW");
 		stage.setResizable(false);		
 		stage.setX(775);
 		stage.setY(20);
 		Group root = new Group();
-		Scene scene = new Scene(root, 500, 500);
+		Scene scene = new Scene(root, 600, 500);
 		BorderPane borderPane = new KlantViewMainPane(klantProductOverviewController);
 		borderPane.prefHeightProperty().bind(scene.heightProperty());
 		borderPane.prefWidthProperty().bind(scene.widthProperty());

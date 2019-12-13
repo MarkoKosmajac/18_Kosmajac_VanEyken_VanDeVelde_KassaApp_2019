@@ -37,5 +37,6 @@ public class KlantProductOverviewController implements Observer {
     @Override
     public void update(ArrayList<Artikel> artikelijst) {
         klantOverviewPane.setArtikellijst(artikelijst);
+        klantOverviewPane.setTotaalBedrag(getTotPrijs());
     }
 }

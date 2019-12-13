@@ -58,7 +58,7 @@ public class ArtikelModel implements Subject {
             }
         }
         System.out.println("Totaalbedrag geupdate!");
-        notifyObserver();//TODO: vergeten!!!
+        //notifyObserver();//TODO: vergeten!!!
         return tot;
     }
 

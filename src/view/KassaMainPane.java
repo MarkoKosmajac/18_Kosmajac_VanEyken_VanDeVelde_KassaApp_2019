@@ -8,10 +8,8 @@ import view.panels.InstellingenPane;
 import view.panels.KassaTab1OverviewPane;
 import view.panels.ProductOverviewPane;
 
-import java.io.IOException;
-
 public class KassaMainPane extends BorderPane {
-	public KassaMainPane(KassaProductOverviewController controller) throws IOException {
+	public KassaMainPane(KassaProductOverviewController controller){
 
 	    TabPane tabPane = new TabPane();
         KassaTab1OverviewPane kassaTab1OverviewPane = new KassaTab1OverviewPane(controller);

@@ -48,8 +48,8 @@ public class KassaTab1OverviewPane extends GridPane {
         this.add(labelTotaal,4,2);
 
         label.setFont(new Font("System", 18));
-        tot.setFont(new Font("System", 18));
-        labelTotaal.setFont(new Font("System", 18));
+        tot.setFont(new Font("System", 16));
+        labelTotaal.setFont(new Font("System", 16));
 
         table = new TableView<Artikel>();
 
@@ -76,8 +76,12 @@ public class KassaTab1OverviewPane extends GridPane {
         this.getChildren().addAll(table);
     }
 
-    private void totaalBedragUpdate() {
+    /*private void totaalBedragUpdate() {
         labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
+    }*/
+
+    public void setTotaalBedrag(double bedrag){
+        labelTotaal.setText(String.valueOf(bedrag));
     }
 
     public Artikel getArtikelTeVerwijderen(){
@@ -97,7 +101,7 @@ public class KassaTab1OverviewPane extends GridPane {
                 Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
                 producten.addToLijst(artikel);
                 artikelCodeTextField.clear();
-                totaalBedragUpdate();
+                //totaalBedragUpdate();
             }
         }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
@@ -141,7 +145,7 @@ public class KassaTab1OverviewPane extends GridPane {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK){
             producten.verwijderVanLijst(getArtikelTeVerwijderen());
-            totaalBedragUpdate();
+            //totaalBedragUpdate();
         }else{
             System.out.println("Exiting alert");
         }
