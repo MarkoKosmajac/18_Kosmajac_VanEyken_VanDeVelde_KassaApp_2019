@@ -22,8 +22,7 @@ public class InstellingenPane extends GridPane {
     private Button verzendKnop = new Button("Verzenden");
     private TextField percentText = new TextField();
     private TextField bedragText = new TextField();
-    private Label kortingLabel = new Label("Gebruikte kortingsstrategie: ");
-    private Label kortingStrategieLabel = new Label();
+    private Label kortingLabel = new Label();
 
     public InstellingenPane(){
         instellingenController = new InstellingenController();
@@ -63,8 +62,6 @@ public class InstellingenPane extends GridPane {
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
         this.add(kortingLabel,0,12);
-        kortingStrategieLabel.setText(instellingenController.geefStrategie());
-        this.add(kortingStrategieLabel,1,12);
 
     }
 
@@ -92,9 +89,21 @@ public class InstellingenPane extends GridPane {
         @Override
         public void handle(ActionEvent event) {
             if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
+                try{
                 instellingenController.setPropertiesDB(getSelectedFile(), getSelectedKorting(),getSelectedDatabase(), Integer.parseInt(getSelectedPercent()), Integer.parseInt(getSelectedBedrag()));
+                String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
+                kortingLabel.setText(string);
+                }catch(Exception e){
+                    System.out.println("Niet genoeg parameters meegegeven.");
+                }
             }else{
+                try{
                 instellingenController.setPropertiesDB(getSelectedFile(), getSelectedKorting(),getSelectedDatabase(),Integer.parseInt(getSelectedPercent()),0);
+                String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
+                kortingLabel.setText(string);
+                }catch(Exception e){
+                    System.out.println("Niet genoeg parameters meegegeven.");
+                }
             }
         }
     }
