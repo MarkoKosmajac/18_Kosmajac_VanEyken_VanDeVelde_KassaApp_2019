@@ -27,28 +27,23 @@ public class ArtikelModel implements Subject {
         artikelList.get(index).setAantal(artikel.getAantal()+1);
         notifyObserver();
     }
-
     public void veranderAantalNegatief(Artikel artikel){
         int index = artikelList.indexOf(artikel);
         artikelList.get(index).setAantal(artikel.getAantal()-1);
         notifyObserver();
     }
-
-
     public void addToLijst(Artikel artikel) {
         artikelList.add(artikel);
         veranderAantalPositief(artikel);
         System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
         notifyObserver();
     }
-
     public void verwijderVanLijst(Artikel artikel){
         artikelList.remove(artikel);
         veranderAantalNegatief(artikel);
         System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
         notifyObserver();
     }
-
     public double getTotPrijs(){
         double tot = 0.0;
         for(Artikel a : artikelList){
@@ -61,12 +56,21 @@ public class ArtikelModel implements Subject {
         return tot;
     }
 
-    public void setOnHoldlist(ArrayList<Artikel> artikels) {
-        onHoldList = artikels;
-        artikels.clear();
+    public void setOnHoldlist() {
+
+        if (this.onHoldList.isEmpty()){
+            this.onHoldList.addAll(this.artikelList);
+            this.artikelList.clear();
+            notifyObserver();
+        } else {
+            System.out.println("Er mag maar 1 list tegelijk on hold gezet worden");
+        }
+    }
+
+    public void returnToPreviousList(){
+        this.artikelList.addAll(this.onHoldList);
+        this.onHoldList.clear();
         notifyObserver();
-        System.out.println("ON HOLD LIST:");
-        System.out.println(artikels);
     }
 
     public ArrayList<Artikel> getOnHoldList(){

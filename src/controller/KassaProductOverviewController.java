@@ -79,12 +79,12 @@ public class KassaProductOverviewController implements Observer {
         return res;
     }
 
-    public void setOnHoldList(ArrayList<Artikel> artikels) {
-        try {
-            artikelModel.setOnHoldlist(artikels);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+    public void setOnHoldList() {
+        artikelModel.setOnHoldlist();
+    }
+
+    public void returnToPreviousList(){
+        artikelModel.returnToPreviousList();
     }
 
     @Override

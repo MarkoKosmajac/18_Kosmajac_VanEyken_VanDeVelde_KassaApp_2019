@@ -156,12 +156,7 @@ public class KassaTab1OverviewPane extends GridPane {
         @Override
         public void handle(ActionEvent event) {
             try{
-                ArrayList<Artikel> artikels = new ArrayList<>();
-                artikels = producten.getAlleCurrentArtikelen();
-                producten.setOnHoldList(artikels);
-                //TODO: to improve...
-                ArrayList<Artikel> newList = new ArrayList<>();
-                table.getItems().setAll(newList);
+                producten.setOnHoldList();
             }catch( DBException ex){
                 displayErrorMessage(ex.getMessage());
             }
@@ -171,9 +166,7 @@ public class KassaTab1OverviewPane extends GridPane {
     public class OnHoldReturnHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            ArrayList<Artikel> artikels = new ArrayList<>();
-            artikels = producten.getOnHoldList();
-            producten.setCurrentList(artikels);
+            producten.returnToPreviousList();
         }
     }
 }
