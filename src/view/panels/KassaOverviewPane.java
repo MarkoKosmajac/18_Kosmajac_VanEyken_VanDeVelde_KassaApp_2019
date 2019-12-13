@@ -63,7 +63,9 @@ public class KassaOverviewPane extends GridPane {
         this.add(eindTotaalLabel, 3,4);
         //Bedragen
         this.add(korting, 4, 3);
+        korting.setVisible(false);
         this.add(eindTotaal, 4, 4);
+        eindTotaal.setVisible(false);
         //Buttons
         this.add(onHoldButton,0,2);
         this.add(onHoldButton2,0,3);
@@ -196,7 +198,9 @@ public class KassaOverviewPane extends GridPane {
     public class AfsluitHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            //eindTotaal.setText(String.valueOf(producten.getEindPrijs()));
+            eindTotaal.setVisible(true);
+            korting.setVisible(true);
+
         }
     }
 }
