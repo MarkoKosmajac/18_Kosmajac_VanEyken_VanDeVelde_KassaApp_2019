@@ -42,10 +42,8 @@ public class ArtikelModel implements Subject {
     public void addToLijstKassa(Artikel artikel) {
         if (!kassaKlantList.contains(artikel)){
             kassaKlantList.add(artikel);
-            System.out.println("Kassaklantlist had artikel niet maar is nu toegevoegd");
             notifyObserver();
         }
-        System.out.println("Artikel is met aantal één verhoogd");
         veranderAantalPositief(artikel);
         notifyObserver();
 
@@ -53,7 +51,6 @@ public class ArtikelModel implements Subject {
     public void verwijderVanLijst(Artikel artikel){
         artikelList.remove(artikel);
         veranderAantalNegatief(artikel);
-        System.out.println(artikel.getOmschrijving() + " verwijderd uit lijst.");
         notifyObserver();
     }
     public double getTotPrijs(){
