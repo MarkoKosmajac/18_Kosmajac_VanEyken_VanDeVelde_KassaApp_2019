@@ -14,29 +14,43 @@ import java.util.HashSet;
 public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
-    private ArrayList<Artikel> artikelList,onHoldList;
+    private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
 
     public ArtikelModel() {
         kassaObserver = new ArrayList<>();
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
+        kassaKlantList = new ArrayList<>();
     }
 
     public void veranderAantalPositief(Artikel artikel){
-        int index = artikelList.indexOf(artikel);
-        artikelList.get(index).setAantal(artikel.getAantal()+1);
+        int index = kassaKlantList.indexOf(artikel);
+        kassaKlantList.get(index).setAantal(artikel.getAantal()+1);
         notifyObserver();
     }
     public void veranderAantalNegatief(Artikel artikel){
-        int index = artikelList.indexOf(artikel);
-        artikelList.get(index).setAantal(artikel.getAantal()-1);
+        int index = kassaKlantList.indexOf(artikel);
+        kassaKlantList.get(index).setAantal(artikel.getAantal()-1);
         notifyObserver();
     }
     public void addToLijst(Artikel artikel) {
-        artikelList.add(artikel);
+       artikelList.add(artikel);
+       System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
+        System.out.println(artikelList);
+        System.out.println(kassaKlantList);
+       notifyObserver();
+    }
+
+    public void addToLijstKassa(Artikel artikel) {
+        if (!kassaKlantList.contains(artikel)){
+            kassaKlantList.add(artikel);
+            System.out.println("Kassaklantlist had artikel niet maar is nu toegevoegd");
+            notifyObserver();
+        }
+        System.out.println("Kassaklantlist had artikel dus aantal verhoogd");
         veranderAantalPositief(artikel);
-        System.out.println(artikel.getOmschrijving() + " toegevoegd aan lijst.");
         notifyObserver();
+
     }
     public void verwijderVanLijst(Artikel artikel){
         artikelList.remove(artikel);
@@ -51,8 +65,6 @@ public class ArtikelModel implements Subject {
                 tot += a.getPrijs();
             }
         }
-        System.out.println("Totaalbedrag geupdate!");
-        //notifyObserver();//TODO: vergeten!!!
         return tot;
     }
 
@@ -71,11 +83,6 @@ public class ArtikelModel implements Subject {
         this.artikelList.addAll(this.onHoldList);
         this.onHoldList.clear();
         notifyObserver();
-    }
-
-    public ArrayList<Artikel> getOnHoldList(){
-        notifyObserver();
-        return this.onHoldList;
     }
 
     public ArrayList<Artikel> getAlleCurrentArtikelen(){
@@ -99,8 +106,15 @@ public class ArtikelModel implements Subject {
         }
     }
 
-    public void setCurrentLijst(ArrayList<Artikel> list) {
-        this.artikelList = list;
-        notifyObserver();
+    public Collection<Observer> getKassaObserver() {
+        return kassaObserver;
+    }
+
+    public ArrayList<Artikel> getArtikelList() {
+        return artikelList;
+    }
+
+    public ArrayList<Artikel> getKassaKlantList() {
+        return kassaKlantList;
     }
 }

@@ -114,7 +114,6 @@ public class KassaTab1OverviewPane extends GridPane {
     public String getIngevuldeWaarde(){
         return artikelCodeTextField.getText();
     }
-
     // Open a popup that contains the error message passed
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -123,7 +122,6 @@ public class KassaTab1OverviewPane extends GridPane {
         alert.setContentText(errorMessage);
         alert.show();
     }
-
     public class VerwijderHandler implements EventHandler<MouseEvent> {
 
         @Override
@@ -137,7 +135,6 @@ public class KassaTab1OverviewPane extends GridPane {
             }
         }
     }
-
     public void displayVerwijderBevestiging(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Verwijderbevestiging");
@@ -151,7 +148,6 @@ public class KassaTab1OverviewPane extends GridPane {
             System.out.println("Exiting alert");
         }
     }
-
     public class OnHoldHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -162,7 +158,6 @@ public class KassaTab1OverviewPane extends GridPane {
             }
         }
     }
-
     public class OnHoldReturnHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {

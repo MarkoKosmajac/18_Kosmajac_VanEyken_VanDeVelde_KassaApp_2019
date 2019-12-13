@@ -27,12 +27,21 @@ public class KassaProductOverviewController implements Observer {
 
     public void addToLijst(Artikel artikel) {
         try {
-            artikelModel.addToLijst(artikel);
+            if (!artikelModel.getKassaKlantList().contains(artikel)){
+                artikelModel.addToLijst(artikel);
+                artikelModel.addToLijstKassa(artikel);
+            } else {
+                artikelModel.addToLijst(artikel);
+                artikelModel.veranderAantalPositief(artikel);
+            }
+            artikelModel.notifyObserver();
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
     }
+
 
     public void verwijderVanLijst(Artikel artikel){
         try {
@@ -55,6 +64,10 @@ public class KassaProductOverviewController implements Observer {
     public void setPane(KassaTab1OverviewPane kassaTab1OverviewPaneView){
         this.kassaTab1OverviewPaneView = kassaTab1OverviewPaneView;
     }
+
+
+
+
 
     public ArrayList<Artikel> getArtikels(){
         return artikelDBContext.getArtikels();
@@ -84,7 +97,5 @@ public class KassaProductOverviewController implements Observer {
         kassaTab1OverviewPaneView.setTotaalBedrag(getTotPrijs());
     }
 
-    public void setCurrentList(ArrayList<Artikel> list) {
-        artikelModel.setCurrentLijst(list);
-    }
+
 }

@@ -29,7 +29,7 @@ public class KlantOverviewPane extends GridPane {
 
 
     public KlantOverviewPane(KlantProductOverviewController klantProductOverviewController) {
-        producten = klantProductOverviewController;
+        this.producten = klantProductOverviewController;
         products = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         klantProductOverviewController.setPane(this);
@@ -67,11 +67,6 @@ public class KlantOverviewPane extends GridPane {
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
         table.setItems(FXCollections.observableArrayList(artikelijst));
     }
-
-    /*private void totaalBedragUpdate() {
-        labelTotaal.setText(String.valueOf(producten.getTotPrijs()));
-        //https://stackoverflow.com/questions/51905888/updating-labels-from-other-classes-in-java-fx
-    }*/
 
     public void setTotaalBedrag(double bedrag){
         labelTotaal.setText(String.valueOf(bedrag));
