@@ -16,58 +16,9 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
 
     }
 
-
-   /* public void save(ArrayList<Object> artikelArrayList, String bestand){
-        ArrayList<Artikel> artikelen = new ArrayList<>();
-
-        for(Object o : artikelArrayList){
-            if(o instanceof Artikel){
-                artikelen.add((Artikel)o);
-            }
-        }
-
-        File personenFile = new File(bestand);
-        try{
-            PrintWriter writer = new PrintWriter(personenFile);
-            for(Artikel a : artikelen){
-                writer.printf(a.toString());
-            }
-            writer.close();
-        } catch (FileNotFoundException e1) {
-            throw new DBException("Bestand niet gevonden" + e1);
-        }
-
-    }
-
-    abstract FileWriter getFileWriter() throws IOException;
-
-    public final void save(ArrayList<Object> objecten){
-        PrintWriter print_line = null;
-        try {
-            FileWriter write = getFileWriter();
-            print_line = new PrintWriter(write);
-        } catch (IOException x) {
-            System.out.println(x.getMessage());
-        }
-        for (Object object: objecten) {
-            print_line.printf(object.toString());
-        }
-        print_line.close();
-    }
-
-
-    */
-
-
     @Override
     Scanner getBestand() throws FileNotFoundException {
-        String bestandPath;
-        //aa
-        if (System.getProperty("os.name").equals("Mac OS X")){
-            bestandPath = "src/bestanden/artikel.txt";
-        } else {
-            bestandPath = "src\\bestanden\\artikel.txt";
-        }
+        String bestandPath = "src" + File.separator + "bestanden" + File.separator + "artikel.txt";
         return new Scanner(new File(bestandPath));
     }
 

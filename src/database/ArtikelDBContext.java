@@ -21,7 +21,7 @@ public class ArtikelDBContext {
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.xls");
         data = new ArrayList<>();
-        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveTekst"); //todo: getProperties()
+        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy("ArtikelLoadSaveExcel"); //todo: getProperties()
         data = (ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand);
     }
 
