@@ -19,24 +19,7 @@ public class InstellingenController {
 
     public InstellingenController(){
         this.properties = new Properties();
-        laadPropertiesIn(); //TODO: doet niks ? Hoe inlezen ?
-    }
-
-    private void laadPropertiesIn() {
-        try {
-            InputStream in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public LoadSaveStrategy geefLoadSaveStrategy(){
-        if(getProperties().equalsIgnoreCase("Excel")){
-            return new ArtikelLoadSaveExcel();
-        }
-        else{
-            return new ArtikelLoadSaveTekst();
-        }
+        geefPathFile(); //TODO: doet niks ? Hoe inlezen ?
     }
 
     public String getProperties(){
@@ -61,6 +44,25 @@ public class InstellingenController {
         }
     }
 
-
+    public File geefPathFile(){
+        File bestand = null;
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(properties.getProperty("loadSaveStrategy").equalsIgnoreCase("EXCELBESTAND")){
+           bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.xls");
+        }else if(properties.getProperty("loadSaveStrategy").equalsIgnoreCase("TEKSTBESTAND")){
+            bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.txt");
+        }
+        return bestand;
+    }
 
 }

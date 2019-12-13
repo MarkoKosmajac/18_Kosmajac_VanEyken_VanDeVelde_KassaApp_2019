@@ -10,10 +10,10 @@ import database.ArtikelLoadSaveTekst;
 public class LoadSaveStrategyFactory {
 
     public LoadSaveStrategy makeLoadSaveStrategy(String loadSaveStrategy){
-        if(loadSaveStrategy.equalsIgnoreCase("ArtikelLoadSaveTekst")){
+        if(loadSaveStrategy.equalsIgnoreCase("TEKSTBESTAND")){
             return new ArtikelLoadSaveTekst();
 
-        } else if(loadSaveStrategy.equalsIgnoreCase("ArtikelLoadSaveExcel")){
+        } else if(loadSaveStrategy.equalsIgnoreCase("EXCELBESTAND")){
             return new ArtikelLoadSaveExcel();
 
         } else return null;

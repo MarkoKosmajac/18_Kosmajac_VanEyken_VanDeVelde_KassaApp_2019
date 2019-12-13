@@ -23,7 +23,8 @@ public class ArtikelDBContext {
     private ArtikelDBContext() {
         instellingenController = new InstellingenController();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
-        bestand = new File("src" + File.separator + "bestanden" + File.separator + "artikel.xls");
+        bestand = instellingenController.geefPathFile();
+        System.out.println(bestand);
         data = new ArrayList<>();
         loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties()); //todo: getProperties()
         System.out.println(instellingenController.getProperties());
