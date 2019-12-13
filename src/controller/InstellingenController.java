@@ -6,6 +6,8 @@ import model.LoadSaveStrategy;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.kortingstrategie.SoortKorting;
+import view.panels.InstellingenPane;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -16,8 +18,10 @@ import java.util.Properties;
 public class InstellingenController {
 
     Properties properties;
+    //private InstellingenPane view;
 
     public InstellingenController(){
+        //view = new InstellingenPane();
         this.properties = new Properties();
         geefPathFile(); //TODO: doet niks ? Hoe inlezen ?
     }
@@ -64,5 +68,9 @@ public class InstellingenController {
         }
         return bestand;
     }
+
+    /*public String getSelectedKorting(){
+        return view.getSelectedKorting();
+    }*/
 
 }

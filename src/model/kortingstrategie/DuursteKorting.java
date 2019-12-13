@@ -6,8 +6,22 @@ package model.kortingstrategie;
 
 public class DuursteKorting implements KortingStrategie {
 
+    private int procent;
+
+    public DuursteKorting() {
+        this.procent = 0;
+    }
+
+    public int getProcent() {
+        return procent;
+    }
+
+    public void setProcent(int procent) {
+        this.procent = procent;
+    }
+
     @Override
     public String geefKorting() {
-        return "25% korting op duurste artikel uit winkelkar.";
+        return getProcent() + "% korting op duurste artikel uit winkelkar.";
     }
 }

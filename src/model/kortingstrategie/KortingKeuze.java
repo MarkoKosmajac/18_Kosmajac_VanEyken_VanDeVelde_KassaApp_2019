@@ -4,6 +4,7 @@ package model.kortingstrategie;
  * @author Marko Kosmajac
  */
 
+//RANDOM JAVA KLASSE, waar je dus een strategie en factory meegeeft
 public class KortingKeuze {
     KortingStrategie kortingStrategie;
 
