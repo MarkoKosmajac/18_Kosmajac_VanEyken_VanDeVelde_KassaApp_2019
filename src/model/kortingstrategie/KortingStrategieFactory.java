@@ -7,11 +7,11 @@ package model.kortingstrategie;
 public class KortingStrategieFactory {
 
     public KortingStrategie makeKortingStrategie(String kortingstrategie){
-        if(kortingstrategie.equalsIgnoreCase("Drempelkorting")){
+        if(kortingstrategie.equalsIgnoreCase("DREMPELKORTING")){
             return new DrempelKorting();
-        } else if(kortingstrategie.equalsIgnoreCase("Duurstekorting")){
+        } else if(kortingstrategie.equalsIgnoreCase("DUURSTEKORTING")){
             return new DuursteKorting();
-        } else if(kortingstrategie.equalsIgnoreCase("Groepkorting")) {
+        } else if(kortingstrategie.equalsIgnoreCase("GROEPKORTING")) {
             return new Groepkorting();
         } else return null;
     }

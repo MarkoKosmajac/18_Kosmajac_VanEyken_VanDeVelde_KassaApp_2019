@@ -5,6 +5,10 @@ import controller.KlantProductOverviewController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.ArtikelModel;
+import model.kortingstrategie.DrempelKorting;
+import model.kortingstrategie.Groepkorting;
+import model.kortingstrategie.KortingStrategie;
+import model.kortingstrategie.KortingStrategieFactory;
 import view.KassaView;
 import view.KlantView;
 import java.io.IOException;
@@ -28,20 +32,16 @@ public class Main extends Application {
 
 		//TODO: gebruik MVC om dit te veranderen en toe te voegen. MVC: Meerdere views, controllers, models toevoegen!!!
 
-		System.out.println(System.getProperty("os.name"));
+		//System.out.println(System.getProperty("os.name"));
 
 		/*//TESTEN VAN DE KORTINGSTRATEGIE
-		KortingStrategie groepskorting = new Groepkorting();
-		KortingKeuze keuze = new KortingKeuze(groepskorting);
-		System.out.println("KEUZE:");
-		System.out.println(keuze.geefKorting());
+		KortingStrategieFactory factory = new KortingStrategieFactory();
+		KortingStrategie strategie = factory.makeKortingStrategie("GROEPKORTING");
+		strategie.setProcent(99);
+		System.out.println(strategie.geefKorting());
+		KortingStrategie strategie1 = factory.makeKortingStrategie("DREMPELKORTING");
+		strategie.setBedrag() werkt niet...*/
 
-		KortingKeuze keuze1 = new KortingKeuze(new DrempelKorting());
-		System.out.println("KEUZE 1:");
-		System.out.println(keuze1.geefKorting());
-		System.out.println("KEUZE CHANGED TO:");
-		keuze.setKortingStrategie(new DuursteKorting());
-		System.out.println(keuze.geefKorting());*/
 
 	}
 

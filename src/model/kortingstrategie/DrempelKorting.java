@@ -14,10 +14,12 @@ public class DrempelKorting implements KortingStrategie {
         this.bedrag = 0;
     }
 
+    @Override
     public int getProcent() {
         return procent;
     }
 
+    @Override
     public void setProcent(int procent) {
         this.procent = procent;
     }

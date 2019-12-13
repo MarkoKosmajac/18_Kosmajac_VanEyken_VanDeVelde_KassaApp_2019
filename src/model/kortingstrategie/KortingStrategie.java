@@ -7,5 +7,7 @@ package model.kortingstrategie;
 public interface KortingStrategie {
 
     String geefKorting();
+    int getProcent();
+    void setProcent(int procent);
 
 }

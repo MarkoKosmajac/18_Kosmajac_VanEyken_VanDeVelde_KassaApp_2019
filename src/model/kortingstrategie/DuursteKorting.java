@@ -12,10 +12,12 @@ public class DuursteKorting implements KortingStrategie {
         this.procent = 0;
     }
 
+    @Override
     public int getProcent() {
         return procent;
     }
 
+    @Override
     public void setProcent(int procent) {
         this.procent = procent;
     }
