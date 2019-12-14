@@ -74,6 +74,7 @@ public class KlantOverviewPane extends GridPane {
 
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
         table.setItems(FXCollections.observableArrayList(artikelijst));
+        table.refresh();
     }
 
     public void setTotaalBedrag(double bedrag){
