@@ -75,9 +75,15 @@ public class ArtikelModel implements Subject {
     }
 
     public void returnToPreviousList(){
-        this.artikelList.addAll(this.onHoldList);
-        this.onHoldList.clear();
-        notifyObserver();
+        if (!this.onHoldList.isEmpty()){
+            System.out.println("Moet error message komen dat onHold afgerekent moet worden");
+        } else {
+            this.artikelList.addAll(this.onHoldList);
+            this.onHoldList.clear();
+            notifyObserver();
+        }
+
+
     }
 
     public ArrayList<Artikel> getAlleCurrentArtikelen(){
