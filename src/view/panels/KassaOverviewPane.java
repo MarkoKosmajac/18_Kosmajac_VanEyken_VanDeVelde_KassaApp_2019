@@ -60,7 +60,9 @@ public class KassaOverviewPane extends GridPane {
         this.add(totaal,3,2);
         this.add(labelTotaal,4,2);
         this.add(kortinglabel, 3, 3);
+        kortinglabel.setVisible(false);
         this.add(eindTotaalLabel, 3,4);
+        eindTotaalLabel.setVisible(false);
         //Bedragen
         this.add(korting, 4, 3);
         korting.setVisible(false);
@@ -200,7 +202,8 @@ public class KassaOverviewPane extends GridPane {
         public void handle(ActionEvent event) {
             eindTotaal.setVisible(true);
             korting.setVisible(true);
-
+            kortinglabel.setVisible(true);
+            eindTotaalLabel.setVisible(true);
         }
     }
 }

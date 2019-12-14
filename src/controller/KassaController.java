@@ -2,6 +2,7 @@ package controller;
 
 import database.DBException;
 import database.ArtikelDBContext;
+import javafx.scene.control.Label;
 import model.Artikel;
 import model.ArtikelModel;
 import model.observer.Observer;
@@ -71,10 +72,6 @@ public class KassaController implements Observer {
         this.kassaOverviewPaneView = kassaOverviewPaneView;
     }
 
-
-
-
-
     public ArrayList<Artikel> getArtikels(){
         return artikelDBContext.getArtikels();
     }
@@ -125,4 +122,5 @@ public class KassaController implements Observer {
         return  totprijs-korting;
 
     }
+
 }

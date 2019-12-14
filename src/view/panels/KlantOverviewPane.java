@@ -1,5 +1,6 @@
 package view.panels;
 
+import controller.KassaController;
 import controller.KlantController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,6 +30,8 @@ public class KlantOverviewPane extends GridPane {
     private Label tot = new Label("TOTAALBEDRAG:");
     private Label kortingLabel = new Label(String.valueOf(korting));
     private Label eindTotaalLabel = new Label(String.valueOf(eindTotaal));
+    private Label eindTotaalLabelTekst = new Label("EINDTOTAAL:");
+    private Label kortinglabelTekst = new Label("KORTING:");
 
 
 
@@ -49,6 +52,8 @@ public class KlantOverviewPane extends GridPane {
         this.add(labelTotaal,4,2);
         this.add(kortingLabel, 4, 3);
         this.add(eindTotaalLabel, 4, 4);
+        this.add(kortinglabelTekst,3,3);
+        this.add(eindTotaalLabelTekst,3,4);
         tot.setFont(new Font("System", 16));
         labelTotaal.setFont(new Font("System", 16));
 
@@ -69,6 +74,10 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(colOmschrijving, colAantal, colPrijs);
         this.getChildren().addAll(table);
 
+        kortingLabel.setVisible(false);
+        kortinglabelTekst.setVisible(false);
+        eindTotaalLabel.setVisible(false);
+        eindTotaalLabelTekst.setVisible(false);
 
     }
 
@@ -89,4 +98,5 @@ public class KlantOverviewPane extends GridPane {
     public void setEindTotaal(double eindTotaal){
         eindTotaalLabel.setText(String.valueOf(eindTotaal));
     }
+
 }
