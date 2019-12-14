@@ -75,6 +75,7 @@ public class KassaController implements Observer {
     public ArrayList<Artikel> getArtikels(){
         return artikelDBContext.getArtikels();
     }
+
     public ArrayList<Artikel> getAlleCurrentArtikelen(){
         return artikelModel.getAlleCurrentArtikelen();
     }
@@ -123,7 +124,16 @@ public class KassaController implements Observer {
 
     }
 
+    //TODO: IN ANDERE CONTROLLER ?
     public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
         return artikelModel.log(totaalBedrag,kortingBedrag,eindTotaal);
+    }
+
+    public void nieuwVenster() {
+        artikelModel.nieuwVenster();
+    }
+
+    public void werkStockBij() {
+        artikelModel.werkStockBij();
     }
 }

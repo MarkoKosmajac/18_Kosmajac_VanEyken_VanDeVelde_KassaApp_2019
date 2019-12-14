@@ -44,7 +44,7 @@ public class KassaOverviewPane extends GridPane {
     private Button onHoldButton2 = new Button("On Hold TERUG");
     private Button afsluitKnop = new Button("Afsluiting");
     private Button betaald = new Button("BETAALD");
-
+    private Button annuleer = new Button("ANNULEER");
 
     public KassaOverviewPane(KassaController kassaController){
         producten = kassaController;
@@ -74,6 +74,7 @@ public class KassaOverviewPane extends GridPane {
         this.add(onHoldButton2,0,3);
         this.add(afsluitKnop, 0, 4);
         this.add(betaald,0,5);
+        this.add(annuleer,1,5);
 
         label.setFont(new Font("System", 18));
         totaal.setFont(new Font("System", 16));
@@ -94,6 +95,7 @@ public class KassaOverviewPane extends GridPane {
         onHoldButton2.setOnAction(new OnHoldReturnHandler());
         afsluitKnop.setOnAction(new AfsluitHandler());
         betaald.setOnAction(new BetaaldHandler());
+        annuleer.setOnAction(new AnnuleerHandler());
 
         table.setRowFactory( tv -> {
             TableRow<Artikel> row = new TableRow<>();
@@ -213,26 +215,24 @@ public class KassaOverviewPane extends GridPane {
     private class BetaaldHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            //RESET KASSAVENSTER
-            producten.nieuwVenster(); //todo: methodes nog aanmaken
-            //WERK STOCK BIJ IN DE DB (current arraylist)
-            producten.werkStockBij(); //todo: methodes nog aanmaken
+            System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
+            producten.werkStockBij();
+
             //WERK STOCK BIJ IN TAB2 OVERVIEW
             //TODO: Hoe?
-            //NOG NIET IN DE TEXTFILE SAVEN!!!!
-            //Verkoop gelogd in tab4 - loglijn met inhoud: datum en tijdstip van betaling - totbedrag - korting - tebet bedrag.
-            System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText())); //todo: werkt
 
-            //Logs moeten NIET worden gesaved, er wordt daarna niets meer mee gedaan, puur daarin printen dus.
-
-            //Kassier kan artikels verwijderen en dan nog steeds op de betaald knop duwen. (bedragen in beide vensters worden dan aangepast)
-
-            //Annuleer knop (reset beide vensters) + voorraad blijft overal hetzelfde!
-
-            //DAN WORDT DE verkoop wordt NIET gelogd!
+            producten.nieuwVenster();//todo: klantpane wordt niet gerefresht
 
             //Maak voor de Verkoop klasse (de klasse voor een actuele verkoop van een klant ) een UML toestandsdiagram (state diagram) met alle mogelijke toestanden van een verkoop en alle mogelijke events (van story 3 tot en met story 9).
             //Pas het State design pattern toe om dit diagram te implementeren.
+        }
+    }
+
+    public class AnnuleerHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            //ANNULEER IS PRESSED, VERKOOP WORDT NIET GELOGD!
+            producten.nieuwVenster();
         }
     }
 }

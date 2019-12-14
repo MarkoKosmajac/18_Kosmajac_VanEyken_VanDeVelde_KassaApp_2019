@@ -140,6 +140,23 @@ public class ArtikelModel implements Subject {
         res += "\n";
         res+="-----------------------------------------------------------------------------------------------------";
 
+        notifyObserver();//TODO: MOET DIT HIER OOK ?
         return res;
     }
+
+    public void nieuwVenster() {
+        artikelList.clear();
+        kassaKlantList.clear();
+        notifyObserver();//TODO: MOET DIT HIER OOK ?
+    }
+
+    public void werkStockBij() {//todo: werkt, nu nog save() methode oproepen somehow? of via pane...
+        for(Artikel artikel : this.artikelList){
+            int nieuweStok = artikel.getStock()-1;
+            artikel.setStock(nieuweStok);
+        }
+        notifyObserver();//TODO: MOET DIT HIER OOK ?
+    }
+
+
 }
