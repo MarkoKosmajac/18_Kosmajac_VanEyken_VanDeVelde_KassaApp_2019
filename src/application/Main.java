@@ -36,7 +36,7 @@ public class Main extends Application {
 		strategie.setProcent(99);
 		System.out.println(strategie.geefKorting());
 		KortingStrategie strategie1 = factory.makeKortingStrategie("DREMPELKORTING");
-		strategie.setBedrag() werkt niet...*/
+		strategie.setBedrag() werkt niet...*/ 
 
 
 	}

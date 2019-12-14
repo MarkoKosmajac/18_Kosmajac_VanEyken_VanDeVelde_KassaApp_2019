@@ -34,6 +34,9 @@ public class ArtikelModel implements Subject {
     public void veranderAantalNegatief(Artikel artikel){
         int index = kassaKlantList.indexOf(artikel);
         kassaKlantList.get(index).setAantal(artikel.getAantal()-1);
+        if (kassaKlantList.get(index).getAantal() == 0){
+            kassaKlantList.remove(index);
+        }
         notifyObserver();
     }
     public void addToLijst(Artikel artikel) {
