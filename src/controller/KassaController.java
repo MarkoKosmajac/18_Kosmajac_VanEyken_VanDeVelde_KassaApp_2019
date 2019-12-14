@@ -123,4 +123,7 @@ public class KassaController implements Observer {
 
     }
 
+    public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
+        return artikelModel.log(totaalBedrag,kortingBedrag,eindTotaal);
+    }
 }

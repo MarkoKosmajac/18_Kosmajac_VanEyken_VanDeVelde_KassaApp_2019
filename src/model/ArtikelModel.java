@@ -2,6 +2,9 @@ package model;
 
 import model.observer.Observer;
 import model.observer.Subject;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -116,5 +119,27 @@ public class ArtikelModel implements Subject {
 
     public ArrayList<Artikel> getKassaKlantList() {
         return kassaKlantList;
+    }
+
+    public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
+        String res = "";
+        res+="-----------------------------------------------------------------------------------------------------";
+        res += "\nDATUM BETALING: ";
+
+        //GET DATE + TIME
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        res+= dtf.format(now);
+        res += "\nGEKOCHTE GOEDEREN: \n";
+
+        //GET CURRENT LIST PRODUCTEN TOSTRING
+        for(Artikel artikel : this.artikelList){
+            res += artikel.cleanOutput();
+        }
+        res +="Totaalbedrag: " + totaalBedrag + "euro | Verkregen Korting: " + kortingBedrag + "euro | Te betalen Eindtotaal: " + eindTotaal +"euro";
+        res += "\n";
+        res+="-----------------------------------------------------------------------------------------------------";
+
+        return res;
     }
 }

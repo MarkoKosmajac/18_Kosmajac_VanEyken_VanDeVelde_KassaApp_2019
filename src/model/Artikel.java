@@ -83,5 +83,11 @@ public class Artikel implements Comparable<Artikel>{
     public int compareTo(Artikel o) {
         return this.getOmschrijving().compareTo(o.getOmschrijving());
     }
+
+    public String cleanOutput() {
+        String res = "";
+        res += "ArtikelID: " + this.artikelCode + " | " + "Omschrijving: " + this.omschrijving + " | " + "Groep: " + this.artikelGroep + " | " + " Prijs: " + this.prijs + " | " + "Stock: " + this.stock + "\n";
+        return res;
+    }
 }
 
