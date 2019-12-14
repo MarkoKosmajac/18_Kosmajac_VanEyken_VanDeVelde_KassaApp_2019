@@ -17,7 +17,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private HashMap<String, Artikel> artikelen;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
-        this.loadSaveStrategy = loadSaveStrategy; //TODO: ALS JE DIT VERANDERT NAAR EXCEL WERKT T
+        this.loadSaveStrategy = loadSaveStrategy;
         artikelen = new HashMap<String, Artikel>();
     }
 

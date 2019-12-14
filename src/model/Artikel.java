@@ -6,7 +6,6 @@ package model;
 
 public class Artikel implements Comparable<Artikel>{
 
-    //TODO: vb: 1,artikel1,gr1,12.5,10
     private String artikelCode, omschrijving, artikelGroep;
     private double prijs;
     private int stock; //10 = stock

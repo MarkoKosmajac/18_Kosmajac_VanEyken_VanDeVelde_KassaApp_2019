@@ -6,12 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class KassaView {
 	private Stage stage = new Stage();		
 		
-	public KassaView(KassaController controller) throws IOException {
+	public KassaView(KassaController controller){
 		stage.setTitle("KASSA VIEW");
 		stage.setResizable(false);		
 		stage.setX(20);

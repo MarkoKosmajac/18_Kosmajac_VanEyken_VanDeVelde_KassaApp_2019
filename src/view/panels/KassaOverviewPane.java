@@ -94,7 +94,7 @@ public class KassaOverviewPane extends GridPane {
             TableRow<Artikel> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 teVerwijderen = row.getItem();
-                    new VerwijderHandler().handle(event); //TODO: Niet vergeten na de handler nog te doen .handle(event)
+                    new VerwijderHandler().handle(event);
                 });
             return row;
         });

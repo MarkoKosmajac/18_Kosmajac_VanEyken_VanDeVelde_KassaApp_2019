@@ -27,7 +27,7 @@ public class ProductOverviewPane extends GridPane {
 		Label lblHeading = new Label("Artikel Overview");
 		lblHeading.setFont(new Font("Arial", 20));
 		table = new TableView<Artikel>();
-		table.setItems(FXCollections.observableArrayList(kassaController.getArtikels())); //TODO: EXCEL INLEZEN ?
+		table.setItems(FXCollections.observableArrayList(kassaController.getArtikels()));
 
 		TableColumn<Artikel, String> colID = new TableColumn<Artikel, String>("Artikel ID");
 		colID.setMinWidth(100);
@@ -50,11 +50,7 @@ public class ProductOverviewPane extends GridPane {
 		colStock.setCellValueFactory(new PropertyValueFactory<Artikel, Integer>("stock"));
 
 		table.getColumns().addAll(colID, colOmschrijving, colGroep, colPrijs, colStock);
-		Button button = new Button("...");
-		Button button2 = new Button("...");
-		this.add(button,0, 5, 1, 6);
-		this.add(button2, 1,5,1,6);
-		this.getChildren().addAll(lblHeading, table); //button, button2
+		this.getChildren().addAll(lblHeading, table);
 	}
 
 }

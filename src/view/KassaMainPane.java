@@ -16,7 +16,7 @@ public class KassaMainPane extends BorderPane {
         Tab kassaTab = new Tab("Kassa", kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(controller);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        InstellingenPane instellingenPane = new InstellingenPane(); //TODO: Hierin een andere controller meegeven (instantievar.)
+        InstellingenPane instellingenPane = new InstellingenPane();
         Tab instellingTab = new Tab("Instellingen", instellingenPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);

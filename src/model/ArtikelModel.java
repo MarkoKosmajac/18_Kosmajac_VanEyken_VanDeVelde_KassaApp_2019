@@ -4,7 +4,6 @@ import model.observer.Observer;
 import model.observer.Subject;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 /**
  * @author Max Van De Velde, Marko Kosmajac
