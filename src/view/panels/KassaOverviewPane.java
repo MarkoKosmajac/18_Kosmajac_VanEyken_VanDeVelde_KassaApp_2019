@@ -102,7 +102,7 @@ public class KassaOverviewPane extends GridPane {
         onHoldButton.setOnAction(new OnHoldHandler());
         onHoldButton2.setOnAction(new OnHoldReturnHandler());
 
-        afsluitKnop.setOnAction(new view.AfsluitHandler(korting, eindTotaal, kortinglabel, eindTotaalLabel));
+        //afsluitKnop.setOnAction(new view.AfsluitHandler(korting, eindTotaal, kortinglabel, eindTotaalLabel));
         afsluitKnop.setOnAction(new AfsluitHandler());
         betaald.setOnAction(new BetaaldHandler());
         annuleer.setOnAction(new AnnuleerHandler());
@@ -227,15 +227,26 @@ public class KassaOverviewPane extends GridPane {
         @Override
         public void handle(ActionEvent event) {
 
+            if (!eindTotaal.isVisible()){
+                System.out.println("Druk eerst op alfsuiting");
+            } else {
+                System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
+                producten.werkStockBij();
+                producten.resetOnHoldListAls3keerBetaald();
 
-            System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
-            producten.werkStockBij();
-            producten.resetOnHoldListAls3keerBetaald();
+                //WERK STOCK BIJ IN TAB2 OVERVIEW
+                //TODO: Hoe?
 
-            //WERK STOCK BIJ IN TAB2 OVERVIEW
-            //TODO: Hoe?
+                producten.nieuwVenster();
+                eindTotaal.setVisible(false);
+                korting.setVisible(false);
+                kortinglabel.setVisible(false);
+                eindTotaalLabel.setVisible(false);
+            }
 
-            producten.nieuwVenster();//todo: klantpane wordt niet gerefresht
+
+
+
 
             //Maak voor de Verkoop klasse (de klasse voor een actuele verkoop van een klant ) een UML toestandsdiagram (state diagram) met alle mogelijke toestanden van een verkoop en alle mogelijke events (van story 3 tot en met story 9).
             //Pas het State design pattern toe om dit diagram te implementeren.

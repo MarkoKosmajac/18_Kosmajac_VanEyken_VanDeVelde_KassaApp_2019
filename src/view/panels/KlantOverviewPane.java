@@ -25,6 +25,7 @@ public class KlantOverviewPane extends GridPane {
     private int korting;
     private ObservableList<Artikel> products;
     private KlantController producten;
+    private KassaOverviewPane kassaOverviewPane;
 
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label tot = new Label("TOTAALBEDRAG:");
