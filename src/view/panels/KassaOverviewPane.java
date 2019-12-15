@@ -228,7 +228,7 @@ public class KassaOverviewPane extends GridPane {
         public void handle(ActionEvent event) {
 
             if (!eindTotaal.isVisible()){
-                System.out.println("Druk eerst op alfsuiting");
+                System.out.println("Druk eerst op afsluiting voor uw eindtotaal");
             } else {
                 System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
                 producten.werkStockBij();
