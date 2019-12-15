@@ -234,6 +234,7 @@ public class KassaOverviewPane extends GridPane {
                 producten.werkStockBij();
                 producten.resetOnHoldListAls3keerBetaald();
 
+
                 //WERK STOCK BIJ IN TAB2 OVERVIEW
                 //TODO: Hoe?
 

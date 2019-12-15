@@ -1,5 +1,7 @@
 package model;
 
+import database.ArtikelDBContext;
+import database.ArtikelDBInMemory;
 import model.observer.Observer;
 import model.observer.Subject;
 
@@ -18,8 +20,11 @@ public class ArtikelModel implements Subject {
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
     private int onHoldTeller;
+    private ArtikelDBInMemory artikelDBInMemory;
+
 
     public ArtikelModel() {
+        artikelDBInMemory = new ArtikelDBInMemory();
         kassaObserver = new ArrayList<>();
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
@@ -157,22 +162,25 @@ public class ArtikelModel implements Subject {
     }
 
     public void werkStockBij() {//todo: werkt, nu nog save() methode oproepen somehow? of via pane...
+        ArrayList<Artikel> newStock = new ArrayList<>();
+
         for(Artikel artikel : this.artikelList){
             int nieuweStok = artikel.getStock()-1;
             artikel.setStock(nieuweStok);
+            newStock.add(artikel);
         }
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 
     public void resetOnHoldListAls3keerBetaald(){
-        if (onHoldTeller == 2){
-            onHoldList.clear();
-            onHoldTeller = 0;
-            System.out.println("OnHold list wordt nu leeggemaakt");
-        } else {
-            this.onHoldTeller++;
+        if (!this.onHoldList.isEmpty()){
+            if (onHoldTeller == 2){
+                onHoldList.clear();
+                onHoldTeller = 0;
+                System.out.println("OnHold list wordt nu leeggemaakt");
+            } else {
+                this.onHoldTeller++;
+            }
         }
-
     }
-
 }

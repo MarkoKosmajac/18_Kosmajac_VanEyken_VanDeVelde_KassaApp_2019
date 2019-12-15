@@ -21,6 +21,8 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
         artikelen = new HashMap<String, Artikel>();
     }
 
+    public ArtikelDBInMemory() {
+    }
 
     public List<Artikel> load(File bestand) {
         List<Artikel> artikels = new ArrayList<Artikel>();
