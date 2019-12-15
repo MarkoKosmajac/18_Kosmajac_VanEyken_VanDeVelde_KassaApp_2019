@@ -17,6 +17,8 @@ import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import view.AfsluitHandler;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -64,11 +66,15 @@ public class KassaOverviewPane extends GridPane {
         kortinglabel.setVisible(false);
         this.add(eindTotaalLabel, 3,4);
         eindTotaalLabel.setVisible(false);
+
+
         //Bedragen
         this.add(korting, 4, 3);
         korting.setVisible(false);
         this.add(eindTotaal, 4, 4);
         eindTotaal.setVisible(false);
+
+
         //Buttons
         this.add(onHoldButton,0,2);
         this.add(onHoldButton2,0,3);
@@ -90,9 +96,13 @@ public class KassaOverviewPane extends GridPane {
         colPrijs.setMinWidth(100);
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
 
+
+        //InnerClasses of AnonymousClass implementatie
         artikelCodeTextField.setOnKeyPressed(new AddArtikelHandler());
         onHoldButton.setOnAction(new OnHoldHandler());
         onHoldButton2.setOnAction(new OnHoldReturnHandler());
+
+        //afsluitKnop.setOnAction(new view.AfsluitHandler(korting, eindTotaal, kortinglabel, eindTotaalLabel));
         afsluitKnop.setOnAction(new AfsluitHandler());
         betaald.setOnAction(new BetaaldHandler());
         annuleer.setOnAction(new AnnuleerHandler());
@@ -120,6 +130,7 @@ public class KassaOverviewPane extends GridPane {
 
     public void setArtikellijst(ArrayList<Artikel> artikellijst) {
         table.setItems(FXCollections.observableArrayList(artikellijst));
+        table.refresh();
     }
 
     public void setEindTotaal(double eindPrijs) {

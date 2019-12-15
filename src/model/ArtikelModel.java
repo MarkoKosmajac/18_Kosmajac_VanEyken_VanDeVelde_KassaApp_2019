@@ -168,8 +168,10 @@ public class ArtikelModel implements Subject {
             onHoldList.clear();
             onHoldTeller = 0;
             System.out.println("OnHold list wordt nu leeggemaakt");
+        } else {
+            this.onHoldTeller++;
         }
-        this.onHoldTeller++;
+
     }
 
 }

@@ -86,6 +86,8 @@ public class KlantOverviewPane extends GridPane {
         table.refresh(); //DIT
     }
 
+
+
     public void setTotaalBedrag(double bedrag){
         labelTotaal.setText(String.valueOf(bedrag));
     }
