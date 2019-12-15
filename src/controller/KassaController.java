@@ -136,4 +136,10 @@ public class KassaController implements Observer {
     public void werkStockBij() {
         artikelModel.werkStockBij();
     }
+
+    public void resetOnHoldList(){
+        artikelModel.resetOnHoldList();
+    }
+
+
 }

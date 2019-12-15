@@ -17,6 +17,7 @@ public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
+    private int onHoldTeller;
 
     public ArtikelModel() {
         kassaObserver = new ArrayList<>();
@@ -80,8 +81,8 @@ public class ArtikelModel implements Subject {
     }
 
     public void returnToPreviousList(){
-        if (!this.onHoldList.isEmpty()){
-            System.out.println("Moet error message komen dat onHold afgerekent moet worden");
+        if (!this.artikelList.isEmpty()){
+            System.out.println("Je huidige rekening moet eerst afgehandeld worden");
         } else {
             this.artikelList.addAll(this.onHoldList);
             this.onHoldList.clear();
@@ -165,5 +166,13 @@ public class ArtikelModel implements Subject {
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 
+    public void resetOnHoldList(){
+        if (onHoldTeller == 2){
+            onHoldList.clear();
+            onHoldTeller = 0;
+            System.out.println("OnHold list wordt nu leeggemaakt");
+        }
+        this.onHoldTeller++;
+    }
 
 }

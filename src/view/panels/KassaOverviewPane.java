@@ -215,8 +215,11 @@ public class KassaOverviewPane extends GridPane {
     private class BetaaldHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+
+
             System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
             producten.werkStockBij();
+            producten.resetOnHoldList();
 
             //WERK STOCK BIJ IN TAB2 OVERVIEW
             //TODO: Hoe?
