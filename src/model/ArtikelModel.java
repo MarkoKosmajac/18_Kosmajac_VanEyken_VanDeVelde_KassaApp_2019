@@ -149,7 +149,11 @@ public class ArtikelModel implements Subject {
 
     public void nieuwVenster() {
         artikelList.clear();
+        for (Artikel a: kassaKlantList){
+            a.setAantal(0);
+        }
         kassaKlantList.clear();
+
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 
