@@ -74,6 +74,7 @@ public class ArtikelModel implements Subject {
         if (this.onHoldList.isEmpty()){
             this.onHoldList.addAll(this.artikelList);
             this.artikelList.clear();
+            this.kassaKlantList.clear();
             notifyObserver();
         } else {
             System.out.println("Er mag maar 1 list tegelijk on hold gezet worden");
