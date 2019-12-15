@@ -102,7 +102,7 @@ public class KassaOverviewPane extends GridPane {
         onHoldButton.setOnAction(new OnHoldHandler());
         onHoldButton2.setOnAction(new OnHoldReturnHandler());
 
-        //afsluitKnop.setOnAction(new view.AfsluitHandler(korting, eindTotaal, kortinglabel, eindTotaalLabel));
+        afsluitKnop.setOnAction(new view.AfsluitHandler(korting, eindTotaal, kortinglabel, eindTotaalLabel));
         afsluitKnop.setOnAction(new AfsluitHandler());
         betaald.setOnAction(new BetaaldHandler());
         annuleer.setOnAction(new AnnuleerHandler());
