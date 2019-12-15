@@ -201,7 +201,7 @@ public class KassaOverviewPane extends GridPane {
         public void handle(ActionEvent event) {
             try{
                 producten.setOnHoldList();
-            }catch( DBException ex){
+            }catch( Exception ex){
                 displayErrorMessage(ex.getMessage());
             }
         }
@@ -209,7 +209,11 @@ public class KassaOverviewPane extends GridPane {
     public class OnHoldReturnHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+            try{
             producten.returnToPreviousList();
+            }catch( Exception ex){
+                displayErrorMessage(ex.getMessage());
+            }
         }
     }
 
@@ -228,7 +232,7 @@ public class KassaOverviewPane extends GridPane {
         public void handle(ActionEvent event) {
 
             if (!eindTotaal.isVisible()){
-                System.out.println("Druk eerst op afsluiting voor uw eindtotaal");
+                displayErrorMessage("Druk eerst op afsluiting voor uw eindtotaal");
             } else {
                 System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
                 producten.werkStockBij();

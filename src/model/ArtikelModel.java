@@ -2,6 +2,7 @@ package model;
 
 import database.ArtikelDBContext;
 import database.ArtikelDBInMemory;
+import database.DBException;
 import model.observer.Observer;
 import model.observer.Subject;
 
@@ -82,13 +83,13 @@ public class ArtikelModel implements Subject {
             this.kassaKlantList.clear();
             notifyObserver();
         } else {
-            System.out.println("Er mag maar 1 list tegelijk on hold gezet worden");
+            throw new DBException("Er mag maar 1 list tegelijk on hold gezet worden");
         }
     }
 
     public void returnToPreviousList(){
         if (!this.artikelList.isEmpty()){
-            System.out.println("Je huidige rekening moet eerst afgehandeld worden");
+            throw new DBException("Je huidige rekening moet eerst afgehandeld worden");
         } else {
             this.artikelList.addAll(this.onHoldList);
             this.onHoldList.clear();

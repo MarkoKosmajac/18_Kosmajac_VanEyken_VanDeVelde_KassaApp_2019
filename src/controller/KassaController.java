@@ -9,6 +9,7 @@ import model.observer.Observer;
 import view.panels.KassaOverviewPane;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -90,11 +91,23 @@ public class KassaController implements Observer {
         return res;
     }
     public void setOnHoldList() {
-        artikelModel.setOnHoldlist();
+        try {
+            artikelModel.setOnHoldlist();
+        }
+        catch (Exception e){
+            throw new ControllerException(e.getMessage());
+        }
     }
+
     public void returnToPreviousList(){
-        artikelModel.returnToPreviousList();
+        try {
+            artikelModel.returnToPreviousList();
+        }
+        catch (Exception e){
+            throw new ControllerException(e.getMessage());
+        }
     }
+
     @Override
     public void update(ArrayList<Artikel> artikellijst) {
         kassaOverviewPaneView.setArtikellijst(artikellijst);
