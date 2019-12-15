@@ -227,7 +227,7 @@ public class KassaOverviewPane extends GridPane {
         }
     }
 
-    private class BetaaldHandler implements EventHandler<ActionEvent> {
+    public class BetaaldHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
 
@@ -264,5 +264,106 @@ public class KassaOverviewPane extends GridPane {
             //ANNULEER IS PRESSED, VERKOOP WORDT NIET GELOGD!
             producten.nieuwVenster();
         }
+    }
+
+
+    public TableView<Artikel> getTable() {
+        return table;
+    }
+    public void setTable(TableView<Artikel> table) {
+        this.table = table;
+    }
+    public double getTotaalBedrag() {
+        return totaalBedrag;
+    }
+    public KassaController getProducten() {
+        return producten;
+    }
+    public void setProducten(KassaController producten) {
+        this.producten = producten;
+    }
+    public Artikel getTeVerwijderen() {
+        return teVerwijderen;
+    }
+    public void setTeVerwijderen(Artikel teVerwijderen) {
+        this.teVerwijderen = teVerwijderen;
+    }
+    public TextField getArtikelCodeTextField() {
+        return artikelCodeTextField;
+    }
+    public void setArtikelCodeTextField(TextField artikelCodeTextField) {
+        this.artikelCodeTextField = artikelCodeTextField;
+    }
+    public Label getLabel() {
+        return label;
+    }
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+    public Label getLabelTotaal() {
+        return labelTotaal;
+    }
+    public void setLabelTotaal(Label labelTotaal) {
+        this.labelTotaal = labelTotaal;
+    }
+    public Label getTotaal() {
+        return totaal;
+    }
+    public void setTotaal(Label totaal) {
+        this.totaal = totaal;
+    }
+    public Label getEindTotaalLabel() {
+        return eindTotaalLabel;
+    }
+    public void setEindTotaalLabel(Label eindTotaalLabel) {
+        this.eindTotaalLabel = eindTotaalLabel;
+    }
+    public Label getKortinglabel() {
+        return kortinglabel;
+    }
+    public void setKortinglabel(Label kortinglabel) {
+        this.kortinglabel = kortinglabel;
+    }
+    public Label getKorting() {
+        return korting;
+    }
+    public void setKorting(Label korting) {
+        this.korting = korting;
+    }
+    public Label getEindTotaal() {
+        return eindTotaal;
+    }
+    public void setEindTotaal(Label eindTotaal) {
+        this.eindTotaal = eindTotaal;
+    }
+    public Button getOnHoldButton() {
+        return onHoldButton;
+    }
+    public void setOnHoldButton(Button onHoldButton) {
+        this.onHoldButton = onHoldButton;
+    }
+    public Button getOnHoldButton2() {
+        return onHoldButton2;
+    }
+    public void setOnHoldButton2(Button onHoldButton2) {
+        this.onHoldButton2 = onHoldButton2;
+    }
+    public Button getAfsluitKnop() {
+        return afsluitKnop;
+    }
+    public void setAfsluitKnop(Button afsluitKnop) {
+        this.afsluitKnop = afsluitKnop;
+    }
+    public Button getBetaald() {
+        return betaald;
+    }
+    public void setBetaald(Button betaald) {
+        this.betaald = betaald;
+    }
+    public Button getAnnuleer() {
+        return annuleer;
+    }
+    public void setAnnuleer(Button annuleer) {
+        this.annuleer = annuleer;
     }
 }

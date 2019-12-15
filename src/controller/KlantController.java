@@ -3,6 +3,7 @@ package controller;
 import model.Artikel;
 import model.ArtikelModel;
 import model.observer.Observer;
+import view.panels.KassaOverviewPane;
 import view.panels.KlantOverviewPane;
 
 import java.io.File;
@@ -21,8 +22,12 @@ public class KlantController implements Observer {
     private KlantOverviewPane klantOverviewPane;
     private ArtikelModel artikelModel;
     private Properties properties;
+    private KassaOverviewPane kassaOverviewPane;
+    private KassaController kassaController;
 
     public KlantController(ArtikelModel artikelModel) {
+        kassaController = new KassaController(artikelModel);
+        kassaOverviewPane = new KassaOverviewPane(kassaController);
         properties = new Properties();
         this.artikelModel = artikelModel;
         artikelModel.register(this);
@@ -48,6 +53,13 @@ public class KlantController implements Observer {
         klantOverviewPane.setTotaalBedrag(Math.floor(getTotPrijs()*100)/100);
         klantOverviewPane.setEindTotaal(Math.floor(getEindPrijs()*100)/100);
         klantOverviewPane.setKorting(Math.floor((getTotPrijs()-getEindPrijs())*100)/100);
+        if (kassaOverviewPane.getAfsluitKnop().isPressed()){
+            System.out.println(("yolo"));
+            klantOverviewPane.setEindLayout();
+
+        }
+
+
     }
 
     public double getKorting(){
@@ -63,11 +75,9 @@ public class KlantController implements Observer {
 
 
     public double getEindPrijs() {
-
         double percent = getKorting();
         double totprijs = artikelModel.getTotPrijs();
         double korting = (percent*totprijs)/100;
         return  totprijs-korting;
-
     }
 }

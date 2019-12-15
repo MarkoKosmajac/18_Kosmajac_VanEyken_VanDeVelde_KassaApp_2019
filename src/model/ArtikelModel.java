@@ -182,6 +182,7 @@ public class ArtikelModel implements Subject {
             } else {
                 this.onHoldTeller++;
             }
+            notifyObserver();
         }
     }
 }

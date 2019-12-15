@@ -42,8 +42,6 @@ public class KassaController implements Observer {
                 artikelModel.addToLijst(artikel);
                 artikelModel.veranderAantalPositief(artikel);
             }
-
-
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -153,6 +151,7 @@ public class KassaController implements Observer {
     public void resetOnHoldListAls3keerBetaald(){
         artikelModel.resetOnHoldListAls3keerBetaald();
     }
+
 
 
 }

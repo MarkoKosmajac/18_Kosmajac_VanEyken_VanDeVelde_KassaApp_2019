@@ -80,6 +80,8 @@ public class KlantOverviewPane extends GridPane {
         eindTotaalLabel.setVisible(false);
         eindTotaalLabelTekst.setVisible(false);
 
+
+
     }
 
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
@@ -92,14 +94,21 @@ public class KlantOverviewPane extends GridPane {
     public void setTotaalBedrag(double bedrag){
         labelTotaal.setText(String.valueOf(bedrag));
     }
-
-
     public void setKorting(double korting) {
         kortingLabel.setText(String.valueOf(korting));
     }
 
+
     public void setEindTotaal(double eindTotaal){
+
+
         eindTotaalLabel.setText(String.valueOf(eindTotaal));
     }
 
+    public void setEindLayout() {
+        kortingLabel.setVisible(true);
+        kortinglabelTekst.setVisible(true);
+        eindTotaalLabel.setVisible(true);
+        eindTotaalLabelTekst.setVisible(true);
+    }
 }
