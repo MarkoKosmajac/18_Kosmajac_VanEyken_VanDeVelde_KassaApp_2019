@@ -219,7 +219,7 @@ public class KassaOverviewPane extends GridPane {
 
             System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
             producten.werkStockBij();
-            producten.resetOnHoldList();
+            producten.resetOnHoldListAls3keerBetaald();
 
             //WERK STOCK BIJ IN TAB2 OVERVIEW
             //TODO: Hoe?

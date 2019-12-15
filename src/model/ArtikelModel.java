@@ -90,6 +90,8 @@ public class ArtikelModel implements Subject {
         }
 
 
+
+
     }
 
     public ArrayList<Artikel> getAlleCurrentArtikelen(){
@@ -100,27 +102,22 @@ public class ArtikelModel implements Subject {
     public void register(Observer obs) {
         kassaObserver.add(obs);
     }
-
     @Override
     public void unregister(Observer o) {
         kassaObserver.remove(o);
     }
-
     @Override
     public void notifyObserver() {
         for(Observer observer : kassaObserver){
             observer.update(artikelList);
         }
     }
-
     public Collection<Observer> getKassaObserver() {
         return kassaObserver;
     }
-
     public ArrayList<Artikel> getArtikelList() {
         return artikelList;
     }
-
     public ArrayList<Artikel> getKassaKlantList() {
         return kassaKlantList;
     }
@@ -166,7 +163,7 @@ public class ArtikelModel implements Subject {
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 
-    public void resetOnHoldList(){
+    public void resetOnHoldListAls3keerBetaald(){
         if (onHoldTeller == 2){
             onHoldList.clear();
             onHoldTeller = 0;
