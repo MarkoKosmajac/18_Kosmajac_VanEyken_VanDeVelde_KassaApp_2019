@@ -86,7 +86,7 @@ public class KassaController implements Observer {
                 res = a;
             }
         }
-        if(res == null) throw new DBException("Artikel bestaat niet!");
+        if(res == null) throw new DBException("Artikel bestaat niet! (Niet bestaande code)");
         return res;
     }
     public void setOnHoldList() {
