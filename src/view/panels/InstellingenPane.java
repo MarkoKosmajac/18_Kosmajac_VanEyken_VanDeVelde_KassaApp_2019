@@ -97,8 +97,8 @@ public class InstellingenPane extends GridPane {
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
                         kortingLabel.setText(string);
                     }catch(Exception e){
-                        displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting.");
-                    }
+                        System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
+                }
                 }else{
                     try{
                         instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
@@ -106,7 +106,7 @@ public class InstellingenPane extends GridPane {
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
                         kortingLabel.setText(string);
                     }catch(Exception e){
-                        displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting.");
+                        System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
                     }
                 }
 
@@ -115,15 +115,6 @@ public class InstellingenPane extends GridPane {
             }
 
         }
-    }
-
-    // Open a popup that contains the error message passed
-    public void displayErrorMessage(String errorMessage){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Belangrijke melding!");
-        alert.setHeaderText("Informatie Alert!");
-        alert.setContentText(errorMessage);
-        alert.show();
     }
 
 }
