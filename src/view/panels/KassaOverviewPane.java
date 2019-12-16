@@ -282,6 +282,10 @@ public class KassaOverviewPane extends GridPane{
         public void handle(ActionEvent event) {
             //ANNULEER IS PRESSED, VERKOOP WORDT NIET GELOGD!
             producten.nieuwVenster();
+            eindTotaal.setVisible(false);
+            korting.setVisible(false);
+            kortinglabel.setVisible(false);
+            eindTotaalLabel.setVisible(false);
         }
     }
 

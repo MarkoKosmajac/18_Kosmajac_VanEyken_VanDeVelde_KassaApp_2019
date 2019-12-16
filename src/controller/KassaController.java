@@ -5,10 +5,7 @@ import database.ArtikelDBContext;
 import javafx.scene.control.Label;
 import model.Artikel;
 import model.ArtikelModel;
-import model.decorator.FooterDecorator;
-import model.decorator.HeaderDecorator;
-import model.decorator.Kassabon;
-import model.decorator.TekstKassabonLezer;
+import model.decorator.*;
 import model.observer.Observer;
 import view.panels.KassaOverviewPane;
 

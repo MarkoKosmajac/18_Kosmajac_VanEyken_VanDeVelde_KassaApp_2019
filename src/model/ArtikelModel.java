@@ -3,10 +3,7 @@ package model;
 import database.ArtikelDBContext;
 import database.ArtikelDBInMemory;
 import database.DBException;
-import model.decorator.FooterDecorator;
-import model.decorator.HeaderDecorator;
-import model.decorator.Kassabon;
-import model.decorator.TekstKassabonLezer;
+import model.decorator.*;
 import model.observer.Observer;
 import model.observer.Subject;
 
