@@ -96,6 +96,12 @@ public class ArtikelModel implements Subject {
             throw new DBException("Je huidige rekening moet eerst afgehandeld worden");
         } else {
             this.artikelList.addAll(this.onHoldList);
+            for (Artikel a: this.onHoldList){
+                if (!this.kassaKlantList.contains(a)){
+                    this.kassaKlantList.add(a);
+                }
+            }
+
             this.onHoldList.clear();
             notifyObserver();
         }
