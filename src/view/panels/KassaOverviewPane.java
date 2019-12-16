@@ -17,7 +17,10 @@ import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import view.AfsluitHandler;
+import model.decorator.FooterDecorator;
+import model.decorator.HeaderDecorator;
+import model.decorator.Kassabon;
+import model.decorator.TekstKassabonLezer;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -234,6 +237,14 @@ public class KassaOverviewPane extends GridPane {
             if (!eindTotaal.isVisible()){
                 displayErrorMessage("Druk eerst op afsluiting voor uw eindtotaal");
             } else {
+
+                /*Kassabon kassabon1 = new FooterDecorator(new TekstKassabonLezer("eeee"));
+                System.out.println(kassabon1.printBon());
+                Kassabon kassabon2 = new HeaderDecorator(new TekstKassabonLezer("eeee"));
+                System.out.println(kassabon2.printBon());*/
+
+                /*System.out.println(producten.printKassaBon(eindTotaal.getText()));*/
+
                 System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
                 producten.werkStockBij();
                 producten.resetOnHoldListAls3keerBetaald();

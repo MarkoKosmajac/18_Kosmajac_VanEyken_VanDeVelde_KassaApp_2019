@@ -5,6 +5,10 @@ import database.ArtikelDBContext;
 import javafx.scene.control.Label;
 import model.Artikel;
 import model.ArtikelModel;
+import model.decorator.FooterDecorator;
+import model.decorator.HeaderDecorator;
+import model.decorator.Kassabon;
+import model.decorator.TekstKassabonLezer;
 import model.observer.Observer;
 import view.panels.KassaOverviewPane;
 
@@ -153,5 +157,7 @@ public class KassaController implements Observer {
     }
 
 
-
+    /*public String printKassaBon(String text) {
+        return artikelModel.kassaBonPrintModel(text);
+    }*/
 }

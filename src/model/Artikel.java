@@ -72,5 +72,9 @@ public class Artikel implements Comparable<Artikel>{
         res += "ArtikelID: " + this.artikelCode + " | " + "Omschrijving: " + this.omschrijving + " | " + "Groep: " + this.artikelGroep + " | " + " Prijs: " + this.prijs + " | " + "Stock: " + this.stock + "\n";
         return res;
     }
+
+    /*public String kassabonPrint(){
+        return this.omschrijving + "                " + this.getAantal() + "     " + this.prijs+"\n";
+    }*/
 }
 

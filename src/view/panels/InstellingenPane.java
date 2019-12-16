@@ -1,8 +1,11 @@
 package view.panels;
 
+import controller.ControllerException;
 import controller.InstellingenController;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -20,9 +23,13 @@ public class InstellingenPane extends GridPane {
     private ComboBox<SoortKorting> comboBoxKorting;
     private ComboBox<SoortDatabase> comboBoxDatabase;
     private Button verzendKnop = new Button("Verzenden");
-    private TextField percentText = new TextField();
-    private TextField bedragText = new TextField();
+    private TextField percentText = new TextField("Vul hier een percent in.");
+    private TextField bedragText = new TextField("Vul hier een bedrag in indien gewenst.");
     private Label kortingLabel = new Label();
+   /*private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
+    private CheckBox cb2 = new CheckBox("Footerlijn(en) toevoegen ?");
+    private TextField textHeaderlijnen = new TextField("VUL JE HEADERLIJN HIER IN.");
+    private TextField textFooterlijnen = new TextField("VUL JE FOOTERLIJN HIER IN.");*/
 
     public InstellingenPane(){
         instellingenController = new InstellingenController();
@@ -50,6 +57,16 @@ public class InstellingenPane extends GridPane {
 
         verzendKnop.setOnAction(new VerzendKeuzesHandler());
 
+        /*cb1.setOnAction((event) -> {
+            // Button was clicked, do something...
+            this.add(textHeaderlijnen,0,14);
+        });
+
+        cb2.setOnAction((event) -> {
+            // Button was clicked, do something...
+            this.add(textFooterlijnen,0,16);
+        });*/
+
         this.add(new Label("Optionele kortinginfo:"), 0, 8);
         this.add(new Label("Korting percentage"), 0, 9);
         this.add(percentText,1,9);
@@ -61,6 +78,8 @@ public class InstellingenPane extends GridPane {
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
         this.add(kortingLabel,0,12);
+        /*this.add(cb1,0,13);
+        this.add(cb2,0,15);*/
 
     }
 
@@ -84,6 +103,14 @@ public class InstellingenPane extends GridPane {
         return bedragText.getText();
     }
 
+    /*public String getTextHeaderlijnen() {
+        return textHeaderlijnen.getText();
+    }
+
+    public String getTextFooterlijnen() {
+        return textFooterlijnen.getText();
+    }*/
+
     private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -92,8 +119,7 @@ public class InstellingenPane extends GridPane {
 
                 if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
                     try{
-
-                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag()));
+                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag())/*, getTextHeaderlijnen(), getTextFooterlijnen()*/);
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
                         kortingLabel.setText(string);
                     }catch(Exception e){
@@ -101,7 +127,7 @@ public class InstellingenPane extends GridPane {
                 }
                 }else{
                     try{
-                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
+                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0/*, getTextHeaderlijnen(), getTextFooterlijnen()*/);
 
                         String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
                         kortingLabel.setText(string);

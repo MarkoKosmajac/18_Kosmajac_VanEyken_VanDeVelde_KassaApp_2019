@@ -47,7 +47,8 @@ public class InstellingenController {
             e.getMessage();
         }
     }
-    public void setPropertiesKeuzeKorting(String keuzeKorting, int percent, double bedrag){
+
+    public void setPropertiesKeuzeKorting(String keuzeKorting, int percent, double bedrag/*, String headerlijn, String footerlijn*/){
         FileOutputStream os = null;
         try{
             SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
@@ -56,6 +57,8 @@ public class InstellingenController {
             properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.setProperty("Kortingspercent", String.valueOf(percent));
             properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
+            /*properties.setProperty("headerlijn", headerlijn);
+            properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
 
         } catch (Exception e) {

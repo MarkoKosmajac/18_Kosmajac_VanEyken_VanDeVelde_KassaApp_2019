@@ -3,6 +3,10 @@ package model;
 import database.ArtikelDBContext;
 import database.ArtikelDBInMemory;
 import database.DBException;
+import model.decorator.FooterDecorator;
+import model.decorator.HeaderDecorator;
+import model.decorator.Kassabon;
+import model.decorator.TekstKassabonLezer;
 import model.observer.Observer;
 import model.observer.Subject;
 
@@ -151,6 +155,18 @@ public class ArtikelModel implements Subject {
         notifyObserver();//TODO: MOET DIT HIER OOK ?
         return res;
     }
+
+    /*public String kassaBonPrintModel(String eindtotaal){
+        String res = "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
+        String sterretjes = "***********************************";
+        res += sterretjes + "\n";
+        for(Artikel artikel : this.kassaKlantList){
+            res += artikel.kassabonPrint();
+        }
+        res += sterretjes + "\n";
+        res += "Betaald (inclusief korting): " + eindtotaal + " €";
+        return res;
+    }*/
 
     public void nieuwVenster() {
         artikelList.clear();
