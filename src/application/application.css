@@ -1,15 +1,6 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
-/*
-.button{
-    -fx-background-color: red;
+
+.combo-box, .label,.text-field,.table-view{
+    -fx-font-family: Rockwell;
+    -fx-font-size: 16;
 }
-.combo-box{
-    -fx-background-color: #a0a2ab;
-}
-.table-view{
-    -fx-background-color: #3c53fa;
-}*/
-/*
-.table-view{
-    -fx-background-color: #2196f3;
-}*/

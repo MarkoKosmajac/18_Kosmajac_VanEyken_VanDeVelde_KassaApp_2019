@@ -5,6 +5,7 @@ import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -12,15 +13,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.decorator.FooterDecorator;
-import model.decorator.HeaderDecorator;
-import model.decorator.Kassabon;
-import model.decorator.TekstKassabonLezer;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -29,13 +28,13 @@ import java.util.Optional;
  * @author Marko Kosmajac, Max Van De Velde
  */
 
-public class KassaOverviewPane extends GridPane {
+public class KassaOverviewPane extends GridPane{
     private TableView<Artikel> table ;
     private double totaalBedrag;
     private KassaController producten;
     private Artikel teVerwijderen;
-    private TextField artikelCodeTextField = new TextField();
 
+    private TextField artikelCodeTextField = new TextField();
     private Label label = new Label("Artikelcode:");
     private Label labelTotaal = new Label(String.valueOf(totaalBedrag));
     private Label totaal = new Label("TOTAALBEDRAG:");
@@ -56,38 +55,46 @@ public class KassaOverviewPane extends GridPane {
         kassaController.setPane(this);
         totaalBedrag = 0;
         this.setPadding(new Insets(5, 5, 5, 5));
-        this.setVgap(5);
-        this.setHgap(5);
 
-        this.add(label,3,1);
-        this.add(artikelCodeTextField,4,1);
 
-        //Textfields
-        this.add(totaal,3,2);
-        this.add(labelTotaal,4,2);
-        this.add(kortinglabel, 3, 3);
+        //Bedragen + Labels
+        this.add(label,1,1);
+        label.setPadding(new Insets(0,0,0,10));
+        //label.setFont(new Font(30));
+        this.add(artikelCodeTextField,2,1);
+        this.add(totaal,1,2);
+        totaal.setPadding(new Insets(0,0,0,10));
+        this.add(labelTotaal,2,2);
+        labelTotaal.setPadding(new Insets(0,0,0,10));
+        this.add(kortinglabel,1,3);
+        kortinglabel.setPadding(new Insets(0,0,0,10));
+        this.add(korting,2,3);
+        korting.setPadding(new Insets(0,0,0,10));
+        this.add(eindTotaalLabel,1,4);
+        eindTotaalLabel.setPadding(new Insets(0,0,0,10));
+        this.add(eindTotaal,2,4);
         kortinglabel.setVisible(false);
-        this.add(eindTotaalLabel, 3,4);
         eindTotaalLabel.setVisible(false);
-
-
-        //Bedragen
-        this.add(korting, 4, 3);
         korting.setVisible(false);
-        this.add(eindTotaal, 4, 4);
         eindTotaal.setVisible(false);
 
-
         //Buttons
-        this.add(onHoldButton,0,2);
-        this.add(onHoldButton2,0,3);
-        this.add(afsluitKnop, 0, 4);
-        this.add(betaald,0,5);
-        this.add(annuleer,1,5);
+        this.add(onHoldButton,0,1,1,1);
+        onHoldButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.add(onHoldButton2,0,2,1,1);
+        onHoldButton2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.add(afsluitKnop, 0, 3,1,1);
+        afsluitKnop.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.add(betaald,0,4);
+        betaald.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.add(annuleer,0,5);
+        annuleer.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        label.setFont(new Font("System", 18));
-        totaal.setFont(new Font("System", 16));
-        labelTotaal.setFont(new Font("System", 16));
+        artikelCodeTextField.setPromptText("Artikelcode");
+
+        label.setFont(new Font("Rockwell", 18));
+        totaal.setFont(new Font("Rockwell", 16));
+        labelTotaal.setFont(new Font("Rockwell", 16));
 
         table = new TableView<Artikel>();
 
@@ -98,6 +105,17 @@ public class KassaOverviewPane extends GridPane {
         TableColumn<Artikel, Double> colPrijs = new TableColumn<Artikel, Double>("Prijs");
         colPrijs.setMinWidth(100);
         colPrijs.setCellValueFactory(new PropertyValueFactory<Artikel, Double>("prijs"));
+
+        table.setRowFactory( tv -> {
+            TableRow<Artikel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                teVerwijderen = row.getItem();
+                new VerwijderHandler().handle(event);
+            });
+            return row;
+        });
+
+        table.getColumns().addAll(colOmschrijving, colPrijs);
 
 
         //InnerClasses of AnonymousClass implementatie
@@ -110,16 +128,6 @@ public class KassaOverviewPane extends GridPane {
         betaald.setOnAction(new BetaaldHandler());
         annuleer.setOnAction(new AnnuleerHandler());
 
-        table.setRowFactory( tv -> {
-            TableRow<Artikel> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                teVerwijderen = row.getItem();
-                    new VerwijderHandler().handle(event);
-                });
-            return row;
-        });
-
-        table.getColumns().addAll(colOmschrijving, colPrijs);
         this.getChildren().addAll(table);
     }
 
