@@ -22,11 +22,14 @@ public class ArtikelModel implements Subject {
     private Collection<Observer> kassaObserver;
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
     private int onHoldTeller;
+    private ArtikelDBContext artikelDBContext;
     private ArtikelDBInMemory artikelDBInMemory;
+
 
 
     public ArtikelModel() {
         artikelDBInMemory = new ArtikelDBInMemory();
+        artikelDBContext = ArtikelDBContext.getInstance();
         kassaObserver = new ArrayList<>();
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
@@ -183,12 +186,28 @@ public class ArtikelModel implements Subject {
 
     public void werkStockBij() {//todo: werkt, nu nog save() methode oproepen somehow? of via pane...
         ArrayList<Artikel> newStock = new ArrayList<>();
+        ArrayList<Artikel> alleArtikelen = new ArrayList<>(artikelDBContext.getArtikels());
 
         for(Artikel artikel : this.artikelList){
-            int nieuweStok = artikel.getStock()-1;
+            int nieuweStok = artikel.getStock();
             artikel.setStock(nieuweStok);
             newStock.add(artikel);
         }
+
+        for (Artikel a: alleArtikelen){
+            for (Artikel b: newStock){
+                if (a.equals(b)){
+                    a.setStock(b.getStock());
+                }
+            }
+        }
+
+
+        artikelDBContext.save(alleArtikelen);
+        artikelDBContext.setData(alleArtikelen);
+
+        System.out.println("-----NIEUWE STOCK--------");
+        System.out.println(artikelDBContext.loadData());
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 

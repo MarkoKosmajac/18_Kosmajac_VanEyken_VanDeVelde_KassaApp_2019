@@ -1,6 +1,7 @@
 package database;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import controller.InstellingenController;
@@ -19,8 +20,10 @@ public class ArtikelDBContext {
     private LoadSaveStrategy loadSaveStrategy;
     private LoadSaveStrategyFactory loadSaveStrategyFactory;
     private InstellingenController instellingenController;
+    private ArtikelDBInMemory artikelDBInMemory;
 
     private ArtikelDBContext() {
+        artikelDBInMemory = new ArtikelDBInMemory();
         instellingenController = new InstellingenController();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = instellingenController.geefPathFile();
@@ -48,4 +51,15 @@ public class ArtikelDBContext {
         return FXCollections.observableArrayList(data);
     }
 
+    public void setData(ArrayList<Artikel> data) {
+        this.data = data;
+    }
+
+    public void save(ArrayList<Artikel> artikels){
+        artikelDBInMemory.save(artikels);
+    }
+
+    public void setArtikelDBInMemory(ArtikelDBInMemory artikelDBInMemory) {
+        this.artikelDBInMemory = artikelDBInMemory;
+    }
 }

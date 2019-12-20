@@ -4,6 +4,7 @@ import model.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
     private LoadSaveStrategy loadSaveStrategy;
     private HashMap<String, Artikel> artikelen;
+    private ArtikelDBStrategy artikelDBStrategy;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
         this.loadSaveStrategy = loadSaveStrategy;
@@ -44,12 +46,12 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
     @Override
     public void save(ArrayList<Artikel> artikelArrayList) {
-        List<Object> objectenList = new ArrayList<>();
-        objectenList.addAll(artikelArrayList);
+        List<Object> objectenList = new ArrayList<>(artikelArrayList);
         try {
             loadSaveStrategy.save(objectenList);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | IOException e) {
+
+            System.out.println(e.getMessage() + " Artikellijst is niet weggeschreven  " + Arrays.toString(e.getStackTrace()));
         }
     }
 }

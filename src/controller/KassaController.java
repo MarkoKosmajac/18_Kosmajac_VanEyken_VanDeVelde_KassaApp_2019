@@ -82,11 +82,17 @@ public class KassaController implements Observer {
     public Artikel getArtikel(String ingevuldeWaarde) {
         Artikel res = null;
         for (Artikel a: getArtikels()){
-            if (a.getArtikelCode().equalsIgnoreCase(ingevuldeWaarde)){
-                res = a;
+            if (a.getArtikelCode().equalsIgnoreCase(ingevuldeWaarde) && a.getStock() >= 1){
+                a.setStock(a.getStock()-1);
+                if (a.getStock() >= 0){
+                    res = a;
+                }
+
             }
         }
-        if(res == null) throw new DBException("Artikel bestaat niet! (Niet bestaande code)");
+        if(res == null){
+            throw new DBException("Artikel bestaat niet! (Niet bestaande code)");
+        }
         return res;
     }
     public void setOnHoldList() {
