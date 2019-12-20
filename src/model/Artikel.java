@@ -69,7 +69,7 @@ public class Artikel implements Comparable<Artikel>{
 
     public String cleanOutput() {
         String res = "";
-        res += "ArtikelID: " + this.artikelCode + " | " + "Omschrijving: " + this.omschrijving + " | " + "Groep: " + this.artikelGroep + " | " + " Prijs: " + this.prijs + " | " + "Stock: " + this.stock + "\n";
+        res += "ArtikelID: " + this.getArtikelCode() + " | " + "Omschrijving: " + this.getOmschrijving() + " | " + "Groep: " + this.getArtikelGroep() + " | " + " Prijs: " + this.getPrijs() + "\n";// + " | " + "Stock: " + this.getStock() + "\n";
         return res;
     }
 

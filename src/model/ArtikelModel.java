@@ -216,7 +216,7 @@ public class ArtikelModel implements Subject {
         }
 
 
-        artikelDBContext.save(alleArtikelen); //TODO: Uitzoeken hoe je dit laat werken
+        artikelDBContext.save(alleArtikelen);
         artikelDBContext.setData(alleArtikelen);
 
         System.out.println("-----NIEUWE STOCK--------");
