@@ -1,11 +1,13 @@
 package model;
 
 import database.ArtikelDBContext;
-import database.ArtikelDBInMemory;
 import database.DBException;
-import model.decorator.*;
 import model.observer.Observer;
 import model.observer.Subject;
+import model.state.Beschikbaar;
+import model.state.Pauze;
+import model.state.KassaState;
+import model.state.Onbeschikbaar;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,17 +25,28 @@ public class ArtikelModel implements Subject {
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
-    private ArtikelDBInMemory artikelDBInMemory;
+    private KassaState kassaState;
+
+    private KassaState pauze;
+    private KassaState onbeschikbaar;
+    private KassaState beschikbaar;
+
 
 
 
     public ArtikelModel() {
-        artikelDBInMemory = new ArtikelDBInMemory();
         artikelDBContext = ArtikelDBContext.getInstance();
         kassaObserver = new ArrayList<>();
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
         kassaKlantList = new ArrayList<>();
+
+        pauze = new Pauze(this);
+        onbeschikbaar = new Onbeschikbaar(this);
+        beschikbaar = new Beschikbaar(this);
+
+        kassaState = beschikbaar;
+
     }
 
     public void veranderAantalPositief(Artikel artikel){
@@ -222,5 +235,26 @@ public class ArtikelModel implements Subject {
             }
             notifyObserver();
         }
+    }
+
+    public void setKassaState(KassaState kassaState) {
+
+
+        this.kassaState = kassaState;
+        this.kassaState = this.pauze;
+        this.kassaState = this.onbeschikbaar;
+        this.kassaState = this.beschikbaar;
+    }
+
+    public void setPauze(KassaState pauze) {
+        this.pauze = pauze;
+    }
+
+    public void setOnbeschikbaar(KassaState onbeschikbaar) {
+        this.onbeschikbaar = onbeschikbaar;
+    }
+
+    public void setBeschikbaar(KassaState beschikbaar) {
+        this.beschikbaar = beschikbaar;
     }
 }

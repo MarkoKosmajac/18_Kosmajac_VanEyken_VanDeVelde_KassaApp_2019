@@ -31,7 +31,7 @@ public class ArtikelDBContext {
         data = new ArrayList<>();
         loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties());
         System.out.println(instellingenController.getProperties());
-        data = (ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand);
+        this.setData((ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand));
 
     }
 

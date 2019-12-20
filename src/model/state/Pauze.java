@@ -1,8 +1,13 @@
 package model.state;
 
-public class GenoegGeld implements KassaState{
+import model.ArtikelModel;
+
+public class Pauze implements KassaState{
 
 
+    public Pauze(ArtikelModel artikelModel) {
+
+    }
 
     @Override
     public void Betaald() {
