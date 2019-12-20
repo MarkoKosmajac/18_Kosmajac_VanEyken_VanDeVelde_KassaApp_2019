@@ -2,15 +2,15 @@ package model.state;
 
 import model.ArtikelModel;
 
-public class Beschikbaar implements KassaState {
+public class OnHold implements KassaState {
     private ArtikelModel artikelModel;
 
-    public Beschikbaar(ArtikelModel artikelModel) {
+    public OnHold(ArtikelModel artikelModel) {
         this.artikelModel = artikelModel;
     }
 
-    public Beschikbaar() {
-        System.out.println("Beschikbaar state");
+    public OnHold() {
+        System.out.println("OnHold state");
     }
 
     @Override

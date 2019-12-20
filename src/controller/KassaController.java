@@ -7,6 +7,8 @@ import model.Artikel;
 import model.ArtikelModel;
 import model.decorator.*;
 import model.observer.Observer;
+import model.state.KassaState;
+import model.state.OnHold;
 import view.panels.KassaOverviewPane;
 
 import java.io.*;
@@ -163,4 +165,8 @@ public class KassaController implements Observer {
     /*public String printKassaBon(String text) {
         return artikelModel.kassaBonPrintModel(text);
     }*/
+
+    public void setState(KassaState state){
+        artikelModel.setKassaState(state);
+    }
 }

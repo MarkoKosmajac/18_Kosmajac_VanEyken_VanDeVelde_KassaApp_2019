@@ -2,12 +2,16 @@ package model.state;
 
 import model.ArtikelModel;
 
-public class Pauze implements KassaState{
+public class Annuleer implements KassaState{
     private ArtikelModel artikelModel;
 
 
-    public Pauze(ArtikelModel artikelModel) {
+    public Annuleer(ArtikelModel artikelModel) {
         this.artikelModel = artikelModel;
+    }
+
+    public Annuleer() {
+        System.out.println("Annuleer state");
     }
 
     @Override

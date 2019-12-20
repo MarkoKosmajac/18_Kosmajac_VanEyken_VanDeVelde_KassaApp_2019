@@ -4,10 +4,7 @@ import database.ArtikelDBContext;
 import database.DBException;
 import model.observer.Observer;
 import model.observer.Subject;
-import model.state.Beschikbaar;
-import model.state.Pauze;
-import model.state.KassaState;
-import model.state.Onbeschikbaar;
+import model.state.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,9 +24,10 @@ public class ArtikelModel implements Subject {
     private ArtikelDBContext artikelDBContext;
     private KassaState kassaState;
 
-    private KassaState pauze;
-    private KassaState onbeschikbaar;
-    private KassaState beschikbaar;
+    private KassaState pauzeState;
+    private KassaState onbeschikbaarState;
+    private KassaState beschikbaarState;
+    private KassaState onHoldState;
 
 
 
@@ -41,9 +39,10 @@ public class ArtikelModel implements Subject {
         onHoldList = new ArrayList<>();
         kassaKlantList = new ArrayList<>();
 
-        pauze = new Pauze(this);
-        onbeschikbaar = new Onbeschikbaar(this);
-        beschikbaar = new Beschikbaar(this);
+        pauzeState = new Annuleer(this);
+        onbeschikbaarState = new Onbeschikbaar(this);
+        beschikbaarState = new Beschikbaar(this);
+        onHoldState = new OnHold(this);
 
         setKassaState(kassaState);
 
@@ -151,7 +150,6 @@ public class ArtikelModel implements Subject {
     public ArrayList<Artikel> getKassaKlantList() {
         return kassaKlantList;
     }
-
     public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
         String res = "";
         res+="-----------------------------------------------------------------------------------------------------";
@@ -238,23 +236,22 @@ public class ArtikelModel implements Subject {
     }
 
     public void setKassaState(KassaState kassaState) {
-
-
         this.kassaState = kassaState;
-        this.kassaState = this.pauze;
-        this.kassaState = this.onbeschikbaar;
-        this.kassaState = this.beschikbaar;
     }
 
-    public void setPauze(KassaState pauze) {
-        this.pauze = pauze;
+    public void setPauzeState(KassaState pauzeState) {
+        this.pauzeState = pauzeState;
     }
 
-    public void setOnbeschikbaar(KassaState onbeschikbaar) {
-        this.onbeschikbaar = onbeschikbaar;
+    public void setOnbeschikbaarState(KassaState onbeschikbaarState) {
+        this.onbeschikbaarState = onbeschikbaarState;
     }
 
-    public void setBeschikbaar(KassaState beschikbaar) {
-        this.beschikbaar = beschikbaar;
+    public void setBeschikbaarState(KassaState beschikbaarState) {
+        this.beschikbaarState = beschikbaarState;
+    }
+
+    public void setOnHoldState(KassaState onHoldState) {
+        this.onHoldState = onHoldState;
     }
 }

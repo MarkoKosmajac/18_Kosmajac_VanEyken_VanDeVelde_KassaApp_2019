@@ -5,7 +5,6 @@ import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -13,13 +12,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.state.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -31,7 +29,7 @@ import java.util.Optional;
 public class KassaOverviewPane extends GridPane{
     private TableView<Artikel> table ;
     private double totaalBedrag;
-    private KassaController producten;
+    private KassaController kassaController;
     private Artikel teVerwijderen;
 
     private TextField artikelCodeTextField = new TextField();
@@ -51,7 +49,7 @@ public class KassaOverviewPane extends GridPane{
     private Button annuleer = new Button("ANNULEER");
 
     public KassaOverviewPane(KassaController kassaController){
-        producten = kassaController;
+        this.kassaController = kassaController;
         kassaController.setPane(this);
         totaalBedrag = 0;
         this.setPadding(new Insets(5, 5, 5, 5));
@@ -159,8 +157,8 @@ public class KassaOverviewPane extends GridPane{
         public void handle(KeyEvent event) {
             try{
             if (event.getCode() == KeyCode.ENTER) {
-                Artikel artikel = producten.getArtikel(getIngevuldeWaarde());
-                producten.addToLijst(artikel);
+                Artikel artikel = kassaController.getArtikel(getIngevuldeWaarde());
+                kassaController.addToLijst(artikel);
                 artikelCodeTextField.clear();
             }
         }catch( DBException ex){
@@ -202,7 +200,7 @@ public class KassaOverviewPane extends GridPane{
         alert.setContentText("Wilt u dit artikel verwijderen ?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.get() == ButtonType.OK){
-            producten.verwijderVanLijst(getArtikelTeVerwijderen());
+            kassaController.verwijderVanLijst(getArtikelTeVerwijderen());
         }else{
             System.out.println("Exiting alert");
         }
@@ -211,7 +209,9 @@ public class KassaOverviewPane extends GridPane{
         @Override
         public void handle(ActionEvent event) {
             try{
-                producten.setOnHoldList();
+                kassaController.setOnHoldList();
+                kassaController.setState(new OnHold());
+
             }catch( Exception ex){
                 displayErrorMessage(ex.getMessage());
             }
@@ -221,7 +221,8 @@ public class KassaOverviewPane extends GridPane{
         @Override
         public void handle(ActionEvent event) {
             try{
-            producten.returnToPreviousList();
+            kassaController.returnToPreviousList();
+            kassaController.setState(new Beschikbaar());
             }catch( Exception ex){
                 displayErrorMessage(ex.getMessage());
             }
@@ -231,6 +232,7 @@ public class KassaOverviewPane extends GridPane{
     public class AfsluitHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+            kassaController.setState(new VerkoopSluit());
             eindTotaal.setVisible(true);
             korting.setVisible(true);
             kortinglabel.setVisible(true);
@@ -246,6 +248,7 @@ public class KassaOverviewPane extends GridPane{
                 displayErrorMessage("Druk eerst op afsluiting voor uw eindtotaal");
             } else {
 
+                kassaController.setState(new Betaald());
                 /*Kassabon kassabon1 = new FooterDecorator(new TekstKassabonLezer("eeee"));
                 System.out.println(kassabon1.printBon());
                 Kassabon kassabon2 = new HeaderDecorator(new TekstKassabonLezer("eeee"));
@@ -253,15 +256,15 @@ public class KassaOverviewPane extends GridPane{
 
                 /*System.out.println(producten.printKassaBon(eindTotaal.getText()));*/
 
-                System.out.println(producten.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
-                producten.werkStockBij();
-                producten.resetOnHoldListAls3keerBetaald();
+                System.out.println(kassaController.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
+                kassaController.werkStockBij();
+                kassaController.resetOnHoldListAls3keerBetaald();
 
 
                 //WERK STOCK BIJ IN TAB2 OVERVIEW
                 //TODO: Hoe?
 
-                producten.nieuwVenster();
+                kassaController.nieuwVenster();
                 eindTotaal.setVisible(false);
                 korting.setVisible(false);
                 kortinglabel.setVisible(false);
@@ -280,8 +283,10 @@ public class KassaOverviewPane extends GridPane{
     public class AnnuleerHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+
+            kassaController.setState(new Annuleer());
             //ANNULEER IS PRESSED, VERKOOP WORDT NIET GELOGD!
-            producten.nieuwVenster();
+            kassaController.nieuwVenster();
             eindTotaal.setVisible(false);
             korting.setVisible(false);
             kortinglabel.setVisible(false);
@@ -299,11 +304,11 @@ public class KassaOverviewPane extends GridPane{
     public double getTotaalBedrag() {
         return totaalBedrag;
     }
-    public KassaController getProducten() {
-        return producten;
+    public KassaController getKassaController() {
+        return kassaController;
     }
-    public void setProducten(KassaController producten) {
-        this.producten = producten;
+    public void setKassaController(KassaController kassaController) {
+        this.kassaController = kassaController;
     }
     public Artikel getTeVerwijderen() {
         return teVerwijderen;
