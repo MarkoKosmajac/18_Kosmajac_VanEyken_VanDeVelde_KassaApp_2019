@@ -3,8 +3,10 @@ package model.state;
 import model.ArtikelModel;
 
 public class Beschikbaar implements KassaState {
-    public Beschikbaar(ArtikelModel artikelModel) {
+    private ArtikelModel artikelModel;
 
+    public Beschikbaar(ArtikelModel artikelModel) {
+        this.artikelModel = artikelModel;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package database;
 
+import controller.InstellingenController;
 import model.*;
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +18,20 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private LoadSaveStrategy loadSaveStrategy;
     private HashMap<String, Artikel> artikelen;
     private ArtikelDBStrategy artikelDBStrategy;
+    private LoadSaveStrategyFactory loadSaveStrategyFactory;
+    private InstellingenController instellingenController;
+    private ArtikelDBContext artikelDBContext;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
+        
+        instellingenController = new InstellingenController();
+        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+
+        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties());
         this.loadSaveStrategy = loadSaveStrategy;
+
+
+
         artikelen = new HashMap<String, Artikel>();
     }
 
@@ -48,10 +60,16 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     public void save(ArrayList<Artikel> artikelArrayList) {
         List<Object> objectenList = new ArrayList<>(artikelArrayList);
         try {
-            loadSaveStrategy.save(objectenList);
-        } catch (NullPointerException | IOException e) {
+            ArtikelDBInMemory artikelDBInMemory = new ArtikelDBInMemory(loadSaveStrategy);
+            this.loadSaveStrategy = artikelDBInMemory.getLoadSaveStrategy();
+            this.loadSaveStrategy.save(objectenList);
+        } catch ( IOException e) {
 
             System.out.println(e.getMessage() + " Artikellijst is niet weggeschreven  " + Arrays.toString(e.getStackTrace()));
         }
+    }
+
+    public LoadSaveStrategy getLoadSaveStrategy() {
+        return loadSaveStrategy;
     }
 }

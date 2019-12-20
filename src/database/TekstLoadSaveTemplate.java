@@ -60,7 +60,7 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
                 writer.print(a.getOmschrijving() + ",");
                 writer.print(a.getArtikelGroep() + ",");
                 writer.print(a.getPrijs() + ",");
-                writer.print(a.getStock());
+                writer.println(a.getStock());
             }
             writer.close();
         } catch (FileNotFoundException e) {

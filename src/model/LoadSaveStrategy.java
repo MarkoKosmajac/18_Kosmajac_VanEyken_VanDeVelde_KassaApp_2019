@@ -14,4 +14,6 @@ public interface LoadSaveStrategy {
         ArrayList<Object> load(File bestand) throws IOException;
         void save(List<Object> list) throws IOException;
 
+
+
 }

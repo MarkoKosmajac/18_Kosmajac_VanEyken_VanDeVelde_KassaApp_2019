@@ -45,7 +45,7 @@ public class ArtikelModel implements Subject {
         onbeschikbaar = new Onbeschikbaar(this);
         beschikbaar = new Beschikbaar(this);
 
-        kassaState = beschikbaar;
+        setKassaState(kassaState);
 
     }
 
@@ -216,7 +216,7 @@ public class ArtikelModel implements Subject {
         }
 
 
-        artikelDBContext.save(alleArtikelen);
+        artikelDBContext.save(alleArtikelen); //TODO: Uitzoeken hoe je dit laat werken
         artikelDBContext.setData(alleArtikelen);
 
         System.out.println("-----NIEUWE STOCK--------");
