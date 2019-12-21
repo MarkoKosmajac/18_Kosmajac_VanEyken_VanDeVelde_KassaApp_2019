@@ -75,10 +75,10 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(colOmschrijving, colAantal, colPrijs);
         this.getChildren().addAll(table);
 
-        kortingLabel.setVisible(false);
-        kortinglabelTekst.setVisible(false);
-        eindTotaalLabel.setVisible(false);
-        eindTotaalLabelTekst.setVisible(false);
+        kortingLabel.setVisible(true);
+        kortinglabelTekst.setVisible(true);
+        eindTotaalLabel.setVisible(true);
+        eindTotaalLabelTekst.setVisible(true);
 
 
 
