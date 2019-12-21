@@ -260,10 +260,6 @@ public class KassaOverviewPane extends GridPane{
                 kassaController.werkStockBij();
                 kassaController.resetOnHoldListAls3keerBetaald();
 
-
-                //WERK STOCK BIJ IN TAB2 OVERVIEW
-                //TODO: Hoe?
-
                 kassaController.nieuwVenster();
                 eindTotaal.setVisible(false);
                 korting.setVisible(false);

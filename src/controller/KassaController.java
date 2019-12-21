@@ -2,17 +2,13 @@ package controller;
 
 import database.DBException;
 import database.ArtikelDBContext;
-import javafx.scene.control.Label;
 import model.Artikel;
 import model.ArtikelModel;
-import model.decorator.*;
 import model.observer.Observer;
-import model.state.KassaState;
-import model.state.OnHold;
+import model.state.VerkoopState;
 import view.panels.KassaOverviewPane;
 
 import java.io.*;
-import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -188,7 +184,7 @@ public class KassaController implements Observer {
         return artikelModel.kassaBonPrintModel(text);
     }*/
 
-    public void setState(KassaState state){
-        artikelModel.setKassaState(state);
+    public void setState(VerkoopState state){
+        artikelModel.setVerkoopState(state);
     }
 }

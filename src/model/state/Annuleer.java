@@ -2,7 +2,7 @@ package model.state;
 
 import model.ArtikelModel;
 
-public class Annuleer implements KassaState{
+public class Annuleer implements VerkoopState {
     private ArtikelModel artikelModel;
 
 

@@ -26,19 +26,6 @@ public class Main extends Application {
 		KlantView klantView = new KlantView(klantController);
 
 
-		//TODO: gebruik MVC om dit te veranderen en toe te voegen. MVC: Meerdere views, controllers, models toevoegen!!!
-
-		//System.out.println(System.getProperty("os.name"));
-
-		/*//TESTEN VAN DE KORTINGSTRATEGIE
-		KortingStrategieFactory factory = new KortingStrategieFactory();
-		KortingStrategie strategie = factory.makeKortingStrategie("GROEPKORTING");
-		strategie.setProcent(99);
-		System.out.println(strategie.geefKorting());
-		KortingStrategie strategie1 = factory.makeKortingStrategie("DREMPELKORTING");
-		strategie.setBedrag() werkt niet...*/ 
-
-
 	}
 
 	public static void main(String[] args) {

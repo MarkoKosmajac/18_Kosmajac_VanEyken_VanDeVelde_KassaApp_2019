@@ -1,6 +1,6 @@
 package model.state;
 
-public class VerkoopSluit implements KassaState {
+public class VerkoopSluit implements VerkoopState {
 
     public VerkoopSluit() {
         System.out.println("VerkoopsluitState");

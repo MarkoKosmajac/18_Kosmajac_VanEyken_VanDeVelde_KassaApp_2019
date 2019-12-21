@@ -2,7 +2,7 @@ package model.state;
 
 import model.ArtikelModel;
 
-public class OnHold implements KassaState {
+public class OnHold implements VerkoopState {
     private ArtikelModel artikelModel;
 
     public OnHold() {

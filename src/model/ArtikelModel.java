@@ -22,7 +22,7 @@ public class ArtikelModel implements Subject {
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
-    private KassaState kassaState;
+    private VerkoopState verkoopState;
 
 
 
@@ -35,7 +35,7 @@ public class ArtikelModel implements Subject {
         onHoldList = new ArrayList<>();
         kassaKlantList = new ArrayList<>();
 
-        setKassaState(kassaState);
+        setVerkoopState(verkoopState);
 
     }
 
@@ -141,6 +141,8 @@ public class ArtikelModel implements Subject {
     public ArrayList<Artikel> getKassaKlantList() {
         return kassaKlantList;
     }
+
+
     public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
         String res = "";
         res+="-----------------------------------------------------------------------------------------------------";
@@ -160,7 +162,7 @@ public class ArtikelModel implements Subject {
         res += "\n";
         res+="-----------------------------------------------------------------------------------------------------";
 
-        notifyObserver();//TODO: MOET DIT HIER OOK ?
+        notifyObserver();
         return res;
     }
 
@@ -183,7 +185,7 @@ public class ArtikelModel implements Subject {
         }
         kassaKlantList.clear();
 
-        notifyObserver();//TODO: MOET DIT HIER OOK ?
+        notifyObserver();
     }
 
     public void werkStockBij() {
@@ -210,7 +212,7 @@ public class ArtikelModel implements Subject {
 
         System.out.println("-----NIEUWE STOCK--------");
         System.out.println(artikelDBContext.loadData());
-        notifyObserver();//TODO: MOET DIT HIER OOK ?
+        notifyObserver();
     }
 
     public void resetOnHoldListAls3keerBetaald(){
@@ -226,8 +228,8 @@ public class ArtikelModel implements Subject {
         }
     }
 
-    public void setKassaState(KassaState kassaState) {
-        this.kassaState = kassaState;
+    public void setVerkoopState(VerkoopState verkoopState) {
+        this.verkoopState = verkoopState;
     }
 
 }

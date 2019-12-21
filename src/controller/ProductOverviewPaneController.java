@@ -16,7 +16,6 @@ public class ProductOverviewPaneController {
     }
 
     public ArrayList<Artikel> getArtikels(){
-        //artikelDBContext.updateArtikels();//TODO: Zo doen ??
         return artikelDBContext.getArtikels();
     }
 

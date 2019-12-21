@@ -1,6 +1,6 @@
 package model.state;
 
-public interface KassaState {
+public interface VerkoopState {
 
     void Betaald();
     void Annuleer();
