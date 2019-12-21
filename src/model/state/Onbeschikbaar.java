@@ -5,8 +5,8 @@ import model.ArtikelModel;
 public class Onbeschikbaar implements KassaState {
     private ArtikelModel artikelModel;
 
-    public Onbeschikbaar(ArtikelModel artikelModel) {
-        this.artikelModel = artikelModel;
+
+    public Onbeschikbaar() {
     }
 
     @Override

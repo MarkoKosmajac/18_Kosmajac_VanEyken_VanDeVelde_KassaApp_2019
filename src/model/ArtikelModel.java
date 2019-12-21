@@ -24,10 +24,6 @@ public class ArtikelModel implements Subject {
     private ArtikelDBContext artikelDBContext;
     private KassaState kassaState;
 
-    private KassaState pauzeState;
-    private KassaState onbeschikbaarState;
-    private KassaState beschikbaarState;
-    private KassaState onHoldState;
 
 
 
@@ -38,11 +34,6 @@ public class ArtikelModel implements Subject {
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
         kassaKlantList = new ArrayList<>();
-
-        pauzeState = new Annuleer(this);
-        onbeschikbaarState = new Onbeschikbaar(this);
-        beschikbaarState = new Beschikbaar(this);
-        onHoldState = new OnHold(this);
 
         setKassaState(kassaState);
 
@@ -239,19 +230,4 @@ public class ArtikelModel implements Subject {
         this.kassaState = kassaState;
     }
 
-    public void setPauzeState(KassaState pauzeState) {
-        this.pauzeState = pauzeState;
-    }
-
-    public void setOnbeschikbaarState(KassaState onbeschikbaarState) {
-        this.onbeschikbaarState = onbeschikbaarState;
-    }
-
-    public void setBeschikbaarState(KassaState beschikbaarState) {
-        this.beschikbaarState = beschikbaarState;
-    }
-
-    public void setOnHoldState(KassaState onHoldState) {
-        this.onHoldState = onHoldState;
-    }
 }
