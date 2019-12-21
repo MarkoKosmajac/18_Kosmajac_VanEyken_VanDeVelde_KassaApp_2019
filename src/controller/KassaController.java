@@ -89,11 +89,10 @@ public class KassaController implements Observer {
                 if (a.getStock() >= 0){
                     res = a;
                 }
-
             }
         }
         if(res == null){
-            throw new DBException("Artikel bestaat niet! (Niet bestaande code)");
+            throw new DBException("Artikel bestaat niet! (Niet bestaande code) of artikel is out of stock");
         }
         return res;
     }

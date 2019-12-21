@@ -186,7 +186,7 @@ public class ArtikelModel implements Subject {
         notifyObserver();//TODO: MOET DIT HIER OOK ?
     }
 
-    public void werkStockBij() {//todo: werkt, nu nog save() methode oproepen somehow? of via pane...
+    public void werkStockBij() {
         ArrayList<Artikel> newStock = new ArrayList<>();
         ArrayList<Artikel> alleArtikelen = new ArrayList<>(artikelDBContext.getArtikels());
 

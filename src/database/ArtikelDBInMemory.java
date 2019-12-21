@@ -23,7 +23,7 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     private ArtikelDBContext artikelDBContext;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
-        
+
         instellingenController = new InstellingenController();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
 
