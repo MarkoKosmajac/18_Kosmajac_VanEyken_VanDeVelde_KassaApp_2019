@@ -34,7 +34,7 @@ public class InstellingenController {
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
             //SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
             SoortDatabase databasekeuze = SoortDatabase.valueOf(keuzeDatabase);
-            os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
+            os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
             properties.clear();
             properties.setProperty("loadSaveStrategy", bestandkeuze.toString());
             //properties.setProperty("Kortingskeuze", kortingskeuze.toString());
@@ -53,7 +53,7 @@ public class InstellingenController {
         try{
             SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
 
-            os = new FileOutputStream("src" + File.separator + "database" + File.separator + "KassaApp.properties");
+            os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
             properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.setProperty("Kortingspercent", String.valueOf(percent));
             properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
@@ -71,7 +71,7 @@ public class InstellingenController {
         File bestand = null;
         InputStream in = null;
         try {
-            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class InstellingenController {
     public String geefStrategie() {
         InputStream in = null;
         try {
-            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

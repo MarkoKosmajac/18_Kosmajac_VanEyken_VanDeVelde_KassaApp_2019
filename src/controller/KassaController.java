@@ -120,7 +120,7 @@ public class KassaController implements Observer {
     public double getKorting(){
         InputStream in = null;
         try {
-            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,7 +154,7 @@ public class KassaController implements Observer {
     public double getKortingBedrag(){
         InputStream in = null;
         try {
-            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();

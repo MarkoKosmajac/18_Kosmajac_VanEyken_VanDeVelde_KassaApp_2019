@@ -65,7 +65,7 @@ public class KlantController implements Observer {
     public double getKorting(){
         InputStream in = null;
         try {
-            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,11 +73,28 @@ public class KlantController implements Observer {
         return Double.parseDouble(properties.getProperty("Kortingspercent"));
     }
 
-
     public double getEindPrijs() {
-        double percent = getKorting();
+
         double totprijs = artikelModel.getTotPrijs();
-        double korting = (percent*totprijs)/100;
-        return  totprijs-korting;
+
+        if(totprijs >= getKortingBedrag()){
+            double percent = getKorting();
+            double korting = (percent*totprijs)/100;
+            return totprijs-korting;
+        }else{
+            return totprijs;
+        }
     }
+
+    public double getKortingBedrag(){
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
+    }
+
 }
