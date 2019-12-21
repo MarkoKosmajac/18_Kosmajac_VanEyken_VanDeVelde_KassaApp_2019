@@ -19,7 +19,7 @@ import java.util.Collection;
 public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
-    private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList;
+    private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList, kassaKlantListOnHold;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
     private VerkoopState verkoopState;
@@ -30,6 +30,7 @@ public class ArtikelModel implements Subject {
 
     public ArtikelModel() {
         artikelDBContext = ArtikelDBContext.getInstance();
+        kassaKlantListOnHold = new ArrayList<>();
         kassaObserver = new ArrayList<>();
         artikelList = new ArrayList<>();
         onHoldList = new ArrayList<>();
@@ -86,8 +87,19 @@ public class ArtikelModel implements Subject {
     public void setOnHoldlist() {
         if (this.onHoldList.isEmpty()){
             this.onHoldList.addAll(this.artikelList);
+            this.kassaKlantListOnHold.addAll(this.kassaKlantList);
+
+
+
+            for (Artikel a: this.kassaKlantList){
+                a.setAantal(0);
+            }
+
+
             this.artikelList.clear();
             this.kassaKlantList.clear();
+
+
             notifyObserver();
         } else {
             throw new DBException("Er mag maar 1 list tegelijk on hold gezet worden");
@@ -99,19 +111,23 @@ public class ArtikelModel implements Subject {
             throw new DBException("Je huidige rekening moet eerst afgehandeld worden");
         } else {
             this.artikelList.addAll(this.onHoldList);
-            for (Artikel a: this.onHoldList){
-                if (!this.kassaKlantList.contains(a)){
-                    this.kassaKlantList.add(a);
+            this.kassaKlantList.addAll(this.kassaKlantListOnHold);
+
+            for (Artikel a: this.kassaKlantList){
+                for (Artikel b: this.artikelList){
+                    if (a == b){
+                        a.setAantal(a.getAantal()+1);
+                    }
                 }
             }
 
+
+
+
+            this.kassaKlantListOnHold.clear();
             this.onHoldList.clear();
             notifyObserver();
         }
-
-
-
-
     }
 
     public ArrayList<Artikel> getAlleCurrentArtikelen(){

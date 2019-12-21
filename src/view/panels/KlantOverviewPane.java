@@ -85,7 +85,7 @@ public class KlantOverviewPane extends GridPane {
     }
 
     public void setArtikellijst(ArrayList<Artikel> artikelijst) {
-        table.setItems(FXCollections.observableArrayList(artikelijst));
+        table.setItems(FXCollections.observableArrayList(producten.getArtikelModel().getKassaKlantList()));
         table.refresh(); //DIT
     }
 

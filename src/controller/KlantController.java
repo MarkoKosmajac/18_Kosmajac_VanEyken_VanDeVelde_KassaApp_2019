@@ -97,4 +97,43 @@ public class KlantController implements Observer {
         return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
     }
 
+    public KlantOverviewPane getKlantOverviewPane() {
+        return klantOverviewPane;
+    }
+
+    public void setKlantOverviewPane(KlantOverviewPane klantOverviewPane) {
+        this.klantOverviewPane = klantOverviewPane;
+    }
+
+    public ArtikelModel getArtikelModel() {
+        return artikelModel;
+    }
+
+    public void setArtikelModel(ArtikelModel artikelModel) {
+        this.artikelModel = artikelModel;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    public KassaOverviewPane getKassaOverviewPane() {
+        return kassaOverviewPane;
+    }
+
+    public void setKassaOverviewPane(KassaOverviewPane kassaOverviewPane) {
+        this.kassaOverviewPane = kassaOverviewPane;
+    }
+
+    public KassaController getKassaController() {
+        return kassaController;
+    }
+
+    public void setKassaController(KassaController kassaController) {
+        this.kassaController = kassaController;
+    }
 }
