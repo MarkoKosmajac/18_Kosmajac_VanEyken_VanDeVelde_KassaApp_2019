@@ -51,7 +51,6 @@ public class KassaController implements Observer {
 
     }
 
-
     public void verwijderVanLijst(Artikel artikel){
         try {
             artikelModel.verwijderVanLijst(artikel);
@@ -134,13 +133,37 @@ public class KassaController implements Observer {
     }
 
 
-    public double getEindPrijs() {
+    /*public double getEindPrijs() {
 
         double percent = getKorting();
         double totprijs = artikelModel.getTotPrijs();
         double korting = (percent*totprijs)/100;
         return  totprijs-korting;
 
+    }*/
+
+    public double getEindPrijs() {
+
+        double totprijs = artikelModel.getTotPrijs();
+
+        if(totprijs >= getKortingBedrag()){
+            double percent = getKorting();
+            double korting = (percent*totprijs)/100;
+            return totprijs-korting;
+        }else{
+            return totprijs;
+        }
+    }
+
+    public double getKortingBedrag(){
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "database" + File.separator + "KassaApp.properties"));
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
     }
 
     //TODO: IN ANDERE CONTROLLER ?

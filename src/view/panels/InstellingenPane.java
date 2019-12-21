@@ -23,8 +23,8 @@ public class InstellingenPane extends GridPane {
     private ComboBox<SoortKorting> comboBoxKorting;
     private ComboBox<SoortDatabase> comboBoxDatabase;
     private Button verzendKnop = new Button("Verzenden");
-    private TextField percentText = new TextField("Vul hier een percent in.");
-    private TextField bedragText = new TextField("Vul hier een bedrag in indien gewenst.");
+    private TextField percentText = new TextField();
+    private TextField bedragText = new TextField();
     private Label kortingLabel = new Label();
    /*private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
     private CheckBox cb2 = new CheckBox("Footerlijn(en) toevoegen ?");
@@ -142,5 +142,62 @@ public class InstellingenPane extends GridPane {
 
         }
     }
+
+    /*private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
+
+                if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
+                    try{
+
+                        if(getSelectedBedrag() == null || getSelectedPercent() == null || getSelectedPercent().trim().isEmpty() || getSelectedBedrag().trim().isEmpty()){
+                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),0,0);
+                        } else if (getSelectedBedrag() != null && getSelectedPercent() != null && !getSelectedPercent().trim().isEmpty() && !getSelectedBedrag().trim().isEmpty()){
+                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag()));
+                            String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
+                            kortingLabel.setText(string);
+                        }catch(Exception e){
+                            System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
+                        }
+                    }else{
+                        try{
+                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
+
+                            String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
+                            kortingLabel.setText(string);
+                        }catch(Exception e){
+                            System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
+                        }
+                    }
+
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        } else{
+            if(getSelectedBedrag() == null || getSelectedPercent() == null || getSelectedPercent().trim().isEmpty() || getSelectedBedrag().trim().isEmpty()){
+                instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),0,0);
+            }else if (getSelectedBedrag() != null && getSelectedPercent() != null && !getSelectedPercent().trim().isEmpty() && !getSelectedBedrag().trim().isEmpty()){
+                instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
+                String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
+                kortingLabel.setText(string);
+            }
+        }
+    } catch (Exception e){
+        displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting.");
+    }
+}
+    }*/
+
+    public void displayErrorMessage(String errorMessage){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Belangrijke melding!");
+        alert.setHeaderText("Informatie Alert!");
+        alert.setContentText(errorMessage);
+        alert.show();
+    }
+
 
 }
