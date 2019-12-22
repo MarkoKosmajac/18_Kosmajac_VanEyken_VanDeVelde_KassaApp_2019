@@ -3,6 +3,7 @@ package view.panels;
 import controller.KassaController;
 import controller.LogPaneController;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -12,19 +13,24 @@ import javafx.scene.layout.GridPane;
 import model.Artikel;
 import model.Verkoop;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class LogPane extends GridPane {
-    private TableView<Verkoop> table ;
+    private TableView<Verkoop> table = new TableView<Verkoop>();
     private KassaController kassaController;
+    private ObservableList<Verkoop> verkopen;
 
-    public LogPane(){
+    public LogPane(KassaController kassaController){
+        this.kassaController = kassaController;
 
-        table = new TableView<Verkoop>();
+        verkopen = FXCollections.observableArrayList(FXCollections.observableArrayList(new ArrayList<>()));
 
-        TableColumn<Verkoop, String> colDatEnTijdstipBet = new TableColumn<Verkoop, String>("Datum en Tijdstip betaling");
+
+        TableColumn colDatEnTijdstipBet = new TableColumn("Datum en Tijdstip betaling");
         colDatEnTijdstipBet.setMinWidth(270);
-        colDatEnTijdstipBet.setCellValueFactory(new PropertyValueFactory<Verkoop, String>("datumEnTijdBetaling"));
+        colDatEnTijdstipBet.setCellValueFactory(new PropertyValueFactory<Verkoop, LocalDateTime>("dateEnTime"));
 
         TableColumn<Verkoop, Double> colTotaalBedrag = new TableColumn<Verkoop, Double>("Totaalbedrag");
         colTotaalBedrag.setMinWidth(150);
@@ -38,8 +44,9 @@ public class LogPane extends GridPane {
         colTeBetalen.setMinWidth(100);
         colTeBetalen.setCellValueFactory(new PropertyValueFactory<Verkoop, Double>("teBetalenBedrag"));
 
+        table.setItems(verkopen);
         table.getColumns().addAll(colDatEnTijdstipBet, colTotaalBedrag, colKorting,colTeBetalen);
-        this.getChildren().addAll(table);
+        this.add(table,0,1,1,1);
 
     }
 

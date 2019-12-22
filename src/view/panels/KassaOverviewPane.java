@@ -264,11 +264,8 @@ public class KassaOverviewPane extends GridPane{
                 kassaController.werkStockBij();
                 kassaController.resetOnHoldListAls3keerBetaald();
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                LocalDateTime now = LocalDateTime.now();
-                String em = dtf.format(now);
-                Verkoop verkoop = new Verkoop(em,Double.parseDouble(labelTotaal.getText()), Double.parseDouble(korting.getText()), Double.parseDouble(eindTotaal.getText()));
-                verkoop.voegVerkoopToe(verkoop);
+                Verkoop verkoop = new Verkoop(Double.parseDouble(labelTotaal.getText()), Double.parseDouble(korting.getText()), Double.parseDouble(eindTotaal.getText()));
+                //verkoop.voegVerkoopToe(verkoop);
                 System.out.println("VERKOOP TOEGEVOEGD");
 
 
