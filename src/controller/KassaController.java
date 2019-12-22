@@ -117,15 +117,6 @@ public class KassaController implements Observer {
     }
 
 
-    /*public double getEindPrijs() {
-
-        double percent = getKorting();
-        double totprijs = artikelModel.getTotPrijs();
-        double korting = (percent*totprijs)/100;
-        return  totprijs-korting;
-
-    }*/
-
     public double getEindPrijs() {
 
         return artikelModel.getEindPrijs();
@@ -133,11 +124,6 @@ public class KassaController implements Observer {
 
     public double getKortingBedrag(){
         return artikelModel.getKortingBedrag();
-    }
-
-    //TODO: IN ANDERE CONTROLLER ?
-    public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
-        return artikelModel.log();
     }
 
     public void nieuwVenster() {

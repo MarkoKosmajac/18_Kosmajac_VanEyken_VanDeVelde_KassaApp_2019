@@ -17,15 +17,11 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
 
     private LoadSaveStrategy loadSaveStrategy;
     private HashMap<String, Artikel> artikelen;
-    private ArtikelDBStrategy artikelDBStrategy;
-    private LoadSaveStrategyFactory loadSaveStrategyFactory;
     private InstellingenController instellingenController;
-    private ArtikelDBContext artikelDBContext;
 
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
 
         instellingenController = new InstellingenController();
-        //loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         loadSaveStrategy = LoadSaveStrategyFactory.getInstance().makeLoadSaveStrategy(instellingenController.getProperties());
         this.loadSaveStrategy = loadSaveStrategy;
 

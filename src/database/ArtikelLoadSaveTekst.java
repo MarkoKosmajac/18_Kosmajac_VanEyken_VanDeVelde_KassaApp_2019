@@ -31,7 +31,6 @@ public class ArtikelLoadSaveTekst extends TekstLoadSaveTemplate {
         double prijs = Double.parseDouble(pris);
         String stok = scannerLine.next();
         int stock = Integer.parseInt(stok);
-        //vb: 1,artikel1,gr1,12.5,10
         Artikel artikel = new Artikel(id, omschrijving, groep, prijs, stock);
         return artikel;
     }

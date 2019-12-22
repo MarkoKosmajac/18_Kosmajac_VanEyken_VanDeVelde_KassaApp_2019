@@ -55,7 +55,6 @@ public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
         try{
             PrintWriter writer = new PrintWriter(file);
             for (Artikel a: artikelen){
-                //writer.println(a);
                 writer.print(a.getArtikelCode() + ",");
                 writer.print(a.getOmschrijving() + ",");
                 writer.print(a.getArtikelGroep() + ",");

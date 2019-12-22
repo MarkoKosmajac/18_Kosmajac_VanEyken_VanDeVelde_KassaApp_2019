@@ -1,7 +1,6 @@
 package database;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 import controller.InstellingenController;
@@ -18,14 +17,12 @@ public class ArtikelDBContext {
     private static ArtikelDBContext uniqueInstance;
     private File bestand;
     private LoadSaveStrategy loadSaveStrategy;
-    //private LoadSaveStrategyFactory loadSaveStrategyFactory;
     private InstellingenController instellingenController;
     private ArtikelDBInMemory artikelDBInMemory;
 
     private ArtikelDBContext() {
         artikelDBInMemory = new ArtikelDBInMemory();
         instellingenController = new InstellingenController();
-        //loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = instellingenController.geefPathFile();
         data = new ArrayList<>();
         loadSaveStrategy = LoadSaveStrategyFactory.getInstance().makeLoadSaveStrategy(instellingenController.getProperties());

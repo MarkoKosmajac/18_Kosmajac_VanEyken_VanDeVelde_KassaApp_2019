@@ -32,19 +32,15 @@ public class InstellingenController {
         return properties.getProperty("loadSaveStrategy");
     }
 
-    public void setPropertiesDB(String keuzeFile/*, String keuzeKorting*/, String keuzeDatabase/*, int percent, int bedrag*/){
+    public void setPropertiesDB(String keuzeFile, String keuzeDatabase){
         FileOutputStream os;
         try{
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
-            //SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
             SoortDatabase databasekeuze = SoortDatabase.valueOf(keuzeDatabase);
             os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
             properties.clear();
             properties.setProperty("loadSaveStrategy", bestandkeuze.toString());
-            //properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.setProperty("databasekeuze", databasekeuze.toString());
-            //properties.setProperty("Kortingspercent", String.valueOf(percent));
-            //properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
             properties.store(os,null);
 
         } catch (Exception e) {
@@ -52,7 +48,7 @@ public class InstellingenController {
         }
     }
 
-    public void setPropertiesKeuzeKorting(String keuzeKorting, int percent, double bedrag/*, String headerlijn, String footerlijn*/){
+    public void setPropertiesKeuzeKorting(String keuzeKorting, int percent, double bedrag){
         FileOutputStream os = null;
         try{
             SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
@@ -61,8 +57,6 @@ public class InstellingenController {
             properties.setProperty("Kortingskeuze", kortingskeuze.toString());
             properties.setProperty("Kortingspercent", String.valueOf(percent));
             properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
-            /*properties.setProperty("headerlijn", headerlijn);
-            properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
             System.out.println("App sluit automatisch om updates toe te passen in de properties file");
             //Platform.exit(); //TODO: WHAT TO DO?
