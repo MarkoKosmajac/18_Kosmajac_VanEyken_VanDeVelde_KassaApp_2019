@@ -280,9 +280,6 @@ public class KassaOverviewPane extends GridPane{
             }
 
 
-
-
-
             //Maak voor de Verkoop klasse (de klasse voor een actuele verkoop van een klant ) een UML toestandsdiagram (state diagram) met alle mogelijke toestanden van een verkoop en alle mogelijke events (van story 3 tot en met story 9).
             //Pas het State design pattern toe om dit diagram te implementeren.
         }

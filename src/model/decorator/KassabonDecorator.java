@@ -19,14 +19,15 @@ public abstract class KassabonDecorator implements Kassabon{
 
     }
 
-    public Kassabon getKassabon(){
+    /*public Kassabon getKassabon(){
         return this.kassabon;
-    }
+    }*/
 
 
 
     @Override
     public String toString() {
-        return getKassabon().toString();
+        //return getKassabon().toString();
+        return super.toString();
     }
 }

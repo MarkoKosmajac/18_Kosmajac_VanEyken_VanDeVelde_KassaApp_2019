@@ -17,6 +17,26 @@ public class HeaderDecorator extends KassabonDecorator {
 
     @Override
     public String toString() {
-        return  super.toString() + "\n";
+
+        String headerlijn = "";
+
+        if (instellingenController.getIngevuldeProperty("headerlijn") != null){
+            System.out.println("eeee");
+            for (SoortHeaderLijn e: SoortHeaderLijn.values()){
+                if (instellingenController.getIngevuldeProperty("headerlijn").equalsIgnoreCase(e.toString())){
+                    headerlijn +="-----------------------------------------------------------------------------------------------------";
+                    headerlijn += "\nDATUM BETALING: ";
+                    //GET DATE + TIME
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    LocalDateTime now = LocalDateTime.now();
+                    headerlijn+= dtf.format(now) + "\n";
+                    break;
+                } else {
+                    headerlijn = instellingenController.getIngevuldeProperty("headerlijn");
+                }
+            }
+        }
+
+        return headerlijn + super.toString() + "\n" /* + new FooterDecorator(new TekstKassabonLezer())*/; //rare sout: model... = super.toString();
     }
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 
+/* VOOR LOGS - TAB 4: NOT FINISHED*/
 public class Verkoop {
     private double totaalbedrag, korting, teBetalenBedrag;
     private LocalDateTime dateEnTime;
