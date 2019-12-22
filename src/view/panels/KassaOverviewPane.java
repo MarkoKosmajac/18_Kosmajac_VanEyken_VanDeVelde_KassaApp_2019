@@ -246,14 +246,7 @@ public class KassaOverviewPane extends GridPane{
             } else {
 
                 kassaController.setState(new Betaald());
-                /*Kassabon kassabon1 = new FooterDecorator(new TekstKassabonLezer("eeee"));
-                System.out.println(kassabon1.printBon());
-                Kassabon kassabon2 = new HeaderDecorator(new TekstKassabonLezer("eeee"));
-                System.out.println(kassabon2.printBon());*/
 
-                /*System.out.println(producten.printKassaBon(eindTotaal.getText()));*/
-
-                //System.out.println(kassaController.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
 
                 System.out.println(kassaController.printKassaBon());
                 kassaController.werkStockBij();

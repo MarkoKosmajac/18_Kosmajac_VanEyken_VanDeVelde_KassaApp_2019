@@ -32,7 +32,7 @@ public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
     private InstellingenController instellingenController = new InstellingenController();
-    private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList, kassaKlantListOnHold;
+    private ArrayList<Artikel> artikelList, onHoldList, kassaKlantList, kassaKlantListOnHold;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
     private VerkoopState verkoopState;
@@ -40,9 +40,6 @@ public class ArtikelModel implements Subject {
     private Properties properties;
     private double kortingBedrag;
     private double kortingpercent;
-
-
-
 
 
     public ArtikelModel() {
@@ -58,28 +55,30 @@ public class ArtikelModel implements Subject {
 
     }
 
-    public void veranderAantalPositief(Artikel artikel){
+    public void veranderAantalPositief(Artikel artikel) {
         int index = kassaKlantList.indexOf(artikel);
-        kassaKlantList.get(index).setAantal(artikel.getAantal()+1);
+        kassaKlantList.get(index).setAantal(artikel.getAantal() + 1);
         notifyObserver();
 
     }
-    public void veranderAantalNegatief(Artikel artikel){
+
+    public void veranderAantalNegatief(Artikel artikel) {
         int index = kassaKlantList.indexOf(artikel);
-        kassaKlantList.get(index).setAantal(artikel.getAantal()-1);
-        if (kassaKlantList.get(index).getAantal() == 0){
+        kassaKlantList.get(index).setAantal(artikel.getAantal() - 1);
+        if (kassaKlantList.get(index).getAantal() == 0) {
             kassaKlantList.remove(index);
         }
         notifyObserver();
     }
+
     public void addToLijst(Artikel artikel) {
-       artikelList.add(artikel);
-       notifyObserver();
+        artikelList.add(artikel);
+        notifyObserver();
 
     }
 
     public void addToLijstKassa(Artikel artikel) {
-        if (!kassaKlantList.contains(artikel)){
+        if (!kassaKlantList.contains(artikel)) {
             kassaKlantList.add(artikel);
             notifyObserver();
         }
@@ -87,30 +86,30 @@ public class ArtikelModel implements Subject {
         notifyObserver();
 
     }
-    public void verwijderVanLijst(Artikel artikel){
+
+    public void verwijderVanLijst(Artikel artikel) {
         artikelList.remove(artikel);
         veranderAantalNegatief(artikel);
         notifyObserver();
     }
 
-    public double getTotPrijs(){
+    public double getTotPrijs() {
         double tot = 0.0;
-        for(Artikel a : artikelList){
-            if(a != null){
+        for (Artikel a : artikelList) {
+            if (a != null) {
                 tot += a.getPrijs();
             }
         }
-        return Math.floor(tot*100)/100;
+        return Math.floor(tot * 100) / 100;
     }
 
     public void setOnHoldlist() {
-        if (this.onHoldList.isEmpty()){
+        if (this.onHoldList.isEmpty()) {
             this.onHoldList.addAll(this.artikelList);
             this.kassaKlantListOnHold.addAll(this.kassaKlantList);
 
 
-
-            for (Artikel a: this.kassaKlantList){
+            for (Artikel a : this.kassaKlantList) {
                 a.setAantal(0);
             }
 
@@ -125,22 +124,20 @@ public class ArtikelModel implements Subject {
         }
     }
 
-    public void returnToPreviousList(){
-        if (!this.artikelList.isEmpty()){
+    public void returnToPreviousList() {
+        if (!this.artikelList.isEmpty()) {
             throw new DBException("Je huidige rekening moet eerst afgehandeld worden");
         } else {
             this.artikelList.addAll(this.onHoldList);
             this.kassaKlantList.addAll(this.kassaKlantListOnHold);
 
-            for (Artikel a: this.kassaKlantList){
-                for (Artikel b: this.artikelList){
-                    if (a == b){
-                        a.setAantal(a.getAantal()+1);
+            for (Artikel a : this.kassaKlantList) {
+                for (Artikel b : this.artikelList) {
+                    if (a == b) {
+                        a.setAantal(a.getAantal() + 1);
                     }
                 }
             }
-
-
 
 
             this.kassaKlantListOnHold.clear();
@@ -149,7 +146,7 @@ public class ArtikelModel implements Subject {
         }
     }
 
-    public ArrayList<Artikel> getAlleCurrentArtikelen(){
+    public ArrayList<Artikel> getAlleCurrentArtikelen() {
         return this.artikelList;
     }
 
@@ -157,22 +154,27 @@ public class ArtikelModel implements Subject {
     public void register(Observer obs) {
         kassaObserver.add(obs);
     }
+
     @Override
     public void unregister(Observer o) {
         kassaObserver.remove(o);
     }
+
     @Override
     public void notifyObserver() {
-        for(Observer observer : kassaObserver){
+        for (Observer observer : kassaObserver) {
             observer.update(artikelList);
         }
     }
+
     public Collection<Observer> getKassaObserver() {
         return kassaObserver;
     }
+
     public ArrayList<Artikel> getArtikelList() {
         return artikelList;
     }
+
     public ArrayList<Artikel> getKassaKlantList() {
         return kassaKlantList;
     }
@@ -180,30 +182,54 @@ public class ArtikelModel implements Subject {
 
     public String log() {
         String res = "";
-        res+="-----------------------------------------------------------------------------------------------------";
+        res += "-----------------------------------------------------------------------------------------------------";
         res += "\nDATUM BETALING: ";
 
         //GET DATE + TIME
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        res+= dtf.format(now);
+        res += dtf.format(now);
         res += "\nGEKOCHTE GOEDEREN: \n";
 
         //GET CURRENT LIST PRODUCTEN TOSTRING
-        for(Artikel artikel : this.artikelList){
+        for (Artikel artikel : this.artikelList) {
             res += artikel.cleanOutput();
         }
-        res +="Totaalbedrag: " + getTotPrijs() + "euro | Verkregen Korting: " + getKorting() + "euro | Te betalen Eindtotaal: " + getEindPrijs() +"euro";
+        res += "Totaalbedrag: " + getTotPrijs() + "euro | Verkregen Korting: " + getKorting() + "euro | Te betalen Eindtotaal: " + getEindPrijs() + "euro";
         res += "\n";
-        res+="-----------------------------------------------------------------------------------------------------";
+        res += "-----------------------------------------------------------------------------------------------------";
 
         notifyObserver();
         return res;
     }
 
+    public String kassaBonPrintModelString(ArrayList<Artikel> artikels) {
+        ArrayList<Artikel> artikelArrayList = new ArrayList<>();
+
+        String res = "\nGEKOCHTE GOEDEREN: \n";
+        res += "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
+        String sterretjes = "***********************************";
+        res += sterretjes + "\n";
+        for (Artikel artikel : artikels) {
+            if (!artikelArrayList.contains(artikel)){
+                artikelArrayList.add(artikel);
+            }
+        }
+
+        for (Artikel a: artikelArrayList){
+            res += a.kassabonPrint();
+        }
+        res += sterretjes + "\n";
+        return  res;
+    }
+
+
+
+
 
     public String kassaBonPrintModel(){
-        return new FooterDecorator(new HeaderDecorator(new TekstKassabonLezer())).toString();
+
+        return new FooterDecorator(this,new HeaderDecorator(new TekstKassabonLezer(this))).toString();
     }
 
     public void nieuwVenster() {
@@ -289,16 +315,16 @@ public class ArtikelModel implements Subject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.kortingBedrag =  Double.parseDouble(properties.getProperty("Kortingsbedrag"));
-        return this.kortingBedrag;
+        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
+
     }
 
     public double getEindPrijs() {
 
         double totprijs = getTotPrijs();
 
-        if(totprijs >= this.kortingBedrag){
-            double percent = this.kortingpercent;
+        if(totprijs >= getKortingBedrag()){
+            double percent = getKorting();
             double korting = (percent*totprijs)/100;
             return totprijs-korting;
         }else{
@@ -314,8 +340,7 @@ public class ArtikelModel implements Subject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.kortingpercent = Double.parseDouble(properties.getProperty("Kortingspercent"));
-        return this.kortingpercent;
+        return Double.parseDouble(properties.getProperty("Kortingspercent"));
     }
 
     public double getTotprijsMetBTW(){
