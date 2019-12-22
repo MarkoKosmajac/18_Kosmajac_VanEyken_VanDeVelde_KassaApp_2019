@@ -32,6 +32,7 @@ public class KassaController implements Observer {
         artikelDBContext = ArtikelDBContext.getInstance();
     }
 
+
     public void addToLijst(Artikel artikel) {
         try {
             if (!artikelModel.getKassaKlantList().contains(artikel)){
@@ -56,13 +57,7 @@ public class KassaController implements Observer {
     }
 
     public double getTotPrijs(){
-        double tot = 0.0;
-        try {
-            tot = artikelModel.getTotPrijs();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return tot;
+        return  artikelModel.getTotPrijs();
     }
 
     public void setPane(KassaOverviewPane kassaOverviewPaneView){
@@ -118,14 +113,7 @@ public class KassaController implements Observer {
     }
 
     public double getKorting(){
-        InputStream in = null;
-        try {
-            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Double.parseDouble(properties.getProperty("Kortingspercent"));
+        return artikelModel.getKorting();
     }
 
 
@@ -140,26 +128,11 @@ public class KassaController implements Observer {
 
     public double getEindPrijs() {
 
-        double totprijs = artikelModel.getTotPrijs();
-
-        if(totprijs >= getKortingBedrag()){
-            double percent = getKorting();
-            double korting = (percent*totprijs)/100;
-            return totprijs-korting;
-        }else{
-            return totprijs;
-        }
+        return artikelModel.getEindPrijs();
     }
 
     public double getKortingBedrag(){
-        InputStream in = null;
-        try {
-            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
+        return artikelModel.getKortingBedrag();
     }
 
     //TODO: IN ANDERE CONTROLLER ?
@@ -180,9 +153,9 @@ public class KassaController implements Observer {
     }
 
 
-    /*public String printKassaBon(String text) {
-        return artikelModel.kassaBonPrintModel(text);
-    }*/
+    public String printKassaBon() {
+        return artikelModel.kassaBonPrintModel();
+    }
 
     public void setState(VerkoopState state){
         artikelModel.setVerkoopState(state);

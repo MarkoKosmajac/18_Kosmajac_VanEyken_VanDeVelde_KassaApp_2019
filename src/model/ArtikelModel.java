@@ -1,5 +1,6 @@
 package model;
 
+import controller.InstellingenController;
 import controller.KassaController;
 import database.ArtikelDBContext;
 import database.DBException;
@@ -8,10 +9,15 @@ import model.observer.Observer;
 import model.observer.Subject;
 import model.state.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Properties;
 
 /**
  * @author Max Van De Velde, Marko Kosmajac
@@ -21,18 +27,20 @@ import java.util.Collection;
 public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
-    private KassaController  kassaController;
+    private InstellingenController instellingenController = new InstellingenController();
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList, kassaKlantListOnHold;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
     private VerkoopState verkoopState;
     private KortingStrategie kortingStrategie;
+    private Properties properties;
 
 
 
 
 
     public ArtikelModel() {
+        properties = new Properties();
         artikelDBContext = ArtikelDBContext.getInstance();
         kassaKlantListOnHold = new ArrayList<>();
         kassaObserver = new ArrayList<>();
@@ -187,15 +195,37 @@ public class ArtikelModel implements Subject {
     }
 
     public String kassaBonPrintModel(){
-        String res = "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
+        String headerlijn = "";
+        String footerlijn = "";
+
+        if (instellingenController.getIngevuldeProperty("headerlijn") != null){
+            headerlijn = instellingenController.getIngevuldeProperty("headerlijn") + "\n";
+        }
+
+        if (instellingenController.getIngevuldeProperty("footerlijn") != null){
+            footerlijn = instellingenController.getIngevuldeProperty("footerlijn");
+        }
+
+
+
+        String res = "";
+        res+="-----------------------------------------------------------------------------------------------------";
+        res += "\nDATUM BETALING: ";
+        //GET DATE + TIME
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        res+= dtf.format(now);
+        res += "\nGEKOCHTE GOEDEREN: \n";
+        res += "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
         String sterretjes = "***********************************";
         res += sterretjes + "\n";
         for(Artikel artikel : this.kassaKlantList){
             res += artikel.kassabonPrint();
         }
         res += sterretjes + "\n";
-        res += "Betaald (inclusief korting): " + getEindTotaal() + " €";
-        return res;
+        res += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
+        res += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
+        return headerlijn + res  + footerlijn;
     }
 
     public void nieuwVenster() {
@@ -230,8 +260,6 @@ public class ArtikelModel implements Subject {
         artikelDBContext.save(alleArtikelen);
         artikelDBContext.setData(alleArtikelen);
 
-        System.out.println("-----NIEUWE STOCK--------");
-        System.out.println(artikelDBContext.loadData());
         notifyObserver();
     }
 
@@ -273,12 +301,41 @@ public class ArtikelModel implements Subject {
         this.kortingStrategie = kortingStrategie;
     }
 
-    public double getEindTotaal() {
-        double eindtotaalbruto = 0;
 
-        for (Artikel a: this.artikelList){
-            eindtotaalbruto += a.getPrijs();
+    public double getKortingBedrag(){
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return eindtotaalbruto;
+        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
     }
+
+    public double getEindPrijs() {
+
+        double totprijs = getTotPrijs();
+
+        if(totprijs >= getKortingBedrag()){
+            double percent = getKorting();
+            double korting = (percent*totprijs)/100;
+            return totprijs-korting;
+        }else{
+            return totprijs;
+        }
+    }
+
+    public double getKorting(){
+        InputStream in = null;
+        try {
+            in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Double.parseDouble(properties.getProperty("Kortingspercent"));
+    }
+
+
 }

@@ -260,7 +260,9 @@ public class KassaOverviewPane extends GridPane{
 
                 /*System.out.println(producten.printKassaBon(eindTotaal.getText()));*/
 
-                System.out.println(kassaController.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
+                //System.out.println(kassaController.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
+
+                System.out.println(kassaController.printKassaBon());
                 kassaController.werkStockBij();
                 kassaController.resetOnHoldListAls3keerBetaald();
 
