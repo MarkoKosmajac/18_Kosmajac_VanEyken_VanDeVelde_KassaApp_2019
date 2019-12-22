@@ -1,7 +1,7 @@
 package model.kortingstrategie;
 
 /**
- * @author Marko Kosmajac
+ * @author Marko Kosmajac, Phonkrit Van de Velde
  */
 
 public interface KortingStrategie {
@@ -9,5 +9,8 @@ public interface KortingStrategie {
     String geefKorting();
     int getProcent();
     void setProcent(int procent);
+    void setPropertiesKorting();
+    double getBedrag();
+
 
 }

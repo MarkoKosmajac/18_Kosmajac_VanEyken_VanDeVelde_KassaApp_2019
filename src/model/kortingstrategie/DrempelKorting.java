@@ -1,17 +1,24 @@
 package model.kortingstrategie;
 
+import controller.InstellingenController;
+
 /**
- * @author Marko Kosmajac
+ * @author Marko Kosmajac, Phonkrit Van de Velde
  */
 
 public class DrempelKorting implements KortingStrategie {
 
     private int procent;
     private double bedrag;
+    private InstellingenController instellingenController;
 
-    public DrempelKorting() {
-        this.procent = 0;
-        this.bedrag = 0;
+    public DrempelKorting(int procent, double bedrag) {
+        setBedrag(bedrag);
+        setProcent(procent);
+
+        instellingenController = new InstellingenController();
+        System.out.println("DrempelKorting toepassen");
+        this.setPropertiesKorting();
     }
 
     @Override
@@ -36,5 +43,12 @@ public class DrempelKorting implements KortingStrategie {
     public String geefKorting() {
         return getProcent() + "% korting op een aankoopbedrag hoger dan " + getBedrag() + " euro.";
     }
+
+    @Override
+    public void setPropertiesKorting(){
+        instellingenController.setPropertiesKeuzeKorting("DREMPELKORTING", getProcent(),getBedrag());
+    }
+
+
 
 }

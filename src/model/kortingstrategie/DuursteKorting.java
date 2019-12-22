@@ -1,15 +1,27 @@
 package model.kortingstrategie;
 
+import controller.InstellingenController;
+import model.ArtikelModel;
+
 /**
  * @author Marko Kosmajac
  */
 
 public class DuursteKorting implements KortingStrategie {
 
+    private ArtikelModel artikelModel;
     private int procent;
+    private double bedrag;
+    private InstellingenController instellingenController;
 
-    public DuursteKorting() {
-        this.procent = 0;
+    public DuursteKorting(int procent, double bedrag) {
+        artikelModel = new ArtikelModel();
+        setProcent(0);
+        setBedrag(bedrag);
+
+        instellingenController = new InstellingenController();
+        System.out.println("Duurstekorting toepassen");
+        this.setPropertiesKorting();
     }
 
     @Override
@@ -23,7 +35,21 @@ public class DuursteKorting implements KortingStrategie {
     }
 
     @Override
+    public void setPropertiesKorting() {
+        instellingenController.setPropertiesKeuzeKorting("DuursteKorting",getProcent(),artikelModel.getDuursteArtikel());
+    }
+
+    @Override
+    public double getBedrag() {
+        return 0;
+    }
+
+    public void setBedrag(double bedrag) {
+        this.bedrag = bedrag;
+    }
+
+    @Override
     public String geefKorting() {
-        return getProcent() + "% korting op duurste artikel uit winkelkar.";
+        return artikelModel.getDuursteArtikel() + " euro korting op duurste artikel uit winkelkar.";
     }
 }

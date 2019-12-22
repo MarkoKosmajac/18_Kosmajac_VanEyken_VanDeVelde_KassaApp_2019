@@ -1,25 +1,49 @@
 package model.kortingstrategie;
 
+import controller.InstellingenController;
+
 /**
- * @author Marko Kosmajac
+ * @author Marko Kosmajac, Phonkrit Van de Velde
  */
 
 public class Groepkorting implements KortingStrategie {
 
-    private int procent;
+    private int percent;
+    private double bedrag;
+    private InstellingenController instellingenController;
 
-    public Groepkorting() {
-        this.procent = 0;
+
+    public Groepkorting(int percent, double bedrag) {
+        setProcent(percent);
+        setBedrag(bedrag);
+
+        instellingenController = new InstellingenController();
+        System.out.println("Groepkorting toepassen");
+        this.setPropertiesKorting();
     }
 
     @Override
     public int getProcent() {
-        return procent;
+        return percent;
     }
 
     @Override
     public void setProcent(int procent) {
-        this.procent = procent;
+            this.percent = procent;
+    }
+
+    @Override
+    public void setPropertiesKorting() {
+        instellingenController.setPropertiesKeuzeKorting("GROEPKORTING", getProcent(), getBedrag());
+    }
+
+    public void setBedrag(double bedrag) {
+        this.bedrag = bedrag;
+    }
+
+    @Override
+    public double getBedrag() {
+        return bedrag;
     }
 
     @Override

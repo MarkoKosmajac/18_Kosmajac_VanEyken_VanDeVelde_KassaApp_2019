@@ -1,7 +1,11 @@
 package controller;
 
+import javafx.application.Platform;
+import model.Artikel;
+import model.ArtikelModel;
 import model.SoortBestand;
 import model.SoortDatabase;
+import model.kortingstrategie.KortingStrategie;
 import model.kortingstrategie.SoortKorting;
 import view.panels.InstellingenPane;
 
@@ -15,11 +19,11 @@ import java.util.Properties;
 public class InstellingenController {
 
 
+    protected ArtikelModel artikelModel;
     private Properties properties;
     private InstellingenPane instellingenPane;
 
     public InstellingenController(){
-
         this.properties = new Properties();
         geefPathFile();
     }
@@ -60,6 +64,7 @@ public class InstellingenController {
             /*properties.setProperty("headerlijn", headerlijn);
             properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
+
 
         } catch (Exception e) {
             e.getMessage();
@@ -106,6 +111,14 @@ public class InstellingenController {
     public String getSelectedPercent(){
         System.out.println(instellingenPane.getSelectedPercent());
         return instellingenPane.getSelectedPercent();
+    }
+
+    public double getDuursteArtikel(){
+        return artikelModel.getDuursteArtikel();
+    }
+
+    public String getKortingStrategieString(KortingStrategie kortingStrategie) {
+        return artikelModel.getKortingStrategieString(kortingStrategie);
     }
 
 }

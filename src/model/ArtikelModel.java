@@ -2,6 +2,7 @@ package model;
 
 import database.ArtikelDBContext;
 import database.DBException;
+import model.kortingstrategie.KortingStrategie;
 import model.observer.Observer;
 import model.observer.Subject;
 import model.state.*;
@@ -23,6 +24,7 @@ public class ArtikelModel implements Subject {
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
     private VerkoopState verkoopState;
+    private KortingStrategie kortingStrategie;
 
 
 
@@ -248,4 +250,22 @@ public class ArtikelModel implements Subject {
         this.verkoopState = verkoopState;
     }
 
+    public double getDuursteArtikel(){
+        Artikel res = this.artikelList.get(0);
+
+        for (Artikel a: this.artikelList){
+            if (res.getPrijs() <= a.getPrijs()){
+                res = a;
+            }
+        }
+        return res.getPrijs();
+    }
+
+    public String getKortingStrategieString(KortingStrategie kortingStrategie) {
+        return kortingStrategie.geefKorting();
+    }
+
+    public void setKortingStrategie(KortingStrategie kortingStrategie) {
+        this.kortingStrategie = kortingStrategie;
+    }
 }

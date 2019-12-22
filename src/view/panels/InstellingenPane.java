@@ -1,7 +1,10 @@
 package view.panels;
 
+import application.Main;
 import controller.ControllerException;
 import controller.InstellingenController;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -11,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import model.SoortBestand;
 import model.SoortDatabase;
-import model.kortingstrategie.SoortKorting;
+import model.kortingstrategie.*;
 
 /**
  * @author Marko Kosmajac
@@ -23,8 +26,8 @@ public class InstellingenPane extends GridPane {
     private ComboBox<SoortKorting> comboBoxKorting;
     private ComboBox<SoortDatabase> comboBoxDatabase;
     private Button verzendKnop = new Button("Verzenden");
-    private TextField percentText = new TextField();
-    private TextField bedragText = new TextField();
+    private TextField percentText = new TextField("0");
+    private TextField bedragText = new TextField("0");
     private Label kortingLabel = new Label();
    /*private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
     private CheckBox cb2 = new CheckBox("Footerlijn(en) toevoegen ?");
@@ -111,92 +114,38 @@ public class InstellingenPane extends GridPane {
         return textFooterlijnen.getText();
     }*/
 
-    private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            try {
-                instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
-
-                if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
-                    try{
-                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag())/*, getTextHeaderlijnen(), getTextFooterlijnen()*/);
-                        String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
-                        kortingLabel.setText(string);
-                    }catch(Exception e){
-                        System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
-                }
-                }else{
-                    try{
-                        instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0/*, getTextHeaderlijnen(), getTextFooterlijnen()*/);
-
-                        String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
-                        kortingLabel.setText(string);
-                    }catch(Exception e){
-                        System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
-                    }
-                }
-
-            } catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-
-        }
-    }
-
-    /*private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            try {
-                instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
-
-                if(getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")){
-                    try{
-
-                        if(getSelectedBedrag() == null || getSelectedPercent() == null || getSelectedPercent().trim().isEmpty() || getSelectedBedrag().trim().isEmpty()){
-                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),0,0);
-                        } else if (getSelectedBedrag() != null && getSelectedPercent() != null && !getSelectedPercent().trim().isEmpty() && !getSelectedBedrag().trim().isEmpty()){
-                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),Double.parseDouble(getSelectedBedrag()));
-                            String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "% en een bedrag van: " + getSelectedBedrag() + " euro.";
-                            kortingLabel.setText(string);
-                        }catch(Exception e){
-                            System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
-                        }
-                    }else{
-                        try{
-                            instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
-
-                            String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
-                            kortingLabel.setText(string);
-                        }catch(Exception e){
-                            System.out.println("Niet genoeg parameters meegegeven voor gekozen korting.");
-                        }
-                    }
-
-                } catch (Exception e){
-                    System.out.println(e.getMessage());
-                }
-            }
-        } else{
-            if(getSelectedBedrag() == null || getSelectedPercent() == null || getSelectedPercent().trim().isEmpty() || getSelectedBedrag().trim().isEmpty()){
-                instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),0,0);
-            }else if (getSelectedBedrag() != null && getSelectedPercent() != null && !getSelectedPercent().trim().isEmpty() && !getSelectedBedrag().trim().isEmpty()){
-                instellingenController.setPropertiesKeuzeKorting(getSelectedKorting(),Integer.parseInt(getSelectedPercent()),0);
-                String string = "Geselecteerde korting: " + getSelectedKorting() + " met procent: " + getSelectedPercent() + "%";
-                kortingLabel.setText(string);
-            }
-        }
-    } catch (Exception e){
-        displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting.");
-    }
-}
-    }*/
-
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Belangrijke melding!");
         alert.setHeaderText("Informatie Alert!");
         alert.setContentText(errorMessage);
         alert.show();
+    }
+
+    private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
+
+                if (getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")) {
+                    instellingenController.getKortingStrategieString(new DrempelKorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
+                }
+
+                if (getSelectedKorting().equalsIgnoreCase("GROEPKORTING")){
+                    instellingenController.getKortingStrategieString(new Groepkorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
+
+                }
+
+                if (getSelectedKorting().equalsIgnoreCase("DUURSTEKORTING")){
+                    instellingenController.getKortingStrategieString(new DuursteKorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
+
+                }
+            }catch (Exception e) {
+                displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting." + e.getCause());
+            }
+            //Platform.exit();
+        }
     }
 
 
