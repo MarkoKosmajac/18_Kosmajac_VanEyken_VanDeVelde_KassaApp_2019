@@ -33,7 +33,7 @@ public class InstellingenController {
     }
 
     public void setPropertiesDB(String keuzeFile/*, String keuzeKorting*/, String keuzeDatabase/*, int percent, int bedrag*/){
-        FileOutputStream os = null;
+        FileOutputStream os; //TODO: Stond null bij
         try{
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
             //SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
@@ -64,6 +64,7 @@ public class InstellingenController {
             /*properties.setProperty("headerlijn", headerlijn);
             properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
+            System.out.println("App sluit automatisch om updates toe te passen in de properties file");
             Platform.exit(); //TODO: WHAT TO DO?
 
 

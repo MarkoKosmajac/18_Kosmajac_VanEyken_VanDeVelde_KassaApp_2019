@@ -12,9 +12,13 @@ import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.kortingstrategie.*;
+
+import javax.swing.*;
 
 /**
  * @author Marko Kosmajac, Phonkrit Van de Velde
@@ -83,7 +87,6 @@ public class InstellingenPane extends GridPane {
         this.add(kortingLabel,0,12);
         /*this.add(cb1,0,13);
         this.add(cb2,0,15);*/
-
     }
 
     public String getSelectedFile(){
@@ -128,6 +131,7 @@ public class InstellingenPane extends GridPane {
     private class VerzendKeuzesHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
+
             try {
                 instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
 
