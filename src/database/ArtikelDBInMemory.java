@@ -25,8 +25,8 @@ public class ArtikelDBInMemory implements ArtikelDBStrategy {
     public ArtikelDBInMemory(LoadSaveStrategy loadSaveStrategy) {
 
         instellingenController = new InstellingenController();
-        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
-        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties());
+        //loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+        loadSaveStrategy = LoadSaveStrategyFactory.getInstance().makeLoadSaveStrategy(instellingenController.getProperties());
         this.loadSaveStrategy = loadSaveStrategy;
 
 

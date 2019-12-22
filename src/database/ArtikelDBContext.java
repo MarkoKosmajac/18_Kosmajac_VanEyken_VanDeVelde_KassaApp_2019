@@ -18,17 +18,17 @@ public class ArtikelDBContext {
     private static ArtikelDBContext uniqueInstance;
     private File bestand;
     private LoadSaveStrategy loadSaveStrategy;
-    private LoadSaveStrategyFactory loadSaveStrategyFactory;
+    //private LoadSaveStrategyFactory loadSaveStrategyFactory;
     private InstellingenController instellingenController;
     private ArtikelDBInMemory artikelDBInMemory;
 
     private ArtikelDBContext() {
         artikelDBInMemory = new ArtikelDBInMemory();
         instellingenController = new InstellingenController();
-        loadSaveStrategyFactory = new LoadSaveStrategyFactory();
+        //loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = instellingenController.geefPathFile();
         data = new ArrayList<>();
-        loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties());
+        loadSaveStrategy = LoadSaveStrategyFactory.getInstance().makeLoadSaveStrategy(instellingenController.getProperties());
         this.setData((ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand));
 
     }
