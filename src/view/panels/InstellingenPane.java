@@ -63,10 +63,10 @@ public class InstellingenPane extends GridPane {
         comboBoxKorting.getItems().setAll(SoortKorting.values());
 
         verzendKnop.setOnAction(new VerzendKeuzesHandler());
-        cb1.setOnAction(new VerzendHeaderInfo());
-        cb2.setOnAction(new VerzendFooterInfo());
 
-        /*cb1.setOnAction((event) -> {
+
+
+        cb1.setOnAction((event) -> {
             // Button was clicked, do something...
             this.add(textHeaderlijnen,0,14);
         });
@@ -74,7 +74,7 @@ public class InstellingenPane extends GridPane {
         cb2.setOnAction((event) -> {
             // Button was clicked, do something...
             this.add(textFooterlijnen,0,16);
-        });*/
+        });
 
         this.add(new Label("Optionele kortinginfo:"), 0, 8);
         this.add(new Label("Korting percentage"), 0, 9);
@@ -132,13 +132,13 @@ public class InstellingenPane extends GridPane {
 
 
 
-    /*public String getTextHeaderlijnen() {
+    public String getTextHeaderlijnen() {
         return textHeaderlijnen.getText();
     }
 
     public String getTextFooterlijnen() {
         return textFooterlijnen.getText();
-    }*/
+    }
 
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -155,6 +155,14 @@ public class InstellingenPane extends GridPane {
             try {
                 instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
 
+                if (cb1Aangevinkt()){
+                    instellingenController.setPropertiesDecoratorHeader(getTextHeaderlijnen());
+                }
+
+                if (cb2Aangevinkt()){
+                    instellingenController.setPropertiesDecoratorFooter(getTextFooterlijnen());
+                }
+
                 if (getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")) {
                     instellingenController.getKortingStrategieString(new DrempelKorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
                 }
@@ -168,6 +176,9 @@ public class InstellingenPane extends GridPane {
                     instellingenController.getKortingStrategieString(new DuursteKorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
 
                 }
+
+
+
             }catch (Exception e) {
                 displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting. (Error: " + e.getCause() + ")");
             }
@@ -180,7 +191,9 @@ public class InstellingenPane extends GridPane {
         @Override
         public void handle(ActionEvent event) {
             try {
-                instellingenController.setPropertiesDecorator(cb1Aangevinkt(),cb2Aangevinkt());
+
+                   instellingenController.setPropertiesDecoratorHeader(getTextHeaderlijnen());
+                   instellingenController.setPropertiesDecoratorFooter(getTextFooterlijnen());
 
             } catch (Exception e){
                 displayErrorMessage(e.getMessage());

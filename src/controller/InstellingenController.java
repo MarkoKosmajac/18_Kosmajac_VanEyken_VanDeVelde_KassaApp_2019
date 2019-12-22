@@ -73,14 +73,27 @@ public class InstellingenController {
         }
     }
 
-    public void setPropertiesDecorator(boolean headerlijn, boolean footerlijn){
+    public void setPropertiesDecoratorHeader(String headerlijn){
         FileOutputStream os = null;
         try{
             os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
-            properties.setProperty("headerlijn", String.valueOf(headerlijn));
-            properties.setProperty("footerlijn", String.valueOf(footerlijn));
+            properties.setProperty("headerlijn", headerlijn);
+
             properties.store(os,null);
-            System.out.println("App sluit automatisch om updates toe te passen in de properties file");
+            //Platform.exit(); //TODO: WHAT TO DO?
+
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void setPropertiesDecoratorFooter(String footerlijn){
+        FileOutputStream os = null;
+        try{
+            os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
+            properties.setProperty("footerlijn", footerlijn);
+            properties.store(os,null);
             //Platform.exit(); //TODO: WHAT TO DO?
 
 
