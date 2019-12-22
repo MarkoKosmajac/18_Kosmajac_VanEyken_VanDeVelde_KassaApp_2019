@@ -1,20 +1,14 @@
 package view.panels;
 
-import controller.KassaController;
-import controller.LogPaneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import model.Artikel;
 import model.Verkoop;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LogPane extends GridPane {
     private TableView<Verkoop> table = new TableView<Verkoop>();

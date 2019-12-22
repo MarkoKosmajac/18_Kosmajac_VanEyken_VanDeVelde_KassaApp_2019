@@ -1,7 +1,5 @@
 package controller;
 
-import javafx.application.Platform;
-import model.Artikel;
 import model.ArtikelModel;
 import model.SoortBestand;
 import model.SoortDatabase;

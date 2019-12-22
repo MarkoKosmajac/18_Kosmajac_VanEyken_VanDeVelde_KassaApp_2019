@@ -2,7 +2,6 @@ package model;
 
 import database.ArtikelLoadSaveExcel;
 import database.ArtikelLoadSaveTekst;
-import model.kortingstrategie.KortingStrategieFactory;
 
 /**
  * @author Marko Kosmajac

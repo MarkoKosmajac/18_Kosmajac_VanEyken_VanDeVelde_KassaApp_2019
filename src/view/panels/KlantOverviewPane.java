@@ -1,6 +1,5 @@
 package view.panels;
 
-import controller.KassaController;
 import controller.KlantController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

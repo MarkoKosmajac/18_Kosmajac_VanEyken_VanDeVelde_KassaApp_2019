@@ -1,26 +1,16 @@
 package view.panels;
 
-import application.Main;
-import controller.ControllerException;
 import controller.InstellingenController;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
 import model.SoortBestand;
 import model.SoortDatabase;
 import model.SoortFooterLijn;
 import model.SoortHeaderLijn;
 import model.kortingstrategie.*;
-
-import javax.swing.*;
 
 /**
  * @author Marko Kosmajac, Phonkrit Van de Velde

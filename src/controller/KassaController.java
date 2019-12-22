@@ -7,8 +7,6 @@ import model.ArtikelModel;
 import model.observer.Observer;
 import model.state.VerkoopState;
 import view.panels.KassaOverviewPane;
-
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 

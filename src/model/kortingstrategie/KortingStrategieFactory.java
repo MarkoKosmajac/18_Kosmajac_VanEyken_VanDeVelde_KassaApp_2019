@@ -1,8 +1,5 @@
 package model.kortingstrategie;
 
-import database.ArtikelDBContext;
-import model.ArtikelDBStrategyFactory;
-
 /**
  * @author Marko Kosmajac, Phonkrit Van de Velde
  */

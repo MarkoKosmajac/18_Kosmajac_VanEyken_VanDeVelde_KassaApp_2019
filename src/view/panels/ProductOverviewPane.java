@@ -1,6 +1,5 @@
 package view.panels;
 
-import controller.KassaController;
 import controller.ProductOverviewPaneController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;

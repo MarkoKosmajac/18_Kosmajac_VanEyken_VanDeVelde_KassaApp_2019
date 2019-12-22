@@ -5,7 +5,6 @@ import model.ArtikelModel;
 import model.observer.Observer;
 import view.panels.KassaOverviewPane;
 import view.panels.KlantOverviewPane;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;

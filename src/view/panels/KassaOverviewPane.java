@@ -1,7 +1,6 @@
 package view.panels;
 
 import controller.KassaController;
-import controller.LogPaneController;
 import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -18,11 +17,7 @@ import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Verkoop;
 import model.state.*;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 
