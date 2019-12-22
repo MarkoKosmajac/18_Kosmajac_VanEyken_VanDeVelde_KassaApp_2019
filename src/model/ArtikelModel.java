@@ -199,22 +199,48 @@ public class ArtikelModel implements Subject {
         String footerlijn = "";
 
         if (instellingenController.getIngevuldeProperty("headerlijn") != null){
-            headerlijn = instellingenController.getIngevuldeProperty("headerlijn") + "\n";
+            for (SoortHeaderLijn e: SoortHeaderLijn.values()){
+                if (instellingenController.getIngevuldeProperty("headerlijn").equalsIgnoreCase(e.toString())){
+                    headerlijn +="-----------------------------------------------------------------------------------------------------";
+                    headerlijn += "\nDATUM BETALING: ";
+                    //GET DATE + TIME
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    LocalDateTime now = LocalDateTime.now();
+                    headerlijn+= dtf.format(now) + "\n";
+                    break;
+                } else {
+                    headerlijn = instellingenController.getIngevuldeProperty("headerlijn") + "\n";
+                }
+            }
         }
 
         if (instellingenController.getIngevuldeProperty("footerlijn") != null){
-            footerlijn = instellingenController.getIngevuldeProperty("footerlijn");
+            for (SoortFooterLijn e: SoortFooterLijn.values()){
+                if (instellingenController.getIngevuldeProperty("footerlijn").equalsIgnoreCase(SoortFooterLijn.values()[0].toString())){
+                    footerlijn += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
+                    footerlijn += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
+                    break;
+
+                } else if (instellingenController.getIngevuldeProperty("footerlijn").equalsIgnoreCase(SoortFooterLijn.values()[1].toString())){
+                    footerlijn += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
+                    footerlijn += "Prijs inclusief BTW:" + "\t\t" + getTotprijsMetBTW() + " €" + "\n";
+                    break;
+                } else {
+                    footerlijn = instellingenController.getIngevuldeProperty("footerlijn");
+                }
+            }
+
         }
 
 
 
         String res = "";
-        res+="-----------------------------------------------------------------------------------------------------";
-        res += "\nDATUM BETALING: ";
+        //res+="-----------------------------------------------------------------------------------------------------";
+        //res += "\nDATUM BETALING: ";
         //GET DATE + TIME
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        res+= dtf.format(now);
+        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        //LocalDateTime now = LocalDateTime.now();
+        //res+= dtf.format(now);
         res += "\nGEKOCHTE GOEDEREN: \n";
         res += "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
         String sterretjes = "***********************************";
@@ -223,9 +249,9 @@ public class ArtikelModel implements Subject {
             res += artikel.kassabonPrint();
         }
         res += sterretjes + "\n";
-        res += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
-        res += "Prijs inclusief BTW:" + "\t\t" + getTotprijsMetBTW() + " €" + "\n";
-        res += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
+        //res += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
+        //res += "Prijs inclusief BTW:" + "\t\t" + getTotprijsMetBTW() + " €" + "\n";
+        //res += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
         return headerlijn + res  + footerlijn;
     }
 

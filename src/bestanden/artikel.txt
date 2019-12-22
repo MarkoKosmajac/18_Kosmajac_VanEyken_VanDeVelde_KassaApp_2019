@@ -1,9 +1,9 @@
 1O,a,gr2,66.25,10
 911,art5,g5,8.0,10
-1,artikel1,gr1,12.5,25
-2,artikel2,gr1,22.4,10
-3,artikel3,gr1,12.5,10
-4,artikel4,gr1,50.5,10
+1,artikel1,gr1,12.5,0
+2,artikel2,gr1,22.4,0
+3,artikel3,gr1,12.5,2
+4,artikel4,gr1,50.5,6
 5,artikel5,gr1,2.5,10
 6,artikel6,gr1,2.5,10
 7,artikel7,gr1,3.75,10

@@ -69,9 +69,8 @@ public class InstellingenPane extends GridPane {
         verzendKnop.setOnAction(new VerzendKeuzesHandler());
 
         cb1.setOnAction((event) -> {
-            TextField headerText = new TextField();
-            headerText.setPromptText("Vul hier je eigen extra headerlijn in.");
-            this.add(headerText,0,14);
+            textHeaderlijnen.setPromptText("Vul hier je eigen extra headerlijn in.");
+            this.add(textHeaderlijnen,0,14);
 
             comboBoxHeader = new ComboBox<>();
             comboBoxHeader.getItems().setAll(SoortHeaderLijn.values());
@@ -80,9 +79,8 @@ public class InstellingenPane extends GridPane {
         });
 
         cb2.setOnAction((event) -> {
-            TextField footerText = new TextField();
-            footerText.setPromptText("Vul hier je eigen extra algemene footerlijn in.");
-            this.add(footerText,0,17);
+            textFooterlijnen.setPromptText("Vul hier je eigen extra algemene footerlijn in.");
+            this.add(textFooterlijnen,0,17);
 
             comboBoxFooter = new ComboBox<>();
             comboBoxFooter.getItems().setAll(SoortFooterLijn.values());
@@ -145,7 +143,6 @@ public class InstellingenPane extends GridPane {
 
     public boolean cb2Aangevinkt(){
         if (cb2.isSelected()){
-            System.out.println("true");
             return true;
 
         }
@@ -179,13 +176,17 @@ public class InstellingenPane extends GridPane {
 
                 if (cb1Aangevinkt() && !getTextHeaderlijnen().trim().isEmpty()){
                     instellingenController.setPropertiesDecoratorHeader(getTextHeaderlijnen());
-                } else if (cb1Aangevinkt() && getTextHeaderlijnen().trim().isEmpty()){
+                }
+
+                if (cb1Aangevinkt() && getTextHeaderlijnen().trim().isEmpty()){
                     instellingenController.setPropertiesDecoratorHeader(getSelectedHeaderComboBox());
                 }
 
                 if (cb2Aangevinkt() && !getTextFooterlijnen().trim().isEmpty()){
                     instellingenController.setPropertiesDecoratorFooter(getTextFooterlijnen());
-                } else if (cb2Aangevinkt() && getTextFooterlijnen().trim().isEmpty()){
+                }
+
+                if (cb2Aangevinkt() && getTextFooterlijnen().trim().isEmpty()){
                    instellingenController.setPropertiesDecoratorFooter(getSelectedFooterComboBox());
                 }
 
