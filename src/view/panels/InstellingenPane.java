@@ -16,6 +16,8 @@ import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
 import model.SoortBestand;
 import model.SoortDatabase;
+import model.SoortFooterLijn;
+import model.SoortHeaderLijn;
 import model.kortingstrategie.*;
 
 import javax.swing.*;
@@ -29,6 +31,8 @@ public class InstellingenPane extends GridPane {
     private ComboBox<SoortBestand> comboBoxBestand;
     private ComboBox<SoortKorting> comboBoxKorting;
     private ComboBox<SoortDatabase> comboBoxDatabase;
+    private ComboBox<SoortHeaderLijn> comboBoxHeader;
+    private ComboBox<SoortFooterLijn> comboBoxFooter;
     private Button verzendKnop = new Button("Verzenden");
     private TextField percentText = new TextField("0");
     private TextField bedragText = new TextField("0");
@@ -64,16 +68,25 @@ public class InstellingenPane extends GridPane {
 
         verzendKnop.setOnAction(new VerzendKeuzesHandler());
 
-
-
         cb1.setOnAction((event) -> {
-            // Button was clicked, do something...
-            this.add(textHeaderlijnen,0,14);
+            TextField headerText = new TextField();
+            headerText.setPromptText("Vul hier je eigen extra headerlijn in.");
+            this.add(headerText,0,14);
+
+            comboBoxHeader = new ComboBox<>();
+            comboBoxHeader.getItems().setAll(SoortHeaderLijn.values());
+            this.add(comboBoxHeader,0,15);
+
         });
 
         cb2.setOnAction((event) -> {
-            // Button was clicked, do something...
-            this.add(textFooterlijnen,0,16);
+            TextField footerText = new TextField();
+            footerText.setPromptText("Vul hier je eigen extra algemene footerlijn in.");
+            this.add(footerText,0,17);
+
+            comboBoxFooter = new ComboBox<>();
+            comboBoxFooter.getItems().setAll(SoortFooterLijn.values());
+            this.add(comboBoxFooter,0,18);
         });
 
         this.add(new Label("Optionele kortinginfo:"), 0, 8);
@@ -82,13 +95,13 @@ public class InstellingenPane extends GridPane {
         this.add(new Label("Korting eurobedrag"), 0, 10);
         this.add(bedragText,1,10);
 
-        this.add(verzendKnop,0,11);
+        this.add(verzendKnop,0,19);
         this.add(comboBoxDatabase,0,1);
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
         this.add(kortingLabel,0,12);
         this.add(cb1,0,13);
-        this.add(cb2,0,15);
+        this.add(cb2,0,16);
     }
 
     public String getSelectedFile(){
