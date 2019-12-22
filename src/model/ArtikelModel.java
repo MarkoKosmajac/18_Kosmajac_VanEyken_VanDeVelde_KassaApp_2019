@@ -38,6 +38,8 @@ public class ArtikelModel implements Subject {
     private VerkoopState verkoopState;
     private KortingStrategie kortingStrategie;
     private Properties properties;
+    private double kortingBedrag;
+    private double kortingpercent;
 
 
 
@@ -202,6 +204,7 @@ public class ArtikelModel implements Subject {
         String headerlijn = "";
         String footerlijn = "";
 
+
         if (instellingenController.getIngevuldeProperty("headerlijn") != null){
             for (SoortHeaderLijn e: SoortHeaderLijn.values()){
                 if (instellingenController.getIngevuldeProperty("headerlijn").equalsIgnoreCase(e.toString())){
@@ -213,7 +216,7 @@ public class ArtikelModel implements Subject {
                     headerlijn+= dtf.format(now) + "\n";
                     break;
                 } else {
-                    headerlijn = instellingenController.getIngevuldeProperty("headerlijn") + "\n";
+                    headerlijn = instellingenController.getIngevuldeProperty("headerlijn");
                 }
             }
         }
@@ -239,6 +242,9 @@ public class ArtikelModel implements Subject {
             }
 
         }
+
+        //Kassabon kassabon1 = new HeaderDecorator(new FooterDecorator(new TekstKassabonLezer()));
+        //System.out.println(kassabon1.toString());
 
 
 
@@ -338,15 +344,16 @@ public class ArtikelModel implements Subject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Double.parseDouble(properties.getProperty("Kortingsbedrag"));
+        this.kortingBedrag =  Double.parseDouble(properties.getProperty("Kortingsbedrag"));
+        return this.kortingBedrag;
     }
 
     public double getEindPrijs() {
 
         double totprijs = getTotPrijs();
 
-        if(totprijs >= getKortingBedrag()){
-            double percent = getKorting();
+        if(totprijs >= this.kortingBedrag){
+            double percent = this.kortingpercent;
             double korting = (percent*totprijs)/100;
             return totprijs-korting;
         }else{
@@ -362,7 +369,8 @@ public class ArtikelModel implements Subject {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Double.parseDouble(properties.getProperty("Kortingspercent"));
+        this.kortingpercent = Double.parseDouble(properties.getProperty("Kortingspercent"));
+        return this.kortingpercent;
     }
 
     public double getTotprijsMetBTW(){

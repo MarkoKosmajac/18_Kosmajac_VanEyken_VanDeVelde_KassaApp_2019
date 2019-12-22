@@ -108,10 +108,6 @@ public class InstellingenController {
         InputStream in = null;
         try {
             in = new FileInputStream(new File("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
             properties.load(in);
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,10 @@
 package model.decorator;
 
 import controller.InstellingenController;
+import model.SoortHeaderLijn;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class HeaderDecorator extends KassabonDecorator {
@@ -15,7 +18,6 @@ public class HeaderDecorator extends KassabonDecorator {
     @Override
     public String toString() {
 
-        String res2 = super.toString();
-        return  res2;
+        return  super.toString() + "\n";
     }
 }

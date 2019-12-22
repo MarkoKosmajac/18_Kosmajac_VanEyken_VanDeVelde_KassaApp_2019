@@ -10,7 +10,7 @@ public class TekstKassabonLezer implements Kassabon{
 
     }
 
-    public String toString() {
+   public String toString() {
         return artikelModel.kassaBonPrintModel();
     }
 

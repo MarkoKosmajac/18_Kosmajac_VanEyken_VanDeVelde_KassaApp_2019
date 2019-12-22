@@ -9,9 +9,11 @@ import java.util.Properties;
 public abstract class KassabonDecorator implements Kassabon{
 
     protected Kassabon kassabon;
+    protected InstellingenController instellingenController;
 
 
     public KassabonDecorator(Kassabon kassabon){
+        instellingenController = new InstellingenController();
 
         this.kassabon = kassabon;
 
