@@ -27,7 +27,7 @@ public class KassaMainPane extends BorderPane {
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
         InstellingenPane instellingenPane = new InstellingenPane();
         Tab instellingTab = new Tab("Instellingen", instellingenPane);
-        LogPane logpane = new LogPane(logPaneController);
+        LogPane logpane = new LogPane(/*logPaneController*/);
         Tab logTab = new Tab("Log", logpane);
         tabPane.getTabs().add(kassaTab);
         tabPane.getTabs().add(artikelTab);

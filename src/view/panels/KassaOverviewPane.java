@@ -1,6 +1,7 @@
 package view.panels;
 
 import controller.KassaController;
+import controller.LogPaneController;
 import database.DBException;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -17,8 +18,11 @@ import model.Artikel;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Verkoop;
 import model.state.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -259,6 +263,14 @@ public class KassaOverviewPane extends GridPane{
                 System.out.println(kassaController.log(labelTotaal.getText(), korting.getText(), eindTotaal.getText()));
                 kassaController.werkStockBij();
                 kassaController.resetOnHoldListAls3keerBetaald();
+
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                LocalDateTime now = LocalDateTime.now();
+                String em = dtf.format(now);
+                Verkoop verkoop = new Verkoop(em,Double.parseDouble(labelTotaal.getText()), Double.parseDouble(korting.getText()), Double.parseDouble(eindTotaal.getText()));
+                verkoop.voegVerkoopToe(verkoop);
+                System.out.println("VERKOOP TOEGEVOEGD");
+
 
                 kassaController.nieuwVenster();
                 eindTotaal.setVisible(false);
