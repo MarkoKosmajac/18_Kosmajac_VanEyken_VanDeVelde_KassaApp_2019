@@ -268,6 +268,7 @@ public class ArtikelModel implements Subject {
         if (!this.onHoldList.isEmpty()){
             if (onHoldTeller == 2){
                 onHoldList.clear();
+                kassaKlantListOnHold.clear();
                 onHoldTeller = 0;
                 System.out.println("OnHold list wordt nu leeggemaakt");
             } else {
