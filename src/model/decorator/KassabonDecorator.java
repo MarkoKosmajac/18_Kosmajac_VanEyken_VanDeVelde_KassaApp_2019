@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public abstract class KassabonDecorator implements Kassabon{
 
-    private Kassabon kassabon;
+    protected Kassabon kassabon;
     private ArtikelModel artikelModel;
     private Properties properties;
     private InstellingenController instellingenController;
@@ -25,9 +25,7 @@ public abstract class KassabonDecorator implements Kassabon{
         return this.kassabon;
     }
 
-    public String printBon(){
-        return artikelModel.kassaBonPrintModel(String.valueOf(artikelModel.getEindTotaal()));
-    }
+
 
     @Override
     public String toString() {

@@ -4,8 +4,11 @@ public class uitestdecorator {
     public static void main(String[] args) {
 
 
-        Kassabon kassabon1 = new FooterDecorator(new HeaderDecorator(new TekstKassabonLezer()));
+        Kassabon kassabon1 = new HeaderDecorator(new FooterDecorator(new TekstKassabonLezer()));
         System.out.println(kassabon1.toString());
+
+        Kassabon kassabon2 = new HeaderDecorator((new TekstKassabonLezer()));
+        System.out.println(kassabon2.toString());
 
     }
 }

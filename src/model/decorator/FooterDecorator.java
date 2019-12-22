@@ -17,7 +17,8 @@ public class FooterDecorator extends KassabonDecorator{
 
     @Override
     public String toString() {
-        String res = super.printBon() + "\n";
+
+        String res = super.toString() + "\n";
         return res + instellingenController.getIngevuldeProperty("footerlijn");
     }
 }

@@ -186,7 +186,7 @@ public class ArtikelModel implements Subject {
         return res;
     }
 
-    public String kassaBonPrintModel(String eindtotaal){
+    public String kassaBonPrintModel(){
         String res = "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
         String sterretjes = "***********************************";
         res += sterretjes + "\n";
@@ -194,7 +194,7 @@ public class ArtikelModel implements Subject {
             res += artikel.kassabonPrint();
         }
         res += sterretjes + "\n";
-        res += "Betaald (inclusief korting): " + eindtotaal + " €";
+        res += "Betaald (inclusief korting): " + getEindTotaal() + " €";
         return res;
     }
 

@@ -19,8 +19,9 @@ public class HeaderDecorator extends KassabonDecorator {
 
     @Override
     public String toString() {
-        String res = super.printBon().toUpperCase();
 
-        return instellingenController.getIngevuldeProperty("headerlijn") + res;
+        String res2 = super.toString();
+
+        return instellingenController.getIngevuldeProperty("headerlijn") + "\n" + res2;
     }
 }

@@ -1,14 +1,17 @@
 package model.decorator;
 
+import model.ArtikelModel;
+
 public class TekstKassabonLezer implements Kassabon{
-    protected String tekst;
+    private ArtikelModel artikelModel;
 
     public TekstKassabonLezer(){
+        artikelModel = new ArtikelModel();
 
     }
 
-    public String printBon() {
-        return "";
+    public String toString() {
+        return artikelModel.kassaBonPrintModel();
     }
 
 
