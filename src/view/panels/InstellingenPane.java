@@ -12,6 +12,8 @@ import model.decorator.SoortFooterLijn;
 import model.decorator.SoortHeaderLijn;
 import model.kortingstrategie.*;
 
+import java.util.Arrays;
+
 /**
  * @author Marko Kosmajac, Phonkrit Van de Velde
  */
@@ -118,9 +120,6 @@ public class InstellingenPane extends GridPane {
 
 
     public String getSelectedBedrag(){
-        if (getSelectedKorting().equalsIgnoreCase("DUURSTEKORTING")){
-            return String.valueOf(instellingenController.getDuursteArtikel());
-        }
         return bedragText.getText();
     }
 
@@ -186,17 +185,15 @@ public class InstellingenPane extends GridPane {
 
                 if (getSelectedKorting().equalsIgnoreCase("GROEPKORTING")){
                     instellingenController.getKortingStrategieString(new Groepkorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
-
                 }
 
                 if (getSelectedKorting().equalsIgnoreCase("DUURSTEKORTING")){
                     instellingenController.getKortingStrategieString(new DuursteKorting(Integer.parseInt(getSelectedPercent()), Double.parseDouble(getSelectedBedrag())));
-
                 }
 
             }catch (Exception e) {
                 //displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting. (Error: " + e.getCause() + ")");
-                System.out.println("error");
+                System.out.println("PROPERTIES UPDATED MAAR KLEINE ERROR");
             }
         }
     }

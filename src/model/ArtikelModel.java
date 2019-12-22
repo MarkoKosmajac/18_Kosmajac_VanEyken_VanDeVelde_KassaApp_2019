@@ -285,7 +285,7 @@ public class ArtikelModel implements Subject {
         this.verkoopState = verkoopState;
     }
 
-    public double getDuursteArtikel(){
+    /*public double getDuursteArtikel(){
         Artikel res = this.artikelList.get(0);
 
         for (Artikel a: this.artikelList){
@@ -296,7 +296,7 @@ public class ArtikelModel implements Subject {
         notifyObserver();
         return res.getPrijs();
 
-    }
+    }*/
 
     public String getKortingStrategieString(KortingStrategie kortingStrategie) {
         return kortingStrategie.geefKorting();

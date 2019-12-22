@@ -41,9 +41,10 @@ public class DuursteKorting implements KortingStrategie {
 
     @Override
     public double getBedrag() {
-        double korting = artikelModel.getDuursteArtikel()/100*getProcent();
+       // double korting = artikelModel.getDuursteArtikel()/100*getProcent();
 
-        return artikelModel.getDuursteArtikel()-korting;
+        //return artikelModel.getDuursteArtikel()-korting;
+        return 0;
     }
 
     public void setBedrag(double bedrag) {
@@ -52,6 +53,6 @@ public class DuursteKorting implements KortingStrategie {
 
     @Override
     public String geefKorting() {
-        return artikelModel.getDuursteArtikel() + " euro korting op duurste artikel uit winkelkar.";
+        return "ZOU DUURSTE ARTIKEL MOETEN KOMEN" + " euro korting op duurste artikel uit winkelkar.";
     }
 }

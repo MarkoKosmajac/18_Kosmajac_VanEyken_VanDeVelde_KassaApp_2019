@@ -132,9 +132,9 @@ public class InstellingenController {
         return instellingenPane.getSelectedPercent();
     }
 
-    public double getDuursteArtikel(){
+    /*public double getDuursteArtikel(){
         return artikelModel.getDuursteArtikel();
-    }
+    }*/
 
     public String getKortingStrategieString(KortingStrategie kortingStrategie) {
         return artikelModel.getKortingStrategieString(kortingStrategie);
