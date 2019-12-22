@@ -4,6 +4,10 @@ import controller.InstellingenController;
 import controller.KassaController;
 import database.ArtikelDBContext;
 import database.DBException;
+import model.decorator.FooterDecorator;
+import model.decorator.HeaderDecorator;
+import model.decorator.Kassabon;
+import model.decorator.TekstKassabonLezer;
 import model.kortingstrategie.KortingStrategie;
 import model.observer.Observer;
 import model.observer.Subject;
@@ -219,6 +223,9 @@ public class ArtikelModel implements Subject {
                 if (instellingenController.getIngevuldeProperty("footerlijn").equalsIgnoreCase(SoortFooterLijn.values()[0].toString())){
                     footerlijn += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
                     footerlijn += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
+                    //Kassabon kassabon = new HeaderDecorator(new TekstKassabonLezer());
+                    //System.out.println(kassabon.toString() + "------kassanon");
+
                     break;
 
                 } else if (instellingenController.getIngevuldeProperty("footerlijn").equalsIgnoreCase(SoortFooterLijn.values()[1].toString())){
@@ -235,12 +242,6 @@ public class ArtikelModel implements Subject {
 
 
         String res = "";
-        //res+="-----------------------------------------------------------------------------------------------------";
-        //res += "\nDATUM BETALING: ";
-        //GET DATE + TIME
-        //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        //LocalDateTime now = LocalDateTime.now();
-        //res+= dtf.format(now);
         res += "\nGEKOCHTE GOEDEREN: \n";
         res += "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
         String sterretjes = "***********************************";
@@ -249,9 +250,7 @@ public class ArtikelModel implements Subject {
             res += artikel.kassabonPrint();
         }
         res += sterretjes + "\n";
-        //res += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
-        //res += "Prijs inclusief BTW:" + "\t\t" + getTotprijsMetBTW() + " €" + "\n";
-        //res += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
+
         return headerlijn + res  + footerlijn;
     }
 
