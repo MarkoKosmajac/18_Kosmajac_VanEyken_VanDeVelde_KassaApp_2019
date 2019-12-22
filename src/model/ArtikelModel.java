@@ -1,5 +1,6 @@
 package model;
 
+import controller.KassaController;
 import database.ArtikelDBContext;
 import database.DBException;
 import model.kortingstrategie.KortingStrategie;
@@ -20,6 +21,7 @@ import java.util.Collection;
 public class ArtikelModel implements Subject {
 
     private Collection<Observer> kassaObserver;
+    private KassaController  kassaController;
     private ArrayList<Artikel> artikelList,onHoldList, kassaKlantList, kassaKlantListOnHold;
     private int onHoldTeller;
     private ArtikelDBContext artikelDBContext;
@@ -184,7 +186,7 @@ public class ArtikelModel implements Subject {
         return res;
     }
 
-    /*public String kassaBonPrintModel(String eindtotaal){
+    public String kassaBonPrintModel(String eindtotaal){
         String res = "Omschrijving          Aantal  Prijs\n"; //5tabs, 1tab
         String sterretjes = "***********************************";
         res += sterretjes + "\n";
@@ -194,7 +196,7 @@ public class ArtikelModel implements Subject {
         res += sterretjes + "\n";
         res += "Betaald (inclusief korting): " + eindtotaal + " €";
         return res;
-    }*/
+    }
 
     public void nieuwVenster() {
         artikelList.clear();
@@ -269,5 +271,14 @@ public class ArtikelModel implements Subject {
 
     public void setKortingStrategie(KortingStrategie kortingStrategie) {
         this.kortingStrategie = kortingStrategie;
+    }
+
+    public double getEindTotaal() {
+        double eindtotaalbruto = 0;
+
+        for (Artikel a: this.artikelList){
+            eindtotaalbruto += a.getPrijs();
+        }
+        return eindtotaalbruto;
     }
 }

@@ -73,8 +73,8 @@ public class Artikel implements Comparable<Artikel>{
         return res;
     }
 
-    /*public String kassabonPrint(){
+    public String kassabonPrint(){
         return this.omschrijving + "                " + this.getAantal() + "     " + this.prijs+"\n";
-    }*/
+    }
 }
 

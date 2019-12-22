@@ -6,9 +6,10 @@ import model.ArtikelModel;
 public abstract class KassabonDecorator implements Kassabon{
 
     private Kassabon kassabon;
-    private ArtikelModel artikelModel = new ArtikelModel();
+    private ArtikelModel artikelModel;
 
     public KassabonDecorator(Kassabon kassabon){
+        artikelModel = new ArtikelModel();
         this.kassabon = kassabon;
     }
 
@@ -17,7 +18,11 @@ public abstract class KassabonDecorator implements Kassabon{
     }
 
     public String printBon(){
-        return "e"; //artikelModel.kassaBonPrintModel();
+        return artikelModel.kassaBonPrintModel(String.valueOf(artikelModel.getEindTotaal()));
     }
 
+    @Override
+    public String toString() {
+        return kassabon.printBon();
+    }
 }

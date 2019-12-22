@@ -33,7 +33,7 @@ public class InstellingenController {
     }
 
     public void setPropertiesDB(String keuzeFile/*, String keuzeKorting*/, String keuzeDatabase/*, int percent, int bedrag*/){
-        FileOutputStream os; //TODO: Stond null bij
+        FileOutputStream os;
         try{
             SoortBestand bestandkeuze = SoortBestand.valueOf(keuzeFile);
             //SoortKorting kortingskeuze = SoortKorting.valueOf(keuzeKorting);
@@ -66,6 +66,22 @@ public class InstellingenController {
             properties.store(os,null);
             System.out.println("App sluit automatisch om updates toe te passen in de properties file");
             Platform.exit(); //TODO: WHAT TO DO?
+
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    public void setPropertiesDecorator(boolean headerlijn, boolean footerlijn){
+        FileOutputStream os = null;
+        try{
+            os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
+            properties.setProperty("headerlijn", String.valueOf(headerlijn));
+            properties.setProperty("footerlijn", String.valueOf(footerlijn));
+            properties.store(os,null);
+            System.out.println("App sluit automatisch om updates toe te passen in de properties file");
+            //Platform.exit(); //TODO: WHAT TO DO?
 
 
         } catch (Exception e) {

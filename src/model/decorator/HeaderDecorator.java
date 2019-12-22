@@ -9,8 +9,10 @@ public class HeaderDecorator extends KassabonDecorator {
 
     @Override
     public String printBon() {
-        String letter = getKassabon().printBon();
-        letter = letter.toUpperCase();
-        return /*super.printBon() +*/ letter;
+        String res = super.printBon().toUpperCase();
+        //String letter = getKassabon().printBon();
+        //letter = letter.toUpperCase();
+        String header = "Omschrijving" + "\t"  + "Aantal  Prijs" + "\n" + "*************************";
+        return header + res;
     }
 }

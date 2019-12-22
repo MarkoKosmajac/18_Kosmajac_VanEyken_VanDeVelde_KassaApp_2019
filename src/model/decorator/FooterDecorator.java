@@ -8,8 +8,10 @@ public class FooterDecorator extends KassabonDecorator{
 
     @Override
     public String printBon() {
-        String letter = getKassabon().printBon();
-        letter = letter.toLowerCase();
-        return /*super.printBon() +*/ letter;
+        String res = super.printBon();
+        //String letter = getKassabon().printBon();
+        //letter = letter.toLowerCase();
+        String footer = "*************************" + "\n" + "Betaald (inclusief korting): " + getKassabon().printBon();
+        return res + footer;
     }
 }

@@ -33,10 +33,10 @@ public class InstellingenPane extends GridPane {
     private TextField percentText = new TextField("0");
     private TextField bedragText = new TextField("0");
     private Label kortingLabel = new Label();
-   /*private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
+    private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
     private CheckBox cb2 = new CheckBox("Footerlijn(en) toevoegen ?");
     private TextField textHeaderlijnen = new TextField("VUL JE HEADERLIJN HIER IN.");
-    private TextField textFooterlijnen = new TextField("VUL JE FOOTERLIJN HIER IN.");*/
+    private TextField textFooterlijnen = new TextField("VUL JE FOOTERLIJN HIER IN.");
 
     public InstellingenPane(){
         instellingenController = new InstellingenController();
@@ -63,6 +63,8 @@ public class InstellingenPane extends GridPane {
         comboBoxKorting.getItems().setAll(SoortKorting.values());
 
         verzendKnop.setOnAction(new VerzendKeuzesHandler());
+        cb1.setOnAction(new VerzendHeaderInfo());
+        cb2.setOnAction(new VerzendFooterInfo());
 
         /*cb1.setOnAction((event) -> {
             // Button was clicked, do something...
@@ -85,8 +87,8 @@ public class InstellingenPane extends GridPane {
         this.add(comboBoxBestand,0,4);
         this.add(comboBoxKorting,0,7);
         this.add(kortingLabel,0,12);
-        /*this.add(cb1,0,13);
-        this.add(cb2,0,15);*/
+        this.add(cb1,0,13);
+        this.add(cb2,0,15);
     }
 
     public String getSelectedFile(){
@@ -111,6 +113,24 @@ public class InstellingenPane extends GridPane {
         }
         return bedragText.getText();
     }
+
+    public boolean cb1Aangevinkt(){
+        if (cb1.isSelected()){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean cb2Aangevinkt(){
+        if (cb2.isSelected()){
+            System.out.println("true");
+            return true;
+
+        }
+        return false;
+    }
+
+
 
     /*public String getTextHeaderlijnen() {
         return textHeaderlijnen.getText();
@@ -155,4 +175,23 @@ public class InstellingenPane extends GridPane {
     }
 
 
+    private class VerzendHeaderInfo implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                instellingenController.setPropertiesDecorator(cb1Aangevinkt(),cb2Aangevinkt());
+
+            } catch (Exception e){
+                displayErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private class VerzendFooterInfo implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+
+        }
+    }
 }
