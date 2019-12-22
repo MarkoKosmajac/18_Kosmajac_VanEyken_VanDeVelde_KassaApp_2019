@@ -17,7 +17,7 @@ import model.SoortDatabase;
 import model.kortingstrategie.*;
 
 /**
- * @author Marko Kosmajac
+ * @author Marko Kosmajac, Phonkrit Van de Velde
  */
 
 public class InstellingenPane extends GridPane {
@@ -103,6 +103,9 @@ public class InstellingenPane extends GridPane {
     }
 
     public String getSelectedBedrag(){
+        if (getSelectedKorting().equalsIgnoreCase("DUURSTEKORTING")){
+            return String.valueOf(instellingenController.getDuursteArtikel());
+        }
         return bedragText.getText();
     }
 
@@ -144,7 +147,6 @@ public class InstellingenPane extends GridPane {
             }catch (Exception e) {
                 displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting." + e.getCause());
             }
-            //Platform.exit();
         }
     }
 

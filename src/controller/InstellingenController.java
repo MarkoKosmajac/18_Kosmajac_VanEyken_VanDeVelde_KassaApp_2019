@@ -64,6 +64,7 @@ public class InstellingenController {
             /*properties.setProperty("headerlijn", headerlijn);
             properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
+            Platform.exit(); //TODO: WHAT TO DO?
 
 
         } catch (Exception e) {

@@ -4,7 +4,7 @@ import controller.InstellingenController;
 import model.ArtikelModel;
 
 /**
- * @author Marko Kosmajac
+ * @author Marko Kosmajac, Phonkrit Van de Velde
  */
 
 public class DuursteKorting implements KortingStrategie {
@@ -16,7 +16,7 @@ public class DuursteKorting implements KortingStrategie {
 
     public DuursteKorting(int procent, double bedrag) {
         artikelModel = new ArtikelModel();
-        setProcent(0);
+        setProcent(procent);
         setBedrag(bedrag);
 
         instellingenController = new InstellingenController();
@@ -36,12 +36,14 @@ public class DuursteKorting implements KortingStrategie {
 
     @Override
     public void setPropertiesKorting() {
-        instellingenController.setPropertiesKeuzeKorting("DuursteKorting",getProcent(),artikelModel.getDuursteArtikel());
+        instellingenController.setPropertiesKeuzeKorting("DUURSTEKORTING",getProcent(),getBedrag());
     }
 
     @Override
     public double getBedrag() {
-        return 0;
+        double korting = artikelModel.getDuursteArtikel()/100*getProcent();
+
+        return artikelModel.getDuursteArtikel()-korting;
     }
 
     public void setBedrag(double bedrag) {

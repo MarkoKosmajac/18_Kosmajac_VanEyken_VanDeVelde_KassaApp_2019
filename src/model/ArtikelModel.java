@@ -258,7 +258,9 @@ public class ArtikelModel implements Subject {
                 res = a;
             }
         }
+        notifyObserver();
         return res.getPrijs();
+
     }
 
     public String getKortingStrategieString(KortingStrategie kortingStrategie) {
