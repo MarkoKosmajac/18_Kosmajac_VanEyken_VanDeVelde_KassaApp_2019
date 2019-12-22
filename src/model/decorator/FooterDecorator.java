@@ -17,8 +17,6 @@ public class FooterDecorator extends KassabonDecorator{
 
     @Override
     public String toString() {
-
-
         return super.toString() +  "\n";
 
     }

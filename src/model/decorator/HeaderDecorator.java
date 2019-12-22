@@ -17,7 +17,6 @@ public class HeaderDecorator extends KassabonDecorator {
 
     @Override
     public String toString() {
-
         return  super.toString() + "\n";
     }
 }
