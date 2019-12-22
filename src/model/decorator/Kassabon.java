@@ -2,6 +2,6 @@ package model.decorator;
 
 public interface Kassabon {
 
-    String printBon();
+    String toString();
 
 }

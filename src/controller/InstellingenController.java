@@ -152,4 +152,8 @@ public class InstellingenController {
         return artikelModel.getKortingStrategieString(kortingStrategie);
     }
 
+    public String getIngevuldeProperty(String propery){
+        return properties.getProperty(propery);
+    }
+
 }

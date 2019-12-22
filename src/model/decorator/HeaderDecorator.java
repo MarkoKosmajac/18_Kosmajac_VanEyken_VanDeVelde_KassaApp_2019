@@ -1,18 +1,26 @@
 package model.decorator;
 
+import controller.InstellingenController;
+
+import java.util.Properties;
+
 public class HeaderDecorator extends KassabonDecorator {
+
+    private Properties properties;
+    private InstellingenController instellingenController;
 
     public HeaderDecorator(Kassabon kassabon){
         super(kassabon);
+        this.properties = new Properties();
+        instellingenController = new InstellingenController();
+        instellingenController.geefPathFile();
     }
 
 
     @Override
-    public String printBon() {
+    public String toString() {
         String res = super.printBon().toUpperCase();
-        //String letter = getKassabon().printBon();
-        //letter = letter.toUpperCase();
-        String header = "Omschrijving" + "\t"  + "Aantal  Prijs" + "\n";
-        return header + res;
+
+        return instellingenController.getIngevuldeProperty("headerlijn") + res;
     }
 }

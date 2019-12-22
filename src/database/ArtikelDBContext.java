@@ -27,10 +27,8 @@ public class ArtikelDBContext {
         instellingenController = new InstellingenController();
         loadSaveStrategyFactory = new LoadSaveStrategyFactory();
         bestand = instellingenController.geefPathFile();
-        System.out.println(bestand);
         data = new ArrayList<>();
         loadSaveStrategy = loadSaveStrategyFactory.makeLoadSaveStrategy(instellingenController.getProperties());
-        System.out.println(instellingenController.getProperties());
         this.setData((ArrayList<Artikel>) new ArtikelDBInMemory(loadSaveStrategy).load(bestand));
 
     }

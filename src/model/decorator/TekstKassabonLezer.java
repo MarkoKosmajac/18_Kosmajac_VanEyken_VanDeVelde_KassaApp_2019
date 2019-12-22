@@ -1,14 +1,14 @@
 package model.decorator;
 
 public class TekstKassabonLezer implements Kassabon{
-    private String tekst;
+    protected String tekst;
 
-    public TekstKassabonLezer(String tekst){
-        this.tekst = tekst;
+    public TekstKassabonLezer(){
+
     }
 
     public String printBon() {
-        return "eee";
+        return "";
     }
 
 

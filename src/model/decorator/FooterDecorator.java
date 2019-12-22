@@ -1,17 +1,23 @@
 package model.decorator;
 
-public class FooterDecorator extends KassabonDecorator{
+import controller.InstellingenController;
 
-    public FooterDecorator(Kassabon kassabon){
+import java.util.Properties;
+
+public class FooterDecorator extends KassabonDecorator{
+    private Properties properties;
+    private InstellingenController instellingenController;
+
+    public FooterDecorator(Kassabon kassabon) {
         super(kassabon);
+        this.properties = new Properties();
+        instellingenController = new InstellingenController();
+        instellingenController.geefPathFile();
     }
 
     @Override
-    public String printBon() {
-        String res = super.printBon();
-        //String letter = getKassabon().printBon();
-        //letter = letter.toLowerCase();
-        String footer = "Betaald (inclusief korting): " + getKassabon().printBon();
-        return res + footer;
+    public String toString() {
+        String res = super.printBon() + "\n";
+        return res + instellingenController.getIngevuldeProperty("footerlijn");
     }
 }

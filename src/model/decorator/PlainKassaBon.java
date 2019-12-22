@@ -6,7 +6,7 @@ public class PlainKassaBon implements Kassabon {
     private Artikel artikel;
 
     @Override
-    public String printBon() {
+    public String toString() {
         return artikel.toString();
     }
 }
