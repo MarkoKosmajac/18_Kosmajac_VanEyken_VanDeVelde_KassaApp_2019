@@ -13,9 +13,10 @@ public abstract class KassabonDecorator implements Kassabon{
 
 
     public KassabonDecorator(Kassabon kassabon){
+        this.kassabon = kassabon;
         instellingenController = new InstellingenController();
 
-        this.kassabon = kassabon;
+
 
     }
 
@@ -28,6 +29,6 @@ public abstract class KassabonDecorator implements Kassabon{
     @Override
     public String toString() {
         //return getKassabon().toString();
-        return super.toString();
+        return kassabon.toString();
     }
 }

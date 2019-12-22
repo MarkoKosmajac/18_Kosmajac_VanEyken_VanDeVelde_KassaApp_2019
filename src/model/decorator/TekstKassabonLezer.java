@@ -6,12 +6,12 @@ public class TekstKassabonLezer implements Kassabon{
     protected ArtikelModel artikelModel;
 
     public TekstKassabonLezer(){
-        //artikelModel = new ArtikelModel();
+        artikelModel = new ArtikelModel();
 
     }
 
    public String toString() {
-        String res = artikelModel.kassaBonPrintModel();
+        String res = artikelModel.log();
         return res;
     }
 

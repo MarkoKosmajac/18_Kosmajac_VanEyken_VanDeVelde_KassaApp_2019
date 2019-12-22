@@ -21,7 +21,6 @@ public class HeaderDecorator extends KassabonDecorator {
         String headerlijn = "";
 
         if (instellingenController.getIngevuldeProperty("headerlijn") != null){
-            System.out.println("eeee");
             for (SoortHeaderLijn e: SoortHeaderLijn.values()){
                 if (instellingenController.getIngevuldeProperty("headerlijn").equalsIgnoreCase(e.toString())){
                     headerlijn +="-----------------------------------------------------------------------------------------------------";

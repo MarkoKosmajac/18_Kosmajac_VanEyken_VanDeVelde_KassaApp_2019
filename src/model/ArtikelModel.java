@@ -178,7 +178,7 @@ public class ArtikelModel implements Subject {
     }
 
 
-    public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
+    public String log() {
         String res = "";
         res+="-----------------------------------------------------------------------------------------------------";
         res += "\nDATUM BETALING: ";
@@ -193,7 +193,7 @@ public class ArtikelModel implements Subject {
         for(Artikel artikel : this.artikelList){
             res += artikel.cleanOutput();
         }
-        res +="Totaalbedrag: " + totaalBedrag + "euro | Verkregen Korting: " + kortingBedrag + "euro | Te betalen Eindtotaal: " + eindTotaal +"euro";
+        res +="Totaalbedrag: " + getTotPrijs() + "euro | Verkregen Korting: " + getKorting() + "euro | Te betalen Eindtotaal: " + getEindPrijs() +"euro";
         res += "\n";
         res+="-----------------------------------------------------------------------------------------------------";
 
@@ -203,10 +203,7 @@ public class ArtikelModel implements Subject {
 
 
     public String kassaBonPrintModel(){
-        Kassabon kassabon1 = new TekstKassabonLezer();
-        kassabon1 = new FooterDecorator(kassabon1);
-        kassabon1 = new HeaderDecorator(kassabon1);
-        return kassabon1.toString();
+        return new FooterDecorator(new HeaderDecorator(new TekstKassabonLezer())).toString();
     }
 
     public void nieuwVenster() {

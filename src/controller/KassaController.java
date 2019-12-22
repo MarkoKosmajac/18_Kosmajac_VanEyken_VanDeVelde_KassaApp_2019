@@ -137,7 +137,7 @@ public class KassaController implements Observer {
 
     //TODO: IN ANDERE CONTROLLER ?
     public String log(String totaalBedrag, String kortingBedrag, String eindTotaal) {
-        return artikelModel.log(totaalBedrag,kortingBedrag,eindTotaal);
+        return artikelModel.log();
     }
 
     public void nieuwVenster() {
