@@ -223,8 +223,9 @@ public class ArtikelModel implements Subject {
                 if (instellingenController.getIngevuldeProperty("footerlijn").equalsIgnoreCase(SoortFooterLijn.values()[0].toString())){
                     footerlijn += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
                     footerlijn += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
-                    //Kassabon kassabon = new HeaderDecorator(new TekstKassabonLezer());
-                    //System.out.println(kassabon.toString() + "------kassanon");
+                    //Kassabon kassabon1 = new FooterDecorator(new TekstKassabonLezer());
+                    //footerlijn += kassabon1.toString();
+
 
                     break;
 
