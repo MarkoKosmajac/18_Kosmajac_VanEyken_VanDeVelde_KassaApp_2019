@@ -1,5 +1,9 @@
 package model.decorator;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 public enum SoortFooterLijn {
 
     TOTALE_PRIJS_MET_ERONDER_KORTING,

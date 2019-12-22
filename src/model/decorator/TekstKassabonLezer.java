@@ -5,6 +5,10 @@ import model.ArtikelModel;
 
 import java.util.ArrayList;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 public class TekstKassabonLezer implements Kassabon{
     protected ArtikelModel artikelModel;
 

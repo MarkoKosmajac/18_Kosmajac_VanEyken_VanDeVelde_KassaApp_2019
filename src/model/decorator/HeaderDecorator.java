@@ -3,6 +3,10 @@ package model.decorator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 public class HeaderDecorator extends KassabonDecorator {
 
 

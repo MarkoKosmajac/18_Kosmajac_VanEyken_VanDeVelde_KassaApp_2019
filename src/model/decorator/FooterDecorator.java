@@ -3,6 +3,10 @@ package model.decorator;
 import model.Artikel;
 import model.ArtikelModel;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 public class FooterDecorator extends KassabonDecorator{
 
     private TekstKassabonLezer tekstKassabonLezer;

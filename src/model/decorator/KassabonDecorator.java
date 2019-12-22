@@ -7,6 +7,10 @@ import model.ArtikelModel;
 
 import java.util.Properties;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 public abstract class KassabonDecorator implements Kassabon{
 
     private Kassabon kassabon;
