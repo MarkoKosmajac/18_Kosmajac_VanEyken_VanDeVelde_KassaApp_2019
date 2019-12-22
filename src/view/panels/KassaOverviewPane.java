@@ -264,9 +264,10 @@ public class KassaOverviewPane extends GridPane{
                 kassaController.werkStockBij();
                 kassaController.resetOnHoldListAls3keerBetaald();
 
-                Verkoop verkoop = new Verkoop(Double.parseDouble(labelTotaal.getText()), Double.parseDouble(korting.getText()), Double.parseDouble(eindTotaal.getText()));
-                //verkoop.voegVerkoopToe(verkoop);
-                System.out.println("VERKOOP TOEGEVOEGD");
+
+                /*Verkoop verkoop = new Verkoop(Double.parseDouble(labelTotaal.getText()), Double.parseDouble(korting.getText()), Double.parseDouble(eindTotaal.getText()));
+                verkoop.voegVerkoopToe(verkoop);
+                System.out.println("VERKOOP TOEGEVOEGD");*/
 
 
                 kassaController.nieuwVenster();

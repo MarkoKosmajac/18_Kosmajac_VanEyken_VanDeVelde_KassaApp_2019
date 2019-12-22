@@ -4,8 +4,6 @@ import controller.KassaController;
 import controller.LogPaneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,14 +14,15 @@ import model.Verkoop;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LogPane extends GridPane {
     private TableView<Verkoop> table = new TableView<Verkoop>();
-    private KassaController kassaController;
     private ObservableList<Verkoop> verkopen;
 
-    public LogPane(KassaController kassaController){
-        this.kassaController = kassaController;
+    //TODO: MVC: Needs controller
+
+    public LogPane(){
 
         verkopen = FXCollections.observableArrayList(FXCollections.observableArrayList(new ArrayList<>()));
 
@@ -50,9 +49,9 @@ public class LogPane extends GridPane {
 
     }
 
-    public void setVerkoopLijst(ArrayList<Verkoop> verkoopLijst) {
-        table.setItems(FXCollections.observableArrayList(verkoopLijst));
-        table.refresh();
+    public void setVerkoopLijst(List<Verkoop> verkoopLijst) {
+        verkopen = FXCollections.observableArrayList(FXCollections.observableArrayList(verkoopLijst));
+        table.setItems(verkopen);
     }
 
     /*
