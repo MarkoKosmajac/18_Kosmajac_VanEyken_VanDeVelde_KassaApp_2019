@@ -149,7 +149,7 @@ public class InstellingenPane extends GridPane {
 
                 }
             }catch (Exception e) {
-                displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting." + e.getCause());
+                displayErrorMessage("Niet genoeg parameters meegegeven voor gekozen korting. (Error: " + e.getCause() + ")");
             }
         }
     }
