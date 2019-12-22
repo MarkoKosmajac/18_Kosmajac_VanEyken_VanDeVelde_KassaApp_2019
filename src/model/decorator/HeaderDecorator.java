@@ -12,7 +12,7 @@ public class HeaderDecorator extends KassabonDecorator {
         String res = super.printBon().toUpperCase();
         //String letter = getKassabon().printBon();
         //letter = letter.toUpperCase();
-        String header = "Omschrijving" + "\t"  + "Aantal  Prijs" + "\n" + "*************************";
+        String header = "Omschrijving" + "\t"  + "Aantal  Prijs" + "\n";
         return header + res;
     }
 }

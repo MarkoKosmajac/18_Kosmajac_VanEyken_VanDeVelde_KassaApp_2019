@@ -65,7 +65,7 @@ public class InstellingenController {
             properties.setProperty("footerlijn", footerlijn);*/
             properties.store(os,null);
             System.out.println("App sluit automatisch om updates toe te passen in de properties file");
-            Platform.exit(); //TODO: WHAT TO DO?
+            //Platform.exit(); //TODO: WHAT TO DO?
 
 
         } catch (Exception e) {

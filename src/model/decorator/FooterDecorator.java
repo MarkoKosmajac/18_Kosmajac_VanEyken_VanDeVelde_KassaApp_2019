@@ -11,7 +11,7 @@ public class FooterDecorator extends KassabonDecorator{
         String res = super.printBon();
         //String letter = getKassabon().printBon();
         //letter = letter.toLowerCase();
-        String footer = "*************************" + "\n" + "Betaald (inclusief korting): " + getKassabon().printBon();
+        String footer = "Betaald (inclusief korting): " + getKassabon().printBon();
         return res + footer;
     }
 }
