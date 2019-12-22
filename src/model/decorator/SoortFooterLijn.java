@@ -1,4 +1,4 @@
-package model;
+package model.decorator;
 
 public enum SoortFooterLijn {
 

@@ -1,8 +1,8 @@
 package controller;
 
 import model.ArtikelModel;
-import model.SoortBestand;
-import model.SoortDatabase;
+import database.SoortBestand;
+import database.SoortDatabase;
 import model.kortingstrategie.KortingStrategie;
 import model.kortingstrategie.SoortKorting;
 import view.panels.InstellingenPane;
@@ -56,8 +56,8 @@ public class InstellingenController {
             properties.setProperty("Kortingspercent", String.valueOf(percent));
             properties.setProperty("Kortingsbedrag", String.valueOf(bedrag));
             properties.store(os,null);
-            System.out.println("App sluit automatisch om updates toe te passen in de properties file");
-            //Platform.exit(); //TODO: WHAT TO DO?
+            System.out.println("Restart Applicatie om updates toe te passen in de properties file");
+            //Platform.exit();
 
 
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class InstellingenController {
             properties.setProperty("headerlijn", headerlijn);
 
             properties.store(os,null);
-            //Platform.exit(); //TODO: WHAT TO DO?
+            //Platform.exit();
 
 
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class InstellingenController {
             os = new FileOutputStream("src" + File.separator + "bestanden" + File.separator + "KassaApp.properties");
             properties.setProperty("footerlijn", footerlijn);
             properties.store(os,null);
-            //Platform.exit(); //TODO: WHAT TO DO?
+            //Platform.exit();
 
 
         } catch (Exception e) {

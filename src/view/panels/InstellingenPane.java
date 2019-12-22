@@ -6,10 +6,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import model.SoortBestand;
-import model.SoortDatabase;
-import model.SoortFooterLijn;
-import model.SoortHeaderLijn;
+import database.SoortBestand;
+import database.SoortDatabase;
+import model.decorator.SoortFooterLijn;
+import model.decorator.SoortHeaderLijn;
 import model.kortingstrategie.*;
 
 /**

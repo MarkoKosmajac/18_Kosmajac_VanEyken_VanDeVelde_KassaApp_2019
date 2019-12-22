@@ -1,7 +1,7 @@
 package database;
 
 import model.Artikel;
-import model.LoadSaveStrategy;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

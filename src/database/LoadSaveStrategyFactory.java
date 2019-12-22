@@ -1,7 +1,4 @@
-package model;
-
-import database.ArtikelLoadSaveExcel;
-import database.ArtikelLoadSaveTekst;
+package database;
 
 /**
  * @author Marko Kosmajac

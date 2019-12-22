@@ -1,7 +1,6 @@
 package model.decorator;
 
 import model.ArtikelModel;
-import model.SoortFooterLijn;
 
 public class FooterDecorator extends KassabonDecorator{
 

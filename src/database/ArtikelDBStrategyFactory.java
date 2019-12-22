@@ -1,6 +1,4 @@
-package model;
-
-import database.ArtikelDBContext;
+package database;
 
 /**
  * @author Marko Kosmajac
