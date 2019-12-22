@@ -183,9 +183,9 @@ public class InstellingenPane extends GridPane {
                     instellingenController.setPropertiesDecoratorHeader(getSelectedHeaderComboBox());
                 }
 
-                if (cb2Aangevinkt()){
+                if (cb2Aangevinkt() && !getTextFooterlijnen().trim().isEmpty()){
                     instellingenController.setPropertiesDecoratorFooter(getTextFooterlijnen());
-                } else if (cb1Aangevinkt() && getTextFooterlijnen().trim().isEmpty()){
+                } else if (cb2Aangevinkt() && getTextFooterlijnen().trim().isEmpty()){
                    instellingenController.setPropertiesDecoratorFooter(getSelectedFooterComboBox());
                 }
 
