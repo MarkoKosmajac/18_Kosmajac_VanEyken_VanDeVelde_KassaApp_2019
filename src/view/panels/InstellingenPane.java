@@ -39,8 +39,8 @@ public class InstellingenPane extends GridPane {
     private Label kortingLabel = new Label();
     private CheckBox cb1 = new CheckBox("Headerlijn(en) toevoegen ?");
     private CheckBox cb2 = new CheckBox("Footerlijn(en) toevoegen ?");
-    private TextField textHeaderlijnen = new TextField("VUL JE HEADERLIJN HIER IN.");
-    private TextField textFooterlijnen = new TextField("VUL JE FOOTERLIJN HIER IN.");
+    private TextField textHeaderlijnen = new TextField();
+    private TextField textFooterlijnen = new TextField();
 
     public InstellingenPane(){
         instellingenController = new InstellingenController();
@@ -112,6 +112,14 @@ public class InstellingenPane extends GridPane {
         return comboBoxKorting.getValue().toString();
     }
 
+    public String getSelectedFooterComboBox(){
+        return comboBoxFooter.getValue().toString();
+    }
+
+    public String getSelectedHeaderComboBox(){
+        return comboBoxHeader.getValue().toString();
+    }
+
     public String getSelectedDatabase(){
         return comboBoxDatabase.getValue().toString();
     }
@@ -119,6 +127,7 @@ public class InstellingenPane extends GridPane {
     public String getSelectedPercent(){
         return percentText.getText();
     }
+
 
     public String getSelectedBedrag(){
         if (getSelectedKorting().equalsIgnoreCase("DUURSTEKORTING")){
@@ -168,12 +177,16 @@ public class InstellingenPane extends GridPane {
             try {
                 instellingenController.setPropertiesDB(getSelectedFile(), getSelectedDatabase());
 
-                if (cb1Aangevinkt()){
+                if (cb1Aangevinkt() && !getTextHeaderlijnen().trim().isEmpty()){
                     instellingenController.setPropertiesDecoratorHeader(getTextHeaderlijnen());
+                } else if (cb1Aangevinkt() && getTextHeaderlijnen().trim().isEmpty()){
+                    instellingenController.setPropertiesDecoratorHeader(getSelectedHeaderComboBox());
                 }
 
                 if (cb2Aangevinkt()){
                     instellingenController.setPropertiesDecoratorFooter(getTextFooterlijnen());
+                } else if (cb1Aangevinkt() && getTextFooterlijnen().trim().isEmpty()){
+                   instellingenController.setPropertiesDecoratorFooter(getSelectedFooterComboBox());
                 }
 
                 if (getSelectedKorting().equalsIgnoreCase("DREMPELKORTING")) {

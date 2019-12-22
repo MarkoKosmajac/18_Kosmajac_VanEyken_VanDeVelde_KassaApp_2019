@@ -93,7 +93,7 @@ public class ArtikelModel implements Subject {
                 tot += a.getPrijs();
             }
         }
-        return tot;
+        return Math.floor(tot*100)/100;
     }
 
     public void setOnHoldlist() {
@@ -224,6 +224,7 @@ public class ArtikelModel implements Subject {
         }
         res += sterretjes + "\n";
         res += "Prijs zonder korting:" + "\t\t" + getTotPrijs() + " €" + "\n";
+        res += "Prijs inclusief BTW:" + "\t\t" + getTotprijsMetBTW() + " €" + "\n";
         res += "Betaald (inclusief korting): " + getEindPrijs() + " €" + "\n";
         return headerlijn + res  + footerlijn;
     }
@@ -335,6 +336,10 @@ public class ArtikelModel implements Subject {
             e.printStackTrace();
         }
         return Double.parseDouble(properties.getProperty("Kortingspercent"));
+    }
+
+    public double getTotprijsMetBTW(){
+        return getTotPrijs()*1.06;
     }
 
 
