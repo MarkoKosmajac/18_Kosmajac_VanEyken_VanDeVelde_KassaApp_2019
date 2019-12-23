@@ -4,6 +4,10 @@ import database.ArtikelDBContext;
 import model.Artikel;
 import java.util.ArrayList;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac
+ */
+
 public class ProductOverviewPaneController {
 
     private ArtikelDBContext artikelDBContext;

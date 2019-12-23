@@ -2,6 +2,10 @@ package model;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 /* VOOR LOGS - TAB 4: NOT FINISHED*/
 public class Verkoop {
     private double totaalbedrag, korting, teBetalenBedrag;

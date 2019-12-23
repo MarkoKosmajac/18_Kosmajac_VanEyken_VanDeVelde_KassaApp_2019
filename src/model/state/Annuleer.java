@@ -2,6 +2,10 @@ package model.state;
 
 import model.ArtikelModel;
 
+/**
+ * @author Max Van De Velde
+ */
+
 public class Annuleer implements VerkoopState {
     private ArtikelModel artikelModel;
 

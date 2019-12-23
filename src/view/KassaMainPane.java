@@ -11,6 +11,10 @@ import view.panels.KassaOverviewPane;
 import view.panels.LogPane;
 import view.panels.ProductOverviewPane;
 
+/**
+ * @author Max Van De Velde, Marko Kosmajac, Brent Van Eyken
+ */
+
 public class KassaMainPane extends BorderPane {
 
     private ProductOverviewPaneController controllerOverview;

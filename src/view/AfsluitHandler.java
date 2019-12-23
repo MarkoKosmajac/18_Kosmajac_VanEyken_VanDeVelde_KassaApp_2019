@@ -4,6 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 
+/**
+ * @author Max Van De Velde
+ */
+
 public class AfsluitHandler implements EventHandler<ActionEvent> {
     private final Label korting;
     private final Label eindTotaal;

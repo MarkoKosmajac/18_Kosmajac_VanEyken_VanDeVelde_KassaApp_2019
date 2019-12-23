@@ -1,5 +1,9 @@
 package model.state;
 
+/**
+ * @author Max Van De Velde
+ */
+
 public class VerkoopSluit implements VerkoopState {
 
     public VerkoopSluit() {

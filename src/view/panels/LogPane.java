@@ -10,6 +10,10 @@ import model.Verkoop;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * @author Marko Kosmajac
+ */
+
 public class LogPane extends GridPane {
     private TableView<Verkoop> table = new TableView<Verkoop>();
     private ObservableList<Verkoop> verkopen;
